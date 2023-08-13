@@ -1,0 +1,46 @@
+{
+	"$schema": "http://json-schema.org/draft-07/schema",
+	"$id": "pf2ools-schema/content/event.json",
+	"title": "Event",
+	"description": "Pf2ools' event object.",
+	"type": "object",
+	"properties": {
+		"type": {
+			"const": "event"
+		},
+		"data": {
+			"type": "object",
+			"properties": {
+				"level": {
+					"type": "integer",
+					"description": "The event's level.",
+					"minimum": -1
+				},
+				"traits": {
+					"$ref": "common/traits.json"
+				},
+				"applicableSkills": {
+					"type": "array",
+					"description": "An array of objects representing the event's applicable skills.",
+					"items": {
+						"$ref": "common/skill.json"
+					},
+					"minItems": 1,
+					"uniqueItems": true
+				},
+				"entries": {
+					"type": "array",
+					"items": {
+						"$ref": "common/entry.json"
+					},
+					"minItems": 1
+				}
+			},
+			"additionalProperties": false,
+			"required": [
+				"level",
+				"entries"
+			]
+		}
+	}
+}

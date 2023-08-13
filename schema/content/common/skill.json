@@ -1,0 +1,38 @@
+{
+	"$schema": "http://json-schema.org/draft-07/schema",
+	"$id": "pf2ools-schema/content/common/skill.json",
+	"title": "Skill",
+	"description": "A combined object to describe a skill.",
+	"type": "object",
+	"properties": {
+		"skill": {
+			"$ref": "../constants/listOfSkills.json",
+			"description": "The name of the skill (title case)."
+		},
+		"variables": {
+			"type": "array",
+			"description": "An array of the skill's variable elements. Most often, this is a list of Lore topics.",
+			"items": {
+				"type": "string",
+				"description": "A skill's variable element (e.g. \"Accounting\" and \"Midwifery\" in \"Accounting or Midwifery Lore\").",
+				"minLength": 1,
+				"pattern": "^[A-Z]",
+				"$comment": "Pattern enforces title case"
+			},
+			"minItems": 1,
+			"uniqueItems": true
+		},
+		"display": {
+			"type": "string",
+			"minLength": 1,
+			"description": "How the skill should display, if it cannot be trivially inferred from `skill` and `variables`.",
+			"examples": [
+				"Accounting and Midwifery Lore"
+			]
+		}
+	},
+	"required": [
+		"skill"
+	],
+	"additionalProperties": false
+}

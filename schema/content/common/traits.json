@@ -1,0 +1,47 @@
+{
+	"$schema": "http://json-schema.org/draft-07/schema#",
+	"$id": "pf2ools-schema/content/common/traits.json",
+	"title": "Traits",
+	"description": "An array of objects representing a list of traits",
+	"type": "array",
+	"items": {
+		"type": "object",
+		"properties": {
+			"trait": {
+				"type": "string",
+				"minLength": 1,
+				"pattern": "^[a-z]",
+				"$comment": "Pattern enforces lowercase",
+				"description": "The bare, keyworded name of the trait (e.g. the \"versatile\" in \"versatile P\")."
+			},
+			"variables": {
+				"type": "array",
+				"description": "The variable elements of a trait in an array.",
+				"items": {
+					"type": "string",
+					"minLength": 1,
+					"description": "A trait's variable (e.g. \"B\", \"P\", and \"S\" in \"modular B, P, or S\")."
+				},
+				"minItems": 1,
+				"uniqueItems": true
+			},
+			"display": {
+				"type": "string",
+				"minLength": 1,
+				"pattern": "^[a-z]",
+				"$comment": "Pattern enforces lowercase",
+				"description": "How the trait should display, if it cannot be trivially inferred from `trait` and `variables`.",
+				"examples": [
+					"modular (P and grapple, or S and sweep)"
+				]
+			}
+		},
+		"required": [
+			"trait"
+		],
+		"additionalProperties": false,
+		"description": "A trait with both keyword and variable elements."
+	},
+	"minItems": 1,
+	"uniqueItems": true
+}

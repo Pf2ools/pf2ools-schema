@@ -1,0 +1,275 @@
+{
+	"$schema": "http://json-schema.org/draft-07/schema#",
+	"$id": "pf2ools-schema/source.json",
+	"title": "Source",
+	"description": "Pf2ools' source object.",
+	"definitions": {
+		"ID": {
+			"type": "string",
+			"minLength": 2,
+			"allOf": [
+				{
+					"pattern": "^[A-Za-z0-9][A-Za-z0-9-]*[A-Za-z0-9]$",
+					"$comment": "Format derives from the following logic: 1) the ID should be URI-safe to ensure, well, maximum safety; 2) the ID should not include \".\" because that looks confusing in a URI; 3) the ID should not include \"_\" because that is reserved for use by the Pf2ools' website; 4) \"~\" and initial/terminal \"-\" is confusing and looks ugly. The minimum length is just to force a modicum of variety and meaningfulness."
+				},
+				{
+					"not": {
+						"pattern": "^(COM[0-9]?|PRN|AUX|NUL|LPT[0-9])$",
+						"$comment": "These are reserved filenames in Windows. At some point someone will save a source file and/or its content as \"<id>.json\" and won't realise the hell this causes for Windows users. So rip the 'Casmaron Orienteering Manual' or whatever I guess ¯\\_(ツ)_/¯"
+					}
+				}
+			]
+		}
+	},
+	"type": "object",
+	"properties": {
+		"type": {
+			"const": "source"
+		},
+		"ID": {
+			"$ref": "#/definitions/ID",
+			"description": "The source's identifying string for the computer. This must be only composed of alphanumeric characters and non-initial, non-terminal hyphens. It must be globally and case-insensitively unique across the Pf2ools ecosystem. For multi-part adventures, the standard is to use \"<groupID>0\" for the player's guide (if any), and then \"<groupID>#\" for each part, where \"#\" is the part's number.",
+			"examples": [
+				"CRB",
+				"BotD",
+				"EC1",
+				"VVVVVV"
+			]
+		},
+		"title": {
+			"type": "object",
+			"properties": {
+				"full": {
+					"type": "string",
+					"minLength": 1,
+					"description": "The source's full, human-readable name. Title case is preferred but anything can be used within reason.",
+					"examples": [
+						"Core Rulebook",
+						"Book of the Dead",
+						"Extinction Curse 1: The Show Must Go On",
+						"Vauxs' Very Velvet Volumes of Verbose Vagueries"
+					]
+				},
+				"short": {
+					"type": "string",
+					"minLength": 1,
+					"maxLength": 8,
+					"$comment": "Max length for display purposes",
+					"description": "An abbreviation or other shortening of the source's name for display purposes.",
+					"examples": [
+						"CRB",
+						"BotD",
+						"EC",
+						"V6"
+					]
+				}
+			},
+			"required": [
+				"full",
+				"short"
+			],
+			"additionalProperties": false,
+			"description": "An object representing the source's name."
+		},
+		"data": {
+			"type": "object",
+			"properties": {
+				"released": {
+					"type": "string",
+					"format": "date",
+					"description": "The source's publication date (YYYY-MM-DD). For content with a staggered release or early-access program, use the date the source was first made publicly available."
+				},
+				"version": {
+					"type": "string",
+					"minLength": 1,
+					"description": "The target version for the converted data (if any). This value serves akin to a `specifier` in case multiple distinct versions of the same source are maintained. Leave undefined if there has only ever been one version.",
+					"examples": [
+						"2nd Printing",
+						"v2.0.1",
+						"Revised 2023"
+					]
+				},
+				"errataed": {
+					"type": "string",
+					"format": "date",
+					"description": "The date (YYYY-MM-DD) of the source's most recent errata applied to Pf2ools' content. Leave undefined if the source has never been errataed."
+				},
+				"added": {
+					"type": "string",
+					"format": "date",
+					"description": "The date (YYYY-MM-DD) the source was first made available on the Pf2ools ecosystem (complete or otherwise)."
+				},
+				"modified": {
+					"type": "string",
+					"format": "date",
+					"description": "The date (YYYY-MM-DD) the source's content-data as maintained by the Pf2ools project was last modified."
+				},
+				"url": {
+					"type": "string",
+					"format": "url",
+					"description": "A website on which the content can be legally and publicly viewed, downloaded, or purchased. A first-party website (i.e. one controlled by the authors) is preferred. If the Pf2ools source is the authoritative version for distribution, you can use \"https://github.com/pf2ools/pf2ools-data\".",
+					"examples": [
+						"https://paizo.com/products/btq01y0k?Pathfinder-Core-Rulebook",
+						"https://github.com/pf2ools/pf2ools-data"
+					]
+				},
+				"groupIDs": {
+					"type": "array",
+					"description": "A list of `id`s of the source's parent groups (if any). This is used for a source that is one piece of a larger, clearly defined, multi-part series. For instance, \"Extinction Curse 1: The Show Must Go On\" belongs to the \"Extinction Curse\" series (\"EC\"), and \"Lost Omens: Travel Guide\" belongs to the \"Lost Omens\" series (\"LO\").",
+					"items": {
+						"$ref": "#/definitions/ID",
+						"description": "The `id` of a source group.",
+						"examples": [
+							"LO",
+							"EC"
+						]
+					},
+					"minItems": 1,
+					"uniqueItems": true
+				},
+				"copyright": {
+					"type": "array",
+					"items": {
+						"$ref": "content/common/entry.json"
+					},
+					"description": "Any copyright text associated with the source. For instance, the copyright notice that accompanies the OGLv1.0a license would be entered here (but not the license itself)."
+				},
+				"license": {
+					"$ref": "#/definitions/ID",
+					"description": "The `id` of the source's license.",
+					"examples": [
+						"OGLv1-0a",
+						"ORC",
+						"CC-BY-SA-v4-0"
+					]
+				},
+				"authors": {
+					"type": "array",
+					"items": {
+						"type": "string",
+						"minLength": 2,
+						"description": "An author's name. Online handles should be reasonably indicated.",
+						"examples": [
+							"John Smith",
+							"Discord: @vauxs",
+							"Reddit: u/VauxsDoesntHaveReddit"
+						]
+					},
+					"minItems": 1,
+					"uniqueItems": true,
+					"description": "A list of authors as credited by the source itself."
+				},
+				"publisher": {
+					"type": "string",
+					"minLength": 2,
+					"description": "The name of the source's publishing company or group (if any).",
+					"examples": [
+						"Paizo",
+						"Roll for Combat",
+						"Pathfinder Infinite"
+					]
+				},
+				"converters": {
+					"type": "array",
+					"description": "A list of Pf2ools contributors who converted this source. If multiple converters exist, choose one 'principal' to go first in the case of questions or bug reports. This is particularly used for homebrew.",
+					"items": {
+						"type": "string",
+						"minLength": 2,
+						"description": "A converter's name. Online handles should be reasonably indicated; Discord usernames are strongly prefered.",
+						"examples": [
+							"Discord: @vauxs",
+							"John Smith"
+						]
+					},
+					"minItems": 1,
+					"uniqueItems": true
+				}
+			},
+			"required": [
+				"released",
+				"added",
+				"modified",
+				"license"
+			],
+			"additionalProperties": false
+		},
+		"tags": {
+			"type": "object",
+			"description": "This object contains a list of categories the source falls into, for sorting, searching, and filtering purposes.",
+			"properties": {
+				"publicationType": {
+					"type": "object",
+					"description": "An object representing the type of publication the source can be categorised as. This is most relevant when the game content is bundled along with something that isn't a typical Pathfinder rulebook.",
+					"properties": {
+						"Comic": {
+							"const": true,
+							"description": "The source is content bundled with a comic."
+						},
+						"Blog post": {
+							"const": true,
+							"description": "The source is a blog post or another similar type of short, online article."
+						}
+					},
+					"minProperties": 1,
+					"additionalProperties": false
+				},
+				"status": {
+					"type": "object",
+					"description": "An object representing the source's conversion status, if it is at all imperfect.",
+					"properties": {
+						"WIP": {
+							"const": true,
+							"description": "This source is only partially converted right now but, one day, could be completely up-to-date."
+						},
+						"Invalid": {
+							"const": true,
+							"description": "This source's data is invalid and either contains serious schema errors or is generally malformed. It exists for archival purposes only and is unmaintained."
+						}
+					},
+					"minProperties": 1,
+					"additionalProperties": false
+				},
+				"misc": {
+					"type": "object",
+					"properties": {
+						"Official": {
+							"const": true,
+							"description": "This source was created and published by Paizo as 'official' Pathfinder 2e content (that is, it's official insofar that something can be 'official')."
+						},
+						"GM-facing": {
+							"const": true,
+							"description": "This source is intended to be GM-facing. This is typically due to it being an adventure, module, one-shot, scenario, or the like."
+						},
+						"PFS-legal": {
+							"const": true,
+							"description": "This source is legal for Pathfinder Society play."
+						},
+						"Playtest": {
+							"const": true,
+							"description": "This source contains playtest, early-access, or otherwise 'unfinished' content."
+						},
+						"Ongoing": {
+							"const": true,
+							"description": "This source is being continually expanded. The data only reflects content only up until the `errataed` date. This is used for 'monster a day' projects and the like, where the content may entail a substantial lag behind the present."
+						},
+						"Deprecated": {
+							"const": true,
+							"description": "This source has been wholly superseded by another version of the same content. This applies when a completely rewritten, revised version of the source exists; simple, minor modifications via errata do not."
+						}
+					},
+					"minProperties": 1,
+					"additionalProperties": false
+				}
+			},
+			"minProperties": 1,
+			"additionalProperties": false
+		}
+	},
+	"required": [
+		"type",
+		"ID",
+		"title",
+		"data"
+	],
+	"additionalProperties": false
+}

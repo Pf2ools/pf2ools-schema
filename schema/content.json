@@ -1,0 +1,49 @@
+{
+	"$schema": "http://json-schema.org/draft-07/schema#",
+	"$id": "pf2ools-schema/content.json",
+	"title": "Content",
+	"description": "The abstract format of Pf2ools' data content.",
+	"$comment": "This file defines the general form of 'content' files (i.e. anything that can be directly displayed in a statblock).",
+	"type": "object",
+	"properties": {
+		"type": {
+			"type": "string",
+			"description": "The type of data described."
+		},
+		"name": {
+			"$ref": "content/common/name.json"
+		},
+		"source": {
+			"$ref": "content/common/contentSource.json"
+		},
+		"data": {
+			"type": "object",
+			"description": "An object representing the content itself."
+		},
+		"tags": {
+			"type": "object",
+			"description": "An object describing the content for filtering, searching, and sorting."
+		}
+	},
+	"anyOf": [
+		{
+			"$ref": "content/background.json"
+		},
+		{
+			"$ref": "content/condition.json"
+		},
+		{
+			"$ref": "content/event.json"
+		},
+		{
+			"$ref": "content/relicGift.json"
+		}
+	],
+	"required": [
+		"type",
+		"name",
+		"source",
+		"data"
+	],
+	"additionalProperties": false
+}

@@ -1,0 +1,33 @@
+{
+	"$schema": "http://json-schema.org/draft-07/schema",
+	"$id": "pf2ools-schema/content/common/contentSource.json",
+	"title": "Content Source",
+	"description": "Source object for a content entity.",
+	"type": "object",
+	"properties": {
+		"ID": {
+			"$ref": "../../source.json#/definitions/ID",
+			"description": "The source ID that contains the data."
+		},
+		"page": {
+			"type": "integer",
+			"minimum": 1,
+			"description": "The page number (if any) on which the content begins."
+		},
+		"reprintOf": {
+			"$ref": "../../source.json#/definitions/ID",
+			"description": "The ID of the pre-existing 'primary source' that contains this exact data entity (if any)."
+		},
+		"expansionOf": {
+			"$ref": "../../source.json#/definitions/ID",
+			"description": "The ID of the pre-existing 'primary source' that contains the base form of this exact data entity (if any)."
+		},
+		"originalOf": {
+			"$ref": "../../source.json#/definitions/ID",
+			"description": "The ID of the superseding 'primary source' that contains this exact data entity (if any)."
+		}
+	},
+	"required": [
+		"ID"
+	]
+}

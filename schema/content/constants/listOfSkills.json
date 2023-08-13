@@ -1,0 +1,25 @@
+{
+	"$schema": "http://json-schema.org/draft-07/schema",
+	"$id": "pf2ools-schema/content/constants/listOfSkills.json",
+	"title": "List of skills (title case)",
+	"type": "string",
+	"enum": [
+		"Acrobatics",
+		"Arcana",
+		"Athletics",
+		"Crafting",
+		"Deception",
+		"Diplomacy",
+		"Intimidation",
+		"Lore",
+		"Medicine",
+		"Nature",
+		"Occultism",
+		"Performance",
+		"Religion",
+		"Society",
+		"Stealth",
+		"Survival",
+		"Thievery"
+	]
+}

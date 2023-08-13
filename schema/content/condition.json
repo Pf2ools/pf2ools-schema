@@ -1,0 +1,69 @@
+{
+	"$schema": "http://json-schema.org/draft-07/schema",
+	"$id": "pf2ools-schema/content/condition.json",
+	"title": "Condition",
+	"description": "Pf2ools' condition object.",
+	"type": "object",
+	"properties": {
+		"type": {
+			"const": "condition"
+		},
+		"data": {
+			"type": "object",
+			"properties": {
+				"entries": {
+					"type": "array",
+					"items": {
+						"$ref": "common/entry.json"
+					},
+					"minItems": 1
+				}
+			},
+			"additionalProperties": false,
+			"required": [
+				"entries"
+			]
+		},
+		"tags": {
+			"type": "object",
+			"properties": {
+				"group": {
+					"type": "object",
+					"description": "An object containing any groups the condition belongs to. The properties should be in title case.",
+					"properties": {
+						"Attitudes": {
+							"const": true,
+							"description": "The condition is in the 'Attitudes' group (PHB p619)."
+						},
+						"Death and Dying": {
+							"const": true,
+							"description": "The condition is in the 'Death and Dying' group (PHB p619)."
+						},
+						"Degrees of Detection": {
+							"const": true,
+							"description": "The condition is in the 'Degrees of Detection' group (PHB p619)."
+						},
+						"Lowered Abilities": {
+							"const": true,
+							"description": "The condition is in the 'Lowered Abilities' group (PHB p619)."
+						},
+						"Senses": {
+							"const": true,
+							"description": "The condition is in the 'Senses' group (PHB p619)."
+						}
+					},
+					"minProperties": 1,
+					"additionalProperties": {
+						"const": true
+					},
+					"propertyNames": {
+						"pattern": "^[A-Z]",
+						"minLength": 1,
+						"$comment": "Pattern enforces title case"
+					}
+				}
+			},
+			"additionalProperties": false
+		}
+	}
+}
