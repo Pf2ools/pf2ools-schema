@@ -14,12 +14,14 @@ const program = new Command()
 		"Validates a file or directory of files against the Pf2ools schema. Only JSON files will be tested.",
 	)
 	.argument("<paths...>", "File or directory paths to test")
-	.option("-a, --all", "Test all files (default: break at first validation failure)")
+	.option("-a, --all", `Test all files ${chalk.dim("(default: break at first validation failure)")}`)
 	.option("-e, --error", "Suppress printing of validation status for passing files")
 	.option("-r, --recurse", "Recursively test files in directories")
 	.option(
 		"-s, --summary",
-		"Suppress printing of validation status for all files and only summarise results (note: implies --all)",
+		`Suppress printing of validation status for all files and only summarise results ${chalk.dim(
+			"(note: implies --all)",
+		)}`,
 	)
 	.parse(process.argv);
 
@@ -36,7 +38,6 @@ function getJSONsRecursively(targetPath) {
 	});
 	return fileList;
 }
-
 function isJSON(filename) {
 	return path.extname(filename) === ".json";
 }
@@ -143,11 +144,13 @@ for (const file of files) {
 // Summarise
 if (opts.summary || files.length > 1) {
 	if (failCount === 0) {
-		console.log(chalk.green(`All ${chalk.bold(files.length)} files passed validation.`));
+		console.log(
+			chalk.green(`All ${chalk.bold(files.length)} file${files.length !== 1 ? "s" : ""} passed validation.`),
+		);
 	} else {
 		console.log(
 			chalk.red(
-				`${chalk.bold(failCount)} file${failCount > 1 ? "s" : ""} (${
+				`${chalk.bold(failCount)} file${failCount !== 1 ? "s" : ""} (${
 					Math.round((1000 * failCount) / files.length) / 10
 				}%) failed validation.`,
 			),
