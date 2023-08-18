@@ -52,11 +52,8 @@
 			"type": "object",
 			"properties": {
 				"entries": {
-					"type": "array",
 					"description": "The full text of the license. Formatting may be used where it doesn't detract from its interpretation.",
-					"items": {
-						"$ref": "content/common/entry.json"
-					}
+					"$ref": "./content/common/entries.json"
 				}
 			}
 		}

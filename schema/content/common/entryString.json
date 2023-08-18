@@ -1,0 +1,8 @@
+{
+	"$schema": "http://json-schema.org/draft-07/schema",
+	"$id": "pf2ools-schema/content/common/entryString.json",
+	"title": "Entry String",
+	"description": "Pf2ools' simplest type of entry: a string. It displays as a single paragraph of text with in-line formatting determined by use of `@tag`s.",
+	"type": "string",
+	"minLength": 1
+}

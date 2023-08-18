@@ -53,15 +53,10 @@
 					"description": "An array of objects representing the relic gift's aspects."
 				},
 				"prerequisites": {
-					"type": "string",
-					"minLength": 1
+					"$ref": "./common/entryString.json"
 				},
 				"entries": {
-					"type": "array",
-					"items": {
-						"$ref": "common/entry.json"
-					},
-					"minItems": 1
+					"$ref": "./common/entries.json"
 				}
 			},
 			"additionalProperties": false,

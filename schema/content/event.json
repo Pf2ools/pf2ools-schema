@@ -29,11 +29,7 @@
 					"uniqueItems": true
 				},
 				"entries": {
-					"type": "array",
-					"items": {
-						"$ref": "common/entry.json"
-					},
-					"minItems": 1
+					"$ref": "./common/entries.json"
 				}
 			},
 			"additionalProperties": false,

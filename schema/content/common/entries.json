@@ -1,0 +1,30 @@
+{
+	"$schema": "http://json-schema.org/draft-07/schema",
+	"$id": "pf2ools-schema/content/common/entries.json",
+	"title": "Entry",
+	"description": "Pf2ools' entry value (string or object).",
+	"$comment": "TODO",
+	"type": "array",
+	"items": {
+		"anyOf": [
+			{
+				"$ref": "./entryString.json"
+			},
+			{
+				"type": "object",
+				"properties": {
+					"type": {
+						"type": "string",
+						"minLength": 1
+					}
+				},
+				"required": [
+					"type"
+				],
+				"description": "A paragraph with a header or some particular formatting.",
+				"$comment": "TODO"
+			}
+		]
+	},
+	"minItems": 1
+}

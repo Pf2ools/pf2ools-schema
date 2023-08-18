@@ -128,11 +128,8 @@
 					"uniqueItems": true
 				},
 				"copyright": {
-					"type": "array",
-					"items": {
-						"$ref": "content/common/entry.json"
-					},
-					"description": "Any copyright text associated with the source. For instance, the copyright notice that accompanies the OGLv1.0a license would be entered here (but not the license itself)."
+					"description": "Any copyright text associated with the source. For instance, the copyright notice that accompanies the OGLv1.0a license would be entered here (but not the license itself). Formatting may be used where it doesn't detract from its interpretation.",
+					"$ref": "./content/common/entries.json"
 				},
 				"license": {
 					"$ref": "#/definitions/ID",
