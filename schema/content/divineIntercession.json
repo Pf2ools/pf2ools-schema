@@ -1,0 +1,69 @@
+{
+	"$schema": "http://json-schema.org/draft-07/schema",
+	"$id": "pf2ools-schema/content/divineIntercession.json",
+	"title": "Event",
+	"description": "Pf2ools' divine intercession object.",
+	"type": "object",
+	"properties": {
+		"type": {
+			"const": "divineIntercession"
+		},
+		"data": {
+			"type": "object",
+			"properties": {
+				"preamble": {
+					"description": "The flavour text or GM guidance that precedes the boons/curses themselves.",
+					"type": "array",
+					"items": {
+						"$ref": "common/entry.json"
+					},
+					"minItems": 1
+				},
+				"Minor Boon": {
+					"type": "array",
+					"items": {
+						"$ref": "common/entry.json"
+					},
+					"minItems": 1
+				},
+				"Moderate Boon": {
+					"type": "array",
+					"items": {
+						"$ref": "common/entry.json"
+					},
+					"minItems": 1
+				},
+				"Major Boon": {
+					"type": "array",
+					"items": {
+						"$ref": "common/entry.json"
+					},
+					"minItems": 1
+				},
+				"Minor Curse": {
+					"type": "array",
+					"items": {
+						"$ref": "common/entry.json"
+					},
+					"minItems": 1
+				},
+				"Moderate Curse": {
+					"type": "array",
+					"items": {
+						"$ref": "common/entry.json"
+					},
+					"minItems": 1
+				},
+				"Major Curse": {
+					"type": "array",
+					"items": {
+						"$ref": "common/entry.json"
+					},
+					"minItems": 1
+				}
+			},
+			"additionalProperties": false,
+			"minProperties": 1
+		}
+	}
+}
