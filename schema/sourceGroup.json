@@ -50,6 +50,18 @@
 			"additionalProperties": false,
 			"description": "An object representing the source group's name."
 		},
+		"data": {
+			"type": "object",
+			"properties": {
+				"publisher": {
+					"description": "The name of the original, first-party publisher of the source group. Sources with publishers not matching this value are considered 'third-party' contributors to the source group.",
+					"type": "string",
+					"minLength": 1
+				}
+			},
+			"minProperties": 1,
+			"additionalProperties": false
+		},
 		"tags": {
 			"type": "object",
 			"description": "This object contains a list of categories the source falls into, for sorting, searching, and filtering purposes.",
