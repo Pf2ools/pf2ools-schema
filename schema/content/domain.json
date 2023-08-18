@@ -1,0 +1,38 @@
+{
+	"$schema": "http://json-schema.org/draft-07/schema",
+	"$id": "pf2ools-schema/content/domain.json",
+	"title": "Domain",
+	"description": "Pf2ools' (deity) domain object.",
+	"type": "object",
+	"properties": {
+		"type": {
+			"const": "domain"
+		},
+		"data": {
+			"type": "object",
+			"properties": {
+				"preamble": {
+					"description": "The typically brief sentence or two of flavour text that describes the domain or otherwise provides guidance on its use.",
+					"$ref": "./common/entryString.json"
+				},
+				"domainSpell": {
+					"$ref": "./common/dataReference.json"
+				},
+				"advancedDomainSpell": {
+					"$ref": "./common/dataReference.json"
+				},
+				"apocryphalSpell": {
+					"$ref": "./common/dataReference.json"
+				},
+				"advancedApocryphalSpell": {
+					"$ref": "./common/dataReference.json"
+				}
+			},
+			"additionalProperties": false,
+			"required": [
+				"domainSpell",
+				"advancedDomainSpell"
+			]
+		}
+	}
+}

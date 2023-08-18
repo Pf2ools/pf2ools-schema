@@ -39,6 +39,9 @@
 			"$ref": "content/divineIntercession.json"
 		},
 		{
+			"$ref": "content/domain.json"
+		},
+		{
 			"$ref": "content/event.json"
 		},
 		{
