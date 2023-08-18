@@ -1,0 +1,229 @@
+{
+	"$schema": "http://json-schema.org/draft-07/schema",
+	"$id": "pf2ools-schema/content/deity.json",
+	"title": "Deity",
+	"description": "Pf2ools' deity, pantheon, and philosophy object.",
+	"type": "object",
+	"properties": {
+		"type": {
+			"const": "deity"
+		},
+		"data": {
+			"type": "object",
+			"properties": {
+				"category": {
+					"description": "The broad-scale category for the deity, such as its predominant region (e.g. \"Mwangi Gods\" for those dominant in the Mwangi Expanse), creature type (e.g. \"Archdevils\" for archdevil divinities), or religious construct (i.e. \"Pantheon\" or \"Philosophy\"). Follow precedent where possible.",
+					"type": "string",
+					"minLength": 1,
+					"examples": [
+						"Ancient Osirian Gods",
+						"Archdevils",
+						"Demon Lords",
+						"Dwarven Gods",
+						"Eldest",
+						"Elemental Lords",
+						"Elven Gods",
+						"Empyreal Lords",
+						"Gods of the Inner Sea",
+						"Great Old Ones",
+						"Horsemen",
+						"Monitor Demigods",
+						"Mwangi Gods",
+						"Outer Gods",
+						"Pantheon",
+						"Philosophy",
+						"Queens of the Night",
+						"Sarkorian Gods",
+						"Tian Gods",
+						"Vudrani Gods"
+					]
+				},
+				"pantheonMembers": {
+					"description": "A list of objects representing the deities that compose the pantheon (if it is one).",
+					"type": "array",
+					"items": {
+						"$ref": "./common/dataReference.json"
+					},
+					"minItems": 2,
+					"uniqueItems": true
+				},
+				"alignment": {
+					"type": "object",
+					"properties": {
+						"deity": {
+							"$ref": "constants/listOfAlignments.json"
+						},
+						"follower": {
+							"type": "array",
+							"items": {
+								"$ref": "constants/listOfAlignments.json"
+							},
+							"minItems": 1
+						}
+					},
+					"required": [
+						"deity"
+					],
+					"additionalProperties": false
+				},
+				"areasOfConcern": {
+					"description": "The deities \"Areas of Concern\" header as an array of strings. As the text is frequently a comma-separated list, each list element should be trivial.",
+					"type": "array",
+					"items": {
+						"$ref": "./common/entryString.json"
+					},
+					"minItems": 1,
+					"uniqueItems": true
+				},
+				"divineFont": {
+					"description": "An object representing the \"Divine Font\" header of the statblock.",
+					"type": "object",
+					"properties": {
+						"harm": {
+							"const": true
+						},
+						"heal": {
+							"const": true
+						}
+					},
+					"minProperties": 1,
+					"additionalProperties": false
+				},
+				"divineAbility": {
+					"description": "An object representing the \"Divine Ability\" header of the statblock.",
+					"type": "object",
+					"properties": {
+						"abilities": {
+							"description": "An object containing the abilities the deity can boost.",
+							"type": "object",
+							"propertyNames": {
+								"$ref": "./constants/listOfAbilities.json"
+							},
+							"additionalProperties": {
+								"const": true
+							},
+							"minProperties": 1
+						},
+						"entry": {
+							"description": "If the text cannot be represented in the form \"Ability 1, Ability 2, or Ability 3\", use this property to indicate how the text should appear. (Example: Asmodeus, LOGM p14)",
+							"$ref": "./common/entryString.json"
+						}
+					},
+					"minProperties": 1,
+					"additionalProperties": false
+				},
+				"divineSkill": {
+					"description": "An object representing the \"Divine Skill\" header of the statblock.",
+					"type": "object",
+					"properties": {
+						"skills": {
+							"description": "An object containing the skills the deity can boost.",
+							"type": "object",
+							"propertyNames": {
+								"$ref": "./constants/listOfSkills.json"
+							},
+							"additionalProperties": {
+								"const": true
+							},
+							"minProperties": 1
+						},
+						"entry": {
+							"description": "If the text cannot be represented in the form \"Skill 1, Skill 2, or Skill 3\", use this property to indicate how the text should appear.",
+							"$ref": "./common/entryString.json"
+						}
+					},
+					"minProperties": 1,
+					"additionalProperties": false
+				},
+				"domains": {
+					"description": "A list of objects describing the domains a deity encompasses.",
+					"type": "array",
+					"items": {
+						"$ref": "./common/dataReference.json"
+					},
+					"minItems": 1,
+					"uniqueItems": true
+				},
+				"alternateDomains": {
+					"description": "A list of objects describing the alternate domains a deity encompasses.",
+					"type": "array",
+					"items": {
+						"$ref": "./common/dataReference.json"
+					},
+					"minItems": 1,
+					"uniqueItems": true
+				},
+				"clericSpells": {
+					"description": "An object representing the cleric spells this deity grants. The properties represent the spell levels.",
+					"type": "object",
+					"patternProperties": {
+						"^([1-9]|10)$": {
+							"type": "array",
+							"items": {
+								"$ref": "./common/dataReference.json"
+							},
+							"minItems": 1,
+							"uniqueItems": true
+						}
+					},
+					"minProperties": 1,
+					"additionalProperties": false
+				},
+				"edicts": {
+					"description": "The deities \"Edicts\" header as an array of strings. As the text is frequently a comma-separated list, each list element should be trivial.",
+					"type": "array",
+					"items": {
+						"$ref": "./common/entryString.json"
+					},
+					"minItems": 1,
+					"uniqueItems": true
+				},
+				"anathema": {
+					"description": "The deities \"Anathema\" header as an array of strings. As the text is frequently a comma-separated list, each list element should be trivial.",
+					"type": "array",
+					"items": {
+						"$ref": "./common/entryString.json"
+					},
+					"minItems": 1,
+					"uniqueItems": true
+				},
+				"favoredWeapon": {
+					"description": "An object representing the \"Favored Weapon\" header of the statblock.",
+					"type": "object",
+					"properties": {
+						"weapons": {
+							"description": "A list of weapons the deity favours.",
+							"type": "array",
+							"items": {
+								"$ref": "./common/dataReference.json"
+							},
+							"minItems": 1,
+							"uniqueItems": true
+						},
+						"unarmedAttacks": {
+							"description": "A list of unarmed attacks the deity favours as if they were weapons.",
+							"type": "array",
+							"items": {
+								"type": "string",
+								"minLength": 1,
+								"examples": [
+									"claws",
+									"jaws"
+								]
+							},
+							"minItems": 1,
+							"uniqueItems": true
+						},
+						"entry": {
+							"description": "If the text cannot be represented in the form \"Unarmed Attack 1, Unarmed Attack 2, Weapon 1, or Weapon 2\", use this property to indicate how the text should appear.",
+							"$ref": "./common/entryString.json"
+						}
+					},
+					"minProperties": 1,
+					"additionalProperties": false
+				}
+			},
+			"additionalProperties": false
+		}
+	}
+}

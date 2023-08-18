@@ -1,0 +1,22 @@
+{
+	"$schema": "http://json-schema.org/draft-07/schema",
+	"$id": "pf2ools-schema/content/common/dataReference.json",
+	"title": "Statblock Reference",
+	"description": "A reference to another statblock. The `type` of the content is typically inferred from the context.",
+	"type": "object",
+	"properties": {
+		"name": {
+			"type": "string",
+			"minLength": 1
+		},
+		"sourceID": {
+			"type": "string",
+			"minLength": 1
+		}
+	},
+	"required": [
+		"name",
+		"sourceID"
+	],
+	"additionalProperties": false
+}

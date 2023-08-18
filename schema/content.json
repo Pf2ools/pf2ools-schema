@@ -33,6 +33,9 @@
 			"$ref": "content/condition.json"
 		},
 		{
+			"$ref": "content/deity.json"
+		},
+		{
 			"$ref": "content/divineIntercession.json"
 		},
 		{
