@@ -1,27 +1,27 @@
 #! /usr/bin/env node
 
-import Ajv from 'ajv';
-import addFormats from 'ajv-formats';
-import chalk from 'chalk';
-import { Command } from 'commander';
-import fs from 'fs';
-import path from 'path';
+import Ajv from "ajv";
+import addFormats from "ajv-formats";
+import chalk from "chalk";
+import { Command } from "commander";
+import fs from "fs";
+import path from "path";
 
 // Define CLI
 const program = new Command()
-	.summary('validate data for Pf2ools')
+	.summary("validate data for Pf2ools")
 	.description(
-		'Validates a file or directory of files against the Pf2ools schema. Only JSON files will be tested.'
+		"Validates a file or directory of files against the Pf2ools schema. Only JSON files will be tested.",
 	)
-	.argument('<paths...>', 'File or directory paths to test')
-	.option('-a, --all', `Test all files ${chalk.dim('(default: break at first validation failure)')}`)
-	.option('-e, --error', 'Suppress printing of validation status for passing files')
-	.option('-r, --recurse', 'Recursively test files in directories')
+	.argument("<paths...>", "File or directory paths to test")
+	.option("-a, --all", `Test all files ${chalk.dim("(default: break at first validation failure)")}`)
+	.option("-e, --error", "Suppress printing of validation status for passing files")
+	.option("-r, --recurse", "Recursively test files in directories")
 	.option(
-		'-s, --summary',
+		"-s, --summary",
 		`Suppress printing of validation status for all files and only summarise results ${chalk.dim(
-			'(note: implies --all)'
-		)}`
+			"(note: implies --all)",
+		)}`,
 	)
 	.parse(process.argv);
 
@@ -39,7 +39,7 @@ function getJSONsRecursively(targetPath) {
 	return fileList;
 }
 function isJSON(filename) {
-	return path.extname(filename) === '.json';
+	return path.extname(filename) === ".json";
 }
 
 // Load and validate arguments
@@ -54,7 +54,7 @@ for (const arg of program.args) {
 	} catch {
 		program.error(chalk.red(`"${argClean}" not found`), {
 			exitCode: 1,
-			code: 'invalid.path',
+			code: "invalid.path",
 		});
 	}
 	if (filePoint.isDirectory()) {
@@ -65,42 +65,42 @@ for (const arg of program.args) {
 				fs
 					.readdirSync(argClean)
 					.filter((file) => isJSON(file))
-					.map((file) => path.join(argClean, file))
+					.map((file) => path.join(argClean, file)),
 			);
 		}
 	} else if (!isJSON(argClean)) {
 		program.error(chalk.red(`"${argClean}" is not a JSON file`), {
 			exitCode: 1,
-			code: 'invalid.file',
+			code: "invalid.file",
 		});
 	} else {
 		files.push(argClean);
 	}
 }
 if (!files.length) {
-	console.log(chalk.blue('No JSON files to test'));
+	console.log(chalk.blue("No JSON files to test"));
 	process.exit();
 }
 
 // Load schema
-const schemas = getJSONsRecursively('schema').map((file) =>
-	JSON.parse(fs.readFileSync(file, { encoding: 'utf8' }))
+const schemas = getJSONsRecursively("schema").map((file) =>
+	JSON.parse(fs.readFileSync(file, { encoding: "utf8" })),
 );
 const ajv = new Ajv({
 	schemas: schemas,
 	verbose: true,
 });
 addFormats(ajv);
-const validator = ajv.getSchema('pf2ools-schema/_schema.json');
+const validator = ajv.getSchema("pf2ools-schema/_schema.json");
 
 // Validate files
-const failed = `\t${chalk.red('[Failed]')}  `;
-const passed = `\t${chalk.green('[Passed]')}  `;
+const failed = `\t${chalk.red("[Failed]")}  `;
+const passed = `\t${chalk.green("[Passed]")}  `;
 let failCount = 0;
 for (const file of files) {
 	let testJSON;
 	try {
-		testJSON = JSON.parse(fs.readFileSync(file, { encoding: 'utf8' }));
+		testJSON = JSON.parse(fs.readFileSync(file, { encoding: "utf8" }));
 	} catch {
 		console.error(failed + file);
 		if (opts.all) {
@@ -109,7 +109,7 @@ for (const file of files) {
 		} else {
 			program.error(`"${file}" contains improper JSON syntax`, {
 				exitCode: 1,
-				code: 'improper.file',
+				code: "improper.file",
 			});
 		}
 	}
@@ -119,7 +119,7 @@ for (const file of files) {
 	} else {
 		console.log(failed + file);
 		if (!opts.all) {
-			const errors = validator.errors.filter((obj) => obj.instancePath !== '' && obj.instancePath !== '/type');
+			const errors = validator.errors.filter((obj) => obj.instancePath !== "" && obj.instancePath !== "/type");
 			let errorMessage;
 			if (errors.length) {
 				if (errors.length === 1) {
@@ -129,12 +129,12 @@ for (const file of files) {
 				}
 			} else {
 				errorMessage = `${chalk.bold(
-					'Unknown error.'
+					"Unknown error.",
 				)} Check that your top-level properties (\`type\`, \`data\`, etc.) are named correctly and that they have the correct types. Also ensure that the value of \`type\` is valid.`;
 			}
 			program.error(errorMessage, {
 				exitCode: 1,
-				code: 'validation.failure',
+				code: "validation.failure",
 			});
 		}
 		failCount++;
@@ -145,15 +145,15 @@ for (const file of files) {
 if (opts.summary || files.length > 1) {
 	if (failCount === 0) {
 		console.log(
-			chalk.green(`All ${chalk.bold(files.length)} file${files.length !== 1 ? 's' : ''} passed validation.`)
+			chalk.green(`All ${chalk.bold(files.length)} file${files.length !== 1 ? "s" : ""} passed validation.`),
 		);
 	} else {
 		console.log(
 			chalk.red(
-				`${chalk.bold(failCount)} file${failCount !== 1 ? 's' : ''} (${
+				`${chalk.bold(failCount)} file${failCount !== 1 ? "s" : ""} (${
 					Math.round((1000 * failCount) / files.length) / 10
-				}%) failed validation.`
-			)
+				}%) failed validation.`,
+			),
 		);
 	}
 }
