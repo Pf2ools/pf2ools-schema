@@ -25,34 +25,12 @@
 			"description": "An object describing the content for filtering, searching, and sorting."
 		}
 	},
-	"anyOf": [
-		{
-			"$ref": "content/background.json"
-		},
-		{
-			"$ref": "content/condition.json"
-		},
-		{
-			"$ref": "content/deity.json"
-		},
-		{
-			"$ref": "content/divineIntercession.json"
-		},
-		{
-			"$ref": "content/domain.json"
-		},
-		{
-			"$ref": "content/event.json"
-		},
-		{
-			"$ref": "content/relicGift.json"
-		}
-	],
 	"required": [
 		"type",
 		"name",
 		"source",
 		"data"
 	],
-	"additionalProperties": false
+	"additionalProperties": false,
+	"$ref": "./contentTypes.json"
 }
