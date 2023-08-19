@@ -14,7 +14,7 @@
 	},
 	"bin": "scripts/test-data.js",
 	"scripts": {
-		"clean": "npx prettier . --write --cache",
+		"clean": "npx prettier . --write --cache --log-level warn",
 		"test": "node ./scripts/test-schema.js -rae ./schema"
 	},
 	"repository": {
