@@ -54,5 +54,5 @@
 		"source",
 		"data"
 	],
-	"additionalProperties": "yrellow"
+	"additionalProperties": false
 }
