@@ -141,12 +141,16 @@ if (opts.summary || files.length > 1) {
 	if (failCount === 0) {
 		console.log(chalk.green(`All ${chalk.bold(files.length)} files passed validation.`));
 	} else {
-		console.log(
+		program.error(
 			chalk.red(
 				`${chalk.bold(failCount)} file${failCount > 1 ? "s" : ""} (${
 					Math.round((1000 * failCount) / files.length) / 10
 				}%) failed validation.`,
 			),
+			{
+				exitCode: 1,
+				code: "validation.failure",
+			},
 		);
 	}
 }
