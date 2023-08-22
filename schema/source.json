@@ -214,9 +214,13 @@
 					"type": "object",
 					"description": "An object representing the source's conversion status, if it is at all imperfect.",
 					"properties": {
-						"WIP": {
+						"Missing content": {
 							"const": true,
-							"description": "This source is only partially converted right now but, one day, could be completely up-to-date."
+							"description": "This source is only partially converted right now (i.e. it lacks some content), but, one day, could be completely up-to-date."
+						},
+						"Missing tags": {
+							"const": true,
+							"description": "The converted content this source contains isn't completely tagged, even if it all displays correctly."
 						},
 						"Invalid": {
 							"const": true,
