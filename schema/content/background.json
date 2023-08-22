@@ -81,7 +81,14 @@
 							"type": "object",
 							"description": "A list of skills in which the background can grant proficiency.",
 							"propertyNames": {
-								"$ref": "constants/listOfSkills.json"
+								"anyOf": [
+									{
+										"$ref": "constants/listOfSkills.json"
+									},
+									{
+										"const": "Any"
+									}
+								]
 							},
 							"additionalProperties": {
 								"const": true
