@@ -34,25 +34,25 @@
 							"type": "object",
 							"description": "An object containing the types of boost that the background can grant.",
 							"properties": {
-								"strength": {
+								"Strength": {
 									"const": true
 								},
-								"dexterity": {
+								"Dexterity": {
 									"const": true
 								},
-								"constitution": {
+								"Constitution": {
 									"const": true
 								},
-								"intelligence": {
+								"Intelligence": {
 									"const": true
 								},
-								"wisdom": {
+								"Wisdom": {
 									"const": true
 								},
-								"charisma": {
+								"Charisma": {
 									"const": true
 								},
-								"free": {
+								"Free": {
 									"const": true
 								}
 							},
