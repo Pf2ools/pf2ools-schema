@@ -1,0 +1,24 @@
+{
+	"$schema": "http://json-schema.org/draft-07/schema",
+	"$id": "pf2ools-schema/content/skill.json",
+	"title": "Skill",
+	"description": "Pf2ools' skill object.",
+	"type": "object",
+	"properties": {
+		"type": {
+			"const": "skill"
+		},
+		"data": {
+			"type": "object",
+			"properties": {
+				"entries": {
+					"$ref": "./common/entries.json"
+				}
+			},
+			"additionalProperties": false,
+			"required": [
+				"entries"
+			]
+		}
+	}
+}

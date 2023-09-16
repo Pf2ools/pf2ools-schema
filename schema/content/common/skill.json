@@ -1,7 +1,7 @@
 {
 	"$schema": "http://json-schema.org/draft-07/schema",
 	"$id": "pf2ools-schema/content/common/skill.json",
-	"title": "Skill",
+	"title": "Skill reference",
 	"description": "A combined object to describe a skill.",
 	"type": "object",
 	"properties": {
