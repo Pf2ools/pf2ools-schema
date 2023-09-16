@@ -46,6 +46,9 @@
 		},
 		{
 			"$ref": "content/relicGift.json"
+		},
+		{
+			"$ref": "content/skill.json"
 		}
 	],
 	"required": [
