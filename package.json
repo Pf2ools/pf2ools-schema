@@ -19,7 +19,7 @@
 	},
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/Pf2ools/pf2ools-data.git"
+		"url": "git+https://github.com/Pf2ools/pf2ools-schema.git"
 	},
 	"author": "The Pf2ools project",
 	"description": "The Pf2ools ecosystem's schema for representing Pathfinder 2nd Edition game data as JSON.",
