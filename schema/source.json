@@ -7,18 +7,12 @@
 		"ID": {
 			"type": "string",
 			"minLength": 2,
-			"allOf": [
-				{
-					"pattern": "^[A-Za-z0-9][A-Za-z0-9-]*[A-Za-z0-9]$",
-					"$comment": "Format derives from the following logic: 1) the ID should be URI-safe to ensure, well, maximum safety; 2) the ID should not include \".\" because that looks confusing in a URI; 3) the ID should not include \"_\" because that is reserved for use by the Pf2ools' website; 4) \"~\" and initial/terminal \"-\" is confusing and looks ugly. The minimum length is just to force a modicum of variety and meaningfulness."
-				},
-				{
-					"not": {
-						"pattern": "^(COM[0-9]?|PRN|AUX|NUL|LPT[0-9])$",
-						"$comment": "These are reserved filenames in Windows. At some point someone will save a source file and/or its content as \"<id>.json\" and won't realise the hell this causes for Windows users. So rip the 'Casmaron Orienteering Manual' or whatever I guess ¯\\_(ツ)_/¯"
-					}
-				}
-			]
+			"pattern": "^[A-Za-z0-9][A-Za-z0-9-]*[A-Za-z0-9]$",
+			"$comment": "Format derives from the following logic: 1) the ID should be URI-safe to ensure, well, maximum safety; 2) the ID should not include \".\" because that looks confusing in a URI; 3) the ID should not include \"_\" because that is reserved for use by the Pf2ools' website; 4) \"~\" and initial/terminal \"-\" is confusing and looks ugly. The minimum length is just to force a modicum of variety and meaningfulness.",
+			"not": {
+				"pattern": "^(COM[0-9]?|PRN|AUX|NUL|LPT[0-9])$",
+				"$comment": "These are reserved filenames in Windows. At some point someone will save a source file and/or its content as \"<id>.json\" and won't realise the hell this causes for Windows users. So rip the 'Casmaron Orienteering Manual' or whatever I guess ¯\\_(ツ)_/¯"
+			}
 		}
 	},
 	"type": "object",
