@@ -37,13 +37,15 @@ export function mergeDeep(target, ...sources) {
 }
 
 import jsonSchema from "../schema/_schema.json" assert { type: "json" };
+import entriesSchema from "../schema/content/common/entries.json" assert { type: "json" };
 
 // Grab the entire schema into a single mega-object.
-const { resolved } = await resolveRefs(jsonSchema, { location: "schema/_schema.json" });
+const { resolved: schemaUnrolled } = await resolveRefs(jsonSchema, { location: "schema/_schema.json" });
+const { resolved: entriesUnrolled } = await resolveRefs(entriesSchema, { location: "schema/content/common/entries.json" });
 
-const mergedContent = resolved.anyOf.find((obj) => obj.$id === "pf2ools-schema/content.json");
+const mergedContent = schemaUnrolled.anyOf.find((obj) => obj.$id === "pf2ools-schema/content.json");
 if (!mergedContent) throw new Error("Couldn't find content schema");
-const other = resolved.anyOf.filter((obj) => obj.$id !== "pf2ools-schema/content.json");
+const other = schemaUnrolled.anyOf.filter((obj) => obj.$id !== "pf2ools-schema/content.json");
 
 const splitContent = mergedContent.anyOf.map((obj) => {
 	return mergeDeep(
@@ -56,7 +58,9 @@ const splitContent = mergedContent.anyOf.map((obj) => {
 	);
 });
 
-const dataTypes = [...other, ...splitContent];
+// writeFileSync(`zod/mega-schema.json`, JSON.stringify(schemaUnrolled, null, "\t"));
+
+const dataTypes = [...other, ...splitContent, entriesUnrolled];
 
 dataTypes.forEach(async (obj) => {
 	const name = obj.$id.split("/").pop().replace(".json", "");
@@ -76,8 +80,8 @@ dataTypes.forEach(async (obj) => {
 					.strict();
 
 				if (sanityCheck.parse(schema.not)) {
-                    const pattern = schema.not.pattern;
-                    const comment = JSON.stringify(schema.not.$comment || `Must not match the pattern /${pattern}/`);
+					const pattern = schema.not.pattern;
+					const comment = JSON.stringify(schema.not.$comment || `Must not match the pattern /${pattern}/`);
 					return `${cleanZod}.refine((val) => !val.match(/${pattern}/g), { message: ${comment} })`;
 				}
 			}
