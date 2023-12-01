@@ -12,13 +12,14 @@
 	"devDependencies": {
 		"json-refs": "^3.0.15",
 		"json-schema-to-zod": "^2.0.12",
-		"prettier": "^3.0.3"
+		"prettier": "^3.0.3",
+		"zod": "^3.22.4"
 	},
 	"bin": "scripts/test-data.js",
 	"scripts": {
 		"clean": "npx prettier . --write --cache --log-level warn",
 		"test": "node ./scripts/test-schema.js -rae ./schema",
-		"build-zod": "json-refs resolve ./schema/_schema.json | json-schema-to-zod | prettier --parser typescript > ./zod/schema.ts"
+		"build-zod": "node ./scripts/build-zod.js"
 	},
 	"repository": {
 		"type": "git",
