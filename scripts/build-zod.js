@@ -46,7 +46,14 @@ if (!mergedContent) throw new Error("Couldn't find content schema");
 const other = resolved.anyOf.filter((obj) => obj.$id !== "pf2ools-schema/content.json");
 
 const splitContent = mergedContent.anyOf.map((obj) => {
-	return mergeDeep({ properties: mergedContent.properties }, obj);
+	return mergeDeep(
+		{
+			properties: mergedContent.properties,
+			required: mergedContent.required,
+			additionalProperties: mergedContent.additionalProperties,
+		},
+		obj,
+	);
 });
 
 const dataTypes = [...other, ...splitContent];
@@ -58,18 +65,22 @@ dataTypes.forEach(async (obj) => {
 		name,
 		parserOverride: (schema, refs) => {
 			if (schema.not && schema.type === "string") {
-                const zodWithoutNot = jsonSchemaToZod({...schema, not: undefined}, { module: "esm" })
-                const cleanZod = zodWithoutNot.replace('import { z } from "zod"', '').replace('export default', '')
+				const zodWithoutNot = jsonSchemaToZod({ ...schema, not: undefined }, { module: "esm" });
+				const cleanZod = zodWithoutNot.replace('import { z } from "zod"', "").replace("export default", "");
 
-                const sanityCheck = z.object({
-                    pattern: z.string(),
-                    '$comment': z.string().optional(),
-                }).strict()
+				const sanityCheck = z
+					.object({
+						pattern: z.string(),
+						$comment: z.string().optional(),
+					})
+					.strict();
 
-                if (sanityCheck.parse(schema.not)) {
-                    return `${cleanZod}.refine((val) => !val.match(/${JSON.stringify(schema.not.pattern)}/g), { message: ${JSON.stringify(schema.not.$comment || "Must not match pattern")} })`
-                }
-            }
+				if (sanityCheck.parse(schema.not)) {
+					return `${cleanZod}.refine((val) => !val.match(/${JSON.stringify(
+						schema.not.pattern,
+					)}/g), { message: ${JSON.stringify(schema.not.$comment || "Must not match pattern")} })`;
+				}
+			}
 		},
 	});
 	const formatted = await format(code, { parser: "typescript" });

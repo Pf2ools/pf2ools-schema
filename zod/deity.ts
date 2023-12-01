@@ -2,7 +2,7 @@ import { z } from "zod";
 
 export const deity = z
   .object({
-    type: z.literal("skill").describe("The type of data described.").optional(),
+    type: z.literal("skill").describe("The type of data described."),
     name: z
       .object({
         primary: z
@@ -49,8 +49,7 @@ export const deity = z
           .optional(),
       })
       .strict()
-      .describe("A combined object to describe an entity's name.")
-      .optional(),
+      .describe("A combined object to describe an entity's name."),
     source: z
       .object({
         ID: z
@@ -107,8 +106,7 @@ export const deity = z
           )
           .optional(),
       })
-      .describe("Source object for a content entity.")
-      .optional(),
+      .describe("Source object for a content entity."),
     data: z
       .object({
         traits: z
@@ -692,8 +690,7 @@ export const deity = z
           .optional(),
       })
       .strict()
-      .describe("An object representing the content itself.")
-      .optional(),
+      .describe("An object representing the content itself."),
     tags: z
       .object({
         abilityBoosts: z
@@ -922,4 +919,5 @@ export const deity = z
       )
       .optional(),
   })
+  .strict()
   .describe("Pf2ools' deity, pantheon, and philosophy object.");
