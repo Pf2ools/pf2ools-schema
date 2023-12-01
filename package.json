@@ -19,7 +19,7 @@
 	"scripts": {
 		"clean": "npx prettier . --write --cache --log-level warn",
 		"test": "node ./scripts/test-schema.js -rae ./schema",
-		"build-zod": "node ./scripts/build-zod.js"
+		"zod": "node ./scripts/build-zod.js"
 	},
 	"repository": {
 		"type": "git",
