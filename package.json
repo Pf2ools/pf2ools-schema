@@ -10,7 +10,7 @@
 		"commander": "^11.1.0"
 	},
 	"devDependencies": {
-		"prettier": "^3.0.3"
+		"prettier": "^3.1.0"
 	},
 	"bin": "scripts/test-data.js",
 	"scripts": {
