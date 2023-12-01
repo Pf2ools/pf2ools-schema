@@ -76,7 +76,7 @@ dataTypes.forEach(async (obj) => {
 					.strict();
 
 				if (sanityCheck.parse(schema.not)) {
-                    const pattern = JSON.stringify(schema.not.pattern);
+                    const pattern = schema.not.pattern;
                     const comment = JSON.stringify(schema.not.$comment || `Must not match the pattern /${pattern}/`);
 					return `${cleanZod}.refine((val) => !val.match(/${pattern}/g), { message: ${comment} })`;
 				}
