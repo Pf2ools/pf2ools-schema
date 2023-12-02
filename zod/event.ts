@@ -1,3 +1,4 @@
+import { entries } from "./entries";
 import { z } from "zod";
 
 export const event = z
@@ -135,24 +136,7 @@ export const event = z
           .min(1)
           .describe("An array of objects representing a list of traits")
           .optional(),
-        entries: z
-          .array(
-            z.union([
-              z
-                .string()
-                .min(1)
-                .describe(
-                  "Pf2ools' simplest type of entry: a string. It displays as a single paragraph of text with in-line formatting determined by use of `@tag`s.",
-                ),
-              z
-                .object({ type: z.string().min(1) })
-                .describe(
-                  "A paragraph with a header or some particular formatting.",
-                ),
-            ]),
-          )
-          .min(1)
-          .describe("Pf2ools' entry value (string or object)."),
+        entries: entries,
         category: z
           .string()
           .min(1)
@@ -440,120 +424,12 @@ export const event = z
             "Pf2ools' simplest type of entry: a string. It displays as a single paragraph of text with in-line formatting determined by use of `@tag`s.",
           )
           .optional(),
-        "Minor Boon": z
-          .array(
-            z.union([
-              z
-                .string()
-                .min(1)
-                .describe(
-                  "Pf2ools' simplest type of entry: a string. It displays as a single paragraph of text with in-line formatting determined by use of `@tag`s.",
-                ),
-              z
-                .object({ type: z.string().min(1) })
-                .describe(
-                  "A paragraph with a header or some particular formatting.",
-                ),
-            ]),
-          )
-          .min(1)
-          .describe("Pf2ools' entry value (string or object).")
-          .optional(),
-        "Moderate Boon": z
-          .array(
-            z.union([
-              z
-                .string()
-                .min(1)
-                .describe(
-                  "Pf2ools' simplest type of entry: a string. It displays as a single paragraph of text with in-line formatting determined by use of `@tag`s.",
-                ),
-              z
-                .object({ type: z.string().min(1) })
-                .describe(
-                  "A paragraph with a header or some particular formatting.",
-                ),
-            ]),
-          )
-          .min(1)
-          .describe("Pf2ools' entry value (string or object).")
-          .optional(),
-        "Major Boon": z
-          .array(
-            z.union([
-              z
-                .string()
-                .min(1)
-                .describe(
-                  "Pf2ools' simplest type of entry: a string. It displays as a single paragraph of text with in-line formatting determined by use of `@tag`s.",
-                ),
-              z
-                .object({ type: z.string().min(1) })
-                .describe(
-                  "A paragraph with a header or some particular formatting.",
-                ),
-            ]),
-          )
-          .min(1)
-          .describe("Pf2ools' entry value (string or object).")
-          .optional(),
-        "Minor Curse": z
-          .array(
-            z.union([
-              z
-                .string()
-                .min(1)
-                .describe(
-                  "Pf2ools' simplest type of entry: a string. It displays as a single paragraph of text with in-line formatting determined by use of `@tag`s.",
-                ),
-              z
-                .object({ type: z.string().min(1) })
-                .describe(
-                  "A paragraph with a header or some particular formatting.",
-                ),
-            ]),
-          )
-          .min(1)
-          .describe("Pf2ools' entry value (string or object).")
-          .optional(),
-        "Moderate Curse": z
-          .array(
-            z.union([
-              z
-                .string()
-                .min(1)
-                .describe(
-                  "Pf2ools' simplest type of entry: a string. It displays as a single paragraph of text with in-line formatting determined by use of `@tag`s.",
-                ),
-              z
-                .object({ type: z.string().min(1) })
-                .describe(
-                  "A paragraph with a header or some particular formatting.",
-                ),
-            ]),
-          )
-          .min(1)
-          .describe("Pf2ools' entry value (string or object).")
-          .optional(),
-        "Major Curse": z
-          .array(
-            z.union([
-              z
-                .string()
-                .min(1)
-                .describe(
-                  "Pf2ools' simplest type of entry: a string. It displays as a single paragraph of text with in-line formatting determined by use of `@tag`s.",
-                ),
-              z
-                .object({ type: z.string().min(1) })
-                .describe(
-                  "A paragraph with a header or some particular formatting.",
-                ),
-            ]),
-          )
-          .min(1)
-          .describe("Pf2ools' entry value (string or object).")
-          .optional(),
+        "Minor Boon": entries.optional(),
+        "Moderate Boon": entries.optional(),
+        "Major Boon": entries.optional(),
+        "Minor Curse": entries.optional(),
+        "Moderate Curse": entries.optional(),
+        "Major Curse": entries.optional(),
         domainSpell: z
           .object({ name: z.string().min(1), sourceID: z.string().min(1) })
           .strict()

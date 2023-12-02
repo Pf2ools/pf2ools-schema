@@ -60,10 +60,11 @@ const splitContent = mergedContent.anyOf.map((obj) => {
 
 // writeFileSync(`zod/mega-schema.json`, JSON.stringify(schemaUnrolled, null, "\t"));
 
-const dataTypes = [...other, ...splitContent, entriesUnrolled];
+const dataTypes = [...other, ...splitContent, {...entriesUnrolled, original: true}];
 
 dataTypes.forEach(async (obj) => {
 	const name = obj.$id.split("/").pop().replace(".json", "");
+    let addImports = false
 	const code = jsonSchemaToZod(obj, {
 		module: "esm",
 		name,
@@ -85,9 +86,20 @@ dataTypes.forEach(async (obj) => {
 					return `${cleanZod}.refine((val) => !val.match(/${pattern}/g), { message: ${comment} })`;
 				}
 			}
+
+            if (schema.$id === "pf2ools-schema/content/common/entries.json" && !schema.original) {
+                addImports = true
+                return "entries"
+            }
 		},
 	});
-	const formatted = await format(code, { parser: "typescript" });
+
+    const imports = [
+        'import { entries } from "./entries"',
+    ].join(" ")
+
+    const fullcode = `${addImports ? imports : ""}\n${code}`;
+	const formatted = await format(fullcode, { parser: "typescript" });
 
 	writeFileSync(`zod/${name}.ts`, formatted);
 });

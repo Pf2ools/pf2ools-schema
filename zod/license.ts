@@ -1,3 +1,4 @@
+import { entries } from "./entries";
 import { z } from "zod";
 
 export const license = z
@@ -28,27 +29,7 @@ export const license = z
       })
       .strict()
       .describe("An object representing the license's name."),
-    data: z.object({
-      entries: z
-        .array(
-          z.union([
-            z
-              .string()
-              .min(1)
-              .describe(
-                "Pf2ools' simplest type of entry: a string. It displays as a single paragraph of text with in-line formatting determined by use of `@tag`s.",
-              ),
-            z
-              .object({ type: z.string().min(1) })
-              .describe(
-                "A paragraph with a header or some particular formatting.",
-              ),
-          ]),
-        )
-        .min(1)
-        .describe("Pf2ools' entry value (string or object).")
-        .optional(),
-    }),
+    data: z.object({ entries: entries.optional() }),
   })
   .strict()
   .describe("Pf2ools' license object.");
