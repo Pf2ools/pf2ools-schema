@@ -8,13 +8,13 @@
 		"ajv": "^8.12.0",
 		"ajv-formats": "^2.1.1",
 		"chalk": "^5.3.0",
-		"commander": "^11.1.0"
+		"commander": "^11.1.0",
+		"zod": "^3.22.4"
 	},
 	"devDependencies": {
 		"json-refs": "^3.0.15",
 		"json-schema-to-zod": "^2.0.12",
-		"prettier": "^3.1.0",
-		"zod": "^3.22.4"
+		"prettier": "^3.1.0"
 	},
 	"bin": "scripts/test-data.js",
 	"scripts": {
