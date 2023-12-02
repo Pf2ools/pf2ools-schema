@@ -4,6 +4,7 @@
 	"name": "pf2ools-schema",
 	"version": "0.0.1",
 	"module": "./zod/index.js",
+	"types": "./zod/index.d.ts",
 	"dependencies": {
 		"ajv": "^8.12.0",
 		"ajv-formats": "^2.1.1",
@@ -20,7 +21,7 @@
 	"scripts": {
 		"clean": "npx prettier . --write --cache --log-level warn",
 		"test": "node ./scripts/test-schema.js -rae ./schema",
-		"zod": "node ./scripts/build-zod.js"
+		"zod": "node ./scripts/build-zod.js && npx -p typescript tsc zod/index.js --declaration --allowJs --emitDeclarationOnly --outDir zod/"
 	},
 	"repository": {
 		"type": "git",
