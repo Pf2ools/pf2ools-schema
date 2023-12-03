@@ -21,7 +21,9 @@
 	"scripts": {
 		"clean": "npx prettier . --write --cache --log-level warn",
 		"test": "node ./scripts/test-schema.js -rae ./schema",
-		"zod": "node ./scripts/build-zod.js && npx -p typescript tsc zod/index.js --declaration --allowJs --emitDeclarationOnly --outDir zod/"
+		"zod": "npm run build-zod && npm run zod-types",
+		"build-zod": "node ./scripts/build-zod.js",
+		"zod-types": "npx -p typescript tsc zod/index.js --declaration --allowJs --emitDeclarationOnly --lib ES6 --outDir zod/"
 	},
 	"repository": {
 		"type": "git",

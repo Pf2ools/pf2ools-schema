@@ -1,6 +1,3 @@
-export { license } from "./license";
-export { source } from "./source";
-export { sourceGroup } from "./sourceGroup";
 export { background } from "./background";
 export { condition } from "./condition";
 export { deity } from "./deity";
@@ -9,4 +6,6 @@ export { domain } from "./domain";
 export { event } from "./event";
 export { relicGift } from "./relicGift";
 export { skill } from "./skill";
-export { entries } from "./entries";
+export { license } from "./license";
+export { source } from "./source";
+export { sourceGroup } from "./sourceGroup";

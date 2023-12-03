@@ -1,4 +1,3 @@
-import { entries } from "./entries";
 import { z } from "zod";
 
 export const source = z
@@ -85,7 +84,25 @@ export const source = z
             'A list of `id`s of the source\'s parent groups (if any). This is used for a source that is one piece of a larger, clearly defined, multi-part series. For instance, "Extinction Curse 1: The Show Must Go On" belongs to the "Extinction Curse" series ("EC"), and "Lost Omens: Travel Guide" belongs to the "Lost Omens" series ("LO").',
           )
           .optional(),
-        copyright: entries.optional(),
+        copyright: z
+          .array(
+            z.union([
+              z
+                .string()
+                .min(1)
+                .describe(
+                  "Pf2ools' simplest type of entry: a string. It displays as a single paragraph of text with in-line formatting determined by use of `@tag`s.",
+                ),
+              z
+                .object({ type: z.string().min(1) })
+                .describe(
+                  "A paragraph with a header or some particular formatting.",
+                ),
+            ]),
+          )
+          .min(1)
+          .describe("Pf2ools' entry value (string or object).")
+          .optional(),
         license: z
           .string()
           .regex(new RegExp("^[A-Za-z0-9][A-Za-z0-9-]*[A-Za-z0-9]$"))
