@@ -66,7 +66,7 @@ all.forEach((obj) => {
 				if (sanityCheck.parse(schema.not)) {
 					const pattern = schema.not.pattern;
 					const comment = JSON.stringify(schema.not.$comment || `Must not match the pattern /${pattern}/`);
-					return `${cleanZod}.refine((val) => !val.match(/${pattern}/g), { message: ${comment} })`;
+					return `${cleanZod}.refine((val: any) => !val.match(/${pattern}/g), { message: ${comment} })`;
 				}
 			}
 
@@ -82,10 +82,10 @@ all.forEach((obj) => {
 	const imports = ['import { entries } from "./entries"'].join(" ");
 
 	const fullcode = `${addImports ? imports : ""}\n${code}`;
-	format(fullcode, { parser: "babel" }).then((formatted) => {
+	format(fullcode, { parser: "typescript" }).then((formatted) => {
 		writeFileSync(`zod/${name}.ts`, formatted);
 		console.log(`Wrote ${name}.ts`);
 
-		appendFileSync(`zod/index.ts`, `export { ${name} } from "./${name}"\n`);
+		appendFileSync(`zod/index.ts`, `export { ${name} } from "./${name}.js"\n`);
 	});
 });

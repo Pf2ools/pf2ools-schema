@@ -23,7 +23,7 @@
 		"test": "node ./scripts/test-schema.js -rae ./schema",
 		"zod": "npm run build-zod && npm run zod-types",
 		"build-zod": "node ./scripts/build-zod.js",
-		"zod-types": "npx -p typescript tsc zod/index.ts --declaration --allowJs --lib ESNext --strict true --alwaysStrict true --strictNullChecks true --outDir zod/"
+		"zod-types": "npx -p typescript tsc zod/index.ts --declaration --allowJs --lib ESNext --module nodenext --strict true --alwaysStrict true --strictNullChecks true --outDir zod/"
 	},
 	"repository": {
 		"type": "git",
