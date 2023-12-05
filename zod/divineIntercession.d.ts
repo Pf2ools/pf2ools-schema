@@ -1,4 +1,5 @@
-export const divineIntercession: z.ZodObject<{
+import { z } from "zod";
+export declare const divineIntercession: z.ZodObject<{
     type: z.ZodLiteral<"divineIntercession">;
     name: z.ZodObject<{
         primary: z.ZodEffects<z.ZodString, string, string>;
@@ -8,28 +9,28 @@ export const divineIntercession: z.ZodObject<{
             name: z.ZodOptional<z.ZodString>;
             sourceID: z.ZodOptional<z.ZodString>;
         }, "strict", z.ZodTypeAny, {
-            name?: string;
-            sourceID?: string;
+            name?: string | undefined;
+            sourceID?: string | undefined;
         }, {
-            name?: string;
-            sourceID?: string;
+            name?: string | undefined;
+            sourceID?: string | undefined;
         }>>;
     }, "strict", z.ZodTypeAny, {
-        primary?: string;
-        aliases?: string[];
-        specifier?: string;
+        primary: string;
+        aliases?: string[] | undefined;
+        specifier?: string | undefined;
         variantOf?: {
-            name?: string;
-            sourceID?: string;
-        };
+            name?: string | undefined;
+            sourceID?: string | undefined;
+        } | undefined;
     }, {
-        primary?: string;
-        aliases?: string[];
-        specifier?: string;
+        primary: string;
+        aliases?: string[] | undefined;
+        specifier?: string | undefined;
         variantOf?: {
-            name?: string;
-            sourceID?: string;
-        };
+            name?: string | undefined;
+            sourceID?: string | undefined;
+        } | undefined;
     }>;
     source: z.ZodObject<{
         ID: z.ZodEffects<z.ZodString, string, string>;
@@ -38,197 +39,196 @@ export const divineIntercession: z.ZodObject<{
         expansionOf: z.ZodOptional<z.ZodEffects<z.ZodString, string, string>>;
         originalOf: z.ZodOptional<z.ZodEffects<z.ZodString, string, string>>;
     }, "strip", z.ZodTypeAny, {
-        ID?: string;
-        page?: number;
-        reprintOf?: string;
-        expansionOf?: string;
-        originalOf?: string;
+        ID: string;
+        page?: number | undefined;
+        reprintOf?: string | undefined;
+        expansionOf?: string | undefined;
+        originalOf?: string | undefined;
     }, {
-        ID?: string;
-        page?: number;
-        reprintOf?: string;
-        expansionOf?: string;
-        originalOf?: string;
+        ID: string;
+        page?: number | undefined;
+        reprintOf?: string | undefined;
+        expansionOf?: string | undefined;
+        originalOf?: string | undefined;
     }>;
     data: z.ZodObject<{
         preamble: z.ZodOptional<z.ZodArray<z.ZodUnion<[z.ZodString, z.ZodObject<{
             type: z.ZodString;
         }, "strip", z.ZodTypeAny, {
-            type?: string;
+            type: string;
         }, {
-            type?: string;
+            type: string;
         }>]>, "many">>;
         "Minor Boon": z.ZodOptional<z.ZodArray<z.ZodUnion<[z.ZodString, z.ZodObject<{
             type: z.ZodString;
         }, "strip", z.ZodTypeAny, {
-            type?: string;
+            type: string;
         }, {
-            type?: string;
+            type: string;
         }>]>, "many">>;
         "Moderate Boon": z.ZodOptional<z.ZodArray<z.ZodUnion<[z.ZodString, z.ZodObject<{
             type: z.ZodString;
         }, "strip", z.ZodTypeAny, {
-            type?: string;
+            type: string;
         }, {
-            type?: string;
+            type: string;
         }>]>, "many">>;
         "Major Boon": z.ZodOptional<z.ZodArray<z.ZodUnion<[z.ZodString, z.ZodObject<{
             type: z.ZodString;
         }, "strip", z.ZodTypeAny, {
-            type?: string;
+            type: string;
         }, {
-            type?: string;
+            type: string;
         }>]>, "many">>;
         "Minor Curse": z.ZodOptional<z.ZodArray<z.ZodUnion<[z.ZodString, z.ZodObject<{
             type: z.ZodString;
         }, "strip", z.ZodTypeAny, {
-            type?: string;
+            type: string;
         }, {
-            type?: string;
+            type: string;
         }>]>, "many">>;
         "Moderate Curse": z.ZodOptional<z.ZodArray<z.ZodUnion<[z.ZodString, z.ZodObject<{
             type: z.ZodString;
         }, "strip", z.ZodTypeAny, {
-            type?: string;
+            type: string;
         }, {
-            type?: string;
+            type: string;
         }>]>, "many">>;
         "Major Curse": z.ZodOptional<z.ZodArray<z.ZodUnion<[z.ZodString, z.ZodObject<{
             type: z.ZodString;
         }, "strip", z.ZodTypeAny, {
-            type?: string;
+            type: string;
         }, {
-            type?: string;
+            type: string;
         }>]>, "many">>;
     }, "strict", z.ZodTypeAny, {
         preamble?: (string | {
-            type?: string;
-        })[];
+            type: string;
+        })[] | undefined;
         "Minor Boon"?: (string | {
-            type?: string;
-        })[];
+            type: string;
+        })[] | undefined;
         "Moderate Boon"?: (string | {
-            type?: string;
-        })[];
+            type: string;
+        })[] | undefined;
         "Major Boon"?: (string | {
-            type?: string;
-        })[];
+            type: string;
+        })[] | undefined;
         "Minor Curse"?: (string | {
-            type?: string;
-        })[];
+            type: string;
+        })[] | undefined;
         "Moderate Curse"?: (string | {
-            type?: string;
-        })[];
+            type: string;
+        })[] | undefined;
         "Major Curse"?: (string | {
-            type?: string;
-        })[];
+            type: string;
+        })[] | undefined;
     }, {
         preamble?: (string | {
-            type?: string;
-        })[];
+            type: string;
+        })[] | undefined;
         "Minor Boon"?: (string | {
-            type?: string;
-        })[];
+            type: string;
+        })[] | undefined;
         "Moderate Boon"?: (string | {
-            type?: string;
-        })[];
+            type: string;
+        })[] | undefined;
         "Major Boon"?: (string | {
-            type?: string;
-        })[];
+            type: string;
+        })[] | undefined;
         "Minor Curse"?: (string | {
-            type?: string;
-        })[];
+            type: string;
+        })[] | undefined;
         "Moderate Curse"?: (string | {
-            type?: string;
-        })[];
+            type: string;
+        })[] | undefined;
         "Major Curse"?: (string | {
-            type?: string;
-        })[];
+            type: string;
+        })[] | undefined;
     }>;
     tags: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodAny>>;
 }, "strict", z.ZodTypeAny, {
-    type?: "divineIntercession";
-    name?: {
-        primary?: string;
-        aliases?: string[];
-        specifier?: string;
+    name: {
+        primary: string;
+        aliases?: string[] | undefined;
+        specifier?: string | undefined;
         variantOf?: {
-            name?: string;
-            sourceID?: string;
-        };
+            name?: string | undefined;
+            sourceID?: string | undefined;
+        } | undefined;
     };
-    source?: {
-        ID?: string;
-        page?: number;
-        reprintOf?: string;
-        expansionOf?: string;
-        originalOf?: string;
-    };
-    data?: {
+    type: "divineIntercession";
+    data: {
         preamble?: (string | {
-            type?: string;
-        })[];
+            type: string;
+        })[] | undefined;
         "Minor Boon"?: (string | {
-            type?: string;
-        })[];
+            type: string;
+        })[] | undefined;
         "Moderate Boon"?: (string | {
-            type?: string;
-        })[];
+            type: string;
+        })[] | undefined;
         "Major Boon"?: (string | {
-            type?: string;
-        })[];
+            type: string;
+        })[] | undefined;
         "Minor Curse"?: (string | {
-            type?: string;
-        })[];
+            type: string;
+        })[] | undefined;
         "Moderate Curse"?: (string | {
-            type?: string;
-        })[];
+            type: string;
+        })[] | undefined;
         "Major Curse"?: (string | {
-            type?: string;
-        })[];
+            type: string;
+        })[] | undefined;
     };
-    tags?: Record<string, any>;
+    source: {
+        ID: string;
+        page?: number | undefined;
+        reprintOf?: string | undefined;
+        expansionOf?: string | undefined;
+        originalOf?: string | undefined;
+    };
+    tags?: Record<string, any> | undefined;
 }, {
-    type?: "divineIntercession";
-    name?: {
-        primary?: string;
-        aliases?: string[];
-        specifier?: string;
+    name: {
+        primary: string;
+        aliases?: string[] | undefined;
+        specifier?: string | undefined;
         variantOf?: {
-            name?: string;
-            sourceID?: string;
-        };
+            name?: string | undefined;
+            sourceID?: string | undefined;
+        } | undefined;
     };
-    source?: {
-        ID?: string;
-        page?: number;
-        reprintOf?: string;
-        expansionOf?: string;
-        originalOf?: string;
-    };
-    data?: {
+    type: "divineIntercession";
+    data: {
         preamble?: (string | {
-            type?: string;
-        })[];
+            type: string;
+        })[] | undefined;
         "Minor Boon"?: (string | {
-            type?: string;
-        })[];
+            type: string;
+        })[] | undefined;
         "Moderate Boon"?: (string | {
-            type?: string;
-        })[];
+            type: string;
+        })[] | undefined;
         "Major Boon"?: (string | {
-            type?: string;
-        })[];
+            type: string;
+        })[] | undefined;
         "Minor Curse"?: (string | {
-            type?: string;
-        })[];
+            type: string;
+        })[] | undefined;
         "Moderate Curse"?: (string | {
-            type?: string;
-        })[];
+            type: string;
+        })[] | undefined;
         "Major Curse"?: (string | {
-            type?: string;
-        })[];
+            type: string;
+        })[] | undefined;
     };
-    tags?: Record<string, any>;
+    source: {
+        ID: string;
+        page?: number | undefined;
+        reprintOf?: string | undefined;
+        expansionOf?: string | undefined;
+        originalOf?: string | undefined;
+    };
+    tags?: Record<string, any> | undefined;
 }>;
-import { z } from "zod";

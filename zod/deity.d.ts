@@ -1,4 +1,5 @@
-export const deity: z.ZodObject<{
+import { z } from "zod";
+export declare const deity: z.ZodObject<{
     type: z.ZodLiteral<"deity">;
     name: z.ZodObject<{
         primary: z.ZodEffects<z.ZodString, string, string>;
@@ -8,28 +9,28 @@ export const deity: z.ZodObject<{
             name: z.ZodOptional<z.ZodString>;
             sourceID: z.ZodOptional<z.ZodString>;
         }, "strict", z.ZodTypeAny, {
-            name?: string;
-            sourceID?: string;
+            name?: string | undefined;
+            sourceID?: string | undefined;
         }, {
-            name?: string;
-            sourceID?: string;
+            name?: string | undefined;
+            sourceID?: string | undefined;
         }>>;
     }, "strict", z.ZodTypeAny, {
-        primary?: string;
-        aliases?: string[];
-        specifier?: string;
+        primary: string;
+        aliases?: string[] | undefined;
+        specifier?: string | undefined;
         variantOf?: {
-            name?: string;
-            sourceID?: string;
-        };
+            name?: string | undefined;
+            sourceID?: string | undefined;
+        } | undefined;
     }, {
-        primary?: string;
-        aliases?: string[];
-        specifier?: string;
+        primary: string;
+        aliases?: string[] | undefined;
+        specifier?: string | undefined;
         variantOf?: {
-            name?: string;
-            sourceID?: string;
-        };
+            name?: string | undefined;
+            sourceID?: string | undefined;
+        } | undefined;
     }>;
     source: z.ZodObject<{
         ID: z.ZodEffects<z.ZodString, string, string>;
@@ -38,17 +39,17 @@ export const deity: z.ZodObject<{
         expansionOf: z.ZodOptional<z.ZodEffects<z.ZodString, string, string>>;
         originalOf: z.ZodOptional<z.ZodEffects<z.ZodString, string, string>>;
     }, "strip", z.ZodTypeAny, {
-        ID?: string;
-        page?: number;
-        reprintOf?: string;
-        expansionOf?: string;
-        originalOf?: string;
+        ID: string;
+        page?: number | undefined;
+        reprintOf?: string | undefined;
+        expansionOf?: string | undefined;
+        originalOf?: string | undefined;
     }, {
-        ID?: string;
-        page?: number;
-        reprintOf?: string;
-        expansionOf?: string;
-        originalOf?: string;
+        ID: string;
+        page?: number | undefined;
+        reprintOf?: string | undefined;
+        expansionOf?: string | undefined;
+        originalOf?: string | undefined;
     }>;
     data: z.ZodObject<{
         category: z.ZodOptional<z.ZodString>;
@@ -56,88 +57,88 @@ export const deity: z.ZodObject<{
             name: z.ZodString;
             sourceID: z.ZodString;
         }, "strict", z.ZodTypeAny, {
-            name?: string;
-            sourceID?: string;
+            name: string;
+            sourceID: string;
         }, {
-            name?: string;
-            sourceID?: string;
+            name: string;
+            sourceID: string;
         }>, "many">>;
         alignment: z.ZodOptional<z.ZodObject<{
             deity: z.ZodEnum<["LG", "NG", "CG", "LN", "N", "CN", "LE", "NE", "CE", "U"]>;
             follower: z.ZodOptional<z.ZodArray<z.ZodEnum<["LG", "NG", "CG", "LN", "N", "CN", "LE", "NE", "CE", "U"]>, "many">>;
         }, "strict", z.ZodTypeAny, {
-            deity?: "LG" | "NG" | "CG" | "LN" | "N" | "CN" | "LE" | "NE" | "CE" | "U";
-            follower?: ("LG" | "NG" | "CG" | "LN" | "N" | "CN" | "LE" | "NE" | "CE" | "U")[];
+            deity: "LG" | "NG" | "CG" | "LN" | "N" | "CN" | "LE" | "NE" | "CE" | "U";
+            follower?: ("LG" | "NG" | "CG" | "LN" | "N" | "CN" | "LE" | "NE" | "CE" | "U")[] | undefined;
         }, {
-            deity?: "LG" | "NG" | "CG" | "LN" | "N" | "CN" | "LE" | "NE" | "CE" | "U";
-            follower?: ("LG" | "NG" | "CG" | "LN" | "N" | "CN" | "LE" | "NE" | "CE" | "U")[];
+            deity: "LG" | "NG" | "CG" | "LN" | "N" | "CN" | "LE" | "NE" | "CE" | "U";
+            follower?: ("LG" | "NG" | "CG" | "LN" | "N" | "CN" | "LE" | "NE" | "CE" | "U")[] | undefined;
         }>>;
         areasOfConcern: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
         divineFont: z.ZodOptional<z.ZodObject<{
             harm: z.ZodOptional<z.ZodLiteral<true>>;
             heal: z.ZodOptional<z.ZodLiteral<true>>;
         }, "strict", z.ZodTypeAny, {
-            harm?: true;
-            heal?: true;
+            harm?: true | undefined;
+            heal?: true | undefined;
         }, {
-            harm?: true;
-            heal?: true;
+            harm?: true | undefined;
+            heal?: true | undefined;
         }>>;
         divineAbility: z.ZodOptional<z.ZodObject<{
             abilities: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodLiteral<true>>>;
             entry: z.ZodOptional<z.ZodString>;
         }, "strict", z.ZodTypeAny, {
-            abilities?: Record<string, true>;
-            entry?: string;
+            abilities?: Record<string, true> | undefined;
+            entry?: string | undefined;
         }, {
-            abilities?: Record<string, true>;
-            entry?: string;
+            abilities?: Record<string, true> | undefined;
+            entry?: string | undefined;
         }>>;
         divineSkill: z.ZodOptional<z.ZodObject<{
             skills: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodLiteral<true>>>;
             entry: z.ZodOptional<z.ZodString>;
         }, "strict", z.ZodTypeAny, {
-            skills?: Record<string, true>;
-            entry?: string;
+            skills?: Record<string, true> | undefined;
+            entry?: string | undefined;
         }, {
-            skills?: Record<string, true>;
-            entry?: string;
+            skills?: Record<string, true> | undefined;
+            entry?: string | undefined;
         }>>;
         domains: z.ZodOptional<z.ZodArray<z.ZodObject<{
             name: z.ZodString;
             sourceID: z.ZodString;
         }, "strict", z.ZodTypeAny, {
-            name?: string;
-            sourceID?: string;
+            name: string;
+            sourceID: string;
         }, {
-            name?: string;
-            sourceID?: string;
+            name: string;
+            sourceID: string;
         }>, "many">>;
         alternateDomains: z.ZodOptional<z.ZodArray<z.ZodObject<{
             name: z.ZodString;
             sourceID: z.ZodString;
         }, "strict", z.ZodTypeAny, {
-            name?: string;
-            sourceID?: string;
+            name: string;
+            sourceID: string;
         }, {
-            name?: string;
-            sourceID?: string;
+            name: string;
+            sourceID: string;
         }>, "many">>;
         clericSpells: z.ZodOptional<z.ZodEffects<z.ZodRecord<z.ZodString, z.ZodUnion<[z.ZodArray<z.ZodObject<{
             name: z.ZodString;
             sourceID: z.ZodString;
         }, "strict", z.ZodTypeAny, {
-            name?: string;
-            sourceID?: string;
+            name: string;
+            sourceID: string;
         }, {
-            name?: string;
-            sourceID?: string;
+            name: string;
+            sourceID: string;
         }>, "many">, z.ZodNever]>>, Record<string, {
-            name?: string;
-            sourceID?: string;
+            name: string;
+            sourceID: string;
         }[]>, Record<string, {
-            name?: string;
-            sourceID?: string;
+            name: string;
+            sourceID: string;
         }[]>>>;
         edicts: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
         anathema: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
@@ -146,250 +147,249 @@ export const deity: z.ZodObject<{
                 name: z.ZodString;
                 sourceID: z.ZodString;
             }, "strict", z.ZodTypeAny, {
-                name?: string;
-                sourceID?: string;
+                name: string;
+                sourceID: string;
             }, {
-                name?: string;
-                sourceID?: string;
+                name: string;
+                sourceID: string;
             }>, "many">>;
             unarmedAttacks: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
             entry: z.ZodOptional<z.ZodString>;
         }, "strict", z.ZodTypeAny, {
             weapons?: {
-                name?: string;
-                sourceID?: string;
-            }[];
-            unarmedAttacks?: string[];
-            entry?: string;
+                name: string;
+                sourceID: string;
+            }[] | undefined;
+            unarmedAttacks?: string[] | undefined;
+            entry?: string | undefined;
         }, {
             weapons?: {
-                name?: string;
-                sourceID?: string;
-            }[];
-            unarmedAttacks?: string[];
-            entry?: string;
+                name: string;
+                sourceID: string;
+            }[] | undefined;
+            unarmedAttacks?: string[] | undefined;
+            entry?: string | undefined;
         }>>;
     }, "strict", z.ZodTypeAny, {
-        category?: string;
+        category?: string | undefined;
         pantheonMembers?: {
-            name?: string;
-            sourceID?: string;
-        }[];
+            name: string;
+            sourceID: string;
+        }[] | undefined;
         alignment?: {
-            deity?: "LG" | "NG" | "CG" | "LN" | "N" | "CN" | "LE" | "NE" | "CE" | "U";
-            follower?: ("LG" | "NG" | "CG" | "LN" | "N" | "CN" | "LE" | "NE" | "CE" | "U")[];
-        };
-        areasOfConcern?: string[];
+            deity: "LG" | "NG" | "CG" | "LN" | "N" | "CN" | "LE" | "NE" | "CE" | "U";
+            follower?: ("LG" | "NG" | "CG" | "LN" | "N" | "CN" | "LE" | "NE" | "CE" | "U")[] | undefined;
+        } | undefined;
+        areasOfConcern?: string[] | undefined;
         divineFont?: {
-            harm?: true;
-            heal?: true;
-        };
+            harm?: true | undefined;
+            heal?: true | undefined;
+        } | undefined;
         divineAbility?: {
-            abilities?: Record<string, true>;
-            entry?: string;
-        };
+            abilities?: Record<string, true> | undefined;
+            entry?: string | undefined;
+        } | undefined;
         divineSkill?: {
-            skills?: Record<string, true>;
-            entry?: string;
-        };
+            skills?: Record<string, true> | undefined;
+            entry?: string | undefined;
+        } | undefined;
         domains?: {
-            name?: string;
-            sourceID?: string;
-        }[];
+            name: string;
+            sourceID: string;
+        }[] | undefined;
         alternateDomains?: {
-            name?: string;
-            sourceID?: string;
-        }[];
+            name: string;
+            sourceID: string;
+        }[] | undefined;
         clericSpells?: Record<string, {
-            name?: string;
-            sourceID?: string;
-        }[]>;
-        edicts?: string[];
-        anathema?: string[];
+            name: string;
+            sourceID: string;
+        }[]> | undefined;
+        edicts?: string[] | undefined;
+        anathema?: string[] | undefined;
         favoredWeapon?: {
             weapons?: {
-                name?: string;
-                sourceID?: string;
-            }[];
-            unarmedAttacks?: string[];
-            entry?: string;
-        };
+                name: string;
+                sourceID: string;
+            }[] | undefined;
+            unarmedAttacks?: string[] | undefined;
+            entry?: string | undefined;
+        } | undefined;
     }, {
-        category?: string;
+        category?: string | undefined;
         pantheonMembers?: {
-            name?: string;
-            sourceID?: string;
-        }[];
+            name: string;
+            sourceID: string;
+        }[] | undefined;
         alignment?: {
-            deity?: "LG" | "NG" | "CG" | "LN" | "N" | "CN" | "LE" | "NE" | "CE" | "U";
-            follower?: ("LG" | "NG" | "CG" | "LN" | "N" | "CN" | "LE" | "NE" | "CE" | "U")[];
-        };
-        areasOfConcern?: string[];
+            deity: "LG" | "NG" | "CG" | "LN" | "N" | "CN" | "LE" | "NE" | "CE" | "U";
+            follower?: ("LG" | "NG" | "CG" | "LN" | "N" | "CN" | "LE" | "NE" | "CE" | "U")[] | undefined;
+        } | undefined;
+        areasOfConcern?: string[] | undefined;
         divineFont?: {
-            harm?: true;
-            heal?: true;
-        };
+            harm?: true | undefined;
+            heal?: true | undefined;
+        } | undefined;
         divineAbility?: {
-            abilities?: Record<string, true>;
-            entry?: string;
-        };
+            abilities?: Record<string, true> | undefined;
+            entry?: string | undefined;
+        } | undefined;
         divineSkill?: {
-            skills?: Record<string, true>;
-            entry?: string;
-        };
+            skills?: Record<string, true> | undefined;
+            entry?: string | undefined;
+        } | undefined;
         domains?: {
-            name?: string;
-            sourceID?: string;
-        }[];
+            name: string;
+            sourceID: string;
+        }[] | undefined;
         alternateDomains?: {
-            name?: string;
-            sourceID?: string;
-        }[];
+            name: string;
+            sourceID: string;
+        }[] | undefined;
         clericSpells?: Record<string, {
-            name?: string;
-            sourceID?: string;
-        }[]>;
-        edicts?: string[];
-        anathema?: string[];
+            name: string;
+            sourceID: string;
+        }[]> | undefined;
+        edicts?: string[] | undefined;
+        anathema?: string[] | undefined;
         favoredWeapon?: {
             weapons?: {
-                name?: string;
-                sourceID?: string;
-            }[];
-            unarmedAttacks?: string[];
-            entry?: string;
-        };
+                name: string;
+                sourceID: string;
+            }[] | undefined;
+            unarmedAttacks?: string[] | undefined;
+            entry?: string | undefined;
+        } | undefined;
     }>;
     tags: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodAny>>;
 }, "strict", z.ZodTypeAny, {
-    type?: "deity";
-    name?: {
-        primary?: string;
-        aliases?: string[];
-        specifier?: string;
+    name: {
+        primary: string;
+        aliases?: string[] | undefined;
+        specifier?: string | undefined;
         variantOf?: {
-            name?: string;
-            sourceID?: string;
-        };
+            name?: string | undefined;
+            sourceID?: string | undefined;
+        } | undefined;
     };
-    source?: {
-        ID?: string;
-        page?: number;
-        reprintOf?: string;
-        expansionOf?: string;
-        originalOf?: string;
-    };
-    data?: {
-        category?: string;
+    type: "deity";
+    data: {
+        category?: string | undefined;
         pantheonMembers?: {
-            name?: string;
-            sourceID?: string;
-        }[];
+            name: string;
+            sourceID: string;
+        }[] | undefined;
         alignment?: {
-            deity?: "LG" | "NG" | "CG" | "LN" | "N" | "CN" | "LE" | "NE" | "CE" | "U";
-            follower?: ("LG" | "NG" | "CG" | "LN" | "N" | "CN" | "LE" | "NE" | "CE" | "U")[];
-        };
-        areasOfConcern?: string[];
+            deity: "LG" | "NG" | "CG" | "LN" | "N" | "CN" | "LE" | "NE" | "CE" | "U";
+            follower?: ("LG" | "NG" | "CG" | "LN" | "N" | "CN" | "LE" | "NE" | "CE" | "U")[] | undefined;
+        } | undefined;
+        areasOfConcern?: string[] | undefined;
         divineFont?: {
-            harm?: true;
-            heal?: true;
-        };
+            harm?: true | undefined;
+            heal?: true | undefined;
+        } | undefined;
         divineAbility?: {
-            abilities?: Record<string, true>;
-            entry?: string;
-        };
+            abilities?: Record<string, true> | undefined;
+            entry?: string | undefined;
+        } | undefined;
         divineSkill?: {
-            skills?: Record<string, true>;
-            entry?: string;
-        };
+            skills?: Record<string, true> | undefined;
+            entry?: string | undefined;
+        } | undefined;
         domains?: {
-            name?: string;
-            sourceID?: string;
-        }[];
+            name: string;
+            sourceID: string;
+        }[] | undefined;
         alternateDomains?: {
-            name?: string;
-            sourceID?: string;
-        }[];
+            name: string;
+            sourceID: string;
+        }[] | undefined;
         clericSpells?: Record<string, {
-            name?: string;
-            sourceID?: string;
-        }[]>;
-        edicts?: string[];
-        anathema?: string[];
+            name: string;
+            sourceID: string;
+        }[]> | undefined;
+        edicts?: string[] | undefined;
+        anathema?: string[] | undefined;
         favoredWeapon?: {
             weapons?: {
-                name?: string;
-                sourceID?: string;
-            }[];
-            unarmedAttacks?: string[];
-            entry?: string;
-        };
+                name: string;
+                sourceID: string;
+            }[] | undefined;
+            unarmedAttacks?: string[] | undefined;
+            entry?: string | undefined;
+        } | undefined;
     };
-    tags?: Record<string, any>;
+    source: {
+        ID: string;
+        page?: number | undefined;
+        reprintOf?: string | undefined;
+        expansionOf?: string | undefined;
+        originalOf?: string | undefined;
+    };
+    tags?: Record<string, any> | undefined;
 }, {
-    type?: "deity";
-    name?: {
-        primary?: string;
-        aliases?: string[];
-        specifier?: string;
+    name: {
+        primary: string;
+        aliases?: string[] | undefined;
+        specifier?: string | undefined;
         variantOf?: {
-            name?: string;
-            sourceID?: string;
-        };
+            name?: string | undefined;
+            sourceID?: string | undefined;
+        } | undefined;
     };
-    source?: {
-        ID?: string;
-        page?: number;
-        reprintOf?: string;
-        expansionOf?: string;
-        originalOf?: string;
-    };
-    data?: {
-        category?: string;
+    type: "deity";
+    data: {
+        category?: string | undefined;
         pantheonMembers?: {
-            name?: string;
-            sourceID?: string;
-        }[];
+            name: string;
+            sourceID: string;
+        }[] | undefined;
         alignment?: {
-            deity?: "LG" | "NG" | "CG" | "LN" | "N" | "CN" | "LE" | "NE" | "CE" | "U";
-            follower?: ("LG" | "NG" | "CG" | "LN" | "N" | "CN" | "LE" | "NE" | "CE" | "U")[];
-        };
-        areasOfConcern?: string[];
+            deity: "LG" | "NG" | "CG" | "LN" | "N" | "CN" | "LE" | "NE" | "CE" | "U";
+            follower?: ("LG" | "NG" | "CG" | "LN" | "N" | "CN" | "LE" | "NE" | "CE" | "U")[] | undefined;
+        } | undefined;
+        areasOfConcern?: string[] | undefined;
         divineFont?: {
-            harm?: true;
-            heal?: true;
-        };
+            harm?: true | undefined;
+            heal?: true | undefined;
+        } | undefined;
         divineAbility?: {
-            abilities?: Record<string, true>;
-            entry?: string;
-        };
+            abilities?: Record<string, true> | undefined;
+            entry?: string | undefined;
+        } | undefined;
         divineSkill?: {
-            skills?: Record<string, true>;
-            entry?: string;
-        };
+            skills?: Record<string, true> | undefined;
+            entry?: string | undefined;
+        } | undefined;
         domains?: {
-            name?: string;
-            sourceID?: string;
-        }[];
+            name: string;
+            sourceID: string;
+        }[] | undefined;
         alternateDomains?: {
-            name?: string;
-            sourceID?: string;
-        }[];
+            name: string;
+            sourceID: string;
+        }[] | undefined;
         clericSpells?: Record<string, {
-            name?: string;
-            sourceID?: string;
-        }[]>;
-        edicts?: string[];
-        anathema?: string[];
+            name: string;
+            sourceID: string;
+        }[]> | undefined;
+        edicts?: string[] | undefined;
+        anathema?: string[] | undefined;
         favoredWeapon?: {
             weapons?: {
-                name?: string;
-                sourceID?: string;
-            }[];
-            unarmedAttacks?: string[];
-            entry?: string;
-        };
+                name: string;
+                sourceID: string;
+            }[] | undefined;
+            unarmedAttacks?: string[] | undefined;
+            entry?: string | undefined;
+        } | undefined;
     };
-    tags?: Record<string, any>;
+    source: {
+        ID: string;
+        page?: number | undefined;
+        reprintOf?: string | undefined;
+        expansionOf?: string | undefined;
+        originalOf?: string | undefined;
+    };
+    tags?: Record<string, any> | undefined;
 }>;
-import { z } from "zod";

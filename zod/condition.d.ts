@@ -1,4 +1,5 @@
-export const condition: z.ZodObject<{
+import { z } from "zod";
+export declare const condition: z.ZodObject<{
     type: z.ZodLiteral<"condition">;
     name: z.ZodObject<{
         primary: z.ZodEffects<z.ZodString, string, string>;
@@ -8,28 +9,28 @@ export const condition: z.ZodObject<{
             name: z.ZodOptional<z.ZodString>;
             sourceID: z.ZodOptional<z.ZodString>;
         }, "strict", z.ZodTypeAny, {
-            name?: string;
-            sourceID?: string;
+            name?: string | undefined;
+            sourceID?: string | undefined;
         }, {
-            name?: string;
-            sourceID?: string;
+            name?: string | undefined;
+            sourceID?: string | undefined;
         }>>;
     }, "strict", z.ZodTypeAny, {
-        primary?: string;
-        aliases?: string[];
-        specifier?: string;
+        primary: string;
+        aliases?: string[] | undefined;
+        specifier?: string | undefined;
         variantOf?: {
-            name?: string;
-            sourceID?: string;
-        };
+            name?: string | undefined;
+            sourceID?: string | undefined;
+        } | undefined;
     }, {
-        primary?: string;
-        aliases?: string[];
-        specifier?: string;
+        primary: string;
+        aliases?: string[] | undefined;
+        specifier?: string | undefined;
         variantOf?: {
-            name?: string;
-            sourceID?: string;
-        };
+            name?: string | undefined;
+            sourceID?: string | undefined;
+        } | undefined;
     }>;
     source: z.ZodObject<{
         ID: z.ZodEffects<z.ZodString, string, string>;
@@ -38,33 +39,33 @@ export const condition: z.ZodObject<{
         expansionOf: z.ZodOptional<z.ZodEffects<z.ZodString, string, string>>;
         originalOf: z.ZodOptional<z.ZodEffects<z.ZodString, string, string>>;
     }, "strip", z.ZodTypeAny, {
-        ID?: string;
-        page?: number;
-        reprintOf?: string;
-        expansionOf?: string;
-        originalOf?: string;
+        ID: string;
+        page?: number | undefined;
+        reprintOf?: string | undefined;
+        expansionOf?: string | undefined;
+        originalOf?: string | undefined;
     }, {
-        ID?: string;
-        page?: number;
-        reprintOf?: string;
-        expansionOf?: string;
-        originalOf?: string;
+        ID: string;
+        page?: number | undefined;
+        reprintOf?: string | undefined;
+        expansionOf?: string | undefined;
+        originalOf?: string | undefined;
     }>;
     data: z.ZodObject<{
         entries: z.ZodArray<z.ZodUnion<[z.ZodString, z.ZodObject<{
             type: z.ZodString;
         }, "strip", z.ZodTypeAny, {
-            type?: string;
+            type: string;
         }, {
-            type?: string;
+            type: string;
         }>]>, "many">;
     }, "strict", z.ZodTypeAny, {
-        entries?: (string | {
-            type?: string;
+        entries: (string | {
+            type: string;
         })[];
     }, {
-        entries?: (string | {
-            type?: string;
+        entries: (string | {
+            type: string;
         })[];
     }>;
     tags: z.ZodOptional<z.ZodObject<{
@@ -94,7 +95,7 @@ export const condition: z.ZodObject<{
             "Degrees of Detection": z.ZodOptional<z.ZodLiteral<true>>;
             "Lowered Abilities": z.ZodOptional<z.ZodLiteral<true>>;
             Senses: z.ZodOptional<z.ZodLiteral<true>>;
-        }, z.ZodLiteral<true>, "strip">;
+        }, z.ZodLiteral<true>, "strip"> | undefined;
     }, {
         group?: z.objectInputType<{
             Attitudes: z.ZodOptional<z.ZodLiteral<true>>;
@@ -102,30 +103,30 @@ export const condition: z.ZodObject<{
             "Degrees of Detection": z.ZodOptional<z.ZodLiteral<true>>;
             "Lowered Abilities": z.ZodOptional<z.ZodLiteral<true>>;
             Senses: z.ZodOptional<z.ZodLiteral<true>>;
-        }, z.ZodLiteral<true>, "strip">;
+        }, z.ZodLiteral<true>, "strip"> | undefined;
     }>>;
 }, "strict", z.ZodTypeAny, {
-    type?: "condition";
-    name?: {
-        primary?: string;
-        aliases?: string[];
-        specifier?: string;
+    name: {
+        primary: string;
+        aliases?: string[] | undefined;
+        specifier?: string | undefined;
         variantOf?: {
-            name?: string;
-            sourceID?: string;
-        };
+            name?: string | undefined;
+            sourceID?: string | undefined;
+        } | undefined;
     };
-    source?: {
-        ID?: string;
-        page?: number;
-        reprintOf?: string;
-        expansionOf?: string;
-        originalOf?: string;
-    };
-    data?: {
-        entries?: (string | {
-            type?: string;
+    type: "condition";
+    data: {
+        entries: (string | {
+            type: string;
         })[];
+    };
+    source: {
+        ID: string;
+        page?: number | undefined;
+        reprintOf?: string | undefined;
+        expansionOf?: string | undefined;
+        originalOf?: string | undefined;
     };
     tags?: {
         group?: z.objectOutputType<{
@@ -134,30 +135,30 @@ export const condition: z.ZodObject<{
             "Degrees of Detection": z.ZodOptional<z.ZodLiteral<true>>;
             "Lowered Abilities": z.ZodOptional<z.ZodLiteral<true>>;
             Senses: z.ZodOptional<z.ZodLiteral<true>>;
-        }, z.ZodLiteral<true>, "strip">;
-    };
+        }, z.ZodLiteral<true>, "strip"> | undefined;
+    } | undefined;
 }, {
-    type?: "condition";
-    name?: {
-        primary?: string;
-        aliases?: string[];
-        specifier?: string;
+    name: {
+        primary: string;
+        aliases?: string[] | undefined;
+        specifier?: string | undefined;
         variantOf?: {
-            name?: string;
-            sourceID?: string;
-        };
+            name?: string | undefined;
+            sourceID?: string | undefined;
+        } | undefined;
     };
-    source?: {
-        ID?: string;
-        page?: number;
-        reprintOf?: string;
-        expansionOf?: string;
-        originalOf?: string;
-    };
-    data?: {
-        entries?: (string | {
-            type?: string;
+    type: "condition";
+    data: {
+        entries: (string | {
+            type: string;
         })[];
+    };
+    source: {
+        ID: string;
+        page?: number | undefined;
+        reprintOf?: string | undefined;
+        expansionOf?: string | undefined;
+        originalOf?: string | undefined;
     };
     tags?: {
         group?: z.objectInputType<{
@@ -166,7 +167,6 @@ export const condition: z.ZodObject<{
             "Degrees of Detection": z.ZodOptional<z.ZodLiteral<true>>;
             "Lowered Abilities": z.ZodOptional<z.ZodLiteral<true>>;
             Senses: z.ZodOptional<z.ZodLiteral<true>>;
-        }, z.ZodLiteral<true>, "strip">;
-    };
+        }, z.ZodLiteral<true>, "strip"> | undefined;
+    } | undefined;
 }>;
-import { z } from "zod";

@@ -1,76 +1,76 @@
-export const sourceGroup: z.ZodObject<{
+import { z } from "zod";
+export declare const sourceGroup: z.ZodObject<{
     type: z.ZodOptional<z.ZodLiteral<"sourceGroup">>;
     ID: z.ZodEffects<z.ZodString, string, string>;
     title: z.ZodObject<{
         full: z.ZodString;
         short: z.ZodString;
     }, "strict", z.ZodTypeAny, {
-        full?: string;
-        short?: string;
+        short: string;
+        full: string;
     }, {
-        full?: string;
-        short?: string;
+        short: string;
+        full: string;
     }>;
     data: z.ZodOptional<z.ZodObject<{
         publisher: z.ZodOptional<z.ZodString>;
     }, "strict", z.ZodTypeAny, {
-        publisher?: string;
+        publisher?: string | undefined;
     }, {
-        publisher?: string;
+        publisher?: string | undefined;
     }>>;
     tags: z.ZodOptional<z.ZodObject<{
         misc: z.ZodOptional<z.ZodObject<{
             Adventure: z.ZodOptional<z.ZodLiteral<true>>;
             Ongoing: z.ZodOptional<z.ZodLiteral<true>>;
         }, "strict", z.ZodTypeAny, {
-            Adventure?: true;
-            Ongoing?: true;
+            Adventure?: true | undefined;
+            Ongoing?: true | undefined;
         }, {
-            Adventure?: true;
-            Ongoing?: true;
+            Adventure?: true | undefined;
+            Ongoing?: true | undefined;
         }>>;
     }, "strict", z.ZodTypeAny, {
         misc?: {
-            Adventure?: true;
-            Ongoing?: true;
-        };
+            Adventure?: true | undefined;
+            Ongoing?: true | undefined;
+        } | undefined;
     }, {
         misc?: {
-            Adventure?: true;
-            Ongoing?: true;
-        };
+            Adventure?: true | undefined;
+            Ongoing?: true | undefined;
+        } | undefined;
     }>>;
 }, "strict", z.ZodTypeAny, {
-    type?: "sourceGroup";
-    ID?: string;
-    title?: {
-        full?: string;
-        short?: string;
+    ID: string;
+    title: {
+        short: string;
+        full: string;
     };
+    type?: "sourceGroup" | undefined;
     data?: {
-        publisher?: string;
-    };
+        publisher?: string | undefined;
+    } | undefined;
     tags?: {
         misc?: {
-            Adventure?: true;
-            Ongoing?: true;
-        };
-    };
+            Adventure?: true | undefined;
+            Ongoing?: true | undefined;
+        } | undefined;
+    } | undefined;
 }, {
-    type?: "sourceGroup";
-    ID?: string;
-    title?: {
-        full?: string;
-        short?: string;
+    ID: string;
+    title: {
+        short: string;
+        full: string;
     };
+    type?: "sourceGroup" | undefined;
     data?: {
-        publisher?: string;
-    };
+        publisher?: string | undefined;
+    } | undefined;
     tags?: {
         misc?: {
-            Adventure?: true;
-            Ongoing?: true;
-        };
-    };
+            Adventure?: true | undefined;
+            Ongoing?: true | undefined;
+        } | undefined;
+    } | undefined;
 }>;
-import { z } from "zod";

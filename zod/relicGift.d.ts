@@ -1,4 +1,5 @@
-export const relicGift: z.ZodObject<{
+import { z } from "zod";
+export declare const relicGift: z.ZodObject<{
     type: z.ZodLiteral<"relicGift">;
     name: z.ZodObject<{
         primary: z.ZodEffects<z.ZodString, string, string>;
@@ -8,28 +9,28 @@ export const relicGift: z.ZodObject<{
             name: z.ZodOptional<z.ZodString>;
             sourceID: z.ZodOptional<z.ZodString>;
         }, "strict", z.ZodTypeAny, {
-            name?: string;
-            sourceID?: string;
+            name?: string | undefined;
+            sourceID?: string | undefined;
         }, {
-            name?: string;
-            sourceID?: string;
+            name?: string | undefined;
+            sourceID?: string | undefined;
         }>>;
     }, "strict", z.ZodTypeAny, {
-        primary?: string;
-        aliases?: string[];
-        specifier?: string;
+        primary: string;
+        aliases?: string[] | undefined;
+        specifier?: string | undefined;
         variantOf?: {
-            name?: string;
-            sourceID?: string;
-        };
+            name?: string | undefined;
+            sourceID?: string | undefined;
+        } | undefined;
     }, {
-        primary?: string;
-        aliases?: string[];
-        specifier?: string;
+        primary: string;
+        aliases?: string[] | undefined;
+        specifier?: string | undefined;
         variantOf?: {
-            name?: string;
-            sourceID?: string;
-        };
+            name?: string | undefined;
+            sourceID?: string | undefined;
+        } | undefined;
     }>;
     source: z.ZodObject<{
         ID: z.ZodEffects<z.ZodString, string, string>;
@@ -38,17 +39,17 @@ export const relicGift: z.ZodObject<{
         expansionOf: z.ZodOptional<z.ZodEffects<z.ZodString, string, string>>;
         originalOf: z.ZodOptional<z.ZodEffects<z.ZodString, string, string>>;
     }, "strip", z.ZodTypeAny, {
-        ID?: string;
-        page?: number;
-        reprintOf?: string;
-        expansionOf?: string;
-        originalOf?: string;
+        ID: string;
+        page?: number | undefined;
+        reprintOf?: string | undefined;
+        expansionOf?: string | undefined;
+        originalOf?: string | undefined;
     }, {
-        ID?: string;
-        page?: number;
-        reprintOf?: string;
-        expansionOf?: string;
-        originalOf?: string;
+        ID: string;
+        page?: number | undefined;
+        reprintOf?: string | undefined;
+        expansionOf?: string | undefined;
+        originalOf?: string | undefined;
     }>;
     data: z.ZodObject<{
         tier: z.ZodString;
@@ -57,62 +58,62 @@ export const relicGift: z.ZodObject<{
             variables: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
             display: z.ZodOptional<z.ZodString>;
         }, "strict", z.ZodTypeAny, {
-            trait?: string;
-            variables?: string[];
-            display?: string;
+            trait: string;
+            variables?: string[] | undefined;
+            display?: string | undefined;
         }, {
-            trait?: string;
-            variables?: string[];
-            display?: string;
+            trait: string;
+            variables?: string[] | undefined;
+            display?: string | undefined;
         }>, "many">>;
         aspects: z.ZodArray<z.ZodObject<{
             name: z.ZodString;
             note: z.ZodOptional<z.ZodString>;
         }, "strict", z.ZodTypeAny, {
-            name?: string;
-            note?: string;
+            name: string;
+            note?: string | undefined;
         }, {
-            name?: string;
-            note?: string;
+            name: string;
+            note?: string | undefined;
         }>, "many">;
         prerequisites: z.ZodOptional<z.ZodString>;
         entries: z.ZodArray<z.ZodUnion<[z.ZodString, z.ZodObject<{
             type: z.ZodString;
         }, "strip", z.ZodTypeAny, {
-            type?: string;
+            type: string;
         }, {
-            type?: string;
+            type: string;
         }>]>, "many">;
     }, "strict", z.ZodTypeAny, {
-        tier?: string;
-        traits?: {
-            trait?: string;
-            variables?: string[];
-            display?: string;
-        }[];
-        aspects?: {
-            name?: string;
-            note?: string;
-        }[];
-        prerequisites?: string;
-        entries?: (string | {
-            type?: string;
+        entries: (string | {
+            type: string;
         })[];
+        tier: string;
+        aspects: {
+            name: string;
+            note?: string | undefined;
+        }[];
+        traits?: {
+            trait: string;
+            variables?: string[] | undefined;
+            display?: string | undefined;
+        }[] | undefined;
+        prerequisites?: string | undefined;
     }, {
-        tier?: string;
-        traits?: {
-            trait?: string;
-            variables?: string[];
-            display?: string;
-        }[];
-        aspects?: {
-            name?: string;
-            note?: string;
-        }[];
-        prerequisites?: string;
-        entries?: (string | {
-            type?: string;
+        entries: (string | {
+            type: string;
         })[];
+        tier: string;
+        aspects: {
+            name: string;
+            note?: string | undefined;
+        }[];
+        traits?: {
+            trait: string;
+            variables?: string[] | undefined;
+            display?: string | undefined;
+        }[] | undefined;
+        prerequisites?: string | undefined;
     }>;
     tags: z.ZodOptional<z.ZodObject<{
         itemTypes: z.ZodOptional<z.ZodObject<{
@@ -135,140 +136,139 @@ export const relicGift: z.ZodObject<{
             "Is rune": z.ZodOptional<z.ZodLiteral<true>>;
             "Soul seed": z.ZodOptional<z.ZodLiteral<true>>;
         }, "strict", z.ZodTypeAny, {
-            "Alters relic"?: true;
-            "Grants ability"?: true;
-            "Grants passive attribute"?: true;
-            "Is rune"?: true;
-            "Soul seed"?: true;
+            "Alters relic"?: true | undefined;
+            "Grants ability"?: true | undefined;
+            "Grants passive attribute"?: true | undefined;
+            "Is rune"?: true | undefined;
+            "Soul seed"?: true | undefined;
         }, {
-            "Alters relic"?: true;
-            "Grants ability"?: true;
-            "Grants passive attribute"?: true;
-            "Is rune"?: true;
-            "Soul seed"?: true;
+            "Alters relic"?: true | undefined;
+            "Grants ability"?: true | undefined;
+            "Grants passive attribute"?: true | undefined;
+            "Is rune"?: true | undefined;
+            "Soul seed"?: true | undefined;
         }>>;
     }, "strict", z.ZodTypeAny, {
         itemTypes?: z.objectOutputType<{
             Armor: z.ZodOptional<z.ZodLiteral<true>>;
             "Worn Item": z.ZodOptional<z.ZodLiteral<true>>;
             Weapon: z.ZodOptional<z.ZodLiteral<true>>;
-        }, z.ZodLiteral<true>, "strip">;
+        }, z.ZodLiteral<true>, "strip"> | undefined;
         misc?: {
-            "Alters relic"?: true;
-            "Grants ability"?: true;
-            "Grants passive attribute"?: true;
-            "Is rune"?: true;
-            "Soul seed"?: true;
-        };
+            "Alters relic"?: true | undefined;
+            "Grants ability"?: true | undefined;
+            "Grants passive attribute"?: true | undefined;
+            "Is rune"?: true | undefined;
+            "Soul seed"?: true | undefined;
+        } | undefined;
     }, {
         itemTypes?: z.objectInputType<{
             Armor: z.ZodOptional<z.ZodLiteral<true>>;
             "Worn Item": z.ZodOptional<z.ZodLiteral<true>>;
             Weapon: z.ZodOptional<z.ZodLiteral<true>>;
-        }, z.ZodLiteral<true>, "strip">;
+        }, z.ZodLiteral<true>, "strip"> | undefined;
         misc?: {
-            "Alters relic"?: true;
-            "Grants ability"?: true;
-            "Grants passive attribute"?: true;
-            "Is rune"?: true;
-            "Soul seed"?: true;
-        };
+            "Alters relic"?: true | undefined;
+            "Grants ability"?: true | undefined;
+            "Grants passive attribute"?: true | undefined;
+            "Is rune"?: true | undefined;
+            "Soul seed"?: true | undefined;
+        } | undefined;
     }>>;
 }, "strict", z.ZodTypeAny, {
-    type?: "relicGift";
-    name?: {
-        primary?: string;
-        aliases?: string[];
-        specifier?: string;
+    name: {
+        primary: string;
+        aliases?: string[] | undefined;
+        specifier?: string | undefined;
         variantOf?: {
-            name?: string;
-            sourceID?: string;
-        };
+            name?: string | undefined;
+            sourceID?: string | undefined;
+        } | undefined;
     };
-    source?: {
-        ID?: string;
-        page?: number;
-        reprintOf?: string;
-        expansionOf?: string;
-        originalOf?: string;
-    };
-    data?: {
-        tier?: string;
-        traits?: {
-            trait?: string;
-            variables?: string[];
-            display?: string;
-        }[];
-        aspects?: {
-            name?: string;
-            note?: string;
-        }[];
-        prerequisites?: string;
-        entries?: (string | {
-            type?: string;
+    type: "relicGift";
+    data: {
+        entries: (string | {
+            type: string;
         })[];
+        tier: string;
+        aspects: {
+            name: string;
+            note?: string | undefined;
+        }[];
+        traits?: {
+            trait: string;
+            variables?: string[] | undefined;
+            display?: string | undefined;
+        }[] | undefined;
+        prerequisites?: string | undefined;
+    };
+    source: {
+        ID: string;
+        page?: number | undefined;
+        reprintOf?: string | undefined;
+        expansionOf?: string | undefined;
+        originalOf?: string | undefined;
     };
     tags?: {
         itemTypes?: z.objectOutputType<{
             Armor: z.ZodOptional<z.ZodLiteral<true>>;
             "Worn Item": z.ZodOptional<z.ZodLiteral<true>>;
             Weapon: z.ZodOptional<z.ZodLiteral<true>>;
-        }, z.ZodLiteral<true>, "strip">;
+        }, z.ZodLiteral<true>, "strip"> | undefined;
         misc?: {
-            "Alters relic"?: true;
-            "Grants ability"?: true;
-            "Grants passive attribute"?: true;
-            "Is rune"?: true;
-            "Soul seed"?: true;
-        };
-    };
+            "Alters relic"?: true | undefined;
+            "Grants ability"?: true | undefined;
+            "Grants passive attribute"?: true | undefined;
+            "Is rune"?: true | undefined;
+            "Soul seed"?: true | undefined;
+        } | undefined;
+    } | undefined;
 }, {
-    type?: "relicGift";
-    name?: {
-        primary?: string;
-        aliases?: string[];
-        specifier?: string;
+    name: {
+        primary: string;
+        aliases?: string[] | undefined;
+        specifier?: string | undefined;
         variantOf?: {
-            name?: string;
-            sourceID?: string;
-        };
+            name?: string | undefined;
+            sourceID?: string | undefined;
+        } | undefined;
     };
-    source?: {
-        ID?: string;
-        page?: number;
-        reprintOf?: string;
-        expansionOf?: string;
-        originalOf?: string;
-    };
-    data?: {
-        tier?: string;
-        traits?: {
-            trait?: string;
-            variables?: string[];
-            display?: string;
-        }[];
-        aspects?: {
-            name?: string;
-            note?: string;
-        }[];
-        prerequisites?: string;
-        entries?: (string | {
-            type?: string;
+    type: "relicGift";
+    data: {
+        entries: (string | {
+            type: string;
         })[];
+        tier: string;
+        aspects: {
+            name: string;
+            note?: string | undefined;
+        }[];
+        traits?: {
+            trait: string;
+            variables?: string[] | undefined;
+            display?: string | undefined;
+        }[] | undefined;
+        prerequisites?: string | undefined;
+    };
+    source: {
+        ID: string;
+        page?: number | undefined;
+        reprintOf?: string | undefined;
+        expansionOf?: string | undefined;
+        originalOf?: string | undefined;
     };
     tags?: {
         itemTypes?: z.objectInputType<{
             Armor: z.ZodOptional<z.ZodLiteral<true>>;
             "Worn Item": z.ZodOptional<z.ZodLiteral<true>>;
             Weapon: z.ZodOptional<z.ZodLiteral<true>>;
-        }, z.ZodLiteral<true>, "strip">;
+        }, z.ZodLiteral<true>, "strip"> | undefined;
         misc?: {
-            "Alters relic"?: true;
-            "Grants ability"?: true;
-            "Grants passive attribute"?: true;
-            "Is rune"?: true;
-            "Soul seed"?: true;
-        };
-    };
+            "Alters relic"?: true | undefined;
+            "Grants ability"?: true | undefined;
+            "Grants passive attribute"?: true | undefined;
+            "Is rune"?: true | undefined;
+            "Soul seed"?: true | undefined;
+        } | undefined;
+    } | undefined;
 }>;
-import { z } from "zod";

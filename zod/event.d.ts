@@ -1,4 +1,5 @@
-export const event: z.ZodObject<{
+import { z } from "zod";
+export declare const event: z.ZodObject<{
     type: z.ZodLiteral<"event">;
     name: z.ZodObject<{
         primary: z.ZodEffects<z.ZodString, string, string>;
@@ -8,28 +9,28 @@ export const event: z.ZodObject<{
             name: z.ZodOptional<z.ZodString>;
             sourceID: z.ZodOptional<z.ZodString>;
         }, "strict", z.ZodTypeAny, {
-            name?: string;
-            sourceID?: string;
+            name?: string | undefined;
+            sourceID?: string | undefined;
         }, {
-            name?: string;
-            sourceID?: string;
+            name?: string | undefined;
+            sourceID?: string | undefined;
         }>>;
     }, "strict", z.ZodTypeAny, {
-        primary?: string;
-        aliases?: string[];
-        specifier?: string;
+        primary: string;
+        aliases?: string[] | undefined;
+        specifier?: string | undefined;
         variantOf?: {
-            name?: string;
-            sourceID?: string;
-        };
+            name?: string | undefined;
+            sourceID?: string | undefined;
+        } | undefined;
     }, {
-        primary?: string;
-        aliases?: string[];
-        specifier?: string;
+        primary: string;
+        aliases?: string[] | undefined;
+        specifier?: string | undefined;
         variantOf?: {
-            name?: string;
-            sourceID?: string;
-        };
+            name?: string | undefined;
+            sourceID?: string | undefined;
+        } | undefined;
     }>;
     source: z.ZodObject<{
         ID: z.ZodEffects<z.ZodString, string, string>;
@@ -38,17 +39,17 @@ export const event: z.ZodObject<{
         expansionOf: z.ZodOptional<z.ZodEffects<z.ZodString, string, string>>;
         originalOf: z.ZodOptional<z.ZodEffects<z.ZodString, string, string>>;
     }, "strip", z.ZodTypeAny, {
-        ID?: string;
-        page?: number;
-        reprintOf?: string;
-        expansionOf?: string;
-        originalOf?: string;
+        ID: string;
+        page?: number | undefined;
+        reprintOf?: string | undefined;
+        expansionOf?: string | undefined;
+        originalOf?: string | undefined;
     }, {
-        ID?: string;
-        page?: number;
-        reprintOf?: string;
-        expansionOf?: string;
-        originalOf?: string;
+        ID: string;
+        page?: number | undefined;
+        reprintOf?: string | undefined;
+        expansionOf?: string | undefined;
+        originalOf?: string | undefined;
     }>;
     data: z.ZodObject<{
         level: z.ZodNumber;
@@ -57,135 +58,134 @@ export const event: z.ZodObject<{
             variables: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
             display: z.ZodOptional<z.ZodString>;
         }, "strict", z.ZodTypeAny, {
-            trait?: string;
-            variables?: string[];
-            display?: string;
+            trait: string;
+            variables?: string[] | undefined;
+            display?: string | undefined;
         }, {
-            trait?: string;
-            variables?: string[];
-            display?: string;
+            trait: string;
+            variables?: string[] | undefined;
+            display?: string | undefined;
         }>, "many">>;
         applicableSkills: z.ZodOptional<z.ZodArray<z.ZodObject<{
             skill: z.ZodEnum<["Acrobatics", "Arcana", "Athletics", "Crafting", "Deception", "Diplomacy", "Intimidation", "Lore", "Medicine", "Nature", "Occultism", "Performance", "Religion", "Society", "Stealth", "Survival", "Thievery"]>;
             variables: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
             display: z.ZodOptional<z.ZodString>;
         }, "strict", z.ZodTypeAny, {
-            skill?: "Acrobatics" | "Arcana" | "Athletics" | "Crafting" | "Deception" | "Diplomacy" | "Intimidation" | "Lore" | "Medicine" | "Nature" | "Occultism" | "Performance" | "Religion" | "Society" | "Stealth" | "Survival" | "Thievery";
-            variables?: string[];
-            display?: string;
+            skill: "Acrobatics" | "Arcana" | "Athletics" | "Crafting" | "Deception" | "Diplomacy" | "Intimidation" | "Lore" | "Medicine" | "Nature" | "Occultism" | "Performance" | "Religion" | "Society" | "Stealth" | "Survival" | "Thievery";
+            variables?: string[] | undefined;
+            display?: string | undefined;
         }, {
-            skill?: "Acrobatics" | "Arcana" | "Athletics" | "Crafting" | "Deception" | "Diplomacy" | "Intimidation" | "Lore" | "Medicine" | "Nature" | "Occultism" | "Performance" | "Religion" | "Society" | "Stealth" | "Survival" | "Thievery";
-            variables?: string[];
-            display?: string;
+            skill: "Acrobatics" | "Arcana" | "Athletics" | "Crafting" | "Deception" | "Diplomacy" | "Intimidation" | "Lore" | "Medicine" | "Nature" | "Occultism" | "Performance" | "Religion" | "Society" | "Stealth" | "Survival" | "Thievery";
+            variables?: string[] | undefined;
+            display?: string | undefined;
         }>, "many">>;
         entries: z.ZodArray<z.ZodUnion<[z.ZodString, z.ZodObject<{
             type: z.ZodString;
         }, "strip", z.ZodTypeAny, {
-            type?: string;
+            type: string;
         }, {
-            type?: string;
+            type: string;
         }>]>, "many">;
     }, "strict", z.ZodTypeAny, {
-        level?: number;
-        traits?: {
-            trait?: string;
-            variables?: string[];
-            display?: string;
-        }[];
-        applicableSkills?: {
-            skill?: "Acrobatics" | "Arcana" | "Athletics" | "Crafting" | "Deception" | "Diplomacy" | "Intimidation" | "Lore" | "Medicine" | "Nature" | "Occultism" | "Performance" | "Religion" | "Society" | "Stealth" | "Survival" | "Thievery";
-            variables?: string[];
-            display?: string;
-        }[];
-        entries?: (string | {
-            type?: string;
+        entries: (string | {
+            type: string;
         })[];
+        level: number;
+        traits?: {
+            trait: string;
+            variables?: string[] | undefined;
+            display?: string | undefined;
+        }[] | undefined;
+        applicableSkills?: {
+            skill: "Acrobatics" | "Arcana" | "Athletics" | "Crafting" | "Deception" | "Diplomacy" | "Intimidation" | "Lore" | "Medicine" | "Nature" | "Occultism" | "Performance" | "Religion" | "Society" | "Stealth" | "Survival" | "Thievery";
+            variables?: string[] | undefined;
+            display?: string | undefined;
+        }[] | undefined;
     }, {
-        level?: number;
-        traits?: {
-            trait?: string;
-            variables?: string[];
-            display?: string;
-        }[];
-        applicableSkills?: {
-            skill?: "Acrobatics" | "Arcana" | "Athletics" | "Crafting" | "Deception" | "Diplomacy" | "Intimidation" | "Lore" | "Medicine" | "Nature" | "Occultism" | "Performance" | "Religion" | "Society" | "Stealth" | "Survival" | "Thievery";
-            variables?: string[];
-            display?: string;
-        }[];
-        entries?: (string | {
-            type?: string;
+        entries: (string | {
+            type: string;
         })[];
+        level: number;
+        traits?: {
+            trait: string;
+            variables?: string[] | undefined;
+            display?: string | undefined;
+        }[] | undefined;
+        applicableSkills?: {
+            skill: "Acrobatics" | "Arcana" | "Athletics" | "Crafting" | "Deception" | "Diplomacy" | "Intimidation" | "Lore" | "Medicine" | "Nature" | "Occultism" | "Performance" | "Religion" | "Society" | "Stealth" | "Survival" | "Thievery";
+            variables?: string[] | undefined;
+            display?: string | undefined;
+        }[] | undefined;
     }>;
     tags: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodAny>>;
 }, "strict", z.ZodTypeAny, {
-    type?: "event";
-    name?: {
-        primary?: string;
-        aliases?: string[];
-        specifier?: string;
+    name: {
+        primary: string;
+        aliases?: string[] | undefined;
+        specifier?: string | undefined;
         variantOf?: {
-            name?: string;
-            sourceID?: string;
-        };
+            name?: string | undefined;
+            sourceID?: string | undefined;
+        } | undefined;
     };
-    source?: {
-        ID?: string;
-        page?: number;
-        reprintOf?: string;
-        expansionOf?: string;
-        originalOf?: string;
-    };
-    data?: {
-        level?: number;
-        traits?: {
-            trait?: string;
-            variables?: string[];
-            display?: string;
-        }[];
-        applicableSkills?: {
-            skill?: "Acrobatics" | "Arcana" | "Athletics" | "Crafting" | "Deception" | "Diplomacy" | "Intimidation" | "Lore" | "Medicine" | "Nature" | "Occultism" | "Performance" | "Religion" | "Society" | "Stealth" | "Survival" | "Thievery";
-            variables?: string[];
-            display?: string;
-        }[];
-        entries?: (string | {
-            type?: string;
+    type: "event";
+    data: {
+        entries: (string | {
+            type: string;
         })[];
+        level: number;
+        traits?: {
+            trait: string;
+            variables?: string[] | undefined;
+            display?: string | undefined;
+        }[] | undefined;
+        applicableSkills?: {
+            skill: "Acrobatics" | "Arcana" | "Athletics" | "Crafting" | "Deception" | "Diplomacy" | "Intimidation" | "Lore" | "Medicine" | "Nature" | "Occultism" | "Performance" | "Religion" | "Society" | "Stealth" | "Survival" | "Thievery";
+            variables?: string[] | undefined;
+            display?: string | undefined;
+        }[] | undefined;
     };
-    tags?: Record<string, any>;
+    source: {
+        ID: string;
+        page?: number | undefined;
+        reprintOf?: string | undefined;
+        expansionOf?: string | undefined;
+        originalOf?: string | undefined;
+    };
+    tags?: Record<string, any> | undefined;
 }, {
-    type?: "event";
-    name?: {
-        primary?: string;
-        aliases?: string[];
-        specifier?: string;
+    name: {
+        primary: string;
+        aliases?: string[] | undefined;
+        specifier?: string | undefined;
         variantOf?: {
-            name?: string;
-            sourceID?: string;
-        };
+            name?: string | undefined;
+            sourceID?: string | undefined;
+        } | undefined;
     };
-    source?: {
-        ID?: string;
-        page?: number;
-        reprintOf?: string;
-        expansionOf?: string;
-        originalOf?: string;
-    };
-    data?: {
-        level?: number;
-        traits?: {
-            trait?: string;
-            variables?: string[];
-            display?: string;
-        }[];
-        applicableSkills?: {
-            skill?: "Acrobatics" | "Arcana" | "Athletics" | "Crafting" | "Deception" | "Diplomacy" | "Intimidation" | "Lore" | "Medicine" | "Nature" | "Occultism" | "Performance" | "Religion" | "Society" | "Stealth" | "Survival" | "Thievery";
-            variables?: string[];
-            display?: string;
-        }[];
-        entries?: (string | {
-            type?: string;
+    type: "event";
+    data: {
+        entries: (string | {
+            type: string;
         })[];
+        level: number;
+        traits?: {
+            trait: string;
+            variables?: string[] | undefined;
+            display?: string | undefined;
+        }[] | undefined;
+        applicableSkills?: {
+            skill: "Acrobatics" | "Arcana" | "Athletics" | "Crafting" | "Deception" | "Diplomacy" | "Intimidation" | "Lore" | "Medicine" | "Nature" | "Occultism" | "Performance" | "Religion" | "Society" | "Stealth" | "Survival" | "Thievery";
+            variables?: string[] | undefined;
+            display?: string | undefined;
+        }[] | undefined;
     };
-    tags?: Record<string, any>;
+    source: {
+        ID: string;
+        page?: number | undefined;
+        reprintOf?: string | undefined;
+        expansionOf?: string | undefined;
+        originalOf?: string | undefined;
+    };
+    tags?: Record<string, any> | undefined;
 }>;
-import { z } from "zod";

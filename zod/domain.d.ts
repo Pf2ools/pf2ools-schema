@@ -1,4 +1,5 @@
-export const domain: z.ZodObject<{
+import { z } from "zod";
+export declare const domain: z.ZodObject<{
     type: z.ZodLiteral<"domain">;
     name: z.ZodObject<{
         primary: z.ZodEffects<z.ZodString, string, string>;
@@ -8,28 +9,28 @@ export const domain: z.ZodObject<{
             name: z.ZodOptional<z.ZodString>;
             sourceID: z.ZodOptional<z.ZodString>;
         }, "strict", z.ZodTypeAny, {
-            name?: string;
-            sourceID?: string;
+            name?: string | undefined;
+            sourceID?: string | undefined;
         }, {
-            name?: string;
-            sourceID?: string;
+            name?: string | undefined;
+            sourceID?: string | undefined;
         }>>;
     }, "strict", z.ZodTypeAny, {
-        primary?: string;
-        aliases?: string[];
-        specifier?: string;
+        primary: string;
+        aliases?: string[] | undefined;
+        specifier?: string | undefined;
         variantOf?: {
-            name?: string;
-            sourceID?: string;
-        };
+            name?: string | undefined;
+            sourceID?: string | undefined;
+        } | undefined;
     }, {
-        primary?: string;
-        aliases?: string[];
-        specifier?: string;
+        primary: string;
+        aliases?: string[] | undefined;
+        specifier?: string | undefined;
         variantOf?: {
-            name?: string;
-            sourceID?: string;
-        };
+            name?: string | undefined;
+            sourceID?: string | undefined;
+        } | undefined;
     }>;
     source: z.ZodObject<{
         ID: z.ZodEffects<z.ZodString, string, string>;
@@ -38,17 +39,17 @@ export const domain: z.ZodObject<{
         expansionOf: z.ZodOptional<z.ZodEffects<z.ZodString, string, string>>;
         originalOf: z.ZodOptional<z.ZodEffects<z.ZodString, string, string>>;
     }, "strip", z.ZodTypeAny, {
-        ID?: string;
-        page?: number;
-        reprintOf?: string;
-        expansionOf?: string;
-        originalOf?: string;
+        ID: string;
+        page?: number | undefined;
+        reprintOf?: string | undefined;
+        expansionOf?: string | undefined;
+        originalOf?: string | undefined;
     }, {
-        ID?: string;
-        page?: number;
-        reprintOf?: string;
-        expansionOf?: string;
-        originalOf?: string;
+        ID: string;
+        page?: number | undefined;
+        reprintOf?: string | undefined;
+        expansionOf?: string | undefined;
+        originalOf?: string | undefined;
     }>;
     data: z.ZodObject<{
         preamble: z.ZodOptional<z.ZodString>;
@@ -56,155 +57,154 @@ export const domain: z.ZodObject<{
             name: z.ZodString;
             sourceID: z.ZodString;
         }, "strict", z.ZodTypeAny, {
-            name?: string;
-            sourceID?: string;
+            name: string;
+            sourceID: string;
         }, {
-            name?: string;
-            sourceID?: string;
+            name: string;
+            sourceID: string;
         }>;
         advancedDomainSpell: z.ZodObject<{
             name: z.ZodString;
             sourceID: z.ZodString;
         }, "strict", z.ZodTypeAny, {
-            name?: string;
-            sourceID?: string;
+            name: string;
+            sourceID: string;
         }, {
-            name?: string;
-            sourceID?: string;
+            name: string;
+            sourceID: string;
         }>;
         apocryphalSpell: z.ZodOptional<z.ZodObject<{
             name: z.ZodString;
             sourceID: z.ZodString;
         }, "strict", z.ZodTypeAny, {
-            name?: string;
-            sourceID?: string;
+            name: string;
+            sourceID: string;
         }, {
-            name?: string;
-            sourceID?: string;
+            name: string;
+            sourceID: string;
         }>>;
         advancedApocryphalSpell: z.ZodOptional<z.ZodObject<{
             name: z.ZodString;
             sourceID: z.ZodString;
         }, "strict", z.ZodTypeAny, {
-            name?: string;
-            sourceID?: string;
+            name: string;
+            sourceID: string;
         }, {
-            name?: string;
-            sourceID?: string;
+            name: string;
+            sourceID: string;
         }>>;
     }, "strict", z.ZodTypeAny, {
-        preamble?: string;
-        domainSpell?: {
-            name?: string;
-            sourceID?: string;
+        domainSpell: {
+            name: string;
+            sourceID: string;
         };
-        advancedDomainSpell?: {
-            name?: string;
-            sourceID?: string;
+        advancedDomainSpell: {
+            name: string;
+            sourceID: string;
         };
+        preamble?: string | undefined;
         apocryphalSpell?: {
-            name?: string;
-            sourceID?: string;
-        };
+            name: string;
+            sourceID: string;
+        } | undefined;
         advancedApocryphalSpell?: {
-            name?: string;
-            sourceID?: string;
-        };
+            name: string;
+            sourceID: string;
+        } | undefined;
     }, {
-        preamble?: string;
-        domainSpell?: {
-            name?: string;
-            sourceID?: string;
+        domainSpell: {
+            name: string;
+            sourceID: string;
         };
-        advancedDomainSpell?: {
-            name?: string;
-            sourceID?: string;
+        advancedDomainSpell: {
+            name: string;
+            sourceID: string;
         };
+        preamble?: string | undefined;
         apocryphalSpell?: {
-            name?: string;
-            sourceID?: string;
-        };
+            name: string;
+            sourceID: string;
+        } | undefined;
         advancedApocryphalSpell?: {
-            name?: string;
-            sourceID?: string;
-        };
+            name: string;
+            sourceID: string;
+        } | undefined;
     }>;
     tags: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodAny>>;
 }, "strict", z.ZodTypeAny, {
-    type?: "domain";
-    name?: {
-        primary?: string;
-        aliases?: string[];
-        specifier?: string;
+    name: {
+        primary: string;
+        aliases?: string[] | undefined;
+        specifier?: string | undefined;
         variantOf?: {
-            name?: string;
-            sourceID?: string;
-        };
+            name?: string | undefined;
+            sourceID?: string | undefined;
+        } | undefined;
     };
-    source?: {
-        ID?: string;
-        page?: number;
-        reprintOf?: string;
-        expansionOf?: string;
-        originalOf?: string;
-    };
-    data?: {
-        preamble?: string;
-        domainSpell?: {
-            name?: string;
-            sourceID?: string;
+    type: "domain";
+    data: {
+        domainSpell: {
+            name: string;
+            sourceID: string;
         };
-        advancedDomainSpell?: {
-            name?: string;
-            sourceID?: string;
+        advancedDomainSpell: {
+            name: string;
+            sourceID: string;
         };
+        preamble?: string | undefined;
         apocryphalSpell?: {
-            name?: string;
-            sourceID?: string;
-        };
+            name: string;
+            sourceID: string;
+        } | undefined;
         advancedApocryphalSpell?: {
-            name?: string;
-            sourceID?: string;
-        };
+            name: string;
+            sourceID: string;
+        } | undefined;
     };
-    tags?: Record<string, any>;
+    source: {
+        ID: string;
+        page?: number | undefined;
+        reprintOf?: string | undefined;
+        expansionOf?: string | undefined;
+        originalOf?: string | undefined;
+    };
+    tags?: Record<string, any> | undefined;
 }, {
-    type?: "domain";
-    name?: {
-        primary?: string;
-        aliases?: string[];
-        specifier?: string;
+    name: {
+        primary: string;
+        aliases?: string[] | undefined;
+        specifier?: string | undefined;
         variantOf?: {
-            name?: string;
-            sourceID?: string;
-        };
+            name?: string | undefined;
+            sourceID?: string | undefined;
+        } | undefined;
     };
-    source?: {
-        ID?: string;
-        page?: number;
-        reprintOf?: string;
-        expansionOf?: string;
-        originalOf?: string;
-    };
-    data?: {
-        preamble?: string;
-        domainSpell?: {
-            name?: string;
-            sourceID?: string;
+    type: "domain";
+    data: {
+        domainSpell: {
+            name: string;
+            sourceID: string;
         };
-        advancedDomainSpell?: {
-            name?: string;
-            sourceID?: string;
+        advancedDomainSpell: {
+            name: string;
+            sourceID: string;
         };
+        preamble?: string | undefined;
         apocryphalSpell?: {
-            name?: string;
-            sourceID?: string;
-        };
+            name: string;
+            sourceID: string;
+        } | undefined;
         advancedApocryphalSpell?: {
-            name?: string;
-            sourceID?: string;
-        };
+            name: string;
+            sourceID: string;
+        } | undefined;
     };
-    tags?: Record<string, any>;
+    source: {
+        ID: string;
+        page?: number | undefined;
+        reprintOf?: string | undefined;
+        expansionOf?: string | undefined;
+        originalOf?: string | undefined;
+    };
+    tags?: Record<string, any> | undefined;
 }>;
-import { z } from "zod";
