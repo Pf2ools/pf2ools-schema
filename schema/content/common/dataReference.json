@@ -9,14 +9,14 @@
 			"type": "string",
 			"minLength": 1
 		},
-		"sourceID": {
+		"source": {
 			"type": "string",
 			"minLength": 1
 		}
 	},
 	"required": [
 		"name",
-		"sourceID"
+		"source"
 	],
 	"additionalProperties": false
 }

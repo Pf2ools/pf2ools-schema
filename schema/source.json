@@ -42,7 +42,11 @@
 						"Book of the Dead",
 						"Extinction Curse 1: The Show Must Go On",
 						"Vauxs' Very Velvet Volumes of Verbose Vagueries"
-					]
+					],
+					"not": {
+						"pattern": "^(COM[0-9]?|PRN|AUX|NUL|LPT[0-9])$",
+						"$comment": "These are reserved filenames in Windows. At some point, someone will save a source file and/or its content as \"<name>.json\" and won't realise the hell this causes for Windows users. Unlikely any source is named this, though ¯\\_(ツ)_/¯"
+					}
 				},
 				"short": {
 					"type": "string",
@@ -107,12 +111,12 @@
 						"https://github.com/pf2ools/pf2ools-data"
 					]
 				},
-				"groupIDs": {
+				"groups": {
 					"type": "array",
-					"description": "A list of `id`s of the source's parent groups (if any). This is used for a source that is one piece of a larger, clearly defined, multi-part series. For instance, \"Extinction Curse 1: The Show Must Go On\" belongs to the \"Extinction Curse\" series (\"EC\"), and \"Lost Omens: Travel Guide\" belongs to the \"Lost Omens\" series (\"LO\").",
+					"description": "A list of `ID`s of the source's parent groups (if any). This is used for a source that is one piece of a larger, clearly defined, multi-part series. For instance, \"Extinction Curse 1: The Show Must Go On\" belongs to the \"Extinction Curse\" series (\"EC\"), and \"Lost Omens: Travel Guide\" belongs to the \"Lost Omens\" series (\"LO\").",
 					"items": {
 						"$ref": "#/definitions/ID",
-						"description": "The `id` of a source group.",
+						"description": "The `ID` of a source group.",
 						"examples": [
 							"LO",
 							"EC"
@@ -121,18 +125,28 @@
 					"minItems": 1,
 					"uniqueItems": true
 				},
-				"copyright": {
-					"description": "Any copyright text associated with the source. For instance, the copyright notice that accompanies the OGLv1.0a license would be entered here (but not the license itself). Formatting may be used where it doesn't detract from its interpretation.",
-					"$ref": "./content/common/entries.json"
+				"requiredSources": {
+					"type": "array",
+					"description": "A list of `ID`s of other homebrew sources that this source requires. The requirement is strict: a source that adds a subclass to another, external homebrew class would list that class' source ID; sources that merely add complementary subclasses to the same core class should be instead linked via a `sourceGroup`.",
+					"items": {
+						"$ref": "#/definitions/ID",
+						"description": "The `ID` of the dependent homebrew source.",
+						"minItems": 1,
+						"uniqueItems": true
+					}
 				},
 				"license": {
 					"$ref": "#/definitions/ID",
-					"description": "The `id` of the source's license.",
+					"description": "The `ID` of the source's license.",
 					"examples": [
 						"OGLv1-0a",
 						"ORC",
 						"CC-BY-SA-v4-0"
 					]
+				},
+				"copyright": {
+					"description": "Any additional copyright text associated with the source. For instance, the copyright notice that accompanies the OGLv1.0a license would be entered here (but not the license itself). Formatting may be used where it doesn't detract from its interpretation.",
+					"$ref": "./content/common/entries.json"
 				},
 				"authors": {
 					"type": "array",
@@ -148,7 +162,7 @@
 					},
 					"minItems": 1,
 					"uniqueItems": true,
-					"description": "A list of authors as credited by the source itself."
+					"description": "A list of unique authors as credited by the source itself."
 				},
 				"publisher": {
 					"type": "string",
@@ -162,14 +176,15 @@
 				},
 				"converters": {
 					"type": "array",
-					"description": "A list of Pf2ools contributors who converted this source. If multiple converters exist, choose one 'principal' to go first in the case of questions or bug reports. This is particularly used for homebrew.",
+					"description": "A list of unique Pf2ools contributors who converted this source. If multiple converters exist, choose one 'principal' to go first in the case of questions or bug reports. This is particularly used for homebrew, both to attribute work done and to help organise updates.",
 					"items": {
 						"type": "string",
 						"minLength": 2,
-						"description": "A converter's name. Online handles should be reasonably indicated; Discord usernames are strongly prefered.",
+						"description": "A converter's name. Discord usernames are strongly prefered; other online handles should be reasonably indicated.",
 						"examples": [
-							"Discord: @vauxs",
-							"John Smith"
+							"Vauxs",
+							"John Smith",
+							"Twitter: @ThatVauxs"
 						]
 					},
 					"minItems": 1,
