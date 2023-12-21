@@ -130,10 +130,10 @@
 					"description": "A list of `ID`s of other homebrew sources that this source requires. The requirement is strict: a source that adds a subclass to another, external homebrew class would list that class' source ID; sources that merely add complementary subclasses to the same core class should be instead linked via a `sourceGroup`.",
 					"items": {
 						"$ref": "#/definitions/ID",
-						"description": "The `ID` of the dependent homebrew source.",
-						"minItems": 1,
-						"uniqueItems": true
-					}
+						"description": "The `ID` of the dependent homebrew source."
+					},
+					"minItems": 1,
+					"uniqueItems": true
 				},
 				"license": {
 					"$ref": "#/definitions/ID",
