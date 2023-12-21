@@ -1,3 +1,4 @@
+export { avatar } from "./avatar.js";
 export { background } from "./background.js";
 export { condition } from "./condition.js";
 export { deity } from "./deity.js";
