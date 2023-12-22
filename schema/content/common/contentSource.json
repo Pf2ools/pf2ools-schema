@@ -13,18 +13,6 @@
 			"type": "integer",
 			"minimum": 1,
 			"description": "The page number (if any) on which the content begins."
-		},
-		"reprintOf": {
-			"$ref": "../../source.json#/definitions/ID",
-			"description": "The ID of the pre-existing 'primary source' that contains this exact data entity (if any)."
-		},
-		"expansionOf": {
-			"$ref": "../../source.json#/definitions/ID",
-			"description": "The ID of the pre-existing 'primary source' that contains the base form of this exact data entity (if any)."
-		},
-		"originalOf": {
-			"$ref": "../../source.json#/definitions/ID",
-			"description": "The ID of the superseding 'primary source' that contains this exact data entity (if any)."
 		}
 	},
 	"required": [
