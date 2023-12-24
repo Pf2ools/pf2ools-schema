@@ -29,23 +29,23 @@
 					"properties": {
 						"Attitudes": {
 							"const": true,
-							"description": "The condition is in the 'Attitudes' group (PHB p619)."
+							"description": "The condition is in the 'Attitudes' group (CRB p619)."
 						},
 						"Death and Dying": {
 							"const": true,
-							"description": "The condition is in the 'Death and Dying' group (PHB p619)."
+							"description": "The condition is in the 'Death and Dying' group (CRB p619)."
 						},
 						"Degrees of Detection": {
 							"const": true,
-							"description": "The condition is in the 'Degrees of Detection' group (PHB p619)."
+							"description": "The condition is in the 'Degrees of Detection' group (CRB p619)."
 						},
 						"Lowered Abilities": {
 							"const": true,
-							"description": "The condition is in the 'Lowered Abilities' group (PHB p619)."
+							"description": "The condition is in the 'Lowered Abilities' group (CRB p619)."
 						},
 						"Senses": {
 							"const": true,
-							"description": "The condition is in the 'Senses' group (PHB p619)."
+							"description": "The condition is in the 'Senses' group (CRB p619)."
 						}
 					},
 					"minProperties": 1,
