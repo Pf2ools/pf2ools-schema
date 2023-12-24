@@ -42,7 +42,7 @@
 					"description": "A list of objects representing the deities that compose the pantheon (if it is one).",
 					"type": "array",
 					"items": {
-						"$ref": "./common/dataReference.json"
+						"$ref": "./common/directReference.json"
 					},
 					"minItems": 2,
 					"uniqueItems": true
@@ -139,7 +139,7 @@
 					"description": "A list of objects describing the domains a deity encompasses.",
 					"type": "array",
 					"items": {
-						"$ref": "./common/dataReference.json"
+						"$ref": "./common/directReference.json"
 					},
 					"minItems": 1,
 					"uniqueItems": true
@@ -148,7 +148,7 @@
 					"description": "A list of objects describing the alternate domains a deity encompasses.",
 					"type": "array",
 					"items": {
-						"$ref": "./common/dataReference.json"
+						"$ref": "./common/directReference.json"
 					},
 					"minItems": 1,
 					"uniqueItems": true
@@ -160,7 +160,7 @@
 						"^([1-9]|10)$": {
 							"type": "array",
 							"items": {
-								"$ref": "./common/dataReference.json"
+								"$ref": "./common/directReference.json"
 							},
 							"minItems": 1,
 							"uniqueItems": true
@@ -195,7 +195,7 @@
 							"description": "A list of weapons the deity favours.",
 							"type": "array",
 							"items": {
-								"$ref": "./common/dataReference.json"
+								"$ref": "./common/directReference.json"
 							},
 							"minItems": 1,
 							"uniqueItems": true

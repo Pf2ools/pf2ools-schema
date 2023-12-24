@@ -111,7 +111,7 @@
 						"https://github.com/pf2ools/pf2ools-data"
 					]
 				},
-				"groups": {
+				"groupIDs": {
 					"type": "array",
 					"description": "A list of `ID`s of the source's parent groups (if any). This is used for a source that is one piece of a larger, clearly defined, multi-part series. For instance, \"Extinction Curse 1: The Show Must Go On\" belongs to the \"Extinction Curse\" series (\"EC\"), and \"Lost Omens: Travel Guide\" belongs to the \"Lost Omens\" series (\"LO\").",
 					"items": {
@@ -125,7 +125,7 @@
 					"minItems": 1,
 					"uniqueItems": true
 				},
-				"requiredSources": {
+				"requiredSourceIDs": {
 					"type": "array",
 					"description": "A list of `ID`s of other homebrew sources that this source requires. The requirement is strict: a source that adds a subclass to another, external homebrew class would list that class' source ID; sources that merely add complementary subclasses to the same core class should be instead linked via a `sourceGroup`.",
 					"items": {
@@ -135,7 +135,7 @@
 					"minItems": 1,
 					"uniqueItems": true
 				},
-				"license": {
+				"licenseID": {
 					"$ref": "#/definitions/ID",
 					"description": "The `ID` of the source's license.",
 					"examples": [

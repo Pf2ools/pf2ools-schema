@@ -117,22 +117,7 @@
 							"type": "array",
 							"description": "A list of feats the background can grant.",
 							"items": {
-								"type": "object",
-								"properties": {
-									"name": {
-										"type": "string",
-										"minLength": 1
-									},
-									"source": {
-										"type": "string",
-										"minLength": 1
-									}
-								},
-								"additionalProperties": false,
-								"required": [
-									"name",
-									"source"
-								]
+								"$ref": "common/directReference.json"
 							},
 							"minItems": 1,
 							"uniqueItems": true
@@ -159,22 +144,7 @@
 							"type": "array",
 							"description": "A list of spells the background can grant.",
 							"items": {
-								"type": "object",
-								"properties": {
-									"name": {
-										"type": "string",
-										"minLength": 1
-									},
-									"source": {
-										"type": "string",
-										"minLength": 1
-									}
-								},
-								"additionalProperties": false,
-								"required": [
-									"name",
-									"source"
-								]
+								"$ref": "common/directReference.json"
 							},
 							"minItems": 1,
 							"uniqueItems": true

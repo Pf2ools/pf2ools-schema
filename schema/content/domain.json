@@ -16,16 +16,16 @@
 					"$ref": "./common/entryString.json"
 				},
 				"domainSpell": {
-					"$ref": "./common/dataReference.json"
+					"$ref": "./common/directReference.json"
 				},
 				"advancedDomainSpell": {
-					"$ref": "./common/dataReference.json"
+					"$ref": "./common/directReference.json"
 				},
 				"apocryphalSpell": {
-					"$ref": "./common/dataReference.json"
+					"$ref": "./common/directReference.json"
 				},
 				"advancedApocryphalSpell": {
-					"$ref": "./common/dataReference.json"
+					"$ref": "./common/directReference.json"
 				}
 			},
 			"additionalProperties": false,
