@@ -152,8 +152,15 @@
 								"type": "string",
 								"minLength": 1
 							},
-							"source": {
-								"$ref": "source.json#/definitions/ID"
+							"sourceID": {
+								"type": "string",
+								"minLength": 2,
+								"pattern": "^[A-Za-z0-9][A-Za-z0-9-]*[A-Za-z0-9]$",
+								"$comment": "Format derives from the following logic: 1) the ID should be URI-safe to ensure, well, maximum safety; 2) the ID should not include \".\" because that looks confusing in a URI; 3) the ID should not include \"_\" because that is reserved for use by the Pf2ools' website; 4) \"~\" and initial/terminal \"-\" is confusing and looks ugly. The minimum length is just to force a modicum of variety and meaningfulness.",
+								"not": {
+									"pattern": "^(COM[0-9]?|PRN|AUX|NUL|LPT[0-9])$",
+									"$comment": "These are reserved filenames in Windows. At some point someone will save a source file and/or its content as \"<id>.json\" and won't realise the hell this causes for Windows users. So rip the 'Casmaron Orienteering Manual' or whatever I guess ¯\\_(ツ)_/¯"
+								}
 							}
 						},
 						"description": "The content being referenced.",
@@ -432,8 +439,15 @@
 								"type": "string",
 								"minLength": 1
 							},
-							"source": {
-								"$ref": "source.json#/definitions/ID"
+							"sourceID": {
+								"type": "string",
+								"minLength": 2,
+								"pattern": "^[A-Za-z0-9][A-Za-z0-9-]*[A-Za-z0-9]$",
+								"$comment": "Format derives from the following logic: 1) the ID should be URI-safe to ensure, well, maximum safety; 2) the ID should not include \".\" because that looks confusing in a URI; 3) the ID should not include \"_\" because that is reserved for use by the Pf2ools' website; 4) \"~\" and initial/terminal \"-\" is confusing and looks ugly. The minimum length is just to force a modicum of variety and meaningfulness.",
+								"not": {
+									"pattern": "^(COM[0-9]?|PRN|AUX|NUL|LPT[0-9])$",
+									"$comment": "These are reserved filenames in Windows. At some point someone will save a source file and/or its content as \"<id>.json\" and won't realise the hell this causes for Windows users. So rip the 'Casmaron Orienteering Manual' or whatever I guess ¯\\_(ツ)_/¯"
+								}
 							}
 						},
 						"description": "The content being referenced.",
@@ -613,22 +627,36 @@
 								"type": "array",
 								"description": "A list of feats the background can grant.",
 								"items": {
+									"$schema": "http://json-schema.org/draft-07/schema",
+									"$id": "pf2ools-schema/content/common/directReference.json",
+									"title": "Statblock Reference",
+									"description": "A direct reference to another statblock. The `type` of the content is typically inferred from the context in which it is invoked (e.g. a reference in a deity's \"Cleric Spells\" entry is a spell).",
 									"type": "object",
 									"properties": {
 										"name": {
 											"type": "string",
 											"minLength": 1
 										},
-										"source": {
+										"specifier": {
 											"type": "string",
 											"minLength": 1
+										},
+										"sourceID": {
+											"type": "string",
+											"minLength": 2,
+											"pattern": "^[A-Za-z0-9][A-Za-z0-9-]*[A-Za-z0-9]$",
+											"$comment": "Format derives from the following logic: 1) the ID should be URI-safe to ensure, well, maximum safety; 2) the ID should not include \".\" because that looks confusing in a URI; 3) the ID should not include \"_\" because that is reserved for use by the Pf2ools' website; 4) \"~\" and initial/terminal \"-\" is confusing and looks ugly. The minimum length is just to force a modicum of variety and meaningfulness.",
+											"not": {
+												"pattern": "^(COM[0-9]?|PRN|AUX|NUL|LPT[0-9])$",
+												"$comment": "These are reserved filenames in Windows. At some point someone will save a source file and/or its content as \"<id>.json\" and won't realise the hell this causes for Windows users. So rip the 'Casmaron Orienteering Manual' or whatever I guess ¯\\_(ツ)_/¯"
+											}
 										}
 									},
-									"additionalProperties": false,
 									"required": [
 										"name",
-										"source"
-									]
+										"sourceID"
+									],
+									"additionalProperties": false
 								},
 								"minItems": 1,
 								"uniqueItems": true
@@ -655,22 +683,36 @@
 								"type": "array",
 								"description": "A list of spells the background can grant.",
 								"items": {
+									"$schema": "http://json-schema.org/draft-07/schema",
+									"$id": "pf2ools-schema/content/common/directReference.json",
+									"title": "Statblock Reference",
+									"description": "A direct reference to another statblock. The `type` of the content is typically inferred from the context in which it is invoked (e.g. a reference in a deity's \"Cleric Spells\" entry is a spell).",
 									"type": "object",
 									"properties": {
 										"name": {
 											"type": "string",
 											"minLength": 1
 										},
-										"source": {
+										"specifier": {
 											"type": "string",
 											"minLength": 1
+										},
+										"sourceID": {
+											"type": "string",
+											"minLength": 2,
+											"pattern": "^[A-Za-z0-9][A-Za-z0-9-]*[A-Za-z0-9]$",
+											"$comment": "Format derives from the following logic: 1) the ID should be URI-safe to ensure, well, maximum safety; 2) the ID should not include \".\" because that looks confusing in a URI; 3) the ID should not include \"_\" because that is reserved for use by the Pf2ools' website; 4) \"~\" and initial/terminal \"-\" is confusing and looks ugly. The minimum length is just to force a modicum of variety and meaningfulness.",
+											"not": {
+												"pattern": "^(COM[0-9]?|PRN|AUX|NUL|LPT[0-9])$",
+												"$comment": "These are reserved filenames in Windows. At some point someone will save a source file and/or its content as \"<id>.json\" and won't realise the hell this causes for Windows users. So rip the 'Casmaron Orienteering Manual' or whatever I guess ¯\\_(ツ)_/¯"
+											}
 										}
 									},
-									"additionalProperties": false,
 									"required": [
 										"name",
-										"source"
-									]
+										"sourceID"
+									],
+									"additionalProperties": false
 								},
 								"minItems": 1,
 								"uniqueItems": true
@@ -896,8 +938,15 @@
 								"type": "string",
 								"minLength": 1
 							},
-							"source": {
-								"$ref": "source.json#/definitions/ID"
+							"sourceID": {
+								"type": "string",
+								"minLength": 2,
+								"pattern": "^[A-Za-z0-9][A-Za-z0-9-]*[A-Za-z0-9]$",
+								"$comment": "Format derives from the following logic: 1) the ID should be URI-safe to ensure, well, maximum safety; 2) the ID should not include \".\" because that looks confusing in a URI; 3) the ID should not include \"_\" because that is reserved for use by the Pf2ools' website; 4) \"~\" and initial/terminal \"-\" is confusing and looks ugly. The minimum length is just to force a modicum of variety and meaningfulness.",
+								"not": {
+									"pattern": "^(COM[0-9]?|PRN|AUX|NUL|LPT[0-9])$",
+									"$comment": "These are reserved filenames in Windows. At some point someone will save a source file and/or its content as \"<id>.json\" and won't realise the hell this causes for Windows users. So rip the 'Casmaron Orienteering Manual' or whatever I guess ¯\\_(ツ)_/¯"
+								}
 							}
 						},
 						"description": "The content being referenced.",
@@ -970,23 +1019,23 @@
 						"properties": {
 							"Attitudes": {
 								"const": true,
-								"description": "The condition is in the 'Attitudes' group (PHB p619)."
+								"description": "The condition is in the 'Attitudes' group (CRB p619)."
 							},
 							"Death and Dying": {
 								"const": true,
-								"description": "The condition is in the 'Death and Dying' group (PHB p619)."
+								"description": "The condition is in the 'Death and Dying' group (CRB p619)."
 							},
 							"Degrees of Detection": {
 								"const": true,
-								"description": "The condition is in the 'Degrees of Detection' group (PHB p619)."
+								"description": "The condition is in the 'Degrees of Detection' group (CRB p619)."
 							},
 							"Lowered Abilities": {
 								"const": true,
-								"description": "The condition is in the 'Lowered Abilities' group (PHB p619)."
+								"description": "The condition is in the 'Lowered Abilities' group (CRB p619)."
 							},
 							"Senses": {
 								"const": true,
-								"description": "The condition is in the 'Senses' group (PHB p619)."
+								"description": "The condition is in the 'Senses' group (CRB p619)."
 							}
 						},
 						"minProperties": 1,
@@ -1130,23 +1179,33 @@
 						"type": "array",
 						"items": {
 							"$schema": "http://json-schema.org/draft-07/schema",
-							"$id": "pf2ools-schema/content/common/dataReference.json",
+							"$id": "pf2ools-schema/content/common/directReference.json",
 							"title": "Statblock Reference",
-							"description": "A reference to another statblock. The `type` of the content is typically inferred from the context.",
+							"description": "A direct reference to another statblock. The `type` of the content is typically inferred from the context in which it is invoked (e.g. a reference in a deity's \"Cleric Spells\" entry is a spell).",
 							"type": "object",
 							"properties": {
 								"name": {
 									"type": "string",
 									"minLength": 1
 								},
-								"source": {
+								"specifier": {
 									"type": "string",
 									"minLength": 1
+								},
+								"sourceID": {
+									"type": "string",
+									"minLength": 2,
+									"pattern": "^[A-Za-z0-9][A-Za-z0-9-]*[A-Za-z0-9]$",
+									"$comment": "Format derives from the following logic: 1) the ID should be URI-safe to ensure, well, maximum safety; 2) the ID should not include \".\" because that looks confusing in a URI; 3) the ID should not include \"_\" because that is reserved for use by the Pf2ools' website; 4) \"~\" and initial/terminal \"-\" is confusing and looks ugly. The minimum length is just to force a modicum of variety and meaningfulness.",
+									"not": {
+										"pattern": "^(COM[0-9]?|PRN|AUX|NUL|LPT[0-9])$",
+										"$comment": "These are reserved filenames in Windows. At some point someone will save a source file and/or its content as \"<id>.json\" and won't realise the hell this causes for Windows users. So rip the 'Casmaron Orienteering Manual' or whatever I guess ¯\\_(ツ)_/¯"
+									}
 								}
 							},
 							"required": [
 								"name",
-								"source"
+								"sourceID"
 							],
 							"additionalProperties": false
 						},
@@ -1322,23 +1381,33 @@
 						"type": "array",
 						"items": {
 							"$schema": "http://json-schema.org/draft-07/schema",
-							"$id": "pf2ools-schema/content/common/dataReference.json",
+							"$id": "pf2ools-schema/content/common/directReference.json",
 							"title": "Statblock Reference",
-							"description": "A reference to another statblock. The `type` of the content is typically inferred from the context.",
+							"description": "A direct reference to another statblock. The `type` of the content is typically inferred from the context in which it is invoked (e.g. a reference in a deity's \"Cleric Spells\" entry is a spell).",
 							"type": "object",
 							"properties": {
 								"name": {
 									"type": "string",
 									"minLength": 1
 								},
-								"source": {
+								"specifier": {
 									"type": "string",
 									"minLength": 1
+								},
+								"sourceID": {
+									"type": "string",
+									"minLength": 2,
+									"pattern": "^[A-Za-z0-9][A-Za-z0-9-]*[A-Za-z0-9]$",
+									"$comment": "Format derives from the following logic: 1) the ID should be URI-safe to ensure, well, maximum safety; 2) the ID should not include \".\" because that looks confusing in a URI; 3) the ID should not include \"_\" because that is reserved for use by the Pf2ools' website; 4) \"~\" and initial/terminal \"-\" is confusing and looks ugly. The minimum length is just to force a modicum of variety and meaningfulness.",
+									"not": {
+										"pattern": "^(COM[0-9]?|PRN|AUX|NUL|LPT[0-9])$",
+										"$comment": "These are reserved filenames in Windows. At some point someone will save a source file and/or its content as \"<id>.json\" and won't realise the hell this causes for Windows users. So rip the 'Casmaron Orienteering Manual' or whatever I guess ¯\\_(ツ)_/¯"
+									}
 								}
 							},
 							"required": [
 								"name",
-								"source"
+								"sourceID"
 							],
 							"additionalProperties": false
 						},
@@ -1350,23 +1419,33 @@
 						"type": "array",
 						"items": {
 							"$schema": "http://json-schema.org/draft-07/schema",
-							"$id": "pf2ools-schema/content/common/dataReference.json",
+							"$id": "pf2ools-schema/content/common/directReference.json",
 							"title": "Statblock Reference",
-							"description": "A reference to another statblock. The `type` of the content is typically inferred from the context.",
+							"description": "A direct reference to another statblock. The `type` of the content is typically inferred from the context in which it is invoked (e.g. a reference in a deity's \"Cleric Spells\" entry is a spell).",
 							"type": "object",
 							"properties": {
 								"name": {
 									"type": "string",
 									"minLength": 1
 								},
-								"source": {
+								"specifier": {
 									"type": "string",
 									"minLength": 1
+								},
+								"sourceID": {
+									"type": "string",
+									"minLength": 2,
+									"pattern": "^[A-Za-z0-9][A-Za-z0-9-]*[A-Za-z0-9]$",
+									"$comment": "Format derives from the following logic: 1) the ID should be URI-safe to ensure, well, maximum safety; 2) the ID should not include \".\" because that looks confusing in a URI; 3) the ID should not include \"_\" because that is reserved for use by the Pf2ools' website; 4) \"~\" and initial/terminal \"-\" is confusing and looks ugly. The minimum length is just to force a modicum of variety and meaningfulness.",
+									"not": {
+										"pattern": "^(COM[0-9]?|PRN|AUX|NUL|LPT[0-9])$",
+										"$comment": "These are reserved filenames in Windows. At some point someone will save a source file and/or its content as \"<id>.json\" and won't realise the hell this causes for Windows users. So rip the 'Casmaron Orienteering Manual' or whatever I guess ¯\\_(ツ)_/¯"
+									}
 								}
 							},
 							"required": [
 								"name",
-								"source"
+								"sourceID"
 							],
 							"additionalProperties": false
 						},
@@ -1381,23 +1460,33 @@
 								"type": "array",
 								"items": {
 									"$schema": "http://json-schema.org/draft-07/schema",
-									"$id": "pf2ools-schema/content/common/dataReference.json",
+									"$id": "pf2ools-schema/content/common/directReference.json",
 									"title": "Statblock Reference",
-									"description": "A reference to another statblock. The `type` of the content is typically inferred from the context.",
+									"description": "A direct reference to another statblock. The `type` of the content is typically inferred from the context in which it is invoked (e.g. a reference in a deity's \"Cleric Spells\" entry is a spell).",
 									"type": "object",
 									"properties": {
 										"name": {
 											"type": "string",
 											"minLength": 1
 										},
-										"source": {
+										"specifier": {
 											"type": "string",
 											"minLength": 1
+										},
+										"sourceID": {
+											"type": "string",
+											"minLength": 2,
+											"pattern": "^[A-Za-z0-9][A-Za-z0-9-]*[A-Za-z0-9]$",
+											"$comment": "Format derives from the following logic: 1) the ID should be URI-safe to ensure, well, maximum safety; 2) the ID should not include \".\" because that looks confusing in a URI; 3) the ID should not include \"_\" because that is reserved for use by the Pf2ools' website; 4) \"~\" and initial/terminal \"-\" is confusing and looks ugly. The minimum length is just to force a modicum of variety and meaningfulness.",
+											"not": {
+												"pattern": "^(COM[0-9]?|PRN|AUX|NUL|LPT[0-9])$",
+												"$comment": "These are reserved filenames in Windows. At some point someone will save a source file and/or its content as \"<id>.json\" and won't realise the hell this causes for Windows users. So rip the 'Casmaron Orienteering Manual' or whatever I guess ¯\\_(ツ)_/¯"
+											}
 										}
 									},
 									"required": [
 										"name",
-										"source"
+										"sourceID"
 									],
 									"additionalProperties": false
 								},
@@ -1445,23 +1534,33 @@
 								"type": "array",
 								"items": {
 									"$schema": "http://json-schema.org/draft-07/schema",
-									"$id": "pf2ools-schema/content/common/dataReference.json",
+									"$id": "pf2ools-schema/content/common/directReference.json",
 									"title": "Statblock Reference",
-									"description": "A reference to another statblock. The `type` of the content is typically inferred from the context.",
+									"description": "A direct reference to another statblock. The `type` of the content is typically inferred from the context in which it is invoked (e.g. a reference in a deity's \"Cleric Spells\" entry is a spell).",
 									"type": "object",
 									"properties": {
 										"name": {
 											"type": "string",
 											"minLength": 1
 										},
-										"source": {
+										"specifier": {
 											"type": "string",
 											"minLength": 1
+										},
+										"sourceID": {
+											"type": "string",
+											"minLength": 2,
+											"pattern": "^[A-Za-z0-9][A-Za-z0-9-]*[A-Za-z0-9]$",
+											"$comment": "Format derives from the following logic: 1) the ID should be URI-safe to ensure, well, maximum safety; 2) the ID should not include \".\" because that looks confusing in a URI; 3) the ID should not include \"_\" because that is reserved for use by the Pf2ools' website; 4) \"~\" and initial/terminal \"-\" is confusing and looks ugly. The minimum length is just to force a modicum of variety and meaningfulness.",
+											"not": {
+												"pattern": "^(COM[0-9]?|PRN|AUX|NUL|LPT[0-9])$",
+												"$comment": "These are reserved filenames in Windows. At some point someone will save a source file and/or its content as \"<id>.json\" and won't realise the hell this causes for Windows users. So rip the 'Casmaron Orienteering Manual' or whatever I guess ¯\\_(ツ)_/¯"
+											}
 										}
 									},
 									"required": [
 										"name",
-										"source"
+										"sourceID"
 									],
 									"additionalProperties": false
 								},
@@ -1524,8 +1623,15 @@
 								"type": "string",
 								"minLength": 1
 							},
-							"source": {
-								"$ref": "source.json#/definitions/ID"
+							"sourceID": {
+								"type": "string",
+								"minLength": 2,
+								"pattern": "^[A-Za-z0-9][A-Za-z0-9-]*[A-Za-z0-9]$",
+								"$comment": "Format derives from the following logic: 1) the ID should be URI-safe to ensure, well, maximum safety; 2) the ID should not include \".\" because that looks confusing in a URI; 3) the ID should not include \"_\" because that is reserved for use by the Pf2ools' website; 4) \"~\" and initial/terminal \"-\" is confusing and looks ugly. The minimum length is just to force a modicum of variety and meaningfulness.",
+								"not": {
+									"pattern": "^(COM[0-9]?|PRN|AUX|NUL|LPT[0-9])$",
+									"$comment": "These are reserved filenames in Windows. At some point someone will save a source file and/or its content as \"<id>.json\" and won't realise the hell this causes for Windows users. So rip the 'Casmaron Orienteering Manual' or whatever I guess ¯\\_(ツ)_/¯"
+								}
 							}
 						},
 						"description": "The content being referenced.",
@@ -1965,8 +2071,15 @@
 								"type": "string",
 								"minLength": 1
 							},
-							"source": {
-								"$ref": "source.json#/definitions/ID"
+							"sourceID": {
+								"type": "string",
+								"minLength": 2,
+								"pattern": "^[A-Za-z0-9][A-Za-z0-9-]*[A-Za-z0-9]$",
+								"$comment": "Format derives from the following logic: 1) the ID should be URI-safe to ensure, well, maximum safety; 2) the ID should not include \".\" because that looks confusing in a URI; 3) the ID should not include \"_\" because that is reserved for use by the Pf2ools' website; 4) \"~\" and initial/terminal \"-\" is confusing and looks ugly. The minimum length is just to force a modicum of variety and meaningfulness.",
+								"not": {
+									"pattern": "^(COM[0-9]?|PRN|AUX|NUL|LPT[0-9])$",
+									"$comment": "These are reserved filenames in Windows. At some point someone will save a source file and/or its content as \"<id>.json\" and won't realise the hell this causes for Windows users. So rip the 'Casmaron Orienteering Manual' or whatever I guess ¯\\_(ツ)_/¯"
+								}
 							}
 						},
 						"description": "The content being referenced.",
@@ -2140,89 +2253,129 @@
 					},
 					"domainSpell": {
 						"$schema": "http://json-schema.org/draft-07/schema",
-						"$id": "pf2ools-schema/content/common/dataReference.json",
+						"$id": "pf2ools-schema/content/common/directReference.json",
 						"title": "Statblock Reference",
-						"description": "A reference to another statblock. The `type` of the content is typically inferred from the context.",
+						"description": "A direct reference to another statblock. The `type` of the content is typically inferred from the context in which it is invoked (e.g. a reference in a deity's \"Cleric Spells\" entry is a spell).",
 						"type": "object",
 						"properties": {
 							"name": {
 								"type": "string",
 								"minLength": 1
 							},
-							"source": {
+							"specifier": {
 								"type": "string",
 								"minLength": 1
+							},
+							"sourceID": {
+								"type": "string",
+								"minLength": 2,
+								"pattern": "^[A-Za-z0-9][A-Za-z0-9-]*[A-Za-z0-9]$",
+								"$comment": "Format derives from the following logic: 1) the ID should be URI-safe to ensure, well, maximum safety; 2) the ID should not include \".\" because that looks confusing in a URI; 3) the ID should not include \"_\" because that is reserved for use by the Pf2ools' website; 4) \"~\" and initial/terminal \"-\" is confusing and looks ugly. The minimum length is just to force a modicum of variety and meaningfulness.",
+								"not": {
+									"pattern": "^(COM[0-9]?|PRN|AUX|NUL|LPT[0-9])$",
+									"$comment": "These are reserved filenames in Windows. At some point someone will save a source file and/or its content as \"<id>.json\" and won't realise the hell this causes for Windows users. So rip the 'Casmaron Orienteering Manual' or whatever I guess ¯\\_(ツ)_/¯"
+								}
 							}
 						},
 						"required": [
 							"name",
-							"source"
+							"sourceID"
 						],
 						"additionalProperties": false
 					},
 					"advancedDomainSpell": {
 						"$schema": "http://json-schema.org/draft-07/schema",
-						"$id": "pf2ools-schema/content/common/dataReference.json",
+						"$id": "pf2ools-schema/content/common/directReference.json",
 						"title": "Statblock Reference",
-						"description": "A reference to another statblock. The `type` of the content is typically inferred from the context.",
+						"description": "A direct reference to another statblock. The `type` of the content is typically inferred from the context in which it is invoked (e.g. a reference in a deity's \"Cleric Spells\" entry is a spell).",
 						"type": "object",
 						"properties": {
 							"name": {
 								"type": "string",
 								"minLength": 1
 							},
-							"source": {
+							"specifier": {
 								"type": "string",
 								"minLength": 1
+							},
+							"sourceID": {
+								"type": "string",
+								"minLength": 2,
+								"pattern": "^[A-Za-z0-9][A-Za-z0-9-]*[A-Za-z0-9]$",
+								"$comment": "Format derives from the following logic: 1) the ID should be URI-safe to ensure, well, maximum safety; 2) the ID should not include \".\" because that looks confusing in a URI; 3) the ID should not include \"_\" because that is reserved for use by the Pf2ools' website; 4) \"~\" and initial/terminal \"-\" is confusing and looks ugly. The minimum length is just to force a modicum of variety and meaningfulness.",
+								"not": {
+									"pattern": "^(COM[0-9]?|PRN|AUX|NUL|LPT[0-9])$",
+									"$comment": "These are reserved filenames in Windows. At some point someone will save a source file and/or its content as \"<id>.json\" and won't realise the hell this causes for Windows users. So rip the 'Casmaron Orienteering Manual' or whatever I guess ¯\\_(ツ)_/¯"
+								}
 							}
 						},
 						"required": [
 							"name",
-							"source"
+							"sourceID"
 						],
 						"additionalProperties": false
 					},
 					"apocryphalSpell": {
 						"$schema": "http://json-schema.org/draft-07/schema",
-						"$id": "pf2ools-schema/content/common/dataReference.json",
+						"$id": "pf2ools-schema/content/common/directReference.json",
 						"title": "Statblock Reference",
-						"description": "A reference to another statblock. The `type` of the content is typically inferred from the context.",
+						"description": "A direct reference to another statblock. The `type` of the content is typically inferred from the context in which it is invoked (e.g. a reference in a deity's \"Cleric Spells\" entry is a spell).",
 						"type": "object",
 						"properties": {
 							"name": {
 								"type": "string",
 								"minLength": 1
 							},
-							"source": {
+							"specifier": {
 								"type": "string",
 								"minLength": 1
+							},
+							"sourceID": {
+								"type": "string",
+								"minLength": 2,
+								"pattern": "^[A-Za-z0-9][A-Za-z0-9-]*[A-Za-z0-9]$",
+								"$comment": "Format derives from the following logic: 1) the ID should be URI-safe to ensure, well, maximum safety; 2) the ID should not include \".\" because that looks confusing in a URI; 3) the ID should not include \"_\" because that is reserved for use by the Pf2ools' website; 4) \"~\" and initial/terminal \"-\" is confusing and looks ugly. The minimum length is just to force a modicum of variety and meaningfulness.",
+								"not": {
+									"pattern": "^(COM[0-9]?|PRN|AUX|NUL|LPT[0-9])$",
+									"$comment": "These are reserved filenames in Windows. At some point someone will save a source file and/or its content as \"<id>.json\" and won't realise the hell this causes for Windows users. So rip the 'Casmaron Orienteering Manual' or whatever I guess ¯\\_(ツ)_/¯"
+								}
 							}
 						},
 						"required": [
 							"name",
-							"source"
+							"sourceID"
 						],
 						"additionalProperties": false
 					},
 					"advancedApocryphalSpell": {
 						"$schema": "http://json-schema.org/draft-07/schema",
-						"$id": "pf2ools-schema/content/common/dataReference.json",
+						"$id": "pf2ools-schema/content/common/directReference.json",
 						"title": "Statblock Reference",
-						"description": "A reference to another statblock. The `type` of the content is typically inferred from the context.",
+						"description": "A direct reference to another statblock. The `type` of the content is typically inferred from the context in which it is invoked (e.g. a reference in a deity's \"Cleric Spells\" entry is a spell).",
 						"type": "object",
 						"properties": {
 							"name": {
 								"type": "string",
 								"minLength": 1
 							},
-							"source": {
+							"specifier": {
 								"type": "string",
 								"minLength": 1
+							},
+							"sourceID": {
+								"type": "string",
+								"minLength": 2,
+								"pattern": "^[A-Za-z0-9][A-Za-z0-9-]*[A-Za-z0-9]$",
+								"$comment": "Format derives from the following logic: 1) the ID should be URI-safe to ensure, well, maximum safety; 2) the ID should not include \".\" because that looks confusing in a URI; 3) the ID should not include \"_\" because that is reserved for use by the Pf2ools' website; 4) \"~\" and initial/terminal \"-\" is confusing and looks ugly. The minimum length is just to force a modicum of variety and meaningfulness.",
+								"not": {
+									"pattern": "^(COM[0-9]?|PRN|AUX|NUL|LPT[0-9])$",
+									"$comment": "These are reserved filenames in Windows. At some point someone will save a source file and/or its content as \"<id>.json\" and won't realise the hell this causes for Windows users. So rip the 'Casmaron Orienteering Manual' or whatever I guess ¯\\_(ツ)_/¯"
+								}
 							}
 						},
 						"required": [
 							"name",
-							"source"
+							"sourceID"
 						],
 						"additionalProperties": false
 					}
@@ -2260,8 +2413,15 @@
 								"type": "string",
 								"minLength": 1
 							},
-							"source": {
-								"$ref": "source.json#/definitions/ID"
+							"sourceID": {
+								"type": "string",
+								"minLength": 2,
+								"pattern": "^[A-Za-z0-9][A-Za-z0-9-]*[A-Za-z0-9]$",
+								"$comment": "Format derives from the following logic: 1) the ID should be URI-safe to ensure, well, maximum safety; 2) the ID should not include \".\" because that looks confusing in a URI; 3) the ID should not include \"_\" because that is reserved for use by the Pf2ools' website; 4) \"~\" and initial/terminal \"-\" is confusing and looks ugly. The minimum length is just to force a modicum of variety and meaningfulness.",
+								"not": {
+									"pattern": "^(COM[0-9]?|PRN|AUX|NUL|LPT[0-9])$",
+									"$comment": "These are reserved filenames in Windows. At some point someone will save a source file and/or its content as \"<id>.json\" and won't realise the hell this causes for Windows users. So rip the 'Casmaron Orienteering Manual' or whatever I guess ¯\\_(ツ)_/¯"
+								}
 							}
 						},
 						"description": "The content being referenced.",
@@ -2611,8 +2771,15 @@
 								"type": "string",
 								"minLength": 1
 							},
-							"source": {
-								"$ref": "source.json#/definitions/ID"
+							"sourceID": {
+								"type": "string",
+								"minLength": 2,
+								"pattern": "^[A-Za-z0-9][A-Za-z0-9-]*[A-Za-z0-9]$",
+								"$comment": "Format derives from the following logic: 1) the ID should be URI-safe to ensure, well, maximum safety; 2) the ID should not include \".\" because that looks confusing in a URI; 3) the ID should not include \"_\" because that is reserved for use by the Pf2ools' website; 4) \"~\" and initial/terminal \"-\" is confusing and looks ugly. The minimum length is just to force a modicum of variety and meaningfulness.",
+								"not": {
+									"pattern": "^(COM[0-9]?|PRN|AUX|NUL|LPT[0-9])$",
+									"$comment": "These are reserved filenames in Windows. At some point someone will save a source file and/or its content as \"<id>.json\" and won't realise the hell this causes for Windows users. So rip the 'Casmaron Orienteering Manual' or whatever I guess ¯\\_(ツ)_/¯"
+								}
 							}
 						},
 						"description": "The content being referenced.",
@@ -2939,8 +3106,15 @@
 								"type": "string",
 								"minLength": 1
 							},
-							"source": {
-								"$ref": "source.json#/definitions/ID"
+							"sourceID": {
+								"type": "string",
+								"minLength": 2,
+								"pattern": "^[A-Za-z0-9][A-Za-z0-9-]*[A-Za-z0-9]$",
+								"$comment": "Format derives from the following logic: 1) the ID should be URI-safe to ensure, well, maximum safety; 2) the ID should not include \".\" because that looks confusing in a URI; 3) the ID should not include \"_\" because that is reserved for use by the Pf2ools' website; 4) \"~\" and initial/terminal \"-\" is confusing and looks ugly. The minimum length is just to force a modicum of variety and meaningfulness.",
+								"not": {
+									"pattern": "^(COM[0-9]?|PRN|AUX|NUL|LPT[0-9])$",
+									"$comment": "These are reserved filenames in Windows. At some point someone will save a source file and/or its content as \"<id>.json\" and won't realise the hell this causes for Windows users. So rip the 'Casmaron Orienteering Manual' or whatever I guess ¯\\_(ツ)_/¯"
+								}
 							}
 						},
 						"description": "The content being referenced.",
@@ -3229,8 +3403,15 @@
 								"type": "string",
 								"minLength": 1
 							},
-							"source": {
-								"$ref": "source.json#/definitions/ID"
+							"sourceID": {
+								"type": "string",
+								"minLength": 2,
+								"pattern": "^[A-Za-z0-9][A-Za-z0-9-]*[A-Za-z0-9]$",
+								"$comment": "Format derives from the following logic: 1) the ID should be URI-safe to ensure, well, maximum safety; 2) the ID should not include \".\" because that looks confusing in a URI; 3) the ID should not include \"_\" because that is reserved for use by the Pf2ools' website; 4) \"~\" and initial/terminal \"-\" is confusing and looks ugly. The minimum length is just to force a modicum of variety and meaningfulness.",
+								"not": {
+									"pattern": "^(COM[0-9]?|PRN|AUX|NUL|LPT[0-9])$",
+									"$comment": "These are reserved filenames in Windows. At some point someone will save a source file and/or its content as \"<id>.json\" and won't realise the hell this causes for Windows users. So rip the 'Casmaron Orienteering Manual' or whatever I guess ¯\\_(ツ)_/¯"
+								}
 							}
 						},
 						"description": "The content being referenced.",
