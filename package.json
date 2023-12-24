@@ -20,7 +20,7 @@
 	"bin": "scripts/test-data.js",
 	"scripts": {
 		"clean": "npx prettier . --write --cache --log-level warn",
-		"generate:zod": "node ./scripts/build-zod.js && npx -p typescript tsc _generated-zod/index.ts --declaration --allowJs --lib ESNext --module nodenext --strict true --alwaysStrict true --strictNullChecks true --outDir _generated-zod/",
+		"generate:zod": "node ./scripts/generate-zod.js && npx -p typescript tsc _generated-zod/index.ts --declaration --allowJs --lib ESNext --module nodenext --strict true --alwaysStrict true --strictNullChecks true --outDir _generated-zod/",
 		"test": "node ./scripts/test-schema.js -rae ./schema",
 		"build": "npm run test && npm run generate:zod && npm run clean"
 	},
