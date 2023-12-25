@@ -2,6 +2,8 @@ export { content } from "./content.js";
 export { license } from "./license.js";
 export { source } from "./source.js";
 export { sourceGroup } from "./sourceGroup.js";
+export { data } from "./_data.js";
+export { statblock } from "./_statblock.js";
 export { bySource } from "./bundles/bySource.js";
 export { background } from "./content/background.js";
 export { condition } from "./content/condition.js";

@@ -1,5 +1,4 @@
 import { z } from "zod";
-
 export const source = z
 	.object({
 		type: z.literal("source"),
@@ -7,7 +6,7 @@ export const source = z
 			.string()
 			.regex(new RegExp("^[A-Za-z0-9][A-Za-z0-9-]*[A-Za-z0-9]$"))
 			.min(2)
-			.refine((val: any) => !val.match(/^(COM[0-9]?|PRN|AUX|NUL|LPT[0-9])$/g), {
+			.refine((val) => !val.match(/^(COM[0-9]?|PRN|AUX|NUL|LPT[0-9])$/g), {
 				message:
 					"These are reserved filenames in Windows. At some point someone will save a source file and/or its content as \"<id>.json\" and won't realise the hell this causes for Windows users. So rip the 'Casmaron Orienteering Manual' or whatever I guess ¯\\_(ツ)_/¯",
 			}),
@@ -19,7 +18,7 @@ export const source = z
 					.describe(
 						"The source's full, human-readable name. Title case is preferred but anything can be used within reason.",
 					)
-					.refine((val: any) => !val.match(/^(COM[0-9]?|PRN|AUX|NUL|LPT[0-9])$/g), {
+					.refine((val) => !val.match(/^(COM[0-9]?|PRN|AUX|NUL|LPT[0-9])$/g), {
 						message:
 							'These are reserved filenames in Windows. At some point, someone will save a source file and/or its content as "<name>.json" and won\'t realise the hell this causes for Windows users. Unlikely any source is named this, though ¯\\_(ツ)_/¯',
 					}),
@@ -73,7 +72,7 @@ export const source = z
 							.string()
 							.regex(new RegExp("^[A-Za-z0-9][A-Za-z0-9-]*[A-Za-z0-9]$"))
 							.min(2)
-							.refine((val: any) => !val.match(/^(COM[0-9]?|PRN|AUX|NUL|LPT[0-9])$/g), {
+							.refine((val) => !val.match(/^(COM[0-9]?|PRN|AUX|NUL|LPT[0-9])$/g), {
 								message:
 									"These are reserved filenames in Windows. At some point someone will save a source file and/or its content as \"<id>.json\" and won't realise the hell this causes for Windows users. So rip the 'Casmaron Orienteering Manual' or whatever I guess ¯\\_(ツ)_/¯",
 							}),
@@ -89,7 +88,7 @@ export const source = z
 							.string()
 							.regex(new RegExp("^[A-Za-z0-9][A-Za-z0-9-]*[A-Za-z0-9]$"))
 							.min(2)
-							.refine((val: any) => !val.match(/^(COM[0-9]?|PRN|AUX|NUL|LPT[0-9])$/g), {
+							.refine((val) => !val.match(/^(COM[0-9]?|PRN|AUX|NUL|LPT[0-9])$/g), {
 								message:
 									"These are reserved filenames in Windows. At some point someone will save a source file and/or its content as \"<id>.json\" and won't realise the hell this causes for Windows users. So rip the 'Casmaron Orienteering Manual' or whatever I guess ¯\\_(ツ)_/¯",
 							}),
@@ -103,7 +102,7 @@ export const source = z
 					.string()
 					.regex(new RegExp("^[A-Za-z0-9][A-Za-z0-9-]*[A-Za-z0-9]$"))
 					.min(2)
-					.refine((val: any) => !val.match(/^(COM[0-9]?|PRN|AUX|NUL|LPT[0-9])$/g), {
+					.refine((val) => !val.match(/^(COM[0-9]?|PRN|AUX|NUL|LPT[0-9])$/g), {
 						message:
 							"These are reserved filenames in Windows. At some point someone will save a source file and/or its content as \"<id>.json\" and won't realise the hell this causes for Windows users. So rip the 'Casmaron Orienteering Manual' or whatever I guess ¯\\_(ツ)_/¯",
 					})

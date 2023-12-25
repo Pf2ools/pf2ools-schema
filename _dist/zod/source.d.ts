@@ -246,7 +246,7 @@ export declare const source: z.ZodObject<
 				errataed: z.ZodOptional<z.ZodString>;
 				added: z.ZodString;
 				modified: z.ZodString;
-				url: z.ZodString;
+				URL: z.ZodString;
 				groupIDs: z.ZodOptional<
 					z.ZodEffects<
 						z.ZodArray<z.ZodEffects<z.ZodString, string, string>, "atleastone">,
@@ -296,10 +296,10 @@ export declare const source: z.ZodObject<
 			"strict",
 			z.ZodTypeAny,
 			{
-				url: string;
 				released: string;
 				added: string;
 				modified: string;
+				URL: string;
 				licenseID: string;
 				version?: string | undefined;
 				errataed?: string | undefined;
@@ -318,10 +318,10 @@ export declare const source: z.ZodObject<
 				converters?: [string, ...string[]] | undefined;
 			},
 			{
-				url: string;
 				released: string;
 				added: string;
 				modified: string;
+				URL: string;
 				licenseID: string;
 				version?: string | undefined;
 				errataed?: string | undefined;
@@ -565,10 +565,10 @@ export declare const source: z.ZodObject<
 	{
 		type: "source";
 		data: {
-			url: string;
 			released: string;
 			added: string;
 			modified: string;
+			URL: string;
 			licenseID: string;
 			version?: string | undefined;
 			errataed?: string | undefined;
@@ -622,10 +622,10 @@ export declare const source: z.ZodObject<
 	{
 		type: "source";
 		data: {
-			url: string;
 			released: string;
 			added: string;
 			modified: string;
+			URL: string;
 			licenseID: string;
 			version?: string | undefined;
 			errataed?: string | undefined;

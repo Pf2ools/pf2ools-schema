@@ -1,8 +1,7 @@
 import { z } from "zod";
-
-export const skill = z
+export const condition = z
 	.object({
-		type: z.literal("skill"),
+		type: z.literal("condition"),
 		name: z
 			.object({
 				primary: z
@@ -11,7 +10,7 @@ export const skill = z
 					.describe(
 						"The full name of the statblock or header, exactly as it appears in the source. The only exception is when the source uses stylistic all-caps or no-caps, in which case you should use your judgement and possibly convert it to title-case.",
 					)
-					.refine((val: any) => !val.match(/@/g), {
+					.refine((val) => !val.match(/@/g), {
 						message: "To weed out `@tag`s.",
 					}),
 				aliases: z
@@ -20,7 +19,7 @@ export const skill = z
 							.string()
 							.min(1)
 							.describe("An alternative name for the entity.")
-							.refine((val: any) => !val.match(/@/g), {
+							.refine((val) => !val.match(/@/g), {
 								message: "To weed out `@tag`s.",
 							}),
 					)
@@ -35,7 +34,7 @@ export const skill = z
 					.describe(
 						'A string to meaningfully disambiguate identically named entities (by necessity if they\'re from the same source). This often occurs, for example, with feats common to multiple classes (e.g. "Attack of Opportunity"). It can also occur when one entity in the source effectively defines multiple entities in data, each of which need to be disambiguated.',
 					)
-					.refine((val: any) => !val.match(/@/g), {
+					.refine((val) => !val.match(/@/g), {
 						message: "To weed out `@tag`s.",
 					})
 					.optional(),
@@ -48,7 +47,7 @@ export const skill = z
 					.string()
 					.regex(new RegExp("^[A-Za-z0-9][A-Za-z0-9-]*[A-Za-z0-9]$"))
 					.min(2)
-					.refine((val: any) => !val.match(/^(COM[0-9]?|PRN|AUX|NUL|LPT[0-9])$/g), {
+					.refine((val) => !val.match(/^(COM[0-9]?|PRN|AUX|NUL|LPT[0-9])$/g), {
 						message:
 							"These are reserved filenames in Windows. At some point someone will save a source file and/or its content as \"<id>.json\" and won't realise the hell this causes for Windows users. So rip the 'Casmaron Orienteering Manual' or whatever I guess ¯\\_(ツ)_/¯",
 					}),
@@ -90,7 +89,7 @@ export const skill = z
 							.string()
 							.regex(new RegExp("^[A-Za-z0-9][A-Za-z0-9-]*[A-Za-z0-9]$"))
 							.min(2)
-							.refine((val: any) => !val.match(/^(COM[0-9]?|PRN|AUX|NUL|LPT[0-9])$/g), {
+							.refine((val) => !val.match(/^(COM[0-9]?|PRN|AUX|NUL|LPT[0-9])$/g), {
 								message:
 									"These are reserved filenames in Windows. At some point someone will save a source file and/or its content as \"<id>.json\" and won't realise the hell this causes for Windows users. So rip the 'Casmaron Orienteering Manual' or whatever I guess ¯\\_(ツ)_/¯",
 							})
@@ -141,9 +140,35 @@ export const skill = z
 			)
 			.optional(),
 		tags: z
-			.record(z.any())
-			.describe("An object describing the content for filtering, searching, and sorting.")
+			.object({
+				group: z
+					.object({
+						Attitudes: z
+							.literal(true)
+							.describe("The condition is in the 'Attitudes' group (CRB p619).")
+							.optional(),
+						"Death and Dying": z
+							.literal(true)
+							.describe("The condition is in the 'Death and Dying' group (CRB p619).")
+							.optional(),
+						"Degrees of Detection": z
+							.literal(true)
+							.describe("The condition is in the 'Degrees of Detection' group (CRB p619).")
+							.optional(),
+						"Lowered Abilities": z
+							.literal(true)
+							.describe("The condition is in the 'Lowered Abilities' group (CRB p619).")
+							.optional(),
+						Senses: z.literal(true).describe("The condition is in the 'Senses' group (CRB p619).").optional(),
+					})
+					.catchall(z.literal(true))
+					.describe(
+						"An object containing any groups the condition belongs to. The properties should be in title case.",
+					)
+					.optional(),
+			})
+			.strict()
 			.optional(),
 	})
 	.strict()
-	.describe("Pf2ools' skill object.");
+	.describe("Pf2ools' condition object.");

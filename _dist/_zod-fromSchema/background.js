@@ -1,8 +1,7 @@
 import { z } from "zod";
-
-export const relicGift = z
+export const background = z
 	.object({
-		type: z.literal("relicGift"),
+		type: z.literal("background"),
 		name: z
 			.object({
 				primary: z
@@ -11,7 +10,7 @@ export const relicGift = z
 					.describe(
 						"The full name of the statblock or header, exactly as it appears in the source. The only exception is when the source uses stylistic all-caps or no-caps, in which case you should use your judgement and possibly convert it to title-case.",
 					)
-					.refine((val: any) => !val.match(/@/g), {
+					.refine((val) => !val.match(/@/g), {
 						message: "To weed out `@tag`s.",
 					}),
 				aliases: z
@@ -20,7 +19,7 @@ export const relicGift = z
 							.string()
 							.min(1)
 							.describe("An alternative name for the entity.")
-							.refine((val: any) => !val.match(/@/g), {
+							.refine((val) => !val.match(/@/g), {
 								message: "To weed out `@tag`s.",
 							}),
 					)
@@ -35,7 +34,7 @@ export const relicGift = z
 					.describe(
 						'A string to meaningfully disambiguate identically named entities (by necessity if they\'re from the same source). This often occurs, for example, with feats common to multiple classes (e.g. "Attack of Opportunity"). It can also occur when one entity in the source effectively defines multiple entities in data, each of which need to be disambiguated.',
 					)
-					.refine((val: any) => !val.match(/@/g), {
+					.refine((val) => !val.match(/@/g), {
 						message: "To weed out `@tag`s.",
 					})
 					.optional(),
@@ -48,7 +47,7 @@ export const relicGift = z
 					.string()
 					.regex(new RegExp("^[A-Za-z0-9][A-Za-z0-9-]*[A-Za-z0-9]$"))
 					.min(2)
-					.refine((val: any) => !val.match(/^(COM[0-9]?|PRN|AUX|NUL|LPT[0-9])$/g), {
+					.refine((val) => !val.match(/^(COM[0-9]?|PRN|AUX|NUL|LPT[0-9])$/g), {
 						message:
 							"These are reserved filenames in Windows. At some point someone will save a source file and/or its content as \"<id>.json\" and won't realise the hell this causes for Windows users. So rip the 'Casmaron Orienteering Manual' or whatever I guess ¯\\_(ツ)_/¯",
 					}),
@@ -57,7 +56,6 @@ export const relicGift = z
 			.describe("Source object for a content entity."),
 		data: z
 			.object({
-				tier: z.string().regex(new RegExp("^[A-Z]")).min(1).describe("The relic gift's tier (title case)."),
 				traits: z
 					.array(
 						z
@@ -92,31 +90,6 @@ export const relicGift = z
 					.min(1)
 					.describe("An array of objects representing a list of traits")
 					.optional(),
-				aspects: z
-					.array(
-						z
-							.object({
-								name: z.string().min(1).describe("The aspect's name."),
-								note: z
-									.string()
-									.min(1)
-									.describe(
-										'A bracketed note qualifying the aspect (e.g. the "azata-themed" in "celestial (azata-themed)").',
-									)
-									.optional(),
-							})
-							.strict()
-							.describe("An object representing an aspect."),
-					)
-					.min(1)
-					.describe("An array of objects representing the relic gift's aspects."),
-				prerequisites: z
-					.string()
-					.min(1)
-					.describe(
-						"Pf2ools' simplest type of entry: a string. It displays as a single paragraph of text with in-line formatting determined by use of `@tag`s.",
-					)
-					.optional(),
 				entries: z
 					.array(
 						z.union([
@@ -150,7 +123,7 @@ export const relicGift = z
 							.string()
 							.regex(new RegExp("^[A-Za-z0-9][A-Za-z0-9-]*[A-Za-z0-9]$"))
 							.min(2)
-							.refine((val: any) => !val.match(/^(COM[0-9]?|PRN|AUX|NUL|LPT[0-9])$/g), {
+							.refine((val) => !val.match(/^(COM[0-9]?|PRN|AUX|NUL|LPT[0-9])$/g), {
 								message:
 									"These are reserved filenames in Windows. At some point someone will save a source file and/or its content as \"<id>.json\" and won't realise the hell this causes for Windows users. So rip the 'Casmaron Orienteering Manual' or whatever I guess ¯\\_(ツ)_/¯",
 							})
@@ -202,40 +175,133 @@ export const relicGift = z
 			.optional(),
 		tags: z
 			.object({
-				itemTypes: z
+				abilityBoosts: z
 					.object({
-						Armor: z
-							.literal(true)
-							.describe("The relic must be a piece or suit of armour to have this gift.")
-							.optional(),
-						"Worn Item": z.literal(true).describe("The relic must be a worn item to have this gift.").optional(),
-						Weapon: z.literal(true).describe("The relic must be a weapon to have this gift.").optional(),
+						abilities: z
+							.object({
+								Strength: z.literal(true).optional(),
+								Dexterity: z.literal(true).optional(),
+								Constitution: z.literal(true).optional(),
+								Intelligence: z.literal(true).optional(),
+								Wisdom: z.literal(true).optional(),
+								Charisma: z.literal(true).optional(),
+								Free: z.literal(true).optional(),
+							})
+							.strict()
+							.describe("An object containing the types of boost that the background can grant."),
+						count: z.number().int().gte(1).lte(3).describe("The total number of boosts the background can grant."),
 					})
-					.catchall(z.literal(true))
-					.describe(
-						"An object containing the types of item the relic must be in order to have this gift. The properties should be in title case.",
-					)
+					.strict()
+					.describe("The ability boosts the background grants.")
+					.optional(),
+				trainedSkills: z
+					.object({
+						skills: z
+							.record(z.literal(true))
+							.describe("A list of skills in which the background can grant proficiency."),
+						count: z
+							.number()
+							.int()
+							.gte(1)
+							.lte(4)
+							.describe("The total number of distinct skill proficiencies the background can grant."),
+					})
+					.strict()
+					.describe("The skills in which the background can grant proficiency.")
+					.optional(),
+				gainedFeats: z
+					.object({
+						options: z
+							.array(
+								z
+									.object({
+										name: z.string().min(1),
+										specifier: z.string().min(1).optional(),
+										sourceID: z
+											.string()
+											.regex(new RegExp("^[A-Za-z0-9][A-Za-z0-9-]*[A-Za-z0-9]$"))
+											.min(2)
+											.refine((val) => !val.match(/^(COM[0-9]?|PRN|AUX|NUL|LPT[0-9])$/g), {
+												message:
+													"These are reserved filenames in Windows. At some point someone will save a source file and/or its content as \"<id>.json\" and won't realise the hell this causes for Windows users. So rip the 'Casmaron Orienteering Manual' or whatever I guess ¯\\_(ツ)_/¯",
+											}),
+									})
+									.strict()
+									.describe(
+										'A direct reference to another statblock. The `type` of the content is typically inferred from the context in which it is invoked (e.g. a reference in a deity\'s "Cleric Spells" entry is a spell).',
+									),
+							)
+							.min(1)
+							.describe("A list of feats the background can grant."),
+						count: z.number().int().gte(1).lte(2).describe("The total number of feats the background can grant."),
+					})
+					.strict()
+					.describe("The feats the background grants.")
+					.optional(),
+				gainedSpells: z
+					.object({
+						options: z
+							.array(
+								z
+									.object({
+										name: z.string().min(1),
+										specifier: z.string().min(1).optional(),
+										sourceID: z
+											.string()
+											.regex(new RegExp("^[A-Za-z0-9][A-Za-z0-9-]*[A-Za-z0-9]$"))
+											.min(2)
+											.refine((val) => !val.match(/^(COM[0-9]?|PRN|AUX|NUL|LPT[0-9])$/g), {
+												message:
+													"These are reserved filenames in Windows. At some point someone will save a source file and/or its content as \"<id>.json\" and won't realise the hell this causes for Windows users. So rip the 'Casmaron Orienteering Manual' or whatever I guess ¯\\_(ツ)_/¯",
+											}),
+									})
+									.strict()
+									.describe(
+										'A direct reference to another statblock. The `type` of the content is typically inferred from the context in which it is invoked (e.g. a reference in a deity\'s "Cleric Spells" entry is a spell).',
+									),
+							)
+							.min(1)
+							.describe("A list of spells the background can grant."),
+						count: z.number().int().gte(1).lte(2).describe("The total number of spells the background can grant."),
+					})
+					.strict()
+					.describe("The spells the background grants.")
 					.optional(),
 				misc: z
 					.object({
-						"Alters relic": z
-							.literal(true)
-							.describe("The gift permanently changes the relic's nature in some way.")
-							.optional(),
 						"Grants ability": z
 							.literal(true)
-							.describe("The gift grants the character a new, activatable ability (including spells).")
+							.describe("The background background grants an active, voluntary ability.")
 							.optional(),
-						"Grants passive attribute": z
+						"Grants equipment": z
 							.literal(true)
 							.describe(
-								"The gift grants the character a new Speed, a damage resistance, an automatic bonus, or another always-active ability.",
+								"The background grants a free item (not just access or proficiency—the actual concrete thing).",
 							)
 							.optional(),
-						"Is rune": z.literal(true).describe("The gift mimics the effect of a rune.").optional(),
-						"Soul seed": z
+						"Grants language": z.literal(true).describe("The background grants a language.").optional(),
+						"Grants resistance": z.literal(true).describe("The background grants a damage resistance.").optional(),
+						"Grants sense": z
 							.literal(true)
-							.describe('The gift is "particularly appropriate" for soul seeds (SoM p230).')
+							.describe("The background grants a sense (e.g. darkvision, scent).")
+							.optional(),
+						"Grants situational benefit": z
+							.literal(true)
+							.describe(
+								"The background grants a passive benefit that isn't otherwise categorisable. For example, this would apply if the background grants a +1 circumstance bonus to Seek on cloudy days.",
+							)
+							.optional(),
+						"Has drawback": z
+							.literal(true)
+							.describe(
+								"The background comes with an objective, mandatory drawback, such as a penalty to some check or the inability to use an item or spell; not something that is both good and bad.",
+							)
+							.optional(),
+						"GM influence": z
+							.literal(true)
+							.describe(
+								"The GM determines some mechanical aspect of the background. For instance, this would apply if the background specifies that the GM alone chooses one of the boosts or the type of Lore skill it grants.",
+							)
 							.optional(),
 					})
 					.strict()
@@ -246,4 +312,4 @@ export const relicGift = z
 			.optional(),
 	})
 	.strict()
-	.describe("Pf2ools' relic gift object.");
+	.describe("Pf2ools' background object.");

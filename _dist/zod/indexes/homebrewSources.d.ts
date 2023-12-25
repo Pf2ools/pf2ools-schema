@@ -1,12 +1,6 @@
 import { z } from "zod";
 export declare const homebrewSourceSummary: z.ZodObject<
 	{
-		path: z.ZodString;
-		fullTitle: z.ZodString;
-		publisherAuthors: z.ZodString;
-		released: z.ZodString;
-		added: z.ZodString;
-		modified: z.ZodString;
 		tags: z.ZodOptional<
 			z.ZodEffects<
 				z.ZodObject<
@@ -226,19 +220,19 @@ export declare const homebrewSourceSummary: z.ZodObject<
 				}
 			>
 		>;
-		indexOfDatatypes: z.ZodArray<z.ZodString, "many">;
-		sourceUrl: z.ZodOptional<z.ZodString>;
+		path: z.ZodString;
+		fullTitle: z.ZodString;
+		publisherAuthors: z.ZodString;
+		datatypes: z.ZodArray<z.ZodString, "many">;
+		sourceURL: z.ZodOptional<z.ZodString>;
 	},
-	"strip",
+	"strict",
 	z.ZodTypeAny,
 	{
 		path: string;
-		released: string;
-		added: string;
-		modified: string;
 		fullTitle: string;
 		publisherAuthors: string;
-		indexOfDatatypes: string[];
+		datatypes: string[];
 		tags?:
 			| {
 					publicationType?:
@@ -266,16 +260,13 @@ export declare const homebrewSourceSummary: z.ZodObject<
 						| undefined;
 			  }
 			| undefined;
-		sourceUrl?: string | undefined;
+		sourceURL?: string | undefined;
 	},
 	{
 		path: string;
-		released: string;
-		added: string;
-		modified: string;
 		fullTitle: string;
 		publisherAuthors: string;
-		indexOfDatatypes: string[];
+		datatypes: string[];
 		tags?:
 			| {
 					publicationType?:
@@ -303,19 +294,13 @@ export declare const homebrewSourceSummary: z.ZodObject<
 						| undefined;
 			  }
 			| undefined;
-		sourceUrl?: string | undefined;
+		sourceURL?: string | undefined;
 	}
 >;
 export declare const homebrewSources: z.ZodRecord<
 	z.ZodEffects<z.ZodString, string, string>,
 	z.ZodObject<
 		{
-			path: z.ZodString;
-			fullTitle: z.ZodString;
-			publisherAuthors: z.ZodString;
-			released: z.ZodString;
-			added: z.ZodString;
-			modified: z.ZodString;
 			tags: z.ZodOptional<
 				z.ZodEffects<
 					z.ZodObject<
@@ -535,19 +520,19 @@ export declare const homebrewSources: z.ZodRecord<
 					}
 				>
 			>;
-			indexOfDatatypes: z.ZodArray<z.ZodString, "many">;
-			sourceUrl: z.ZodOptional<z.ZodString>;
+			path: z.ZodString;
+			fullTitle: z.ZodString;
+			publisherAuthors: z.ZodString;
+			datatypes: z.ZodArray<z.ZodString, "many">;
+			sourceURL: z.ZodOptional<z.ZodString>;
 		},
-		"strip",
+		"strict",
 		z.ZodTypeAny,
 		{
 			path: string;
-			released: string;
-			added: string;
-			modified: string;
 			fullTitle: string;
 			publisherAuthors: string;
-			indexOfDatatypes: string[];
+			datatypes: string[];
 			tags?:
 				| {
 						publicationType?:
@@ -575,16 +560,13 @@ export declare const homebrewSources: z.ZodRecord<
 							| undefined;
 				  }
 				| undefined;
-			sourceUrl?: string | undefined;
+			sourceURL?: string | undefined;
 		},
 		{
 			path: string;
-			released: string;
-			added: string;
-			modified: string;
 			fullTitle: string;
 			publisherAuthors: string;
-			indexOfDatatypes: string[];
+			datatypes: string[];
 			tags?:
 				| {
 						publicationType?:
@@ -612,7 +594,7 @@ export declare const homebrewSources: z.ZodRecord<
 							| undefined;
 				  }
 				| undefined;
-			sourceUrl?: string | undefined;
+			sourceURL?: string | undefined;
 		}
 	>
 >;
