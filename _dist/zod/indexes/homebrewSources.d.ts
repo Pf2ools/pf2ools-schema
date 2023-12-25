@@ -227,6 +227,7 @@ export declare const homebrewSourceSummary: z.ZodObject<
 			>
 		>;
 		indexOfDatatypes: z.ZodArray<z.ZodString, "many">;
+		sourceUrl: z.ZodOptional<z.ZodString>;
 	},
 	"strip",
 	z.ZodTypeAny,
@@ -265,6 +266,7 @@ export declare const homebrewSourceSummary: z.ZodObject<
 						| undefined;
 			  }
 			| undefined;
+		sourceUrl?: string | undefined;
 	},
 	{
 		path: string;
@@ -301,6 +303,7 @@ export declare const homebrewSourceSummary: z.ZodObject<
 						| undefined;
 			  }
 			| undefined;
+		sourceUrl?: string | undefined;
 	}
 >;
 export declare const homebrewSources: z.ZodRecord<
@@ -533,6 +536,7 @@ export declare const homebrewSources: z.ZodRecord<
 				>
 			>;
 			indexOfDatatypes: z.ZodArray<z.ZodString, "many">;
+			sourceUrl: z.ZodOptional<z.ZodString>;
 		},
 		"strip",
 		z.ZodTypeAny,
@@ -571,6 +575,7 @@ export declare const homebrewSources: z.ZodRecord<
 							| undefined;
 				  }
 				| undefined;
+			sourceUrl?: string | undefined;
 		},
 		{
 			path: string;
@@ -607,6 +612,7 @@ export declare const homebrewSources: z.ZodRecord<
 							| undefined;
 				  }
 				| undefined;
+			sourceUrl?: string | undefined;
 		}
 	>
 >;
