@@ -29,8 +29,8 @@ export const homebrewSourceSummary = z.object({
 		"The date (YYYY-MM-DD) the homebrew source's content-data as maintained by the Pf2ools project was last modified.",
 	),
 	tags: sourceTags,
-	indexOfDatatypes: datatypes.describe("A list of the indexOfDatatypes this homebrew source contains."),
-	sourceUrl: z
+	datatypes: datatypes.describe("A list of the datatypes this homebrew source contains."),
+	sourceURL: z
 		.string()
 		.url()
 		.optional()
