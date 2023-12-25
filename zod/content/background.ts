@@ -1,5 +1,6 @@
 import { z } from "zod";
 
+import { content } from "../content.js";
 import { traits } from "./common/traits.js";
 import { entries } from "./common/entries.js";
 import { nonEmpty } from "../utils/nonEmpty.js";
@@ -7,8 +8,6 @@ import { listOfAbilities } from "./constants/listOfAbilities.js";
 import { listOfSkills } from "./constants/listOfSkills.js";
 import { directReference } from "./common/directReference.js";
 import { uniqueObjects } from "../utils/uniqueObjects.js";
-
-import { content } from "../content.js";
 
 export const background = content.merge(
 	z
