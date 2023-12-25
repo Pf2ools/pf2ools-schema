@@ -148,7 +148,7 @@ export const source = z
 				modified: date.describe(
 					"The date (YYYY-MM-DD) the source's content-data as maintained by the Pf2ools project was last modified.",
 				),
-				url: z
+				URL: z
 					.string()
 					.describe(
 						'A website on which the content can be legally and publicly viewed, downloaded, or purchased. A first-party website (i.e. one controlled by the authors) is preferred. If the Pf2ools source is the authoritative version for distribution, you can use "https://github.com/pf2ools/pf2ools-data".',
