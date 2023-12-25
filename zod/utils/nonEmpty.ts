@@ -1,0 +1,6 @@
+// A list of `.refine()` arguments to enforce non-empty objects
+
+export const nonEmpty: [(o: object) => boolean, string] = [
+	(o: object): boolean => Object.keys(o).length !== 0,
+	"Objects must not be empty",
+];

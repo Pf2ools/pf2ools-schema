@@ -1,0 +1,92 @@
+{
+	"$schema": "http://json-schema.org/draft-07/schema",
+	"$id": "pf2ools-schema/content/common/reference.json",
+	"title": "Reference",
+	"description": "An explicit reference to some other content, possibly with modifications applied on top. The referenced content's type is always assumed to be the same as the referring content.",
+	"type": "object",
+	"properties": {
+		"type": {
+			"enum": [
+				"reprint",
+				"variant",
+				"replacement",
+				"extension"
+			],
+			"description": "`reprint`: The statblock is (near) identical to another one, and is intended to be as such.\n`variant`: The statblock is dependent on but distinct to the target (e.g. unique NPCs based on generic monsters).\n`replacement`: The statblock replaces the target entirely everywhere.\n`extension`: The statblock adds additional content to the target but doesn't supersede it (e.g. a new option added to a spell)."
+		},
+		"target": {
+			"type": "object",
+			"properties": {
+				"name": {
+					"type": "string",
+					"minLength": 1
+				},
+				"specifier": {
+					"type": "string",
+					"minLength": 1
+				},
+				"sourceID": {
+					"$ref": "../../source.json#/definitions/ID"
+				}
+			},
+			"description": "The content being referenced.",
+			"required": [
+				"name",
+				"source"
+			],
+			"additionalProperties": false
+		},
+		"modifications": {
+			"type": "array",
+			"description": "An array of changes which, when applied consecutively, transforms the target content into the referring content.",
+			"items": {
+				"type": "object",
+				"properties": {
+					"type": {
+						"type": "string",
+						"description": "The type of modification being applied.",
+						"minLength": 1,
+						"$comment": "Will become `enum` later"
+					},
+					"target": {
+						"type": "object",
+						"properties": {
+							"property": {
+								"type": "string",
+								"description": "A dot-separated hierarchy of properties leading to the target from the top-level `data` (e.g. \"castingTime.unit\").",
+								"pattern": "^\\w+(\\.\\w+)+&"
+							},
+							"name": {
+								"type": "string",
+								"description": "The `name` of the target object, if it is found in an array.",
+								"minLength": 1
+							}
+						},
+						"required": [
+							"property"
+						],
+						"additionalProperties": false
+					},
+					"value": {
+						"not": {
+							"type": "null"
+						},
+						"description": "The modification value."
+					}
+				},
+				"required": [
+					"type",
+					"target"
+				],
+				"additionalProperties": false
+			},
+			"minItems": 1,
+			"uniqueItems": true
+		}
+	},
+	"required": [
+		"type",
+		"target"
+	],
+	"additionalProperties": false
+}

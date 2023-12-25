@@ -1,0 +1,19 @@
+{
+	"compilerOptions": {
+		"strict": true,
+		"alwaysStrict": true,
+		"noImplicitAny": true,
+		"noImplicitReturns": true,
+
+		"rootDir": ".",
+		"outDir": "_dist",
+
+		"module": "NodeNext",
+		"target": "ESNext",
+
+		"declaration": true,
+		"noEmitOnError": true,
+
+		"verbatimModuleSyntax": true
+	}
+}

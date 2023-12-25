@@ -1,43 +1,41 @@
 import { z } from "zod";
 
+import { nonEmpty } from "./utils/nonEmpty.js";
+import { ID } from "./source.js";
+
 export const sourceGroup = z
 	.object({
-		type: z.literal("sourceGroup").optional(),
-		ID: z
-			.string()
-			.regex(new RegExp("^[A-Za-z0-9][A-Za-z0-9-]*[A-Za-z0-9]$"))
-			.min(2)
-			.refine((val: any) => !val.match(/^(COM[0-9]?|PRN|AUX|NUL|LPT[0-9])$/g), {
-				message:
-					"These are reserved filenames in Windows. At some point someone will save a source file and/or its content as \"<id>.json\" and won't realise the hell this causes for Windows users. So rip the 'Casmaron Orienteering Manual' or whatever I guess ¯\\_(ツ)_/¯",
-			}),
+		type: z.literal("sourceGroup"),
+		ID: ID.describe(
+			"The source group's identifying string for the computer. This must be only composed of alphanumeric characters and non-initial, non-terminal hyphens. It must be globally and case-insensitively unique across the Pf2ools ecosystem (both sources and source groups).",
+		),
 		title: z
 			.object({
 				full: z
 					.string()
-					.min(1)
 					.describe(
 						"The source group's full, human-readable name. Title case is preferred but anything can be used within reason.",
-					),
+					)
+					.min(1),
 				short: z
 					.string()
+					.describe("An abbreviation or other shortening of the source's name for display purposes.")
 					.min(1)
-					.max(8)
-					.describe("An abbreviation or other shortening of the source group's name for display purposes."),
+					.max(8), // Max length for display purposes
 			})
-			.strict()
-			.describe("An object representing the source group's name."),
+			.describe("An object representing the source group's name")
+			.strict(),
 		data: z
 			.object({
 				publisher: z
 					.string()
-					.min(1)
 					.describe(
 						"The name of the original, first-party publisher of the source group. Sources with publishers not matching this value are considered 'third-party' contributors to the source group.",
 					)
-					.optional(),
+					.min(2),
 			})
 			.strict()
+			.refine(...nonEmpty)
 			.optional(),
 		tags: z
 			.object({
@@ -52,15 +50,16 @@ export const sourceGroup = z
 							.optional(),
 					})
 					.strict()
-					.optional(),
+					.refine(...nonEmpty),
 			})
-			.strict()
 			.describe(
 				"This object contains a list of categories the source falls into, for sorting, searching, and filtering purposes.",
 			)
+			.strict()
+			.refine(...nonEmpty)
 			.optional(),
 	})
-	.strict()
 	.describe(
 		"A `sourceGroup` object defines the existence of a group of sources. Tautology aside, this is used to describe adventure paths, book series, and the like.",
-	);
+	)
+	.strict();

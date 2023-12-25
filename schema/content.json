@@ -20,6 +20,9 @@
 			"type": "object",
 			"description": "An object representing the content itself."
 		},
+		"reference": {
+			"$ref": "content/common/reference.json"
+		},
 		"tags": {
 			"type": "object",
 			"description": "An object describing the content for filtering, searching, and sorting."

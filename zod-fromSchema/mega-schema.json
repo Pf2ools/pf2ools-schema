@@ -1,0 +1,3491 @@
+[
+	{
+		"$schema": "http://json-schema.org/draft-07/schema",
+		"$id": "pf2ools-schema/content/avatar.json",
+		"title": "Avatar",
+		"description": "Pf2ools' avatar (spell) form object.",
+		"$comment": "TODO",
+		"type": "object",
+		"properties": {
+			"type": {
+				"const": "avatar"
+			},
+			"name": {
+				"$schema": "http://json-schema.org/draft-07/schema",
+				"$id": "pf2ools-schema/content/common/name.json",
+				"title": "Name",
+				"description": "A combined object to describe an entity's name.",
+				"type": "object",
+				"properties": {
+					"primary": {
+						"type": "string",
+						"minLength": 1,
+						"not": {
+							"pattern": "@",
+							"$comment": "To weed out `@tag`s."
+						},
+						"description": "The full name of the statblock or header, exactly as it appears in the source. The only exception is when the source uses stylistic all-caps or no-caps, in which case you should use your judgement and possibly convert it to title-case."
+					},
+					"aliases": {
+						"type": "array",
+						"items": {
+							"type": "string",
+							"minLength": 1,
+							"not": {
+								"pattern": "@",
+								"$comment": "To weed out `@tag`s."
+							},
+							"description": "An alternative name for the entity."
+						},
+						"minItems": 1,
+						"uniqueItems": true,
+						"description": "An array of alternative names of an entity. Some entities have multiple common names, whether defined in the statblock itself or the surrounding text. Alternative names may also be provided to ease searching, sorting, and filtering with common mistakes (e.g. calling the Aid action \"Help\")."
+					},
+					"specifier": {
+						"type": "string",
+						"minLength": 1,
+						"not": {
+							"pattern": "@",
+							"$comment": "To weed out `@tag`s."
+						},
+						"description": "A string to meaningfully disambiguate identically named entities (by necessity if they're from the same source). This often occurs, for example, with feats common to multiple classes (e.g. \"Attack of Opportunity\"). It can also occur when one entity in the source effectively defines multiple entities in data, each of which need to be disambiguated."
+					}
+				},
+				"required": [
+					"primary"
+				],
+				"additionalProperties": false
+			},
+			"source": {
+				"$schema": "http://json-schema.org/draft-07/schema",
+				"$id": "pf2ools-schema/content/common/contentSource.json",
+				"title": "Content Source",
+				"description": "Source object for a content entity.",
+				"type": "object",
+				"properties": {
+					"ID": {
+						"type": "string",
+						"minLength": 2,
+						"pattern": "^[A-Za-z0-9][A-Za-z0-9-]*[A-Za-z0-9]$",
+						"$comment": "Format derives from the following logic: 1) the ID should be URI-safe to ensure, well, maximum safety; 2) the ID should not include \".\" because that looks confusing in a URI; 3) the ID should not include \"_\" because that is reserved for use by the Pf2ools' website; 4) \"~\" and initial/terminal \"-\" is confusing and looks ugly. The minimum length is just to force a modicum of variety and meaningfulness.",
+						"not": {
+							"pattern": "^(COM[0-9]?|PRN|AUX|NUL|LPT[0-9])$",
+							"$comment": "These are reserved filenames in Windows. At some point someone will save a source file and/or its content as \"<id>.json\" and won't realise the hell this causes for Windows users. So rip the 'Casmaron Orienteering Manual' or whatever I guess ¯\\_(ツ)_/¯"
+						}
+					},
+					"page": {
+						"type": "integer",
+						"minimum": 1,
+						"description": "The page number (if any) on which the content begins."
+					}
+				},
+				"required": [
+					"ID"
+				]
+			},
+			"data": {
+				"type": "object",
+				"properties": {
+					"preamble": {
+						"$schema": "http://json-schema.org/draft-07/schema",
+						"$id": "pf2ools-schema/content/common/entries.json",
+						"title": "Entry",
+						"description": "Pf2ools' entry value (string or object).",
+						"$comment": "TODO",
+						"type": "array",
+						"items": {
+							"anyOf": [
+								{
+									"$schema": "http://json-schema.org/draft-07/schema",
+									"$id": "pf2ools-schema/content/common/entryString.json",
+									"title": "Entry String",
+									"description": "Pf2ools' simplest type of entry: a string. It displays as a single paragraph of text with in-line formatting determined by use of `@tag`s.",
+									"type": "string",
+									"minLength": 1
+								},
+								{
+									"type": "object",
+									"properties": {
+										"type": {
+											"type": "string",
+											"minLength": 1
+										}
+									},
+									"required": [
+										"type"
+									],
+									"description": "A paragraph with a header or some particular formatting.",
+									"$comment": "TODO"
+								}
+							]
+						},
+						"minItems": 1
+					}
+				},
+				"additionalProperties": false,
+				"minProperties": 1
+			},
+			"reference": {
+				"$schema": "http://json-schema.org/draft-07/schema",
+				"$id": "pf2ools-schema/content/common/reference.json",
+				"title": "Reference",
+				"description": "An explicit reference to some other content, possibly with modifications applied on top. The referenced content's type is always assumed to be the same as the referring content.",
+				"type": "object",
+				"properties": {
+					"type": {
+						"enum": [
+							"reprint",
+							"variant",
+							"replacement",
+							"extension"
+						],
+						"description": "`reprint`: The statblock is (near) identical to another one, and is intended to be as such.\n`variant`: The statblock is dependent on but distinct to the target (e.g. unique NPCs based on generic monsters).\n`replacement`: The statblock replaces the target entirely everywhere.\n`extension`: The statblock adds additional content to the target but doesn't supersede it (e.g. a new option added to a spell)."
+					},
+					"target": {
+						"type": "object",
+						"properties": {
+							"name": {
+								"type": "string",
+								"minLength": 1
+							},
+							"specifier": {
+								"type": "string",
+								"minLength": 1
+							},
+							"sourceID": {
+								"type": "string",
+								"minLength": 2,
+								"pattern": "^[A-Za-z0-9][A-Za-z0-9-]*[A-Za-z0-9]$",
+								"$comment": "Format derives from the following logic: 1) the ID should be URI-safe to ensure, well, maximum safety; 2) the ID should not include \".\" because that looks confusing in a URI; 3) the ID should not include \"_\" because that is reserved for use by the Pf2ools' website; 4) \"~\" and initial/terminal \"-\" is confusing and looks ugly. The minimum length is just to force a modicum of variety and meaningfulness.",
+								"not": {
+									"pattern": "^(COM[0-9]?|PRN|AUX|NUL|LPT[0-9])$",
+									"$comment": "These are reserved filenames in Windows. At some point someone will save a source file and/or its content as \"<id>.json\" and won't realise the hell this causes for Windows users. So rip the 'Casmaron Orienteering Manual' or whatever I guess ¯\\_(ツ)_/¯"
+								}
+							}
+						},
+						"description": "The content being referenced.",
+						"required": [
+							"name",
+							"source"
+						],
+						"additionalProperties": false
+					},
+					"modifications": {
+						"type": "array",
+						"description": "An array of changes which, when applied consecutively, transforms the target content into the referring content.",
+						"items": {
+							"type": "object",
+							"properties": {
+								"type": {
+									"type": "string",
+									"description": "The type of modification being applied.",
+									"minLength": 1,
+									"$comment": "Will become `enum` later"
+								},
+								"target": {
+									"type": "object",
+									"properties": {
+										"property": {
+											"type": "string",
+											"description": "A dot-separated hierarchy of properties leading to the target from the top-level `data` (e.g. \"castingTime.unit\").",
+											"pattern": "^\\w+(\\.\\w+)+&"
+										},
+										"name": {
+											"type": "string",
+											"description": "The `name` of the target object, if it is found in an array.",
+											"minLength": 1
+										}
+									},
+									"required": [
+										"property"
+									],
+									"additionalProperties": false
+								},
+								"value": {
+									"not": {
+										"type": "null"
+									},
+									"description": "The modification value."
+								}
+							},
+							"required": [
+								"type",
+								"target"
+							],
+							"additionalProperties": false
+						},
+						"minItems": 1,
+						"uniqueItems": true
+					}
+				},
+				"required": [
+					"type",
+					"target"
+				],
+				"additionalProperties": false
+			},
+			"tags": {
+				"type": "object",
+				"description": "An object describing the content for filtering, searching, and sorting."
+			}
+		},
+		"required": [
+			"type",
+			"name",
+			"source",
+			"data"
+		],
+		"additionalProperties": false
+	},
+	{
+		"$schema": "http://json-schema.org/draft-07/schema",
+		"$id": "pf2ools-schema/content/background.json",
+		"title": "Background",
+		"description": "Pf2ools' background object.",
+		"$comment": "This file defines the general form of 'content' files (i.e. anything that can be directly displayed in a statblock).",
+		"type": "object",
+		"properties": {
+			"type": {
+				"const": "background"
+			},
+			"name": {
+				"$schema": "http://json-schema.org/draft-07/schema",
+				"$id": "pf2ools-schema/content/common/name.json",
+				"title": "Name",
+				"description": "A combined object to describe an entity's name.",
+				"type": "object",
+				"properties": {
+					"primary": {
+						"type": "string",
+						"minLength": 1,
+						"not": {
+							"pattern": "@",
+							"$comment": "To weed out `@tag`s."
+						},
+						"description": "The full name of the statblock or header, exactly as it appears in the source. The only exception is when the source uses stylistic all-caps or no-caps, in which case you should use your judgement and possibly convert it to title-case."
+					},
+					"aliases": {
+						"type": "array",
+						"items": {
+							"type": "string",
+							"minLength": 1,
+							"not": {
+								"pattern": "@",
+								"$comment": "To weed out `@tag`s."
+							},
+							"description": "An alternative name for the entity."
+						},
+						"minItems": 1,
+						"uniqueItems": true,
+						"description": "An array of alternative names of an entity. Some entities have multiple common names, whether defined in the statblock itself or the surrounding text. Alternative names may also be provided to ease searching, sorting, and filtering with common mistakes (e.g. calling the Aid action \"Help\")."
+					},
+					"specifier": {
+						"type": "string",
+						"minLength": 1,
+						"not": {
+							"pattern": "@",
+							"$comment": "To weed out `@tag`s."
+						},
+						"description": "A string to meaningfully disambiguate identically named entities (by necessity if they're from the same source). This often occurs, for example, with feats common to multiple classes (e.g. \"Attack of Opportunity\"). It can also occur when one entity in the source effectively defines multiple entities in data, each of which need to be disambiguated."
+					}
+				},
+				"required": [
+					"primary"
+				],
+				"additionalProperties": false
+			},
+			"source": {
+				"$schema": "http://json-schema.org/draft-07/schema",
+				"$id": "pf2ools-schema/content/common/contentSource.json",
+				"title": "Content Source",
+				"description": "Source object for a content entity.",
+				"type": "object",
+				"properties": {
+					"ID": {
+						"type": "string",
+						"minLength": 2,
+						"pattern": "^[A-Za-z0-9][A-Za-z0-9-]*[A-Za-z0-9]$",
+						"$comment": "Format derives from the following logic: 1) the ID should be URI-safe to ensure, well, maximum safety; 2) the ID should not include \".\" because that looks confusing in a URI; 3) the ID should not include \"_\" because that is reserved for use by the Pf2ools' website; 4) \"~\" and initial/terminal \"-\" is confusing and looks ugly. The minimum length is just to force a modicum of variety and meaningfulness.",
+						"not": {
+							"pattern": "^(COM[0-9]?|PRN|AUX|NUL|LPT[0-9])$",
+							"$comment": "These are reserved filenames in Windows. At some point someone will save a source file and/or its content as \"<id>.json\" and won't realise the hell this causes for Windows users. So rip the 'Casmaron Orienteering Manual' or whatever I guess ¯\\_(ツ)_/¯"
+						}
+					},
+					"page": {
+						"type": "integer",
+						"minimum": 1,
+						"description": "The page number (if any) on which the content begins."
+					}
+				},
+				"required": [
+					"ID"
+				]
+			},
+			"data": {
+				"type": "object",
+				"properties": {
+					"traits": {
+						"$schema": "http://json-schema.org/draft-07/schema#",
+						"$id": "pf2ools-schema/content/common/traits.json",
+						"title": "Traits",
+						"description": "An array of objects representing a list of traits",
+						"type": "array",
+						"items": {
+							"type": "object",
+							"properties": {
+								"trait": {
+									"type": "string",
+									"minLength": 1,
+									"pattern": "^[a-z]",
+									"$comment": "Pattern enforces lowercase",
+									"description": "The bare, keyworded name of the trait (e.g. the \"versatile\" in \"versatile P\")."
+								},
+								"variables": {
+									"type": "array",
+									"description": "The variable elements of a trait in an array.",
+									"items": {
+										"type": "string",
+										"minLength": 1,
+										"description": "A trait's variable (e.g. \"B\", \"P\", and \"S\" in \"modular B, P, or S\")."
+									},
+									"minItems": 1,
+									"uniqueItems": true
+								},
+								"display": {
+									"type": "string",
+									"minLength": 1,
+									"pattern": "^[a-z]",
+									"$comment": "Pattern enforces lowercase",
+									"description": "How the trait should display, if it cannot be trivially inferred from `trait` and `variables`.",
+									"examples": [
+										"modular (P and grapple, or S and sweep)"
+									]
+								}
+							},
+							"required": [
+								"trait"
+							],
+							"additionalProperties": false,
+							"description": "A trait with both keyword and variable elements."
+						},
+						"minItems": 1,
+						"uniqueItems": true
+					},
+					"entries": {
+						"$schema": "http://json-schema.org/draft-07/schema",
+						"$id": "pf2ools-schema/content/common/entries.json",
+						"title": "Entry",
+						"description": "Pf2ools' entry value (string or object).",
+						"$comment": "TODO",
+						"type": "array",
+						"items": {
+							"anyOf": [
+								{
+									"$schema": "http://json-schema.org/draft-07/schema",
+									"$id": "pf2ools-schema/content/common/entryString.json",
+									"title": "Entry String",
+									"description": "Pf2ools' simplest type of entry: a string. It displays as a single paragraph of text with in-line formatting determined by use of `@tag`s.",
+									"type": "string",
+									"minLength": 1
+								},
+								{
+									"type": "object",
+									"properties": {
+										"type": {
+											"type": "string",
+											"minLength": 1
+										}
+									},
+									"required": [
+										"type"
+									],
+									"description": "A paragraph with a header or some particular formatting.",
+									"$comment": "TODO"
+								}
+							]
+						},
+						"minItems": 1
+					}
+				},
+				"additionalProperties": false,
+				"required": [
+					"entries"
+				]
+			},
+			"reference": {
+				"$schema": "http://json-schema.org/draft-07/schema",
+				"$id": "pf2ools-schema/content/common/reference.json",
+				"title": "Reference",
+				"description": "An explicit reference to some other content, possibly with modifications applied on top. The referenced content's type is always assumed to be the same as the referring content.",
+				"type": "object",
+				"properties": {
+					"type": {
+						"enum": [
+							"reprint",
+							"variant",
+							"replacement",
+							"extension"
+						],
+						"description": "`reprint`: The statblock is (near) identical to another one, and is intended to be as such.\n`variant`: The statblock is dependent on but distinct to the target (e.g. unique NPCs based on generic monsters).\n`replacement`: The statblock replaces the target entirely everywhere.\n`extension`: The statblock adds additional content to the target but doesn't supersede it (e.g. a new option added to a spell)."
+					},
+					"target": {
+						"type": "object",
+						"properties": {
+							"name": {
+								"type": "string",
+								"minLength": 1
+							},
+							"specifier": {
+								"type": "string",
+								"minLength": 1
+							},
+							"sourceID": {
+								"type": "string",
+								"minLength": 2,
+								"pattern": "^[A-Za-z0-9][A-Za-z0-9-]*[A-Za-z0-9]$",
+								"$comment": "Format derives from the following logic: 1) the ID should be URI-safe to ensure, well, maximum safety; 2) the ID should not include \".\" because that looks confusing in a URI; 3) the ID should not include \"_\" because that is reserved for use by the Pf2ools' website; 4) \"~\" and initial/terminal \"-\" is confusing and looks ugly. The minimum length is just to force a modicum of variety and meaningfulness.",
+								"not": {
+									"pattern": "^(COM[0-9]?|PRN|AUX|NUL|LPT[0-9])$",
+									"$comment": "These are reserved filenames in Windows. At some point someone will save a source file and/or its content as \"<id>.json\" and won't realise the hell this causes for Windows users. So rip the 'Casmaron Orienteering Manual' or whatever I guess ¯\\_(ツ)_/¯"
+								}
+							}
+						},
+						"description": "The content being referenced.",
+						"required": [
+							"name",
+							"source"
+						],
+						"additionalProperties": false
+					},
+					"modifications": {
+						"type": "array",
+						"description": "An array of changes which, when applied consecutively, transforms the target content into the referring content.",
+						"items": {
+							"type": "object",
+							"properties": {
+								"type": {
+									"type": "string",
+									"description": "The type of modification being applied.",
+									"minLength": 1,
+									"$comment": "Will become `enum` later"
+								},
+								"target": {
+									"type": "object",
+									"properties": {
+										"property": {
+											"type": "string",
+											"description": "A dot-separated hierarchy of properties leading to the target from the top-level `data` (e.g. \"castingTime.unit\").",
+											"pattern": "^\\w+(\\.\\w+)+&"
+										},
+										"name": {
+											"type": "string",
+											"description": "The `name` of the target object, if it is found in an array.",
+											"minLength": 1
+										}
+									},
+									"required": [
+										"property"
+									],
+									"additionalProperties": false
+								},
+								"value": {
+									"not": {
+										"type": "null"
+									},
+									"description": "The modification value."
+								}
+							},
+							"required": [
+								"type",
+								"target"
+							],
+							"additionalProperties": false
+						},
+						"minItems": 1,
+						"uniqueItems": true
+					}
+				},
+				"required": [
+					"type",
+					"target"
+				],
+				"additionalProperties": false
+			},
+			"tags": {
+				"type": "object",
+				"properties": {
+					"abilityBoosts": {
+						"type": "object",
+						"description": "The ability boosts the background grants.",
+						"properties": {
+							"abilities": {
+								"type": "object",
+								"description": "An object containing the types of boost that the background can grant.",
+								"properties": {
+									"Strength": {
+										"const": true
+									},
+									"Dexterity": {
+										"const": true
+									},
+									"Constitution": {
+										"const": true
+									},
+									"Intelligence": {
+										"const": true
+									},
+									"Wisdom": {
+										"const": true
+									},
+									"Charisma": {
+										"const": true
+									},
+									"Free": {
+										"const": true
+									}
+								},
+								"minProperties": 1,
+								"additionalProperties": false
+							},
+							"count": {
+								"type": "integer",
+								"description": "The total number of boosts the background can grant.",
+								"minimum": 1,
+								"maximum": 3,
+								"$comment": "Maximum only exists as an extra guard against typos; if anything official or homebrew would legitimately break it, it can be removed."
+							}
+						},
+						"additionalProperties": false,
+						"required": [
+							"count",
+							"abilities"
+						]
+					},
+					"trainedSkills": {
+						"type": "object",
+						"description": "The skills in which the background can grant proficiency.",
+						"properties": {
+							"skills": {
+								"type": "object",
+								"description": "A list of skills in which the background can grant proficiency.",
+								"propertyNames": {
+									"anyOf": [
+										{
+											"$schema": "http://json-schema.org/draft-07/schema",
+											"$id": "pf2ools-schema/content/constants/listOfSkills.json",
+											"title": "List of skills (title case)",
+											"type": "string",
+											"enum": [
+												"Acrobatics",
+												"Arcana",
+												"Athletics",
+												"Crafting",
+												"Deception",
+												"Diplomacy",
+												"Intimidation",
+												"Lore",
+												"Medicine",
+												"Nature",
+												"Occultism",
+												"Performance",
+												"Religion",
+												"Society",
+												"Stealth",
+												"Survival",
+												"Thievery"
+											]
+										},
+										{
+											"const": "Any"
+										}
+									]
+								},
+								"additionalProperties": {
+									"const": true
+								},
+								"minProperties": 1
+							},
+							"count": {
+								"type": "integer",
+								"description": "The total number of distinct skill proficiencies the background can grant.",
+								"minimum": 1,
+								"maximum": 4,
+								"$comment": "Maximum only exists as an extra guard against typos; if anything official or homebrew would legitimately break it, it can be removed."
+							}
+						},
+						"additionalProperties": false,
+						"required": [
+							"count",
+							"skills"
+						]
+					},
+					"gainedFeats": {
+						"type": "object",
+						"description": "The feats the background grants.",
+						"properties": {
+							"options": {
+								"type": "array",
+								"description": "A list of feats the background can grant.",
+								"items": {
+									"$schema": "http://json-schema.org/draft-07/schema",
+									"$id": "pf2ools-schema/content/common/directReference.json",
+									"title": "Statblock Reference",
+									"description": "A direct reference to another statblock. The `type` of the content is typically inferred from the context in which it is invoked (e.g. a reference in a deity's \"Cleric Spells\" entry is a spell).",
+									"type": "object",
+									"properties": {
+										"name": {
+											"type": "string",
+											"minLength": 1
+										},
+										"specifier": {
+											"type": "string",
+											"minLength": 1
+										},
+										"sourceID": {
+											"type": "string",
+											"minLength": 2,
+											"pattern": "^[A-Za-z0-9][A-Za-z0-9-]*[A-Za-z0-9]$",
+											"$comment": "Format derives from the following logic: 1) the ID should be URI-safe to ensure, well, maximum safety; 2) the ID should not include \".\" because that looks confusing in a URI; 3) the ID should not include \"_\" because that is reserved for use by the Pf2ools' website; 4) \"~\" and initial/terminal \"-\" is confusing and looks ugly. The minimum length is just to force a modicum of variety and meaningfulness.",
+											"not": {
+												"pattern": "^(COM[0-9]?|PRN|AUX|NUL|LPT[0-9])$",
+												"$comment": "These are reserved filenames in Windows. At some point someone will save a source file and/or its content as \"<id>.json\" and won't realise the hell this causes for Windows users. So rip the 'Casmaron Orienteering Manual' or whatever I guess ¯\\_(ツ)_/¯"
+											}
+										}
+									},
+									"required": [
+										"name",
+										"sourceID"
+									],
+									"additionalProperties": false
+								},
+								"minItems": 1,
+								"uniqueItems": true
+							},
+							"count": {
+								"type": "integer",
+								"description": "The total number of feats the background can grant.",
+								"minimum": 1,
+								"maximum": 2,
+								"$comment": "Maximum only exists as an extra guard against typos; if anything official or homebrew would legitimately break it, it can be removed."
+							}
+						},
+						"additionalProperties": false,
+						"required": [
+							"count",
+							"options"
+						]
+					},
+					"gainedSpells": {
+						"type": "object",
+						"description": "The spells the background grants.",
+						"properties": {
+							"options": {
+								"type": "array",
+								"description": "A list of spells the background can grant.",
+								"items": {
+									"$schema": "http://json-schema.org/draft-07/schema",
+									"$id": "pf2ools-schema/content/common/directReference.json",
+									"title": "Statblock Reference",
+									"description": "A direct reference to another statblock. The `type` of the content is typically inferred from the context in which it is invoked (e.g. a reference in a deity's \"Cleric Spells\" entry is a spell).",
+									"type": "object",
+									"properties": {
+										"name": {
+											"type": "string",
+											"minLength": 1
+										},
+										"specifier": {
+											"type": "string",
+											"minLength": 1
+										},
+										"sourceID": {
+											"type": "string",
+											"minLength": 2,
+											"pattern": "^[A-Za-z0-9][A-Za-z0-9-]*[A-Za-z0-9]$",
+											"$comment": "Format derives from the following logic: 1) the ID should be URI-safe to ensure, well, maximum safety; 2) the ID should not include \".\" because that looks confusing in a URI; 3) the ID should not include \"_\" because that is reserved for use by the Pf2ools' website; 4) \"~\" and initial/terminal \"-\" is confusing and looks ugly. The minimum length is just to force a modicum of variety and meaningfulness.",
+											"not": {
+												"pattern": "^(COM[0-9]?|PRN|AUX|NUL|LPT[0-9])$",
+												"$comment": "These are reserved filenames in Windows. At some point someone will save a source file and/or its content as \"<id>.json\" and won't realise the hell this causes for Windows users. So rip the 'Casmaron Orienteering Manual' or whatever I guess ¯\\_(ツ)_/¯"
+											}
+										}
+									},
+									"required": [
+										"name",
+										"sourceID"
+									],
+									"additionalProperties": false
+								},
+								"minItems": 1,
+								"uniqueItems": true
+							},
+							"count": {
+								"type": "integer",
+								"description": "The total number of spells the background can grant.",
+								"minimum": 1,
+								"maximum": 2,
+								"$comment": "Maximum only exists as an extra guard against typos; if anything official or homebrew would legitimately break it, it can be removed."
+							}
+						},
+						"additionalProperties": false,
+						"required": [
+							"count",
+							"options"
+						]
+					},
+					"misc": {
+						"type": "object",
+						"description": "Miscellaneous tags",
+						"properties": {
+							"Grants ability": {
+								"const": true,
+								"description": "The background background grants an active, voluntary ability."
+							},
+							"Grants equipment": {
+								"const": true,
+								"description": "The background grants a free item (not just access or proficiency—the actual concrete thing)."
+							},
+							"Grants language": {
+								"const": true,
+								"description": "The background grants a language."
+							},
+							"Grants resistance": {
+								"const": true,
+								"description": "The background grants a damage resistance."
+							},
+							"Grants sense": {
+								"const": true,
+								"description": "The background grants a sense (e.g. darkvision, scent)."
+							},
+							"Grants situational benefit": {
+								"const": true,
+								"description": "The background grants a passive benefit that isn't otherwise categorisable. For example, this would apply if the background grants a +1 circumstance bonus to Seek on cloudy days."
+							},
+							"Has drawback": {
+								"const": true,
+								"description": "The background comes with an objective, mandatory drawback, such as a penalty to some check or the inability to use an item or spell; not something that is both good and bad."
+							},
+							"GM influence": {
+								"const": true,
+								"description": "The GM determines some mechanical aspect of the background. For instance, this would apply if the background specifies that the GM alone chooses one of the boosts or the type of Lore skill it grants."
+							}
+						},
+						"minProperties": 1,
+						"additionalProperties": false
+					}
+				},
+				"additionalProperties": false
+			}
+		},
+		"required": [
+			"type",
+			"name",
+			"source",
+			"data"
+		],
+		"additionalProperties": false
+	},
+	{
+		"$schema": "http://json-schema.org/draft-07/schema",
+		"$id": "pf2ools-schema/content/condition.json",
+		"title": "Condition",
+		"description": "Pf2ools' condition object.",
+		"$comment": "This file defines the general form of 'content' files (i.e. anything that can be directly displayed in a statblock).",
+		"type": "object",
+		"properties": {
+			"type": {
+				"const": "condition"
+			},
+			"name": {
+				"$schema": "http://json-schema.org/draft-07/schema",
+				"$id": "pf2ools-schema/content/common/name.json",
+				"title": "Name",
+				"description": "A combined object to describe an entity's name.",
+				"type": "object",
+				"properties": {
+					"primary": {
+						"type": "string",
+						"minLength": 1,
+						"not": {
+							"pattern": "@",
+							"$comment": "To weed out `@tag`s."
+						},
+						"description": "The full name of the statblock or header, exactly as it appears in the source. The only exception is when the source uses stylistic all-caps or no-caps, in which case you should use your judgement and possibly convert it to title-case."
+					},
+					"aliases": {
+						"type": "array",
+						"items": {
+							"type": "string",
+							"minLength": 1,
+							"not": {
+								"pattern": "@",
+								"$comment": "To weed out `@tag`s."
+							},
+							"description": "An alternative name for the entity."
+						},
+						"minItems": 1,
+						"uniqueItems": true,
+						"description": "An array of alternative names of an entity. Some entities have multiple common names, whether defined in the statblock itself or the surrounding text. Alternative names may also be provided to ease searching, sorting, and filtering with common mistakes (e.g. calling the Aid action \"Help\")."
+					},
+					"specifier": {
+						"type": "string",
+						"minLength": 1,
+						"not": {
+							"pattern": "@",
+							"$comment": "To weed out `@tag`s."
+						},
+						"description": "A string to meaningfully disambiguate identically named entities (by necessity if they're from the same source). This often occurs, for example, with feats common to multiple classes (e.g. \"Attack of Opportunity\"). It can also occur when one entity in the source effectively defines multiple entities in data, each of which need to be disambiguated."
+					}
+				},
+				"required": [
+					"primary"
+				],
+				"additionalProperties": false
+			},
+			"source": {
+				"$schema": "http://json-schema.org/draft-07/schema",
+				"$id": "pf2ools-schema/content/common/contentSource.json",
+				"title": "Content Source",
+				"description": "Source object for a content entity.",
+				"type": "object",
+				"properties": {
+					"ID": {
+						"type": "string",
+						"minLength": 2,
+						"pattern": "^[A-Za-z0-9][A-Za-z0-9-]*[A-Za-z0-9]$",
+						"$comment": "Format derives from the following logic: 1) the ID should be URI-safe to ensure, well, maximum safety; 2) the ID should not include \".\" because that looks confusing in a URI; 3) the ID should not include \"_\" because that is reserved for use by the Pf2ools' website; 4) \"~\" and initial/terminal \"-\" is confusing and looks ugly. The minimum length is just to force a modicum of variety and meaningfulness.",
+						"not": {
+							"pattern": "^(COM[0-9]?|PRN|AUX|NUL|LPT[0-9])$",
+							"$comment": "These are reserved filenames in Windows. At some point someone will save a source file and/or its content as \"<id>.json\" and won't realise the hell this causes for Windows users. So rip the 'Casmaron Orienteering Manual' or whatever I guess ¯\\_(ツ)_/¯"
+						}
+					},
+					"page": {
+						"type": "integer",
+						"minimum": 1,
+						"description": "The page number (if any) on which the content begins."
+					}
+				},
+				"required": [
+					"ID"
+				]
+			},
+			"data": {
+				"type": "object",
+				"properties": {
+					"entries": {
+						"$schema": "http://json-schema.org/draft-07/schema",
+						"$id": "pf2ools-schema/content/common/entries.json",
+						"title": "Entry",
+						"description": "Pf2ools' entry value (string or object).",
+						"$comment": "TODO",
+						"type": "array",
+						"items": {
+							"anyOf": [
+								{
+									"$schema": "http://json-schema.org/draft-07/schema",
+									"$id": "pf2ools-schema/content/common/entryString.json",
+									"title": "Entry String",
+									"description": "Pf2ools' simplest type of entry: a string. It displays as a single paragraph of text with in-line formatting determined by use of `@tag`s.",
+									"type": "string",
+									"minLength": 1
+								},
+								{
+									"type": "object",
+									"properties": {
+										"type": {
+											"type": "string",
+											"minLength": 1
+										}
+									},
+									"required": [
+										"type"
+									],
+									"description": "A paragraph with a header or some particular formatting.",
+									"$comment": "TODO"
+								}
+							]
+						},
+						"minItems": 1
+					}
+				},
+				"additionalProperties": false,
+				"required": [
+					"entries"
+				]
+			},
+			"reference": {
+				"$schema": "http://json-schema.org/draft-07/schema",
+				"$id": "pf2ools-schema/content/common/reference.json",
+				"title": "Reference",
+				"description": "An explicit reference to some other content, possibly with modifications applied on top. The referenced content's type is always assumed to be the same as the referring content.",
+				"type": "object",
+				"properties": {
+					"type": {
+						"enum": [
+							"reprint",
+							"variant",
+							"replacement",
+							"extension"
+						],
+						"description": "`reprint`: The statblock is (near) identical to another one, and is intended to be as such.\n`variant`: The statblock is dependent on but distinct to the target (e.g. unique NPCs based on generic monsters).\n`replacement`: The statblock replaces the target entirely everywhere.\n`extension`: The statblock adds additional content to the target but doesn't supersede it (e.g. a new option added to a spell)."
+					},
+					"target": {
+						"type": "object",
+						"properties": {
+							"name": {
+								"type": "string",
+								"minLength": 1
+							},
+							"specifier": {
+								"type": "string",
+								"minLength": 1
+							},
+							"sourceID": {
+								"type": "string",
+								"minLength": 2,
+								"pattern": "^[A-Za-z0-9][A-Za-z0-9-]*[A-Za-z0-9]$",
+								"$comment": "Format derives from the following logic: 1) the ID should be URI-safe to ensure, well, maximum safety; 2) the ID should not include \".\" because that looks confusing in a URI; 3) the ID should not include \"_\" because that is reserved for use by the Pf2ools' website; 4) \"~\" and initial/terminal \"-\" is confusing and looks ugly. The minimum length is just to force a modicum of variety and meaningfulness.",
+								"not": {
+									"pattern": "^(COM[0-9]?|PRN|AUX|NUL|LPT[0-9])$",
+									"$comment": "These are reserved filenames in Windows. At some point someone will save a source file and/or its content as \"<id>.json\" and won't realise the hell this causes for Windows users. So rip the 'Casmaron Orienteering Manual' or whatever I guess ¯\\_(ツ)_/¯"
+								}
+							}
+						},
+						"description": "The content being referenced.",
+						"required": [
+							"name",
+							"source"
+						],
+						"additionalProperties": false
+					},
+					"modifications": {
+						"type": "array",
+						"description": "An array of changes which, when applied consecutively, transforms the target content into the referring content.",
+						"items": {
+							"type": "object",
+							"properties": {
+								"type": {
+									"type": "string",
+									"description": "The type of modification being applied.",
+									"minLength": 1,
+									"$comment": "Will become `enum` later"
+								},
+								"target": {
+									"type": "object",
+									"properties": {
+										"property": {
+											"type": "string",
+											"description": "A dot-separated hierarchy of properties leading to the target from the top-level `data` (e.g. \"castingTime.unit\").",
+											"pattern": "^\\w+(\\.\\w+)+&"
+										},
+										"name": {
+											"type": "string",
+											"description": "The `name` of the target object, if it is found in an array.",
+											"minLength": 1
+										}
+									},
+									"required": [
+										"property"
+									],
+									"additionalProperties": false
+								},
+								"value": {
+									"not": {
+										"type": "null"
+									},
+									"description": "The modification value."
+								}
+							},
+							"required": [
+								"type",
+								"target"
+							],
+							"additionalProperties": false
+						},
+						"minItems": 1,
+						"uniqueItems": true
+					}
+				},
+				"required": [
+					"type",
+					"target"
+				],
+				"additionalProperties": false
+			},
+			"tags": {
+				"type": "object",
+				"properties": {
+					"group": {
+						"type": "object",
+						"description": "An object containing any groups the condition belongs to. The properties should be in title case.",
+						"properties": {
+							"Attitudes": {
+								"const": true,
+								"description": "The condition is in the 'Attitudes' group (CRB p619)."
+							},
+							"Death and Dying": {
+								"const": true,
+								"description": "The condition is in the 'Death and Dying' group (CRB p619)."
+							},
+							"Degrees of Detection": {
+								"const": true,
+								"description": "The condition is in the 'Degrees of Detection' group (CRB p619)."
+							},
+							"Lowered Abilities": {
+								"const": true,
+								"description": "The condition is in the 'Lowered Abilities' group (CRB p619)."
+							},
+							"Senses": {
+								"const": true,
+								"description": "The condition is in the 'Senses' group (CRB p619)."
+							}
+						},
+						"minProperties": 1,
+						"additionalProperties": {
+							"const": true
+						},
+						"propertyNames": {
+							"pattern": "^[A-Z]",
+							"minLength": 1,
+							"$comment": "Pattern enforces title case"
+						}
+					}
+				},
+				"additionalProperties": false
+			}
+		},
+		"required": [
+			"type",
+			"name",
+			"source",
+			"data"
+		],
+		"additionalProperties": false
+	},
+	{
+		"$schema": "http://json-schema.org/draft-07/schema",
+		"$id": "pf2ools-schema/content/deity.json",
+		"title": "Deity",
+		"description": "Pf2ools' deity, pantheon, and philosophy object.",
+		"$comment": "This file defines the general form of 'content' files (i.e. anything that can be directly displayed in a statblock).",
+		"type": "object",
+		"properties": {
+			"type": {
+				"const": "deity"
+			},
+			"name": {
+				"$schema": "http://json-schema.org/draft-07/schema",
+				"$id": "pf2ools-schema/content/common/name.json",
+				"title": "Name",
+				"description": "A combined object to describe an entity's name.",
+				"type": "object",
+				"properties": {
+					"primary": {
+						"type": "string",
+						"minLength": 1,
+						"not": {
+							"pattern": "@",
+							"$comment": "To weed out `@tag`s."
+						},
+						"description": "The full name of the statblock or header, exactly as it appears in the source. The only exception is when the source uses stylistic all-caps or no-caps, in which case you should use your judgement and possibly convert it to title-case."
+					},
+					"aliases": {
+						"type": "array",
+						"items": {
+							"type": "string",
+							"minLength": 1,
+							"not": {
+								"pattern": "@",
+								"$comment": "To weed out `@tag`s."
+							},
+							"description": "An alternative name for the entity."
+						},
+						"minItems": 1,
+						"uniqueItems": true,
+						"description": "An array of alternative names of an entity. Some entities have multiple common names, whether defined in the statblock itself or the surrounding text. Alternative names may also be provided to ease searching, sorting, and filtering with common mistakes (e.g. calling the Aid action \"Help\")."
+					},
+					"specifier": {
+						"type": "string",
+						"minLength": 1,
+						"not": {
+							"pattern": "@",
+							"$comment": "To weed out `@tag`s."
+						},
+						"description": "A string to meaningfully disambiguate identically named entities (by necessity if they're from the same source). This often occurs, for example, with feats common to multiple classes (e.g. \"Attack of Opportunity\"). It can also occur when one entity in the source effectively defines multiple entities in data, each of which need to be disambiguated."
+					}
+				},
+				"required": [
+					"primary"
+				],
+				"additionalProperties": false
+			},
+			"source": {
+				"$schema": "http://json-schema.org/draft-07/schema",
+				"$id": "pf2ools-schema/content/common/contentSource.json",
+				"title": "Content Source",
+				"description": "Source object for a content entity.",
+				"type": "object",
+				"properties": {
+					"ID": {
+						"type": "string",
+						"minLength": 2,
+						"pattern": "^[A-Za-z0-9][A-Za-z0-9-]*[A-Za-z0-9]$",
+						"$comment": "Format derives from the following logic: 1) the ID should be URI-safe to ensure, well, maximum safety; 2) the ID should not include \".\" because that looks confusing in a URI; 3) the ID should not include \"_\" because that is reserved for use by the Pf2ools' website; 4) \"~\" and initial/terminal \"-\" is confusing and looks ugly. The minimum length is just to force a modicum of variety and meaningfulness.",
+						"not": {
+							"pattern": "^(COM[0-9]?|PRN|AUX|NUL|LPT[0-9])$",
+							"$comment": "These are reserved filenames in Windows. At some point someone will save a source file and/or its content as \"<id>.json\" and won't realise the hell this causes for Windows users. So rip the 'Casmaron Orienteering Manual' or whatever I guess ¯\\_(ツ)_/¯"
+						}
+					},
+					"page": {
+						"type": "integer",
+						"minimum": 1,
+						"description": "The page number (if any) on which the content begins."
+					}
+				},
+				"required": [
+					"ID"
+				]
+			},
+			"data": {
+				"type": "object",
+				"properties": {
+					"category": {
+						"description": "The broad-scale category for the deity, such as its predominant region (e.g. \"Mwangi Gods\" for those dominant in the Mwangi Expanse), creature type (e.g. \"Archdevils\" for archdevil divinities), or religious construct (i.e. \"Pantheon\" or \"Philosophy\"). Follow precedent where possible.",
+						"type": "string",
+						"minLength": 1,
+						"examples": [
+							"Ancient Osirian Gods",
+							"Archdevils",
+							"Demon Lords",
+							"Dwarven Gods",
+							"Eldest",
+							"Elemental Lords",
+							"Elven Gods",
+							"Empyreal Lords",
+							"Gods of the Inner Sea",
+							"Great Old Ones",
+							"Horsemen",
+							"Monitor Demigods",
+							"Mwangi Gods",
+							"Outer Gods",
+							"Pantheon",
+							"Philosophy",
+							"Queens of the Night",
+							"Sarkorian Gods",
+							"Tian Gods",
+							"Vudrani Gods"
+						]
+					},
+					"pantheonMembers": {
+						"description": "A list of objects representing the deities that compose the pantheon (if it is one).",
+						"type": "array",
+						"items": {
+							"$schema": "http://json-schema.org/draft-07/schema",
+							"$id": "pf2ools-schema/content/common/directReference.json",
+							"title": "Statblock Reference",
+							"description": "A direct reference to another statblock. The `type` of the content is typically inferred from the context in which it is invoked (e.g. a reference in a deity's \"Cleric Spells\" entry is a spell).",
+							"type": "object",
+							"properties": {
+								"name": {
+									"type": "string",
+									"minLength": 1
+								},
+								"specifier": {
+									"type": "string",
+									"minLength": 1
+								},
+								"sourceID": {
+									"type": "string",
+									"minLength": 2,
+									"pattern": "^[A-Za-z0-9][A-Za-z0-9-]*[A-Za-z0-9]$",
+									"$comment": "Format derives from the following logic: 1) the ID should be URI-safe to ensure, well, maximum safety; 2) the ID should not include \".\" because that looks confusing in a URI; 3) the ID should not include \"_\" because that is reserved for use by the Pf2ools' website; 4) \"~\" and initial/terminal \"-\" is confusing and looks ugly. The minimum length is just to force a modicum of variety and meaningfulness.",
+									"not": {
+										"pattern": "^(COM[0-9]?|PRN|AUX|NUL|LPT[0-9])$",
+										"$comment": "These are reserved filenames in Windows. At some point someone will save a source file and/or its content as \"<id>.json\" and won't realise the hell this causes for Windows users. So rip the 'Casmaron Orienteering Manual' or whatever I guess ¯\\_(ツ)_/¯"
+									}
+								}
+							},
+							"required": [
+								"name",
+								"sourceID"
+							],
+							"additionalProperties": false
+						},
+						"minItems": 2,
+						"uniqueItems": true
+					},
+					"alignment": {
+						"type": "object",
+						"properties": {
+							"deity": {
+								"$schema": "http://json-schema.org/draft-07/schema",
+								"$id": "pf2ools-schema/content/constants/listOfAlignments.json",
+								"title": "List of alignments (uppercase)",
+								"type": "string",
+								"enum": [
+									"LG",
+									"NG",
+									"CG",
+									"LN",
+									"N",
+									"CN",
+									"LE",
+									"NE",
+									"CE",
+									"U"
+								]
+							},
+							"follower": {
+								"type": "array",
+								"items": {
+									"$schema": "http://json-schema.org/draft-07/schema",
+									"$id": "pf2ools-schema/content/constants/listOfAlignments.json",
+									"title": "List of alignments (uppercase)",
+									"type": "string",
+									"enum": [
+										"LG",
+										"NG",
+										"CG",
+										"LN",
+										"N",
+										"CN",
+										"LE",
+										"NE",
+										"CE",
+										"U"
+									]
+								},
+								"minItems": 1
+							}
+						},
+						"required": [
+							"deity"
+						],
+						"additionalProperties": false
+					},
+					"areasOfConcern": {
+						"description": "The deities \"Areas of Concern\" header as an array of strings. As the text is frequently a comma-separated list, each list element should be trivial.",
+						"type": "array",
+						"items": {
+							"$schema": "http://json-schema.org/draft-07/schema",
+							"$id": "pf2ools-schema/content/common/entryString.json",
+							"title": "Entry String",
+							"description": "Pf2ools' simplest type of entry: a string. It displays as a single paragraph of text with in-line formatting determined by use of `@tag`s.",
+							"type": "string",
+							"minLength": 1
+						},
+						"minItems": 1,
+						"uniqueItems": true
+					},
+					"divineFont": {
+						"description": "An object representing the \"Divine Font\" header of the statblock.",
+						"type": "object",
+						"properties": {
+							"harm": {
+								"const": true
+							},
+							"heal": {
+								"const": true
+							}
+						},
+						"minProperties": 1,
+						"additionalProperties": false
+					},
+					"divineAbility": {
+						"description": "An object representing the \"Divine Ability\" header of the statblock.",
+						"type": "object",
+						"properties": {
+							"abilities": {
+								"description": "An object containing the abilities the deity can boost.",
+								"type": "object",
+								"propertyNames": {
+									"$schema": "http://json-schema.org/draft-07/schema",
+									"$id": "pf2ools-schema/content/constants/listOfAbilities.json",
+									"title": "List of abilities (title case)",
+									"type": "string",
+									"enum": [
+										"Strength",
+										"Dexterity",
+										"Constitution",
+										"Intelligence",
+										"Wisdom",
+										"Charisma"
+									]
+								},
+								"additionalProperties": {
+									"const": true
+								},
+								"minProperties": 1
+							},
+							"entry": {
+								"$schema": "http://json-schema.org/draft-07/schema",
+								"$id": "pf2ools-schema/content/common/entryString.json",
+								"title": "Entry String",
+								"description": "Pf2ools' simplest type of entry: a string. It displays as a single paragraph of text with in-line formatting determined by use of `@tag`s.",
+								"type": "string",
+								"minLength": 1
+							}
+						},
+						"minProperties": 1,
+						"additionalProperties": false
+					},
+					"divineSkill": {
+						"description": "An object representing the \"Divine Skill\" header of the statblock.",
+						"type": "object",
+						"properties": {
+							"skills": {
+								"description": "An object containing the skills the deity can boost.",
+								"type": "object",
+								"propertyNames": {
+									"$schema": "http://json-schema.org/draft-07/schema",
+									"$id": "pf2ools-schema/content/constants/listOfSkills.json",
+									"title": "List of skills (title case)",
+									"type": "string",
+									"enum": [
+										"Acrobatics",
+										"Arcana",
+										"Athletics",
+										"Crafting",
+										"Deception",
+										"Diplomacy",
+										"Intimidation",
+										"Lore",
+										"Medicine",
+										"Nature",
+										"Occultism",
+										"Performance",
+										"Religion",
+										"Society",
+										"Stealth",
+										"Survival",
+										"Thievery"
+									]
+								},
+								"additionalProperties": {
+									"const": true
+								},
+								"minProperties": 1
+							},
+							"entry": {
+								"$schema": "http://json-schema.org/draft-07/schema",
+								"$id": "pf2ools-schema/content/common/entryString.json",
+								"title": "Entry String",
+								"description": "Pf2ools' simplest type of entry: a string. It displays as a single paragraph of text with in-line formatting determined by use of `@tag`s.",
+								"type": "string",
+								"minLength": 1
+							}
+						},
+						"minProperties": 1,
+						"additionalProperties": false
+					},
+					"domains": {
+						"description": "A list of objects describing the domains a deity encompasses.",
+						"type": "array",
+						"items": {
+							"$schema": "http://json-schema.org/draft-07/schema",
+							"$id": "pf2ools-schema/content/common/directReference.json",
+							"title": "Statblock Reference",
+							"description": "A direct reference to another statblock. The `type` of the content is typically inferred from the context in which it is invoked (e.g. a reference in a deity's \"Cleric Spells\" entry is a spell).",
+							"type": "object",
+							"properties": {
+								"name": {
+									"type": "string",
+									"minLength": 1
+								},
+								"specifier": {
+									"type": "string",
+									"minLength": 1
+								},
+								"sourceID": {
+									"type": "string",
+									"minLength": 2,
+									"pattern": "^[A-Za-z0-9][A-Za-z0-9-]*[A-Za-z0-9]$",
+									"$comment": "Format derives from the following logic: 1) the ID should be URI-safe to ensure, well, maximum safety; 2) the ID should not include \".\" because that looks confusing in a URI; 3) the ID should not include \"_\" because that is reserved for use by the Pf2ools' website; 4) \"~\" and initial/terminal \"-\" is confusing and looks ugly. The minimum length is just to force a modicum of variety and meaningfulness.",
+									"not": {
+										"pattern": "^(COM[0-9]?|PRN|AUX|NUL|LPT[0-9])$",
+										"$comment": "These are reserved filenames in Windows. At some point someone will save a source file and/or its content as \"<id>.json\" and won't realise the hell this causes for Windows users. So rip the 'Casmaron Orienteering Manual' or whatever I guess ¯\\_(ツ)_/¯"
+									}
+								}
+							},
+							"required": [
+								"name",
+								"sourceID"
+							],
+							"additionalProperties": false
+						},
+						"minItems": 1,
+						"uniqueItems": true
+					},
+					"alternateDomains": {
+						"description": "A list of objects describing the alternate domains a deity encompasses.",
+						"type": "array",
+						"items": {
+							"$schema": "http://json-schema.org/draft-07/schema",
+							"$id": "pf2ools-schema/content/common/directReference.json",
+							"title": "Statblock Reference",
+							"description": "A direct reference to another statblock. The `type` of the content is typically inferred from the context in which it is invoked (e.g. a reference in a deity's \"Cleric Spells\" entry is a spell).",
+							"type": "object",
+							"properties": {
+								"name": {
+									"type": "string",
+									"minLength": 1
+								},
+								"specifier": {
+									"type": "string",
+									"minLength": 1
+								},
+								"sourceID": {
+									"type": "string",
+									"minLength": 2,
+									"pattern": "^[A-Za-z0-9][A-Za-z0-9-]*[A-Za-z0-9]$",
+									"$comment": "Format derives from the following logic: 1) the ID should be URI-safe to ensure, well, maximum safety; 2) the ID should not include \".\" because that looks confusing in a URI; 3) the ID should not include \"_\" because that is reserved for use by the Pf2ools' website; 4) \"~\" and initial/terminal \"-\" is confusing and looks ugly. The minimum length is just to force a modicum of variety and meaningfulness.",
+									"not": {
+										"pattern": "^(COM[0-9]?|PRN|AUX|NUL|LPT[0-9])$",
+										"$comment": "These are reserved filenames in Windows. At some point someone will save a source file and/or its content as \"<id>.json\" and won't realise the hell this causes for Windows users. So rip the 'Casmaron Orienteering Manual' or whatever I guess ¯\\_(ツ)_/¯"
+									}
+								}
+							},
+							"required": [
+								"name",
+								"sourceID"
+							],
+							"additionalProperties": false
+						},
+						"minItems": 1,
+						"uniqueItems": true
+					},
+					"clericSpells": {
+						"description": "An object representing the cleric spells this deity grants. The properties represent the spell levels.",
+						"type": "object",
+						"patternProperties": {
+							"^([1-9]|10)$": {
+								"type": "array",
+								"items": {
+									"$schema": "http://json-schema.org/draft-07/schema",
+									"$id": "pf2ools-schema/content/common/directReference.json",
+									"title": "Statblock Reference",
+									"description": "A direct reference to another statblock. The `type` of the content is typically inferred from the context in which it is invoked (e.g. a reference in a deity's \"Cleric Spells\" entry is a spell).",
+									"type": "object",
+									"properties": {
+										"name": {
+											"type": "string",
+											"minLength": 1
+										},
+										"specifier": {
+											"type": "string",
+											"minLength": 1
+										},
+										"sourceID": {
+											"type": "string",
+											"minLength": 2,
+											"pattern": "^[A-Za-z0-9][A-Za-z0-9-]*[A-Za-z0-9]$",
+											"$comment": "Format derives from the following logic: 1) the ID should be URI-safe to ensure, well, maximum safety; 2) the ID should not include \".\" because that looks confusing in a URI; 3) the ID should not include \"_\" because that is reserved for use by the Pf2ools' website; 4) \"~\" and initial/terminal \"-\" is confusing and looks ugly. The minimum length is just to force a modicum of variety and meaningfulness.",
+											"not": {
+												"pattern": "^(COM[0-9]?|PRN|AUX|NUL|LPT[0-9])$",
+												"$comment": "These are reserved filenames in Windows. At some point someone will save a source file and/or its content as \"<id>.json\" and won't realise the hell this causes for Windows users. So rip the 'Casmaron Orienteering Manual' or whatever I guess ¯\\_(ツ)_/¯"
+											}
+										}
+									},
+									"required": [
+										"name",
+										"sourceID"
+									],
+									"additionalProperties": false
+								},
+								"minItems": 1,
+								"uniqueItems": true
+							}
+						},
+						"minProperties": 1,
+						"additionalProperties": false
+					},
+					"edicts": {
+						"description": "The deities \"Edicts\" header as an array of strings. As the text is frequently a comma-separated list, each list element should be trivial.",
+						"type": "array",
+						"items": {
+							"$schema": "http://json-schema.org/draft-07/schema",
+							"$id": "pf2ools-schema/content/common/entryString.json",
+							"title": "Entry String",
+							"description": "Pf2ools' simplest type of entry: a string. It displays as a single paragraph of text with in-line formatting determined by use of `@tag`s.",
+							"type": "string",
+							"minLength": 1
+						},
+						"minItems": 1,
+						"uniqueItems": true
+					},
+					"anathema": {
+						"description": "The deities \"Anathema\" header as an array of strings. As the text is frequently a comma-separated list, each list element should be trivial.",
+						"type": "array",
+						"items": {
+							"$schema": "http://json-schema.org/draft-07/schema",
+							"$id": "pf2ools-schema/content/common/entryString.json",
+							"title": "Entry String",
+							"description": "Pf2ools' simplest type of entry: a string. It displays as a single paragraph of text with in-line formatting determined by use of `@tag`s.",
+							"type": "string",
+							"minLength": 1
+						},
+						"minItems": 1,
+						"uniqueItems": true
+					},
+					"favoredWeapon": {
+						"description": "An object representing the \"Favored Weapon\" header of the statblock.",
+						"type": "object",
+						"properties": {
+							"weapons": {
+								"description": "A list of weapons the deity favours.",
+								"type": "array",
+								"items": {
+									"$schema": "http://json-schema.org/draft-07/schema",
+									"$id": "pf2ools-schema/content/common/directReference.json",
+									"title": "Statblock Reference",
+									"description": "A direct reference to another statblock. The `type` of the content is typically inferred from the context in which it is invoked (e.g. a reference in a deity's \"Cleric Spells\" entry is a spell).",
+									"type": "object",
+									"properties": {
+										"name": {
+											"type": "string",
+											"minLength": 1
+										},
+										"specifier": {
+											"type": "string",
+											"minLength": 1
+										},
+										"sourceID": {
+											"type": "string",
+											"minLength": 2,
+											"pattern": "^[A-Za-z0-9][A-Za-z0-9-]*[A-Za-z0-9]$",
+											"$comment": "Format derives from the following logic: 1) the ID should be URI-safe to ensure, well, maximum safety; 2) the ID should not include \".\" because that looks confusing in a URI; 3) the ID should not include \"_\" because that is reserved for use by the Pf2ools' website; 4) \"~\" and initial/terminal \"-\" is confusing and looks ugly. The minimum length is just to force a modicum of variety and meaningfulness.",
+											"not": {
+												"pattern": "^(COM[0-9]?|PRN|AUX|NUL|LPT[0-9])$",
+												"$comment": "These are reserved filenames in Windows. At some point someone will save a source file and/or its content as \"<id>.json\" and won't realise the hell this causes for Windows users. So rip the 'Casmaron Orienteering Manual' or whatever I guess ¯\\_(ツ)_/¯"
+											}
+										}
+									},
+									"required": [
+										"name",
+										"sourceID"
+									],
+									"additionalProperties": false
+								},
+								"minItems": 1,
+								"uniqueItems": true
+							},
+							"unarmedAttacks": {
+								"description": "A list of unarmed attacks the deity favours as if they were weapons.",
+								"type": "array",
+								"items": {
+									"type": "string",
+									"minLength": 1,
+									"examples": [
+										"claws",
+										"jaws"
+									]
+								},
+								"minItems": 1,
+								"uniqueItems": true
+							},
+							"entry": {
+								"$schema": "http://json-schema.org/draft-07/schema",
+								"$id": "pf2ools-schema/content/common/entryString.json",
+								"title": "Entry String",
+								"description": "Pf2ools' simplest type of entry: a string. It displays as a single paragraph of text with in-line formatting determined by use of `@tag`s.",
+								"type": "string",
+								"minLength": 1
+							}
+						},
+						"minProperties": 1,
+						"additionalProperties": false
+					}
+				},
+				"additionalProperties": false
+			},
+			"reference": {
+				"$schema": "http://json-schema.org/draft-07/schema",
+				"$id": "pf2ools-schema/content/common/reference.json",
+				"title": "Reference",
+				"description": "An explicit reference to some other content, possibly with modifications applied on top. The referenced content's type is always assumed to be the same as the referring content.",
+				"type": "object",
+				"properties": {
+					"type": {
+						"enum": [
+							"reprint",
+							"variant",
+							"replacement",
+							"extension"
+						],
+						"description": "`reprint`: The statblock is (near) identical to another one, and is intended to be as such.\n`variant`: The statblock is dependent on but distinct to the target (e.g. unique NPCs based on generic monsters).\n`replacement`: The statblock replaces the target entirely everywhere.\n`extension`: The statblock adds additional content to the target but doesn't supersede it (e.g. a new option added to a spell)."
+					},
+					"target": {
+						"type": "object",
+						"properties": {
+							"name": {
+								"type": "string",
+								"minLength": 1
+							},
+							"specifier": {
+								"type": "string",
+								"minLength": 1
+							},
+							"sourceID": {
+								"type": "string",
+								"minLength": 2,
+								"pattern": "^[A-Za-z0-9][A-Za-z0-9-]*[A-Za-z0-9]$",
+								"$comment": "Format derives from the following logic: 1) the ID should be URI-safe to ensure, well, maximum safety; 2) the ID should not include \".\" because that looks confusing in a URI; 3) the ID should not include \"_\" because that is reserved for use by the Pf2ools' website; 4) \"~\" and initial/terminal \"-\" is confusing and looks ugly. The minimum length is just to force a modicum of variety and meaningfulness.",
+								"not": {
+									"pattern": "^(COM[0-9]?|PRN|AUX|NUL|LPT[0-9])$",
+									"$comment": "These are reserved filenames in Windows. At some point someone will save a source file and/or its content as \"<id>.json\" and won't realise the hell this causes for Windows users. So rip the 'Casmaron Orienteering Manual' or whatever I guess ¯\\_(ツ)_/¯"
+								}
+							}
+						},
+						"description": "The content being referenced.",
+						"required": [
+							"name",
+							"source"
+						],
+						"additionalProperties": false
+					},
+					"modifications": {
+						"type": "array",
+						"description": "An array of changes which, when applied consecutively, transforms the target content into the referring content.",
+						"items": {
+							"type": "object",
+							"properties": {
+								"type": {
+									"type": "string",
+									"description": "The type of modification being applied.",
+									"minLength": 1,
+									"$comment": "Will become `enum` later"
+								},
+								"target": {
+									"type": "object",
+									"properties": {
+										"property": {
+											"type": "string",
+											"description": "A dot-separated hierarchy of properties leading to the target from the top-level `data` (e.g. \"castingTime.unit\").",
+											"pattern": "^\\w+(\\.\\w+)+&"
+										},
+										"name": {
+											"type": "string",
+											"description": "The `name` of the target object, if it is found in an array.",
+											"minLength": 1
+										}
+									},
+									"required": [
+										"property"
+									],
+									"additionalProperties": false
+								},
+								"value": {
+									"not": {
+										"type": "null"
+									},
+									"description": "The modification value."
+								}
+							},
+							"required": [
+								"type",
+								"target"
+							],
+							"additionalProperties": false
+						},
+						"minItems": 1,
+						"uniqueItems": true
+					}
+				},
+				"required": [
+					"type",
+					"target"
+				],
+				"additionalProperties": false
+			},
+			"tags": {
+				"type": "object",
+				"description": "An object describing the content for filtering, searching, and sorting."
+			}
+		},
+		"required": [
+			"type",
+			"name",
+			"source",
+			"data"
+		],
+		"additionalProperties": false
+	},
+	{
+		"$schema": "http://json-schema.org/draft-07/schema",
+		"$id": "pf2ools-schema/content/divineIntercession.json",
+		"title": "Divine Intercession",
+		"description": "Pf2ools' divine intercession object.",
+		"$comment": "This file defines the general form of 'content' files (i.e. anything that can be directly displayed in a statblock).",
+		"type": "object",
+		"properties": {
+			"type": {
+				"const": "divineIntercession"
+			},
+			"name": {
+				"$schema": "http://json-schema.org/draft-07/schema",
+				"$id": "pf2ools-schema/content/common/name.json",
+				"title": "Name",
+				"description": "A combined object to describe an entity's name.",
+				"type": "object",
+				"properties": {
+					"primary": {
+						"type": "string",
+						"minLength": 1,
+						"not": {
+							"pattern": "@",
+							"$comment": "To weed out `@tag`s."
+						},
+						"description": "The full name of the statblock or header, exactly as it appears in the source. The only exception is when the source uses stylistic all-caps or no-caps, in which case you should use your judgement and possibly convert it to title-case."
+					},
+					"aliases": {
+						"type": "array",
+						"items": {
+							"type": "string",
+							"minLength": 1,
+							"not": {
+								"pattern": "@",
+								"$comment": "To weed out `@tag`s."
+							},
+							"description": "An alternative name for the entity."
+						},
+						"minItems": 1,
+						"uniqueItems": true,
+						"description": "An array of alternative names of an entity. Some entities have multiple common names, whether defined in the statblock itself or the surrounding text. Alternative names may also be provided to ease searching, sorting, and filtering with common mistakes (e.g. calling the Aid action \"Help\")."
+					},
+					"specifier": {
+						"type": "string",
+						"minLength": 1,
+						"not": {
+							"pattern": "@",
+							"$comment": "To weed out `@tag`s."
+						},
+						"description": "A string to meaningfully disambiguate identically named entities (by necessity if they're from the same source). This often occurs, for example, with feats common to multiple classes (e.g. \"Attack of Opportunity\"). It can also occur when one entity in the source effectively defines multiple entities in data, each of which need to be disambiguated."
+					}
+				},
+				"required": [
+					"primary"
+				],
+				"additionalProperties": false
+			},
+			"source": {
+				"$schema": "http://json-schema.org/draft-07/schema",
+				"$id": "pf2ools-schema/content/common/contentSource.json",
+				"title": "Content Source",
+				"description": "Source object for a content entity.",
+				"type": "object",
+				"properties": {
+					"ID": {
+						"type": "string",
+						"minLength": 2,
+						"pattern": "^[A-Za-z0-9][A-Za-z0-9-]*[A-Za-z0-9]$",
+						"$comment": "Format derives from the following logic: 1) the ID should be URI-safe to ensure, well, maximum safety; 2) the ID should not include \".\" because that looks confusing in a URI; 3) the ID should not include \"_\" because that is reserved for use by the Pf2ools' website; 4) \"~\" and initial/terminal \"-\" is confusing and looks ugly. The minimum length is just to force a modicum of variety and meaningfulness.",
+						"not": {
+							"pattern": "^(COM[0-9]?|PRN|AUX|NUL|LPT[0-9])$",
+							"$comment": "These are reserved filenames in Windows. At some point someone will save a source file and/or its content as \"<id>.json\" and won't realise the hell this causes for Windows users. So rip the 'Casmaron Orienteering Manual' or whatever I guess ¯\\_(ツ)_/¯"
+						}
+					},
+					"page": {
+						"type": "integer",
+						"minimum": 1,
+						"description": "The page number (if any) on which the content begins."
+					}
+				},
+				"required": [
+					"ID"
+				]
+			},
+			"data": {
+				"type": "object",
+				"properties": {
+					"preamble": {
+						"$schema": "http://json-schema.org/draft-07/schema",
+						"$id": "pf2ools-schema/content/common/entries.json",
+						"title": "Entry",
+						"description": "Pf2ools' entry value (string or object).",
+						"$comment": "TODO",
+						"type": "array",
+						"items": {
+							"anyOf": [
+								{
+									"$schema": "http://json-schema.org/draft-07/schema",
+									"$id": "pf2ools-schema/content/common/entryString.json",
+									"title": "Entry String",
+									"description": "Pf2ools' simplest type of entry: a string. It displays as a single paragraph of text with in-line formatting determined by use of `@tag`s.",
+									"type": "string",
+									"minLength": 1
+								},
+								{
+									"type": "object",
+									"properties": {
+										"type": {
+											"type": "string",
+											"minLength": 1
+										}
+									},
+									"required": [
+										"type"
+									],
+									"description": "A paragraph with a header or some particular formatting.",
+									"$comment": "TODO"
+								}
+							]
+						},
+						"minItems": 1
+					},
+					"Minor Boon": {
+						"$schema": "http://json-schema.org/draft-07/schema",
+						"$id": "pf2ools-schema/content/common/entries.json",
+						"title": "Entry",
+						"description": "Pf2ools' entry value (string or object).",
+						"$comment": "TODO",
+						"type": "array",
+						"items": {
+							"anyOf": [
+								{
+									"$schema": "http://json-schema.org/draft-07/schema",
+									"$id": "pf2ools-schema/content/common/entryString.json",
+									"title": "Entry String",
+									"description": "Pf2ools' simplest type of entry: a string. It displays as a single paragraph of text with in-line formatting determined by use of `@tag`s.",
+									"type": "string",
+									"minLength": 1
+								},
+								{
+									"type": "object",
+									"properties": {
+										"type": {
+											"type": "string",
+											"minLength": 1
+										}
+									},
+									"required": [
+										"type"
+									],
+									"description": "A paragraph with a header or some particular formatting.",
+									"$comment": "TODO"
+								}
+							]
+						},
+						"minItems": 1
+					},
+					"Moderate Boon": {
+						"$schema": "http://json-schema.org/draft-07/schema",
+						"$id": "pf2ools-schema/content/common/entries.json",
+						"title": "Entry",
+						"description": "Pf2ools' entry value (string or object).",
+						"$comment": "TODO",
+						"type": "array",
+						"items": {
+							"anyOf": [
+								{
+									"$schema": "http://json-schema.org/draft-07/schema",
+									"$id": "pf2ools-schema/content/common/entryString.json",
+									"title": "Entry String",
+									"description": "Pf2ools' simplest type of entry: a string. It displays as a single paragraph of text with in-line formatting determined by use of `@tag`s.",
+									"type": "string",
+									"minLength": 1
+								},
+								{
+									"type": "object",
+									"properties": {
+										"type": {
+											"type": "string",
+											"minLength": 1
+										}
+									},
+									"required": [
+										"type"
+									],
+									"description": "A paragraph with a header or some particular formatting.",
+									"$comment": "TODO"
+								}
+							]
+						},
+						"minItems": 1
+					},
+					"Major Boon": {
+						"$schema": "http://json-schema.org/draft-07/schema",
+						"$id": "pf2ools-schema/content/common/entries.json",
+						"title": "Entry",
+						"description": "Pf2ools' entry value (string or object).",
+						"$comment": "TODO",
+						"type": "array",
+						"items": {
+							"anyOf": [
+								{
+									"$schema": "http://json-schema.org/draft-07/schema",
+									"$id": "pf2ools-schema/content/common/entryString.json",
+									"title": "Entry String",
+									"description": "Pf2ools' simplest type of entry: a string. It displays as a single paragraph of text with in-line formatting determined by use of `@tag`s.",
+									"type": "string",
+									"minLength": 1
+								},
+								{
+									"type": "object",
+									"properties": {
+										"type": {
+											"type": "string",
+											"minLength": 1
+										}
+									},
+									"required": [
+										"type"
+									],
+									"description": "A paragraph with a header or some particular formatting.",
+									"$comment": "TODO"
+								}
+							]
+						},
+						"minItems": 1
+					},
+					"Minor Curse": {
+						"$schema": "http://json-schema.org/draft-07/schema",
+						"$id": "pf2ools-schema/content/common/entries.json",
+						"title": "Entry",
+						"description": "Pf2ools' entry value (string or object).",
+						"$comment": "TODO",
+						"type": "array",
+						"items": {
+							"anyOf": [
+								{
+									"$schema": "http://json-schema.org/draft-07/schema",
+									"$id": "pf2ools-schema/content/common/entryString.json",
+									"title": "Entry String",
+									"description": "Pf2ools' simplest type of entry: a string. It displays as a single paragraph of text with in-line formatting determined by use of `@tag`s.",
+									"type": "string",
+									"minLength": 1
+								},
+								{
+									"type": "object",
+									"properties": {
+										"type": {
+											"type": "string",
+											"minLength": 1
+										}
+									},
+									"required": [
+										"type"
+									],
+									"description": "A paragraph with a header or some particular formatting.",
+									"$comment": "TODO"
+								}
+							]
+						},
+						"minItems": 1
+					},
+					"Moderate Curse": {
+						"$schema": "http://json-schema.org/draft-07/schema",
+						"$id": "pf2ools-schema/content/common/entries.json",
+						"title": "Entry",
+						"description": "Pf2ools' entry value (string or object).",
+						"$comment": "TODO",
+						"type": "array",
+						"items": {
+							"anyOf": [
+								{
+									"$schema": "http://json-schema.org/draft-07/schema",
+									"$id": "pf2ools-schema/content/common/entryString.json",
+									"title": "Entry String",
+									"description": "Pf2ools' simplest type of entry: a string. It displays as a single paragraph of text with in-line formatting determined by use of `@tag`s.",
+									"type": "string",
+									"minLength": 1
+								},
+								{
+									"type": "object",
+									"properties": {
+										"type": {
+											"type": "string",
+											"minLength": 1
+										}
+									},
+									"required": [
+										"type"
+									],
+									"description": "A paragraph with a header or some particular formatting.",
+									"$comment": "TODO"
+								}
+							]
+						},
+						"minItems": 1
+					},
+					"Major Curse": {
+						"$schema": "http://json-schema.org/draft-07/schema",
+						"$id": "pf2ools-schema/content/common/entries.json",
+						"title": "Entry",
+						"description": "Pf2ools' entry value (string or object).",
+						"$comment": "TODO",
+						"type": "array",
+						"items": {
+							"anyOf": [
+								{
+									"$schema": "http://json-schema.org/draft-07/schema",
+									"$id": "pf2ools-schema/content/common/entryString.json",
+									"title": "Entry String",
+									"description": "Pf2ools' simplest type of entry: a string. It displays as a single paragraph of text with in-line formatting determined by use of `@tag`s.",
+									"type": "string",
+									"minLength": 1
+								},
+								{
+									"type": "object",
+									"properties": {
+										"type": {
+											"type": "string",
+											"minLength": 1
+										}
+									},
+									"required": [
+										"type"
+									],
+									"description": "A paragraph with a header or some particular formatting.",
+									"$comment": "TODO"
+								}
+							]
+						},
+						"minItems": 1
+					}
+				},
+				"additionalProperties": false,
+				"minProperties": 1
+			},
+			"reference": {
+				"$schema": "http://json-schema.org/draft-07/schema",
+				"$id": "pf2ools-schema/content/common/reference.json",
+				"title": "Reference",
+				"description": "An explicit reference to some other content, possibly with modifications applied on top. The referenced content's type is always assumed to be the same as the referring content.",
+				"type": "object",
+				"properties": {
+					"type": {
+						"enum": [
+							"reprint",
+							"variant",
+							"replacement",
+							"extension"
+						],
+						"description": "`reprint`: The statblock is (near) identical to another one, and is intended to be as such.\n`variant`: The statblock is dependent on but distinct to the target (e.g. unique NPCs based on generic monsters).\n`replacement`: The statblock replaces the target entirely everywhere.\n`extension`: The statblock adds additional content to the target but doesn't supersede it (e.g. a new option added to a spell)."
+					},
+					"target": {
+						"type": "object",
+						"properties": {
+							"name": {
+								"type": "string",
+								"minLength": 1
+							},
+							"specifier": {
+								"type": "string",
+								"minLength": 1
+							},
+							"sourceID": {
+								"type": "string",
+								"minLength": 2,
+								"pattern": "^[A-Za-z0-9][A-Za-z0-9-]*[A-Za-z0-9]$",
+								"$comment": "Format derives from the following logic: 1) the ID should be URI-safe to ensure, well, maximum safety; 2) the ID should not include \".\" because that looks confusing in a URI; 3) the ID should not include \"_\" because that is reserved for use by the Pf2ools' website; 4) \"~\" and initial/terminal \"-\" is confusing and looks ugly. The minimum length is just to force a modicum of variety and meaningfulness.",
+								"not": {
+									"pattern": "^(COM[0-9]?|PRN|AUX|NUL|LPT[0-9])$",
+									"$comment": "These are reserved filenames in Windows. At some point someone will save a source file and/or its content as \"<id>.json\" and won't realise the hell this causes for Windows users. So rip the 'Casmaron Orienteering Manual' or whatever I guess ¯\\_(ツ)_/¯"
+								}
+							}
+						},
+						"description": "The content being referenced.",
+						"required": [
+							"name",
+							"source"
+						],
+						"additionalProperties": false
+					},
+					"modifications": {
+						"type": "array",
+						"description": "An array of changes which, when applied consecutively, transforms the target content into the referring content.",
+						"items": {
+							"type": "object",
+							"properties": {
+								"type": {
+									"type": "string",
+									"description": "The type of modification being applied.",
+									"minLength": 1,
+									"$comment": "Will become `enum` later"
+								},
+								"target": {
+									"type": "object",
+									"properties": {
+										"property": {
+											"type": "string",
+											"description": "A dot-separated hierarchy of properties leading to the target from the top-level `data` (e.g. \"castingTime.unit\").",
+											"pattern": "^\\w+(\\.\\w+)+&"
+										},
+										"name": {
+											"type": "string",
+											"description": "The `name` of the target object, if it is found in an array.",
+											"minLength": 1
+										}
+									},
+									"required": [
+										"property"
+									],
+									"additionalProperties": false
+								},
+								"value": {
+									"not": {
+										"type": "null"
+									},
+									"description": "The modification value."
+								}
+							},
+							"required": [
+								"type",
+								"target"
+							],
+							"additionalProperties": false
+						},
+						"minItems": 1,
+						"uniqueItems": true
+					}
+				},
+				"required": [
+					"type",
+					"target"
+				],
+				"additionalProperties": false
+			},
+			"tags": {
+				"type": "object",
+				"description": "An object describing the content for filtering, searching, and sorting."
+			}
+		},
+		"required": [
+			"type",
+			"name",
+			"source",
+			"data"
+		],
+		"additionalProperties": false
+	},
+	{
+		"$schema": "http://json-schema.org/draft-07/schema",
+		"$id": "pf2ools-schema/content/domain.json",
+		"title": "Domain",
+		"description": "Pf2ools' (deity) domain object.",
+		"$comment": "This file defines the general form of 'content' files (i.e. anything that can be directly displayed in a statblock).",
+		"type": "object",
+		"properties": {
+			"type": {
+				"const": "domain"
+			},
+			"name": {
+				"$schema": "http://json-schema.org/draft-07/schema",
+				"$id": "pf2ools-schema/content/common/name.json",
+				"title": "Name",
+				"description": "A combined object to describe an entity's name.",
+				"type": "object",
+				"properties": {
+					"primary": {
+						"type": "string",
+						"minLength": 1,
+						"not": {
+							"pattern": "@",
+							"$comment": "To weed out `@tag`s."
+						},
+						"description": "The full name of the statblock or header, exactly as it appears in the source. The only exception is when the source uses stylistic all-caps or no-caps, in which case you should use your judgement and possibly convert it to title-case."
+					},
+					"aliases": {
+						"type": "array",
+						"items": {
+							"type": "string",
+							"minLength": 1,
+							"not": {
+								"pattern": "@",
+								"$comment": "To weed out `@tag`s."
+							},
+							"description": "An alternative name for the entity."
+						},
+						"minItems": 1,
+						"uniqueItems": true,
+						"description": "An array of alternative names of an entity. Some entities have multiple common names, whether defined in the statblock itself or the surrounding text. Alternative names may also be provided to ease searching, sorting, and filtering with common mistakes (e.g. calling the Aid action \"Help\")."
+					},
+					"specifier": {
+						"type": "string",
+						"minLength": 1,
+						"not": {
+							"pattern": "@",
+							"$comment": "To weed out `@tag`s."
+						},
+						"description": "A string to meaningfully disambiguate identically named entities (by necessity if they're from the same source). This often occurs, for example, with feats common to multiple classes (e.g. \"Attack of Opportunity\"). It can also occur when one entity in the source effectively defines multiple entities in data, each of which need to be disambiguated."
+					}
+				},
+				"required": [
+					"primary"
+				],
+				"additionalProperties": false
+			},
+			"source": {
+				"$schema": "http://json-schema.org/draft-07/schema",
+				"$id": "pf2ools-schema/content/common/contentSource.json",
+				"title": "Content Source",
+				"description": "Source object for a content entity.",
+				"type": "object",
+				"properties": {
+					"ID": {
+						"type": "string",
+						"minLength": 2,
+						"pattern": "^[A-Za-z0-9][A-Za-z0-9-]*[A-Za-z0-9]$",
+						"$comment": "Format derives from the following logic: 1) the ID should be URI-safe to ensure, well, maximum safety; 2) the ID should not include \".\" because that looks confusing in a URI; 3) the ID should not include \"_\" because that is reserved for use by the Pf2ools' website; 4) \"~\" and initial/terminal \"-\" is confusing and looks ugly. The minimum length is just to force a modicum of variety and meaningfulness.",
+						"not": {
+							"pattern": "^(COM[0-9]?|PRN|AUX|NUL|LPT[0-9])$",
+							"$comment": "These are reserved filenames in Windows. At some point someone will save a source file and/or its content as \"<id>.json\" and won't realise the hell this causes for Windows users. So rip the 'Casmaron Orienteering Manual' or whatever I guess ¯\\_(ツ)_/¯"
+						}
+					},
+					"page": {
+						"type": "integer",
+						"minimum": 1,
+						"description": "The page number (if any) on which the content begins."
+					}
+				},
+				"required": [
+					"ID"
+				]
+			},
+			"data": {
+				"type": "object",
+				"properties": {
+					"preamble": {
+						"$schema": "http://json-schema.org/draft-07/schema",
+						"$id": "pf2ools-schema/content/common/entryString.json",
+						"title": "Entry String",
+						"description": "Pf2ools' simplest type of entry: a string. It displays as a single paragraph of text with in-line formatting determined by use of `@tag`s.",
+						"type": "string",
+						"minLength": 1
+					},
+					"domainSpell": {
+						"$schema": "http://json-schema.org/draft-07/schema",
+						"$id": "pf2ools-schema/content/common/directReference.json",
+						"title": "Statblock Reference",
+						"description": "A direct reference to another statblock. The `type` of the content is typically inferred from the context in which it is invoked (e.g. a reference in a deity's \"Cleric Spells\" entry is a spell).",
+						"type": "object",
+						"properties": {
+							"name": {
+								"type": "string",
+								"minLength": 1
+							},
+							"specifier": {
+								"type": "string",
+								"minLength": 1
+							},
+							"sourceID": {
+								"type": "string",
+								"minLength": 2,
+								"pattern": "^[A-Za-z0-9][A-Za-z0-9-]*[A-Za-z0-9]$",
+								"$comment": "Format derives from the following logic: 1) the ID should be URI-safe to ensure, well, maximum safety; 2) the ID should not include \".\" because that looks confusing in a URI; 3) the ID should not include \"_\" because that is reserved for use by the Pf2ools' website; 4) \"~\" and initial/terminal \"-\" is confusing and looks ugly. The minimum length is just to force a modicum of variety and meaningfulness.",
+								"not": {
+									"pattern": "^(COM[0-9]?|PRN|AUX|NUL|LPT[0-9])$",
+									"$comment": "These are reserved filenames in Windows. At some point someone will save a source file and/or its content as \"<id>.json\" and won't realise the hell this causes for Windows users. So rip the 'Casmaron Orienteering Manual' or whatever I guess ¯\\_(ツ)_/¯"
+								}
+							}
+						},
+						"required": [
+							"name",
+							"sourceID"
+						],
+						"additionalProperties": false
+					},
+					"advancedDomainSpell": {
+						"$schema": "http://json-schema.org/draft-07/schema",
+						"$id": "pf2ools-schema/content/common/directReference.json",
+						"title": "Statblock Reference",
+						"description": "A direct reference to another statblock. The `type` of the content is typically inferred from the context in which it is invoked (e.g. a reference in a deity's \"Cleric Spells\" entry is a spell).",
+						"type": "object",
+						"properties": {
+							"name": {
+								"type": "string",
+								"minLength": 1
+							},
+							"specifier": {
+								"type": "string",
+								"minLength": 1
+							},
+							"sourceID": {
+								"type": "string",
+								"minLength": 2,
+								"pattern": "^[A-Za-z0-9][A-Za-z0-9-]*[A-Za-z0-9]$",
+								"$comment": "Format derives from the following logic: 1) the ID should be URI-safe to ensure, well, maximum safety; 2) the ID should not include \".\" because that looks confusing in a URI; 3) the ID should not include \"_\" because that is reserved for use by the Pf2ools' website; 4) \"~\" and initial/terminal \"-\" is confusing and looks ugly. The minimum length is just to force a modicum of variety and meaningfulness.",
+								"not": {
+									"pattern": "^(COM[0-9]?|PRN|AUX|NUL|LPT[0-9])$",
+									"$comment": "These are reserved filenames in Windows. At some point someone will save a source file and/or its content as \"<id>.json\" and won't realise the hell this causes for Windows users. So rip the 'Casmaron Orienteering Manual' or whatever I guess ¯\\_(ツ)_/¯"
+								}
+							}
+						},
+						"required": [
+							"name",
+							"sourceID"
+						],
+						"additionalProperties": false
+					},
+					"apocryphalSpell": {
+						"$schema": "http://json-schema.org/draft-07/schema",
+						"$id": "pf2ools-schema/content/common/directReference.json",
+						"title": "Statblock Reference",
+						"description": "A direct reference to another statblock. The `type` of the content is typically inferred from the context in which it is invoked (e.g. a reference in a deity's \"Cleric Spells\" entry is a spell).",
+						"type": "object",
+						"properties": {
+							"name": {
+								"type": "string",
+								"minLength": 1
+							},
+							"specifier": {
+								"type": "string",
+								"minLength": 1
+							},
+							"sourceID": {
+								"type": "string",
+								"minLength": 2,
+								"pattern": "^[A-Za-z0-9][A-Za-z0-9-]*[A-Za-z0-9]$",
+								"$comment": "Format derives from the following logic: 1) the ID should be URI-safe to ensure, well, maximum safety; 2) the ID should not include \".\" because that looks confusing in a URI; 3) the ID should not include \"_\" because that is reserved for use by the Pf2ools' website; 4) \"~\" and initial/terminal \"-\" is confusing and looks ugly. The minimum length is just to force a modicum of variety and meaningfulness.",
+								"not": {
+									"pattern": "^(COM[0-9]?|PRN|AUX|NUL|LPT[0-9])$",
+									"$comment": "These are reserved filenames in Windows. At some point someone will save a source file and/or its content as \"<id>.json\" and won't realise the hell this causes for Windows users. So rip the 'Casmaron Orienteering Manual' or whatever I guess ¯\\_(ツ)_/¯"
+								}
+							}
+						},
+						"required": [
+							"name",
+							"sourceID"
+						],
+						"additionalProperties": false
+					},
+					"advancedApocryphalSpell": {
+						"$schema": "http://json-schema.org/draft-07/schema",
+						"$id": "pf2ools-schema/content/common/directReference.json",
+						"title": "Statblock Reference",
+						"description": "A direct reference to another statblock. The `type` of the content is typically inferred from the context in which it is invoked (e.g. a reference in a deity's \"Cleric Spells\" entry is a spell).",
+						"type": "object",
+						"properties": {
+							"name": {
+								"type": "string",
+								"minLength": 1
+							},
+							"specifier": {
+								"type": "string",
+								"minLength": 1
+							},
+							"sourceID": {
+								"type": "string",
+								"minLength": 2,
+								"pattern": "^[A-Za-z0-9][A-Za-z0-9-]*[A-Za-z0-9]$",
+								"$comment": "Format derives from the following logic: 1) the ID should be URI-safe to ensure, well, maximum safety; 2) the ID should not include \".\" because that looks confusing in a URI; 3) the ID should not include \"_\" because that is reserved for use by the Pf2ools' website; 4) \"~\" and initial/terminal \"-\" is confusing and looks ugly. The minimum length is just to force a modicum of variety and meaningfulness.",
+								"not": {
+									"pattern": "^(COM[0-9]?|PRN|AUX|NUL|LPT[0-9])$",
+									"$comment": "These are reserved filenames in Windows. At some point someone will save a source file and/or its content as \"<id>.json\" and won't realise the hell this causes for Windows users. So rip the 'Casmaron Orienteering Manual' or whatever I guess ¯\\_(ツ)_/¯"
+								}
+							}
+						},
+						"required": [
+							"name",
+							"sourceID"
+						],
+						"additionalProperties": false
+					}
+				},
+				"additionalProperties": false,
+				"required": [
+					"domainSpell",
+					"advancedDomainSpell"
+				]
+			},
+			"reference": {
+				"$schema": "http://json-schema.org/draft-07/schema",
+				"$id": "pf2ools-schema/content/common/reference.json",
+				"title": "Reference",
+				"description": "An explicit reference to some other content, possibly with modifications applied on top. The referenced content's type is always assumed to be the same as the referring content.",
+				"type": "object",
+				"properties": {
+					"type": {
+						"enum": [
+							"reprint",
+							"variant",
+							"replacement",
+							"extension"
+						],
+						"description": "`reprint`: The statblock is (near) identical to another one, and is intended to be as such.\n`variant`: The statblock is dependent on but distinct to the target (e.g. unique NPCs based on generic monsters).\n`replacement`: The statblock replaces the target entirely everywhere.\n`extension`: The statblock adds additional content to the target but doesn't supersede it (e.g. a new option added to a spell)."
+					},
+					"target": {
+						"type": "object",
+						"properties": {
+							"name": {
+								"type": "string",
+								"minLength": 1
+							},
+							"specifier": {
+								"type": "string",
+								"minLength": 1
+							},
+							"sourceID": {
+								"type": "string",
+								"minLength": 2,
+								"pattern": "^[A-Za-z0-9][A-Za-z0-9-]*[A-Za-z0-9]$",
+								"$comment": "Format derives from the following logic: 1) the ID should be URI-safe to ensure, well, maximum safety; 2) the ID should not include \".\" because that looks confusing in a URI; 3) the ID should not include \"_\" because that is reserved for use by the Pf2ools' website; 4) \"~\" and initial/terminal \"-\" is confusing and looks ugly. The minimum length is just to force a modicum of variety and meaningfulness.",
+								"not": {
+									"pattern": "^(COM[0-9]?|PRN|AUX|NUL|LPT[0-9])$",
+									"$comment": "These are reserved filenames in Windows. At some point someone will save a source file and/or its content as \"<id>.json\" and won't realise the hell this causes for Windows users. So rip the 'Casmaron Orienteering Manual' or whatever I guess ¯\\_(ツ)_/¯"
+								}
+							}
+						},
+						"description": "The content being referenced.",
+						"required": [
+							"name",
+							"source"
+						],
+						"additionalProperties": false
+					},
+					"modifications": {
+						"type": "array",
+						"description": "An array of changes which, when applied consecutively, transforms the target content into the referring content.",
+						"items": {
+							"type": "object",
+							"properties": {
+								"type": {
+									"type": "string",
+									"description": "The type of modification being applied.",
+									"minLength": 1,
+									"$comment": "Will become `enum` later"
+								},
+								"target": {
+									"type": "object",
+									"properties": {
+										"property": {
+											"type": "string",
+											"description": "A dot-separated hierarchy of properties leading to the target from the top-level `data` (e.g. \"castingTime.unit\").",
+											"pattern": "^\\w+(\\.\\w+)+&"
+										},
+										"name": {
+											"type": "string",
+											"description": "The `name` of the target object, if it is found in an array.",
+											"minLength": 1
+										}
+									},
+									"required": [
+										"property"
+									],
+									"additionalProperties": false
+								},
+								"value": {
+									"not": {
+										"type": "null"
+									},
+									"description": "The modification value."
+								}
+							},
+							"required": [
+								"type",
+								"target"
+							],
+							"additionalProperties": false
+						},
+						"minItems": 1,
+						"uniqueItems": true
+					}
+				},
+				"required": [
+					"type",
+					"target"
+				],
+				"additionalProperties": false
+			},
+			"tags": {
+				"type": "object",
+				"description": "An object describing the content for filtering, searching, and sorting."
+			}
+		},
+		"required": [
+			"type",
+			"name",
+			"source",
+			"data"
+		],
+		"additionalProperties": false
+	},
+	{
+		"$schema": "http://json-schema.org/draft-07/schema",
+		"$id": "pf2ools-schema/content/event.json",
+		"title": "Event",
+		"description": "Pf2ools' event object.",
+		"$comment": "This file defines the general form of 'content' files (i.e. anything that can be directly displayed in a statblock).",
+		"type": "object",
+		"properties": {
+			"type": {
+				"const": "event"
+			},
+			"name": {
+				"$schema": "http://json-schema.org/draft-07/schema",
+				"$id": "pf2ools-schema/content/common/name.json",
+				"title": "Name",
+				"description": "A combined object to describe an entity's name.",
+				"type": "object",
+				"properties": {
+					"primary": {
+						"type": "string",
+						"minLength": 1,
+						"not": {
+							"pattern": "@",
+							"$comment": "To weed out `@tag`s."
+						},
+						"description": "The full name of the statblock or header, exactly as it appears in the source. The only exception is when the source uses stylistic all-caps or no-caps, in which case you should use your judgement and possibly convert it to title-case."
+					},
+					"aliases": {
+						"type": "array",
+						"items": {
+							"type": "string",
+							"minLength": 1,
+							"not": {
+								"pattern": "@",
+								"$comment": "To weed out `@tag`s."
+							},
+							"description": "An alternative name for the entity."
+						},
+						"minItems": 1,
+						"uniqueItems": true,
+						"description": "An array of alternative names of an entity. Some entities have multiple common names, whether defined in the statblock itself or the surrounding text. Alternative names may also be provided to ease searching, sorting, and filtering with common mistakes (e.g. calling the Aid action \"Help\")."
+					},
+					"specifier": {
+						"type": "string",
+						"minLength": 1,
+						"not": {
+							"pattern": "@",
+							"$comment": "To weed out `@tag`s."
+						},
+						"description": "A string to meaningfully disambiguate identically named entities (by necessity if they're from the same source). This often occurs, for example, with feats common to multiple classes (e.g. \"Attack of Opportunity\"). It can also occur when one entity in the source effectively defines multiple entities in data, each of which need to be disambiguated."
+					}
+				},
+				"required": [
+					"primary"
+				],
+				"additionalProperties": false
+			},
+			"source": {
+				"$schema": "http://json-schema.org/draft-07/schema",
+				"$id": "pf2ools-schema/content/common/contentSource.json",
+				"title": "Content Source",
+				"description": "Source object for a content entity.",
+				"type": "object",
+				"properties": {
+					"ID": {
+						"type": "string",
+						"minLength": 2,
+						"pattern": "^[A-Za-z0-9][A-Za-z0-9-]*[A-Za-z0-9]$",
+						"$comment": "Format derives from the following logic: 1) the ID should be URI-safe to ensure, well, maximum safety; 2) the ID should not include \".\" because that looks confusing in a URI; 3) the ID should not include \"_\" because that is reserved for use by the Pf2ools' website; 4) \"~\" and initial/terminal \"-\" is confusing and looks ugly. The minimum length is just to force a modicum of variety and meaningfulness.",
+						"not": {
+							"pattern": "^(COM[0-9]?|PRN|AUX|NUL|LPT[0-9])$",
+							"$comment": "These are reserved filenames in Windows. At some point someone will save a source file and/or its content as \"<id>.json\" and won't realise the hell this causes for Windows users. So rip the 'Casmaron Orienteering Manual' or whatever I guess ¯\\_(ツ)_/¯"
+						}
+					},
+					"page": {
+						"type": "integer",
+						"minimum": 1,
+						"description": "The page number (if any) on which the content begins."
+					}
+				},
+				"required": [
+					"ID"
+				]
+			},
+			"data": {
+				"type": "object",
+				"properties": {
+					"level": {
+						"type": "integer",
+						"description": "The event's level.",
+						"minimum": -1
+					},
+					"traits": {
+						"$schema": "http://json-schema.org/draft-07/schema#",
+						"$id": "pf2ools-schema/content/common/traits.json",
+						"title": "Traits",
+						"description": "An array of objects representing a list of traits",
+						"type": "array",
+						"items": {
+							"type": "object",
+							"properties": {
+								"trait": {
+									"type": "string",
+									"minLength": 1,
+									"pattern": "^[a-z]",
+									"$comment": "Pattern enforces lowercase",
+									"description": "The bare, keyworded name of the trait (e.g. the \"versatile\" in \"versatile P\")."
+								},
+								"variables": {
+									"type": "array",
+									"description": "The variable elements of a trait in an array.",
+									"items": {
+										"type": "string",
+										"minLength": 1,
+										"description": "A trait's variable (e.g. \"B\", \"P\", and \"S\" in \"modular B, P, or S\")."
+									},
+									"minItems": 1,
+									"uniqueItems": true
+								},
+								"display": {
+									"type": "string",
+									"minLength": 1,
+									"pattern": "^[a-z]",
+									"$comment": "Pattern enforces lowercase",
+									"description": "How the trait should display, if it cannot be trivially inferred from `trait` and `variables`.",
+									"examples": [
+										"modular (P and grapple, or S and sweep)"
+									]
+								}
+							},
+							"required": [
+								"trait"
+							],
+							"additionalProperties": false,
+							"description": "A trait with both keyword and variable elements."
+						},
+						"minItems": 1,
+						"uniqueItems": true
+					},
+					"applicableSkills": {
+						"type": "array",
+						"description": "An array of objects representing the event's applicable skills.",
+						"items": {
+							"$schema": "http://json-schema.org/draft-07/schema",
+							"$id": "pf2ools-schema/content/common/skill.json",
+							"title": "Skill reference",
+							"description": "A combined object to describe a skill.",
+							"type": "object",
+							"properties": {
+								"skill": {
+									"$schema": "http://json-schema.org/draft-07/schema",
+									"$id": "pf2ools-schema/content/constants/listOfSkills.json",
+									"title": "List of skills (title case)",
+									"type": "string",
+									"enum": [
+										"Acrobatics",
+										"Arcana",
+										"Athletics",
+										"Crafting",
+										"Deception",
+										"Diplomacy",
+										"Intimidation",
+										"Lore",
+										"Medicine",
+										"Nature",
+										"Occultism",
+										"Performance",
+										"Religion",
+										"Society",
+										"Stealth",
+										"Survival",
+										"Thievery"
+									]
+								},
+								"variables": {
+									"type": "array",
+									"description": "An array of the skill's variable elements. Most often, this is a list of Lore topics.",
+									"items": {
+										"type": "string",
+										"description": "A skill's variable element (e.g. \"Accounting\" and \"Midwifery\" in \"Accounting or Midwifery Lore\").",
+										"minLength": 1,
+										"pattern": "^[A-Z]",
+										"$comment": "Pattern enforces title case"
+									},
+									"minItems": 1,
+									"uniqueItems": true
+								},
+								"display": {
+									"type": "string",
+									"minLength": 1,
+									"description": "How the skill should display, if it cannot be trivially inferred from `skill` and `variables`.",
+									"examples": [
+										"Accounting and Midwifery Lore"
+									]
+								}
+							},
+							"required": [
+								"skill"
+							],
+							"additionalProperties": false
+						},
+						"minItems": 1,
+						"uniqueItems": true
+					},
+					"entries": {
+						"$schema": "http://json-schema.org/draft-07/schema",
+						"$id": "pf2ools-schema/content/common/entries.json",
+						"title": "Entry",
+						"description": "Pf2ools' entry value (string or object).",
+						"$comment": "TODO",
+						"type": "array",
+						"items": {
+							"anyOf": [
+								{
+									"$schema": "http://json-schema.org/draft-07/schema",
+									"$id": "pf2ools-schema/content/common/entryString.json",
+									"title": "Entry String",
+									"description": "Pf2ools' simplest type of entry: a string. It displays as a single paragraph of text with in-line formatting determined by use of `@tag`s.",
+									"type": "string",
+									"minLength": 1
+								},
+								{
+									"type": "object",
+									"properties": {
+										"type": {
+											"type": "string",
+											"minLength": 1
+										}
+									},
+									"required": [
+										"type"
+									],
+									"description": "A paragraph with a header or some particular formatting.",
+									"$comment": "TODO"
+								}
+							]
+						},
+						"minItems": 1
+					}
+				},
+				"additionalProperties": false,
+				"required": [
+					"level",
+					"entries"
+				]
+			},
+			"reference": {
+				"$schema": "http://json-schema.org/draft-07/schema",
+				"$id": "pf2ools-schema/content/common/reference.json",
+				"title": "Reference",
+				"description": "An explicit reference to some other content, possibly with modifications applied on top. The referenced content's type is always assumed to be the same as the referring content.",
+				"type": "object",
+				"properties": {
+					"type": {
+						"enum": [
+							"reprint",
+							"variant",
+							"replacement",
+							"extension"
+						],
+						"description": "`reprint`: The statblock is (near) identical to another one, and is intended to be as such.\n`variant`: The statblock is dependent on but distinct to the target (e.g. unique NPCs based on generic monsters).\n`replacement`: The statblock replaces the target entirely everywhere.\n`extension`: The statblock adds additional content to the target but doesn't supersede it (e.g. a new option added to a spell)."
+					},
+					"target": {
+						"type": "object",
+						"properties": {
+							"name": {
+								"type": "string",
+								"minLength": 1
+							},
+							"specifier": {
+								"type": "string",
+								"minLength": 1
+							},
+							"sourceID": {
+								"type": "string",
+								"minLength": 2,
+								"pattern": "^[A-Za-z0-9][A-Za-z0-9-]*[A-Za-z0-9]$",
+								"$comment": "Format derives from the following logic: 1) the ID should be URI-safe to ensure, well, maximum safety; 2) the ID should not include \".\" because that looks confusing in a URI; 3) the ID should not include \"_\" because that is reserved for use by the Pf2ools' website; 4) \"~\" and initial/terminal \"-\" is confusing and looks ugly. The minimum length is just to force a modicum of variety and meaningfulness.",
+								"not": {
+									"pattern": "^(COM[0-9]?|PRN|AUX|NUL|LPT[0-9])$",
+									"$comment": "These are reserved filenames in Windows. At some point someone will save a source file and/or its content as \"<id>.json\" and won't realise the hell this causes for Windows users. So rip the 'Casmaron Orienteering Manual' or whatever I guess ¯\\_(ツ)_/¯"
+								}
+							}
+						},
+						"description": "The content being referenced.",
+						"required": [
+							"name",
+							"source"
+						],
+						"additionalProperties": false
+					},
+					"modifications": {
+						"type": "array",
+						"description": "An array of changes which, when applied consecutively, transforms the target content into the referring content.",
+						"items": {
+							"type": "object",
+							"properties": {
+								"type": {
+									"type": "string",
+									"description": "The type of modification being applied.",
+									"minLength": 1,
+									"$comment": "Will become `enum` later"
+								},
+								"target": {
+									"type": "object",
+									"properties": {
+										"property": {
+											"type": "string",
+											"description": "A dot-separated hierarchy of properties leading to the target from the top-level `data` (e.g. \"castingTime.unit\").",
+											"pattern": "^\\w+(\\.\\w+)+&"
+										},
+										"name": {
+											"type": "string",
+											"description": "The `name` of the target object, if it is found in an array.",
+											"minLength": 1
+										}
+									},
+									"required": [
+										"property"
+									],
+									"additionalProperties": false
+								},
+								"value": {
+									"not": {
+										"type": "null"
+									},
+									"description": "The modification value."
+								}
+							},
+							"required": [
+								"type",
+								"target"
+							],
+							"additionalProperties": false
+						},
+						"minItems": 1,
+						"uniqueItems": true
+					}
+				},
+				"required": [
+					"type",
+					"target"
+				],
+				"additionalProperties": false
+			},
+			"tags": {
+				"type": "object",
+				"description": "An object describing the content for filtering, searching, and sorting."
+			}
+		},
+		"required": [
+			"type",
+			"name",
+			"source",
+			"data"
+		],
+		"additionalProperties": false
+	},
+	{
+		"$schema": "http://json-schema.org/draft-07/schema",
+		"$id": "pf2ools-schema/content/relicGift.json",
+		"title": "Relic Gift",
+		"description": "Pf2ools' relic gift object.",
+		"$comment": "This file defines the general form of 'content' files (i.e. anything that can be directly displayed in a statblock).",
+		"type": "object",
+		"properties": {
+			"type": {
+				"const": "relicGift"
+			},
+			"name": {
+				"$schema": "http://json-schema.org/draft-07/schema",
+				"$id": "pf2ools-schema/content/common/name.json",
+				"title": "Name",
+				"description": "A combined object to describe an entity's name.",
+				"type": "object",
+				"properties": {
+					"primary": {
+						"type": "string",
+						"minLength": 1,
+						"not": {
+							"pattern": "@",
+							"$comment": "To weed out `@tag`s."
+						},
+						"description": "The full name of the statblock or header, exactly as it appears in the source. The only exception is when the source uses stylistic all-caps or no-caps, in which case you should use your judgement and possibly convert it to title-case."
+					},
+					"aliases": {
+						"type": "array",
+						"items": {
+							"type": "string",
+							"minLength": 1,
+							"not": {
+								"pattern": "@",
+								"$comment": "To weed out `@tag`s."
+							},
+							"description": "An alternative name for the entity."
+						},
+						"minItems": 1,
+						"uniqueItems": true,
+						"description": "An array of alternative names of an entity. Some entities have multiple common names, whether defined in the statblock itself or the surrounding text. Alternative names may also be provided to ease searching, sorting, and filtering with common mistakes (e.g. calling the Aid action \"Help\")."
+					},
+					"specifier": {
+						"type": "string",
+						"minLength": 1,
+						"not": {
+							"pattern": "@",
+							"$comment": "To weed out `@tag`s."
+						},
+						"description": "A string to meaningfully disambiguate identically named entities (by necessity if they're from the same source). This often occurs, for example, with feats common to multiple classes (e.g. \"Attack of Opportunity\"). It can also occur when one entity in the source effectively defines multiple entities in data, each of which need to be disambiguated."
+					}
+				},
+				"required": [
+					"primary"
+				],
+				"additionalProperties": false
+			},
+			"source": {
+				"$schema": "http://json-schema.org/draft-07/schema",
+				"$id": "pf2ools-schema/content/common/contentSource.json",
+				"title": "Content Source",
+				"description": "Source object for a content entity.",
+				"type": "object",
+				"properties": {
+					"ID": {
+						"type": "string",
+						"minLength": 2,
+						"pattern": "^[A-Za-z0-9][A-Za-z0-9-]*[A-Za-z0-9]$",
+						"$comment": "Format derives from the following logic: 1) the ID should be URI-safe to ensure, well, maximum safety; 2) the ID should not include \".\" because that looks confusing in a URI; 3) the ID should not include \"_\" because that is reserved for use by the Pf2ools' website; 4) \"~\" and initial/terminal \"-\" is confusing and looks ugly. The minimum length is just to force a modicum of variety and meaningfulness.",
+						"not": {
+							"pattern": "^(COM[0-9]?|PRN|AUX|NUL|LPT[0-9])$",
+							"$comment": "These are reserved filenames in Windows. At some point someone will save a source file and/or its content as \"<id>.json\" and won't realise the hell this causes for Windows users. So rip the 'Casmaron Orienteering Manual' or whatever I guess ¯\\_(ツ)_/¯"
+						}
+					},
+					"page": {
+						"type": "integer",
+						"minimum": 1,
+						"description": "The page number (if any) on which the content begins."
+					}
+				},
+				"required": [
+					"ID"
+				]
+			},
+			"data": {
+				"type": "object",
+				"properties": {
+					"tier": {
+						"type": "string",
+						"examples": [
+							"Minor",
+							"Major",
+							"Grand"
+						],
+						"minLength": 1,
+						"pattern": "^[A-Z]",
+						"$comment": "Pattern enforces title case",
+						"description": "The relic gift's tier (title case)."
+					},
+					"traits": {
+						"$schema": "http://json-schema.org/draft-07/schema#",
+						"$id": "pf2ools-schema/content/common/traits.json",
+						"title": "Traits",
+						"description": "An array of objects representing a list of traits",
+						"type": "array",
+						"items": {
+							"type": "object",
+							"properties": {
+								"trait": {
+									"type": "string",
+									"minLength": 1,
+									"pattern": "^[a-z]",
+									"$comment": "Pattern enforces lowercase",
+									"description": "The bare, keyworded name of the trait (e.g. the \"versatile\" in \"versatile P\")."
+								},
+								"variables": {
+									"type": "array",
+									"description": "The variable elements of a trait in an array.",
+									"items": {
+										"type": "string",
+										"minLength": 1,
+										"description": "A trait's variable (e.g. \"B\", \"P\", and \"S\" in \"modular B, P, or S\")."
+									},
+									"minItems": 1,
+									"uniqueItems": true
+								},
+								"display": {
+									"type": "string",
+									"minLength": 1,
+									"pattern": "^[a-z]",
+									"$comment": "Pattern enforces lowercase",
+									"description": "How the trait should display, if it cannot be trivially inferred from `trait` and `variables`.",
+									"examples": [
+										"modular (P and grapple, or S and sweep)"
+									]
+								}
+							},
+							"required": [
+								"trait"
+							],
+							"additionalProperties": false,
+							"description": "A trait with both keyword and variable elements."
+						},
+						"minItems": 1,
+						"uniqueItems": true
+					},
+					"aspects": {
+						"type": "array",
+						"items": {
+							"type": "object",
+							"properties": {
+								"name": {
+									"type": "string",
+									"minLength": 1,
+									"description": "The aspect's name."
+								},
+								"note": {
+									"type": "string",
+									"minLength": 1,
+									"description": "A bracketed note qualifying the aspect (e.g. the \"azata-themed\" in \"celestial (azata-themed)\")."
+								}
+							},
+							"required": [
+								"name"
+							],
+							"additionalProperties": false,
+							"description": "An object representing an aspect."
+						},
+						"minItems": 1,
+						"uniqueItems": true,
+						"description": "An array of objects representing the relic gift's aspects."
+					},
+					"prerequisites": {
+						"$schema": "http://json-schema.org/draft-07/schema",
+						"$id": "pf2ools-schema/content/common/entryString.json",
+						"title": "Entry String",
+						"description": "Pf2ools' simplest type of entry: a string. It displays as a single paragraph of text with in-line formatting determined by use of `@tag`s.",
+						"type": "string",
+						"minLength": 1
+					},
+					"entries": {
+						"$schema": "http://json-schema.org/draft-07/schema",
+						"$id": "pf2ools-schema/content/common/entries.json",
+						"title": "Entry",
+						"description": "Pf2ools' entry value (string or object).",
+						"$comment": "TODO",
+						"type": "array",
+						"items": {
+							"anyOf": [
+								{
+									"$schema": "http://json-schema.org/draft-07/schema",
+									"$id": "pf2ools-schema/content/common/entryString.json",
+									"title": "Entry String",
+									"description": "Pf2ools' simplest type of entry: a string. It displays as a single paragraph of text with in-line formatting determined by use of `@tag`s.",
+									"type": "string",
+									"minLength": 1
+								},
+								{
+									"type": "object",
+									"properties": {
+										"type": {
+											"type": "string",
+											"minLength": 1
+										}
+									},
+									"required": [
+										"type"
+									],
+									"description": "A paragraph with a header or some particular formatting.",
+									"$comment": "TODO"
+								}
+							]
+						},
+						"minItems": 1
+					}
+				},
+				"additionalProperties": false,
+				"required": [
+					"tier",
+					"aspects",
+					"entries"
+				]
+			},
+			"reference": {
+				"$schema": "http://json-schema.org/draft-07/schema",
+				"$id": "pf2ools-schema/content/common/reference.json",
+				"title": "Reference",
+				"description": "An explicit reference to some other content, possibly with modifications applied on top. The referenced content's type is always assumed to be the same as the referring content.",
+				"type": "object",
+				"properties": {
+					"type": {
+						"enum": [
+							"reprint",
+							"variant",
+							"replacement",
+							"extension"
+						],
+						"description": "`reprint`: The statblock is (near) identical to another one, and is intended to be as such.\n`variant`: The statblock is dependent on but distinct to the target (e.g. unique NPCs based on generic monsters).\n`replacement`: The statblock replaces the target entirely everywhere.\n`extension`: The statblock adds additional content to the target but doesn't supersede it (e.g. a new option added to a spell)."
+					},
+					"target": {
+						"type": "object",
+						"properties": {
+							"name": {
+								"type": "string",
+								"minLength": 1
+							},
+							"specifier": {
+								"type": "string",
+								"minLength": 1
+							},
+							"sourceID": {
+								"type": "string",
+								"minLength": 2,
+								"pattern": "^[A-Za-z0-9][A-Za-z0-9-]*[A-Za-z0-9]$",
+								"$comment": "Format derives from the following logic: 1) the ID should be URI-safe to ensure, well, maximum safety; 2) the ID should not include \".\" because that looks confusing in a URI; 3) the ID should not include \"_\" because that is reserved for use by the Pf2ools' website; 4) \"~\" and initial/terminal \"-\" is confusing and looks ugly. The minimum length is just to force a modicum of variety and meaningfulness.",
+								"not": {
+									"pattern": "^(COM[0-9]?|PRN|AUX|NUL|LPT[0-9])$",
+									"$comment": "These are reserved filenames in Windows. At some point someone will save a source file and/or its content as \"<id>.json\" and won't realise the hell this causes for Windows users. So rip the 'Casmaron Orienteering Manual' or whatever I guess ¯\\_(ツ)_/¯"
+								}
+							}
+						},
+						"description": "The content being referenced.",
+						"required": [
+							"name",
+							"source"
+						],
+						"additionalProperties": false
+					},
+					"modifications": {
+						"type": "array",
+						"description": "An array of changes which, when applied consecutively, transforms the target content into the referring content.",
+						"items": {
+							"type": "object",
+							"properties": {
+								"type": {
+									"type": "string",
+									"description": "The type of modification being applied.",
+									"minLength": 1,
+									"$comment": "Will become `enum` later"
+								},
+								"target": {
+									"type": "object",
+									"properties": {
+										"property": {
+											"type": "string",
+											"description": "A dot-separated hierarchy of properties leading to the target from the top-level `data` (e.g. \"castingTime.unit\").",
+											"pattern": "^\\w+(\\.\\w+)+&"
+										},
+										"name": {
+											"type": "string",
+											"description": "The `name` of the target object, if it is found in an array.",
+											"minLength": 1
+										}
+									},
+									"required": [
+										"property"
+									],
+									"additionalProperties": false
+								},
+								"value": {
+									"not": {
+										"type": "null"
+									},
+									"description": "The modification value."
+								}
+							},
+							"required": [
+								"type",
+								"target"
+							],
+							"additionalProperties": false
+						},
+						"minItems": 1,
+						"uniqueItems": true
+					}
+				},
+				"required": [
+					"type",
+					"target"
+				],
+				"additionalProperties": false
+			},
+			"tags": {
+				"type": "object",
+				"properties": {
+					"itemTypes": {
+						"type": "object",
+						"description": "An object containing the types of item the relic must be in order to have this gift. The properties should be in title case.",
+						"properties": {
+							"Armor": {
+								"const": true,
+								"description": "The relic must be a piece or suit of armour to have this gift."
+							},
+							"Worn Item": {
+								"const": true,
+								"description": "The relic must be a worn item to have this gift."
+							},
+							"Weapon": {
+								"const": true,
+								"description": "The relic must be a weapon to have this gift."
+							}
+						},
+						"minProperties": 1,
+						"additionalProperties": {
+							"const": true
+						},
+						"propertyNames": {
+							"pattern": "^[A-Z]",
+							"minLength": 1,
+							"$comment": "Pattern enforces title case"
+						}
+					},
+					"misc": {
+						"type": "object",
+						"description": "Miscellaneous tags",
+						"properties": {
+							"Alters relic": {
+								"const": true,
+								"description": "The gift permanently changes the relic's nature in some way."
+							},
+							"Grants ability": {
+								"const": true,
+								"description": "The gift grants the character a new, activatable ability (including spells)."
+							},
+							"Grants passive attribute": {
+								"const": true,
+								"description": "The gift grants the character a new Speed, a damage resistance, an automatic bonus, or another always-active ability."
+							},
+							"Is rune": {
+								"const": true,
+								"description": "The gift mimics the effect of a rune."
+							},
+							"Soul seed": {
+								"const": true,
+								"description": "The gift is \"particularly appropriate\" for soul seeds (SoM p230)."
+							}
+						},
+						"minProperties": 1,
+						"additionalProperties": false
+					}
+				},
+				"additionalProperties": false
+			}
+		},
+		"required": [
+			"type",
+			"name",
+			"source",
+			"data"
+		],
+		"additionalProperties": false
+	},
+	{
+		"$schema": "http://json-schema.org/draft-07/schema",
+		"$id": "pf2ools-schema/content/skill.json",
+		"title": "Skill",
+		"description": "Pf2ools' skill object.",
+		"$comment": "This file defines the general form of 'content' files (i.e. anything that can be directly displayed in a statblock).",
+		"type": "object",
+		"properties": {
+			"type": {
+				"const": "skill"
+			},
+			"name": {
+				"$schema": "http://json-schema.org/draft-07/schema",
+				"$id": "pf2ools-schema/content/common/name.json",
+				"title": "Name",
+				"description": "A combined object to describe an entity's name.",
+				"type": "object",
+				"properties": {
+					"primary": {
+						"type": "string",
+						"minLength": 1,
+						"not": {
+							"pattern": "@",
+							"$comment": "To weed out `@tag`s."
+						},
+						"description": "The full name of the statblock or header, exactly as it appears in the source. The only exception is when the source uses stylistic all-caps or no-caps, in which case you should use your judgement and possibly convert it to title-case."
+					},
+					"aliases": {
+						"type": "array",
+						"items": {
+							"type": "string",
+							"minLength": 1,
+							"not": {
+								"pattern": "@",
+								"$comment": "To weed out `@tag`s."
+							},
+							"description": "An alternative name for the entity."
+						},
+						"minItems": 1,
+						"uniqueItems": true,
+						"description": "An array of alternative names of an entity. Some entities have multiple common names, whether defined in the statblock itself or the surrounding text. Alternative names may also be provided to ease searching, sorting, and filtering with common mistakes (e.g. calling the Aid action \"Help\")."
+					},
+					"specifier": {
+						"type": "string",
+						"minLength": 1,
+						"not": {
+							"pattern": "@",
+							"$comment": "To weed out `@tag`s."
+						},
+						"description": "A string to meaningfully disambiguate identically named entities (by necessity if they're from the same source). This often occurs, for example, with feats common to multiple classes (e.g. \"Attack of Opportunity\"). It can also occur when one entity in the source effectively defines multiple entities in data, each of which need to be disambiguated."
+					}
+				},
+				"required": [
+					"primary"
+				],
+				"additionalProperties": false
+			},
+			"source": {
+				"$schema": "http://json-schema.org/draft-07/schema",
+				"$id": "pf2ools-schema/content/common/contentSource.json",
+				"title": "Content Source",
+				"description": "Source object for a content entity.",
+				"type": "object",
+				"properties": {
+					"ID": {
+						"type": "string",
+						"minLength": 2,
+						"pattern": "^[A-Za-z0-9][A-Za-z0-9-]*[A-Za-z0-9]$",
+						"$comment": "Format derives from the following logic: 1) the ID should be URI-safe to ensure, well, maximum safety; 2) the ID should not include \".\" because that looks confusing in a URI; 3) the ID should not include \"_\" because that is reserved for use by the Pf2ools' website; 4) \"~\" and initial/terminal \"-\" is confusing and looks ugly. The minimum length is just to force a modicum of variety and meaningfulness.",
+						"not": {
+							"pattern": "^(COM[0-9]?|PRN|AUX|NUL|LPT[0-9])$",
+							"$comment": "These are reserved filenames in Windows. At some point someone will save a source file and/or its content as \"<id>.json\" and won't realise the hell this causes for Windows users. So rip the 'Casmaron Orienteering Manual' or whatever I guess ¯\\_(ツ)_/¯"
+						}
+					},
+					"page": {
+						"type": "integer",
+						"minimum": 1,
+						"description": "The page number (if any) on which the content begins."
+					}
+				},
+				"required": [
+					"ID"
+				]
+			},
+			"data": {
+				"type": "object",
+				"properties": {
+					"entries": {
+						"$schema": "http://json-schema.org/draft-07/schema",
+						"$id": "pf2ools-schema/content/common/entries.json",
+						"title": "Entry",
+						"description": "Pf2ools' entry value (string or object).",
+						"$comment": "TODO",
+						"type": "array",
+						"items": {
+							"anyOf": [
+								{
+									"$schema": "http://json-schema.org/draft-07/schema",
+									"$id": "pf2ools-schema/content/common/entryString.json",
+									"title": "Entry String",
+									"description": "Pf2ools' simplest type of entry: a string. It displays as a single paragraph of text with in-line formatting determined by use of `@tag`s.",
+									"type": "string",
+									"minLength": 1
+								},
+								{
+									"type": "object",
+									"properties": {
+										"type": {
+											"type": "string",
+											"minLength": 1
+										}
+									},
+									"required": [
+										"type"
+									],
+									"description": "A paragraph with a header or some particular formatting.",
+									"$comment": "TODO"
+								}
+							]
+						},
+						"minItems": 1
+					}
+				},
+				"additionalProperties": false,
+				"required": [
+					"entries"
+				]
+			},
+			"reference": {
+				"$schema": "http://json-schema.org/draft-07/schema",
+				"$id": "pf2ools-schema/content/common/reference.json",
+				"title": "Reference",
+				"description": "An explicit reference to some other content, possibly with modifications applied on top. The referenced content's type is always assumed to be the same as the referring content.",
+				"type": "object",
+				"properties": {
+					"type": {
+						"enum": [
+							"reprint",
+							"variant",
+							"replacement",
+							"extension"
+						],
+						"description": "`reprint`: The statblock is (near) identical to another one, and is intended to be as such.\n`variant`: The statblock is dependent on but distinct to the target (e.g. unique NPCs based on generic monsters).\n`replacement`: The statblock replaces the target entirely everywhere.\n`extension`: The statblock adds additional content to the target but doesn't supersede it (e.g. a new option added to a spell)."
+					},
+					"target": {
+						"type": "object",
+						"properties": {
+							"name": {
+								"type": "string",
+								"minLength": 1
+							},
+							"specifier": {
+								"type": "string",
+								"minLength": 1
+							},
+							"sourceID": {
+								"type": "string",
+								"minLength": 2,
+								"pattern": "^[A-Za-z0-9][A-Za-z0-9-]*[A-Za-z0-9]$",
+								"$comment": "Format derives from the following logic: 1) the ID should be URI-safe to ensure, well, maximum safety; 2) the ID should not include \".\" because that looks confusing in a URI; 3) the ID should not include \"_\" because that is reserved for use by the Pf2ools' website; 4) \"~\" and initial/terminal \"-\" is confusing and looks ugly. The minimum length is just to force a modicum of variety and meaningfulness.",
+								"not": {
+									"pattern": "^(COM[0-9]?|PRN|AUX|NUL|LPT[0-9])$",
+									"$comment": "These are reserved filenames in Windows. At some point someone will save a source file and/or its content as \"<id>.json\" and won't realise the hell this causes for Windows users. So rip the 'Casmaron Orienteering Manual' or whatever I guess ¯\\_(ツ)_/¯"
+								}
+							}
+						},
+						"description": "The content being referenced.",
+						"required": [
+							"name",
+							"source"
+						],
+						"additionalProperties": false
+					},
+					"modifications": {
+						"type": "array",
+						"description": "An array of changes which, when applied consecutively, transforms the target content into the referring content.",
+						"items": {
+							"type": "object",
+							"properties": {
+								"type": {
+									"type": "string",
+									"description": "The type of modification being applied.",
+									"minLength": 1,
+									"$comment": "Will become `enum` later"
+								},
+								"target": {
+									"type": "object",
+									"properties": {
+										"property": {
+											"type": "string",
+											"description": "A dot-separated hierarchy of properties leading to the target from the top-level `data` (e.g. \"castingTime.unit\").",
+											"pattern": "^\\w+(\\.\\w+)+&"
+										},
+										"name": {
+											"type": "string",
+											"description": "The `name` of the target object, if it is found in an array.",
+											"minLength": 1
+										}
+									},
+									"required": [
+										"property"
+									],
+									"additionalProperties": false
+								},
+								"value": {
+									"not": {
+										"type": "null"
+									},
+									"description": "The modification value."
+								}
+							},
+							"required": [
+								"type",
+								"target"
+							],
+							"additionalProperties": false
+						},
+						"minItems": 1,
+						"uniqueItems": true
+					}
+				},
+				"required": [
+					"type",
+					"target"
+				],
+				"additionalProperties": false
+			},
+			"tags": {
+				"type": "object",
+				"description": "An object describing the content for filtering, searching, and sorting."
+			}
+		},
+		"required": [
+			"type",
+			"name",
+			"source",
+			"data"
+		],
+		"additionalProperties": false
+	}
+]
