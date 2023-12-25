@@ -67,7 +67,7 @@ opts.exclude.forEach((exclusion) => {
 	exclusion = path.relative(zodDir, exclusion.split(localPathSeparator).join(path.sep));
 	relativeFiles = relativeFiles.filter((file) => !file.match(new RegExp(`^${exclusion}(?=$|\/)`, "i")));
 });
-relativeFiles = relativeFiles.filter((file) => !path.basename(file) !== "_index.ts");
+relativeFiles = relativeFiles.filter((file) => path.basename(file) !== "_index.ts");
 if (!relativeFiles.length) {
 	console.log(chalk.blue("No TypeScript files found"));
 	process.exit();
