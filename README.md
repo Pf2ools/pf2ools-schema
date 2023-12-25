@@ -1,6 +1,6 @@
 # The Pf2ools Schema
 
-A project in the [Pf2ools](https://github.com/Pf2ools) ecosystem to define a [JSON schema](http://json-schema.org/) for Pathfinder 2nd Edition game content.
+A project in the [Pf2ools](https://github.com/Pf2ools) ecosystem to define a [JSON schema](http://json-schema.org/) for Pathfinder 2nd Edition game content. We also include a parallel, mostly identical [Zod schema](https://zod.dev/) for TypeScript users!
 
 - [How to validate your Pf2ools data](#how-to-validate-your-pf2ools-data)
   - [Install and use anywhere](#install-and-use-anywhere)
@@ -47,7 +47,7 @@ Remember to run `npm update -g pf2ools-schema` whenever the schema changes!
 
 If you've made a local clone of the [Pf2ools Data](https://github.com/Pf2ools/pf2ools-data) repository, you can make use of the Pf2ools Schema automatically by running `npm i`.
 
-From there you can either run `npx pf2ools-data` as above to validate something in the repo, or you can use `npm run test:data` to test _everything_. Note that the latter might take a while, and it's not worth the effort if you're just working on a small piece!
+From there you can either run `npx pf2ools-schema` as above to validate something in the repo, or you can use `npm run test:data` to test _everything_. Note that the latter might take a while, and it's not worth the effort if you're just working on a small piece!
 
 ### In-editor validation
 
@@ -61,8 +61,8 @@ Alternatively, if your editor supports implicit schema validation, you can add t
 
 ## Contributing
 
-Please see [`CONTRIBUTING.md`](./CONTRIBUTING.md).
+Please see [`CONTRIBUTING.md`](./CONTRIBUTING.md) or join our [Discord server](https://discord.gg/2hzNxErtVu) for more information.
 
 ## Legal
 
-The schema and all [scripts](./scripts/)) are licensed under the [MIT license](./LICENSE).
+The schema and all [scripts](./scripts/) are licensed under the [MIT license](./LICENSE).
