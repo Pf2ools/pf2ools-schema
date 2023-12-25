@@ -22,7 +22,7 @@
 	"scripts": {
 		"clean": "npx prettier . --write --cache --log-level warn",
 		"generate": "npm run generate:zod && tsc",
-		"generate:zod": "node ./scripts/generate-zod.js ./zod -r -e ./zod/utils ./zod/content/constants/ zod/content/common",
+		"generate:zod": "node ./scripts/generate-zod.js ./zod -r -e ./zod/utils ./zod/content/constants ./zod/content/common",
 		"generate:zod:fromSchema": "node ./scripts/generate-zod-fromSchema.js",
 		"test": "npm run test:jsonSchema",
 		"test:jsonSchema": "node ./scripts/test-jsonSchema.js -rae ./schema",

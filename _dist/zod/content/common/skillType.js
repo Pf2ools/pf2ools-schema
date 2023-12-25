@@ -1,9 +1,7 @@
 import { z } from "zod";
-
 import { listOfSkills } from "../constants/listOfSkills.js";
 import { uniqueStrings } from "../../utils/uniqueStrings.js";
-
-export const skill = z
+export const skillType = z
 	.object({
 		skill: listOfSkills.describe("The name of the skill (title case)."),
 		variables: z
@@ -11,7 +9,7 @@ export const skill = z
 				z
 					.string()
 					.min(1)
-					.regex(/^[A-Z]/), // Enforces title case
+					.regex(/^[A-Z]/),
 			)
 			.describe(
 				'A skill\'s variable element (e.g. "Accounting" and "Midwifery" in "Accounting or Midwifery Lore").',
@@ -27,5 +25,5 @@ export const skill = z
 			.min(1)
 			.optional(),
 	})
-	.describe("A combined object to describe a skill.")
+	.describe("A combined object to describe a type of skill referenced by other content.")
 	.strict();

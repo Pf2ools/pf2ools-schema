@@ -1,5 +1,5 @@
 import { z } from "zod";
-export declare const skill: z.ZodObject<
+export declare const skillType: z.ZodObject<
 	{
 		skill: z.ZodEnum<
 			[

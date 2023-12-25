@@ -23,7 +23,7 @@
 					"type": "array",
 					"description": "An array of objects representing the event's applicable skills.",
 					"items": {
-						"$ref": "common/skill.json"
+						"$ref": "common/skillType.json"
 					},
 					"minItems": 1,
 					"uniqueItems": true

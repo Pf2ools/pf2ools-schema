@@ -1,7 +1,7 @@
 import { z } from "zod";
 
 import { traits } from "./common/traits.js";
-import { skill } from "./common/skill.js";
+import { skillType } from "./common/skillType.js";
 import { entries } from "./common/entries.js";
 import { uniqueObjects } from "../utils/uniqueObjects.js";
 
@@ -13,7 +13,7 @@ export const event = z
 				level: z.number().int().describe("The event's level").min(-1),
 				traits: traits.optional(),
 				applicableSkills: z
-					.array(skill)
+					.array(skillType)
 					.describe("An array of objects representing the event's applicable skills.")
 					.min(1)
 					.refine(...uniqueObjects)
