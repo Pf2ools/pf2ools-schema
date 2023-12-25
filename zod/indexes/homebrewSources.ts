@@ -30,6 +30,13 @@ export const homebrewSourceSummary = z.object({
 	),
 	tags: sourceTags,
 	indexOfDatatypes: datatypes.describe("A list of the indexOfDatatypes this homebrew source contains."),
+	sourceUrl: z
+		.string()
+		.url()
+		.optional()
+		.describe(
+			"The root URL of the homebrew source's website, which prepends the `path` property to form a full URL to the source's file. If absent, `pf2ools-app` will assume the URL to be the same as that of the index this is being read from.",
+		),
 });
 
 export const homebrewSources = z
