@@ -4,6 +4,7 @@ export { source } from "./source.js";
 export { sourceGroup } from "./sourceGroup.js";
 export { data } from "./_data.js";
 export { statblock } from "./_statblock.js";
+export { byDatatype } from "./bundles/byDatatype.js";
 export { bySource } from "./bundles/bySource.js";
 export { background } from "./content/background.js";
 export { condition } from "./content/condition.js";
