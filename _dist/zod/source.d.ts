@@ -1,5 +1,106 @@
 import { z } from "zod";
 export declare const ID: z.ZodEffects<z.ZodString, string, string>;
+export declare const sourceData: z.ZodObject<
+	{
+		released: z.ZodString;
+		version: z.ZodOptional<z.ZodString>;
+		errataed: z.ZodOptional<z.ZodString>;
+		added: z.ZodString;
+		modified: z.ZodString;
+		URL: z.ZodString;
+		groupIDs: z.ZodOptional<
+			z.ZodEffects<
+				z.ZodArray<z.ZodEffects<z.ZodString, string, string>, "atleastone">,
+				[string, ...string[]],
+				[string, ...string[]]
+			>
+		>;
+		requiredSourceIDs: z.ZodOptional<
+			z.ZodEffects<
+				z.ZodArray<z.ZodEffects<z.ZodString, string, string>, "atleastone">,
+				[string, ...string[]],
+				[string, ...string[]]
+			>
+		>;
+		licenseID: z.ZodEffects<z.ZodString, string, string>;
+		copyright: z.ZodOptional<
+			z.ZodArray<
+				z.ZodUnion<
+					[
+						z.ZodString,
+						z.ZodObject<
+							{
+								type: z.ZodString;
+							},
+							"strip",
+							z.ZodTypeAny,
+							{
+								type: string;
+							},
+							{
+								type: string;
+							}
+						>,
+					]
+				>,
+				"many"
+			>
+		>;
+		authors: z.ZodOptional<
+			z.ZodEffects<z.ZodArray<z.ZodString, "atleastone">, [string, ...string[]], [string, ...string[]]>
+		>;
+		publisher: z.ZodOptional<z.ZodString>;
+		converters: z.ZodOptional<
+			z.ZodEffects<z.ZodArray<z.ZodString, "atleastone">, [string, ...string[]], [string, ...string[]]>
+		>;
+	},
+	"strict",
+	z.ZodTypeAny,
+	{
+		released: string;
+		added: string;
+		modified: string;
+		URL: string;
+		licenseID: string;
+		version?: string | undefined;
+		errataed?: string | undefined;
+		groupIDs?: [string, ...string[]] | undefined;
+		requiredSourceIDs?: [string, ...string[]] | undefined;
+		copyright?:
+			| (
+					| string
+					| {
+							type: string;
+					  }
+			  )[]
+			| undefined;
+		authors?: [string, ...string[]] | undefined;
+		publisher?: string | undefined;
+		converters?: [string, ...string[]] | undefined;
+	},
+	{
+		released: string;
+		added: string;
+		modified: string;
+		URL: string;
+		licenseID: string;
+		version?: string | undefined;
+		errataed?: string | undefined;
+		groupIDs?: [string, ...string[]] | undefined;
+		requiredSourceIDs?: [string, ...string[]] | undefined;
+		copyright?:
+			| (
+					| string
+					| {
+							type: string;
+					  }
+			  )[]
+			| undefined;
+		authors?: [string, ...string[]] | undefined;
+		publisher?: string | undefined;
+		converters?: [string, ...string[]] | undefined;
+	}
+>;
 export declare const sourceTags: z.ZodOptional<
 	z.ZodEffects<
 		z.ZodObject<

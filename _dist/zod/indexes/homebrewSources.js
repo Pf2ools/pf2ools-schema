@@ -1,7 +1,7 @@
 import { z } from "zod";
-import { source, ID } from "../source.js";
+import { sourceData, ID } from "../source.js";
 import { datatypes } from "./datatypes.js";
-export const homebrewSourceSummary = source
+export const homebrewSourceSummary = sourceData
 	.pick({ URL: true, released: true, added: true, modified: true, tags: true })
 	.extend({
 		path: z

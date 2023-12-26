@@ -15,6 +15,94 @@ export const ID = z
 	// These are reserved filenames in Windows. At some point, someone will save a source file and/or its content as \"<id>.json\" and won't realise the hell this causes for Windows users. So rip the 'Casmaron Orienteering Manual' or whatever I guess ¯\_(ツ)_/¯
 	.refine((str) => !str.match(/^(COM[0-9]?|PRN|AUX|NUL|LPT[0-9])$/i), "This ID is reserved");
 
+export const sourceData = z
+	.object({
+		released: date.describe(
+			"The source's publication date (YYYY-MM-DD). For content with a staggered release or early-access program, use the date the source was first made publicly available.",
+		),
+		version: z
+			.string()
+			.describe(
+				'The target version for the converted data (if any). This value serves akin to a `specifier` in case multiple distinct versions of the same source are maintained. Leave undefined if there has only ever been one version. (Examples: "2nd Printing", "2.0.1", "Revised 2023")',
+			)
+			.min(1)
+			.optional(),
+		errataed: date
+			.describe(
+				"The date (YYYY-MM-DD) of the source's most recent errata applied to Pf2ools' content. Leave undefined if the source has never been errataed.",
+			)
+			.optional(),
+		added: date.describe(
+			"The date (YYYY-MM-DD) the source was first made available on the Pf2ools ecosystem (complete or otherwise).",
+		),
+		modified: date.describe(
+			"The date (YYYY-MM-DD) the source's content-data as maintained by the Pf2ools project was last modified.",
+		),
+		URL: z
+			.string()
+			.describe(
+				'A website on which the content can be legally and publicly viewed, downloaded, or purchased. A first-party website (i.e. one controlled by the authors) is preferred. If the Pf2ools source is the authoritative version for distribution, you can use "https://github.com/pf2ools/pf2ools-data".',
+			)
+			.url(),
+		groupIDs: z
+			.array(ID.describe("The `ID` of a source group."))
+			.describe(
+				'A list of `ID`s of the source\'s parent groups (if any). This is used for a source that is one piece of a larger, clearly defined, multi-part series. For instance, "Extinction Curse 1: The Show Must Go On" belongs to the "Extinction Curse" series ("EC"), and "Lost Omens: Travel Guide" belongs to the "Lost Omens" series ("LO").',
+			)
+			.nonempty()
+			.refine(...uniqueStrings)
+			.optional(),
+		requiredSourceIDs: z
+			.array(ID.describe("The `ID` of the dependent homebrew source."))
+			.describe(
+				"A list of `ID`s of other homebrew sources that this source requires. The requirement is strict: a source that adds a subclass to another, external homebrew class would list that class' source ID; sources that merely add complementary subclasses to the same core class should be instead linked via a `sourceGroup`.",
+			)
+			.nonempty()
+			.refine(...uniqueStrings)
+			.optional(),
+		licenseID: ID.describe("The `ID` of the source's license."),
+		copyright: entries
+			.describe(
+				"Any additional copyright text associated with the source. For instance, the copyright notice that accompanies the OGLv1.0a license would be entered here (but not the license itself). Formatting may be used where it doesn't detract from its interpretation.",
+			)
+			.optional(),
+		authors: z
+			.array(
+				z
+					.string()
+					.describe(
+						'An author\'s name. Online handles should be reasonably indicated (e.g. "Twitter: @ThatVauxs", "Discord: @spap").',
+					),
+			)
+			.describe("A list of unique authors as credited by the source itself.")
+			.nonempty()
+			.refine(...uniqueStrings)
+			.optional(),
+		publisher: z
+			.string()
+			.describe(
+				'The name of the source\'s publishing company or group (e.g. "Paizo" or "Roll for Combat", but not a general marketplace like "Pathfinder Infinite").',
+			)
+			.min(2)
+			.optional(),
+		converters: z
+			.array(
+				z
+					.string()
+					.describe(
+						"A converter's name. Discord usernames are strongly prefered; other online handles should be reasonably indicated.",
+					)
+					.min(2),
+			)
+			.describe(
+				"A list of unqiue Pf2ools contributors who converted this source. If multiple converters exist, choose one 'principal' to go first in the case of questions or bug reports. This is particularly used for homebrew, both for attributing work done and to help organise updates.",
+			)
+			.nonempty()
+			.refine(...uniqueStrings)
+			.optional(),
+	})
+	.strict();
+
 export const sourceTags = z
 	.object({
 		publicationType: z
@@ -125,93 +213,7 @@ export const source = z
 			})
 			.describe("An object representing the source's name")
 			.strict(),
-		data: z
-			.object({
-				released: date.describe(
-					"The source's publication date (YYYY-MM-DD). For content with a staggered release or early-access program, use the date the source was first made publicly available.",
-				),
-				version: z
-					.string()
-					.describe(
-						'The target version for the converted data (if any). This value serves akin to a `specifier` in case multiple distinct versions of the same source are maintained. Leave undefined if there has only ever been one version. (Examples: "2nd Printing", "2.0.1", "Revised 2023")',
-					)
-					.min(1)
-					.optional(),
-				errataed: date
-					.describe(
-						"The date (YYYY-MM-DD) of the source's most recent errata applied to Pf2ools' content. Leave undefined if the source has never been errataed.",
-					)
-					.optional(),
-				added: date.describe(
-					"The date (YYYY-MM-DD) the source was first made available on the Pf2ools ecosystem (complete or otherwise).",
-				),
-				modified: date.describe(
-					"The date (YYYY-MM-DD) the source's content-data as maintained by the Pf2ools project was last modified.",
-				),
-				URL: z
-					.string()
-					.describe(
-						'A website on which the content can be legally and publicly viewed, downloaded, or purchased. A first-party website (i.e. one controlled by the authors) is preferred. If the Pf2ools source is the authoritative version for distribution, you can use "https://github.com/pf2ools/pf2ools-data".',
-					)
-					.url(),
-				groupIDs: z
-					.array(ID.describe("The `ID` of a source group."))
-					.describe(
-						'A list of `ID`s of the source\'s parent groups (if any). This is used for a source that is one piece of a larger, clearly defined, multi-part series. For instance, "Extinction Curse 1: The Show Must Go On" belongs to the "Extinction Curse" series ("EC"), and "Lost Omens: Travel Guide" belongs to the "Lost Omens" series ("LO").',
-					)
-					.nonempty()
-					.refine(...uniqueStrings)
-					.optional(),
-				requiredSourceIDs: z
-					.array(ID.describe("The `ID` of the dependent homebrew source."))
-					.describe(
-						"A list of `ID`s of other homebrew sources that this source requires. The requirement is strict: a source that adds a subclass to another, external homebrew class would list that class' source ID; sources that merely add complementary subclasses to the same core class should be instead linked via a `sourceGroup`.",
-					)
-					.nonempty()
-					.refine(...uniqueStrings)
-					.optional(),
-				licenseID: ID.describe("The `ID` of the source's license."),
-				copyright: entries
-					.describe(
-						"Any additional copyright text associated with the source. For instance, the copyright notice that accompanies the OGLv1.0a license would be entered here (but not the license itself). Formatting may be used where it doesn't detract from its interpretation.",
-					)
-					.optional(),
-				authors: z
-					.array(
-						z
-							.string()
-							.describe(
-								'An author\'s name. Online handles should be reasonably indicated (e.g. "Twitter: @ThatVauxs", "Discord: @spap").',
-							),
-					)
-					.describe("A list of unique authors as credited by the source itself.")
-					.nonempty()
-					.refine(...uniqueStrings)
-					.optional(),
-				publisher: z
-					.string()
-					.describe(
-						'The name of the source\'s publishing company or group (e.g. "Paizo" or "Roll for Combat", but not a general marketplace like "Pathfinder Infinite").',
-					)
-					.min(2)
-					.optional(),
-				converters: z
-					.array(
-						z
-							.string()
-							.describe(
-								"A converter's name. Discord usernames are strongly prefered; other online handles should be reasonably indicated.",
-							)
-							.min(2),
-					)
-					.describe(
-						"A list of unqiue Pf2ools contributors who converted this source. If multiple converters exist, choose one 'principal' to go first in the case of questions or bug reports. This is particularly used for homebrew, both for attributing work done and to help organise updates.",
-					)
-					.nonempty()
-					.refine(...uniqueStrings)
-					.optional(),
-			})
-			.strict(),
+		data: sourceData,
 		tags: sourceTags,
 	})
 	.strict();
