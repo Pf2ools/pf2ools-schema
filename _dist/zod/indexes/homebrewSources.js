@@ -1,8 +1,8 @@
 import { z } from "zod";
-import { sourceData, ID } from "../source.js";
+import { sourceData, sourceTags, ID } from "../source.js";
 import { datatypes } from "./datatypes.js";
 export const homebrewSourceSummary = sourceData
-	.pick({ URL: true, released: true, added: true, modified: true, tags: true })
+	.pick({ URL: true, released: true, added: true, modified: true })
 	.extend({
 		path: z
 			.string()
@@ -18,6 +18,7 @@ export const homebrewSourceSummary = sourceData
 				"The homebrew source's publisher. If it doesn't have a publisher, this value is instead a comma-separated list of the homebrew source's authors (truncated by \"et al.\" after 3 names).",
 			)
 			.min(1),
+		tags: sourceTags,
 		datatypes: datatypes.describe("A list of the datatypes this homebrew source contains."),
 		sourceURL: z
 			.string()
