@@ -1,7 +1,7 @@
 _zod-fromSchema
 
 # Generic test script
-scripts/#test*.*
+scripts/\#test*.*
 
 # Defaults below
 
@@ -132,3 +132,4 @@ dist
 .yarn/build-state.yml
 .yarn/install-state.gz
 .pnp.*
+scripts/\#temp.js
