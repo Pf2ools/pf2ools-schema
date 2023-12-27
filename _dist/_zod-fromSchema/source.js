@@ -78,8 +78,7 @@ export const source = z
             .min(2)
             .refine((val) => !val.match(/^(COM[0-9]?|PRN|AUX|NUL|LPT[0-9])$/g), {
             message: "These are reserved filenames in Windows. At some point someone will save a source file and/or its content as \"<id>.json\" and won't realise the hell this causes for Windows users. So rip the 'Casmaron Orienteering Manual' or whatever I guess ¯\\_(ツ)_/¯",
-        })
-            .optional(),
+        }),
         copyright: z
             .array(z.union([
             z
@@ -94,7 +93,10 @@ export const source = z
             .describe("Pf2ools' entry value (string or object).")
             .optional(),
         authors: z
-            .array(z.string().min(2).describe("An author's name. Online handles should be reasonably indicated."))
+            .array(z
+            .string()
+            .min(2)
+            .describe("An author's name. Online handles should be reasonably indicated."))
             .min(1)
             .describe("A list of unique authors as credited by the source itself.")
             .optional(),
@@ -117,7 +119,10 @@ export const source = z
         .object({
         publicationType: z
             .object({
-            Comic: z.literal(true).describe("The source is content bundled with a comic.").optional(),
+            Comic: z
+                .literal(true)
+                .describe("The source is content bundled with a comic.")
+                .optional(),
             "Blog post": z
                 .literal(true)
                 .describe("The source is a blog post or another similar type of short, online article.")
@@ -154,7 +159,10 @@ export const source = z
                 .literal(true)
                 .describe("This source is intended to be GM-facing. This is typically due to it being an adventure, module, one-shot, scenario, or the like.")
                 .optional(),
-            "PFS-legal": z.literal(true).describe("This source is legal for Pathfinder Society play.").optional(),
+            "PFS-legal": z
+                .literal(true)
+                .describe("This source is legal for Pathfinder Society play.")
+                .optional(),
             Playtest: z
                 .literal(true)
                 .describe("This source contains playtest, early-access, or otherwise 'unfinished' content.")

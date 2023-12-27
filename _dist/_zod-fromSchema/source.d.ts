@@ -21,7 +21,7 @@ export declare const source: z.ZodObject<{
         URL: z.ZodOptional<z.ZodString>;
         groupIDs: z.ZodOptional<z.ZodArray<z.ZodEffects<z.ZodString, string, string>, "many">>;
         requiredSourceIDs: z.ZodOptional<z.ZodArray<z.ZodEffects<z.ZodString, string, string>, "many">>;
-        licenseID: z.ZodOptional<z.ZodEffects<z.ZodString, string, string>>;
+        licenseID: z.ZodEffects<z.ZodString, string, string>;
         copyright: z.ZodOptional<z.ZodArray<z.ZodUnion<[z.ZodString, z.ZodObject<{
             type: z.ZodString;
         }, "strip", z.ZodTypeAny, {
@@ -36,12 +36,12 @@ export declare const source: z.ZodObject<{
         released: string;
         added: string;
         modified: string;
+        licenseID: string;
         version?: string | undefined;
         errataed?: string | undefined;
         URL?: string | undefined;
         groupIDs?: string[] | undefined;
         requiredSourceIDs?: string[] | undefined;
-        licenseID?: string | undefined;
         copyright?: (string | {
             type: string;
         })[] | undefined;
@@ -52,12 +52,12 @@ export declare const source: z.ZodObject<{
         released: string;
         added: string;
         modified: string;
+        licenseID: string;
         version?: string | undefined;
         errataed?: string | undefined;
         URL?: string | undefined;
         groupIDs?: string[] | undefined;
         requiredSourceIDs?: string[] | undefined;
-        licenseID?: string | undefined;
         copyright?: (string | {
             type: string;
         })[] | undefined;
@@ -154,12 +154,12 @@ export declare const source: z.ZodObject<{
         released: string;
         added: string;
         modified: string;
+        licenseID: string;
         version?: string | undefined;
         errataed?: string | undefined;
         URL?: string | undefined;
         groupIDs?: string[] | undefined;
         requiredSourceIDs?: string[] | undefined;
-        licenseID?: string | undefined;
         copyright?: (string | {
             type: string;
         })[] | undefined;
@@ -197,12 +197,12 @@ export declare const source: z.ZodObject<{
         released: string;
         added: string;
         modified: string;
+        licenseID: string;
         version?: string | undefined;
         errataed?: string | undefined;
         URL?: string | undefined;
         groupIDs?: string[] | undefined;
         requiredSourceIDs?: string[] | undefined;
-        licenseID?: string | undefined;
         copyright?: (string | {
             type: string;
         })[] | undefined;

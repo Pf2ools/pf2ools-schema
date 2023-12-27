@@ -42,12 +42,21 @@ export const relicGift = z
             .refine((val) => !val.match(/^(COM[0-9]?|PRN|AUX|NUL|LPT[0-9])$/g), {
             message: "These are reserved filenames in Windows. At some point someone will save a source file and/or its content as \"<id>.json\" and won't realise the hell this causes for Windows users. So rip the 'Casmaron Orienteering Manual' or whatever I guess ¯\\_(ツ)_/¯",
         }),
-        page: z.number().int().gte(1).describe("The page number (if any) on which the content begins.").optional(),
+        page: z
+            .number()
+            .int()
+            .gte(1)
+            .describe("The page number (if any) on which the content begins.")
+            .optional(),
     })
         .describe("Source object for a content entity."),
     data: z
         .object({
-        tier: z.string().regex(new RegExp("^[A-Z]")).min(1).describe("The relic gift's tier (title case)."),
+        tier: z
+            .string()
+            .regex(new RegExp("^[A-Z]"))
+            .min(1)
+            .describe("The relic gift's tier (title case)."),
         traits: z
             .array(z
             .object({
@@ -132,7 +141,10 @@ export const relicGift = z
         modifications: z
             .array(z
             .object({
-            type: z.string().min(1).describe("The type of modification being applied."),
+            type: z
+                .string()
+                .min(1)
+                .describe("The type of modification being applied."),
             target: z
                 .object({
                 property: z
@@ -168,8 +180,14 @@ export const relicGift = z
                 .literal(true)
                 .describe("The relic must be a piece or suit of armour to have this gift.")
                 .optional(),
-            "Worn Item": z.literal(true).describe("The relic must be a worn item to have this gift.").optional(),
-            Weapon: z.literal(true).describe("The relic must be a weapon to have this gift.").optional(),
+            "Worn Item": z
+                .literal(true)
+                .describe("The relic must be a worn item to have this gift.")
+                .optional(),
+            Weapon: z
+                .literal(true)
+                .describe("The relic must be a weapon to have this gift.")
+                .optional(),
         })
             .catchall(z.literal(true))
             .describe("An object containing the types of item the relic must be in order to have this gift. The properties should be in title case.")
@@ -188,7 +206,10 @@ export const relicGift = z
                 .literal(true)
                 .describe("The gift grants the character a new Speed, a damage resistance, an automatic bonus, or another always-active ability.")
                 .optional(),
-            "Is rune": z.literal(true).describe("The gift mimics the effect of a rune.").optional(),
+            "Is rune": z
+                .literal(true)
+                .describe("The gift mimics the effect of a rune.")
+                .optional(),
             "Soul seed": z
                 .literal(true)
                 .describe('The gift is "particularly appropriate" for soul seeds (SoM p230).')

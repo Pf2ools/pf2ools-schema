@@ -94,6 +94,6 @@ all.forEach((obj) => {
 		fs.writeFileSync(`${OUTPUT_PATH}/${name}.ts`, formatted);
 		console.log(`Wrote ${name}.ts`);
 
-		fs.appendFileSync(`${OUTPUT_PATH}/index.ts`, `export { ${name} } from "./${name}.js;"\n`);
+		fs.appendFileSync(`${OUTPUT_PATH}/index.ts`, `export { ${name} } from "./${name}.js";\n`);
 	});
 });

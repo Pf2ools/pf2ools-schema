@@ -39,7 +39,19 @@ export declare const event: z.ZodObject<{
             variables?: string[] | undefined;
             display?: string | undefined;
         }>, "many">>;
-        applicableSkills: z.ZodOptional<z.ZodArray<z.ZodAny, "many">>;
+        applicableSkills: z.ZodOptional<z.ZodArray<z.ZodObject<{
+            skill: z.ZodEnum<["Acrobatics", "Arcana", "Athletics", "Crafting", "Deception", "Diplomacy", "Intimidation", "Lore", "Medicine", "Nature", "Occultism", "Performance", "Religion", "Society", "Stealth", "Survival", "Thievery"]>;
+            variables: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+            display: z.ZodOptional<z.ZodString>;
+        }, "strict", z.ZodTypeAny, {
+            skill: "Acrobatics" | "Arcana" | "Athletics" | "Crafting" | "Deception" | "Diplomacy" | "Intimidation" | "Lore" | "Medicine" | "Nature" | "Occultism" | "Performance" | "Religion" | "Society" | "Stealth" | "Survival" | "Thievery";
+            variables?: string[] | undefined;
+            display?: string | undefined;
+        }, {
+            skill: "Acrobatics" | "Arcana" | "Athletics" | "Crafting" | "Deception" | "Diplomacy" | "Intimidation" | "Lore" | "Medicine" | "Nature" | "Occultism" | "Performance" | "Religion" | "Society" | "Stealth" | "Survival" | "Thievery";
+            variables?: string[] | undefined;
+            display?: string | undefined;
+        }>, "many">>;
         entries: z.ZodArray<z.ZodUnion<[z.ZodString, z.ZodObject<{
             type: z.ZodString;
         }, "strip", z.ZodTypeAny, {
@@ -57,7 +69,11 @@ export declare const event: z.ZodObject<{
             variables?: string[] | undefined;
             display?: string | undefined;
         }[] | undefined;
-        applicableSkills?: any[] | undefined;
+        applicableSkills?: {
+            skill: "Acrobatics" | "Arcana" | "Athletics" | "Crafting" | "Deception" | "Diplomacy" | "Intimidation" | "Lore" | "Medicine" | "Nature" | "Occultism" | "Performance" | "Religion" | "Society" | "Stealth" | "Survival" | "Thievery";
+            variables?: string[] | undefined;
+            display?: string | undefined;
+        }[] | undefined;
     }, {
         entries: (string | {
             type: string;
@@ -68,7 +84,11 @@ export declare const event: z.ZodObject<{
             variables?: string[] | undefined;
             display?: string | undefined;
         }[] | undefined;
-        applicableSkills?: any[] | undefined;
+        applicableSkills?: {
+            skill: "Acrobatics" | "Arcana" | "Athletics" | "Crafting" | "Deception" | "Diplomacy" | "Intimidation" | "Lore" | "Medicine" | "Nature" | "Occultism" | "Performance" | "Religion" | "Society" | "Stealth" | "Survival" | "Thievery";
+            variables?: string[] | undefined;
+            display?: string | undefined;
+        }[] | undefined;
     }>;
     reference: z.ZodOptional<z.ZodObject<{
         type: z.ZodEnum<["reprint", "variant", "replacement", "extension"]>;
@@ -157,7 +177,11 @@ export declare const event: z.ZodObject<{
             variables?: string[] | undefined;
             display?: string | undefined;
         }[] | undefined;
-        applicableSkills?: any[] | undefined;
+        applicableSkills?: {
+            skill: "Acrobatics" | "Arcana" | "Athletics" | "Crafting" | "Deception" | "Diplomacy" | "Intimidation" | "Lore" | "Medicine" | "Nature" | "Occultism" | "Performance" | "Religion" | "Society" | "Stealth" | "Survival" | "Thievery";
+            variables?: string[] | undefined;
+            display?: string | undefined;
+        }[] | undefined;
     };
     source: {
         ID: string;
@@ -197,7 +221,11 @@ export declare const event: z.ZodObject<{
             variables?: string[] | undefined;
             display?: string | undefined;
         }[] | undefined;
-        applicableSkills?: any[] | undefined;
+        applicableSkills?: {
+            skill: "Acrobatics" | "Arcana" | "Athletics" | "Crafting" | "Deception" | "Diplomacy" | "Intimidation" | "Lore" | "Medicine" | "Nature" | "Occultism" | "Performance" | "Religion" | "Society" | "Stealth" | "Survival" | "Thievery";
+            variables?: string[] | undefined;
+            display?: string | undefined;
+        }[] | undefined;
     };
     source: {
         ID: string;

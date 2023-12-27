@@ -227,7 +227,15 @@ export declare const homebrewSourceSummary: z.ZodObject<
 				}
 			>
 		>;
-		datatypes: z.ZodArray<z.ZodString, "many">;
+		datatypes: z.ZodArray<
+			z.ZodUnion<
+				[
+					z.ZodEnum<["background", "condition", "divineIntercession", "domain", "event", "relicGift", "skill"]>,
+					z.ZodEnum<["license", "source", "sourceGroup"]>,
+				]
+			>,
+			"many"
+		>;
 		sourceURL: z.ZodOptional<z.ZodString>;
 	},
 	"strict",
@@ -240,7 +248,18 @@ export declare const homebrewSourceSummary: z.ZodObject<
 		URL: string;
 		fullTitle: string;
 		publisherAuthors: string;
-		datatypes: string[];
+		datatypes: (
+			| "source"
+			| "background"
+			| "event"
+			| "condition"
+			| "divineIntercession"
+			| "domain"
+			| "skill"
+			| "relicGift"
+			| "license"
+			| "sourceGroup"
+		)[];
 		tags?:
 			| {
 					publicationType?:
@@ -278,7 +297,18 @@ export declare const homebrewSourceSummary: z.ZodObject<
 		URL: string;
 		fullTitle: string;
 		publisherAuthors: string;
-		datatypes: string[];
+		datatypes: (
+			| "source"
+			| "background"
+			| "event"
+			| "condition"
+			| "divineIntercession"
+			| "domain"
+			| "skill"
+			| "relicGift"
+			| "license"
+			| "sourceGroup"
+		)[];
 		tags?:
 			| {
 					publicationType?:
@@ -539,7 +569,15 @@ export declare const homebrewSources: z.ZodRecord<
 					}
 				>
 			>;
-			datatypes: z.ZodArray<z.ZodString, "many">;
+			datatypes: z.ZodArray<
+				z.ZodUnion<
+					[
+						z.ZodEnum<["background", "condition", "divineIntercession", "domain", "event", "relicGift", "skill"]>,
+						z.ZodEnum<["license", "source", "sourceGroup"]>,
+					]
+				>,
+				"many"
+			>;
 			sourceURL: z.ZodOptional<z.ZodString>;
 		},
 		"strict",
@@ -552,7 +590,18 @@ export declare const homebrewSources: z.ZodRecord<
 			URL: string;
 			fullTitle: string;
 			publisherAuthors: string;
-			datatypes: string[];
+			datatypes: (
+				| "source"
+				| "background"
+				| "event"
+				| "condition"
+				| "divineIntercession"
+				| "domain"
+				| "skill"
+				| "relicGift"
+				| "license"
+				| "sourceGroup"
+			)[];
 			tags?:
 				| {
 						publicationType?:
@@ -590,7 +639,18 @@ export declare const homebrewSources: z.ZodRecord<
 			URL: string;
 			fullTitle: string;
 			publisherAuthors: string;
-			datatypes: string[];
+			datatypes: (
+				| "source"
+				| "background"
+				| "event"
+				| "condition"
+				| "divineIntercession"
+				| "domain"
+				| "skill"
+				| "relicGift"
+				| "license"
+				| "sourceGroup"
+			)[];
 			tags?:
 				| {
 						publicationType?:

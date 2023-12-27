@@ -37,7 +37,10 @@ export const sourceGroup = z
         .object({
         misc: z
             .object({
-            Adventure: z.literal(true).describe("This source group is an adventure path or the like.").optional(),
+            Adventure: z
+                .literal(true)
+                .describe("This source group is an adventure path or the like.")
+                .optional(),
             Ongoing: z
                 .literal(true)
                 .describe("This source group is being continually expanded. Not all member-sources may exist on Pf2ools.")

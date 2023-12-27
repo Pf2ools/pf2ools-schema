@@ -42,7 +42,12 @@ export const deity = z
             .refine((val) => !val.match(/^(COM[0-9]?|PRN|AUX|NUL|LPT[0-9])$/g), {
             message: "These are reserved filenames in Windows. At some point someone will save a source file and/or its content as \"<id>.json\" and won't realise the hell this causes for Windows users. So rip the 'Casmaron Orienteering Manual' or whatever I guess ¯\\_(ツ)_/¯",
         }),
-        page: z.number().int().gte(1).describe("The page number (if any) on which the content begins.").optional(),
+        page: z
+            .number()
+            .int()
+            .gte(1)
+            .describe("The page number (if any) on which the content begins.")
+            .optional(),
     })
         .describe("Source object for a content entity."),
     data: z
@@ -72,9 +77,31 @@ export const deity = z
             .optional(),
         alignment: z
             .object({
-            deity: z.enum(["LG", "NG", "CG", "LN", "N", "CN", "LE", "NE", "CE", "U"]),
+            deity: z.enum([
+                "LG",
+                "NG",
+                "CG",
+                "LN",
+                "N",
+                "CN",
+                "LE",
+                "NE",
+                "CE",
+                "U",
+            ]),
             follower: z
-                .array(z.enum(["LG", "NG", "CG", "LN", "N", "CN", "LE", "NE", "CE", "U"]))
+                .array(z.enum([
+                "LG",
+                "NG",
+                "CG",
+                "LN",
+                "N",
+                "CN",
+                "LE",
+                "NE",
+                "CE",
+                "U",
+            ]))
                 .min(1)
                 .optional(),
         })
@@ -307,7 +334,10 @@ export const deity = z
         modifications: z
             .array(z
             .object({
-            type: z.string().min(1).describe("The type of modification being applied."),
+            type: z
+                .string()
+                .min(1)
+                .describe("The type of modification being applied."),
             target: z
                 .object({
                 property: z

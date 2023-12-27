@@ -42,7 +42,12 @@ export const event = z
             .refine((val) => !val.match(/^(COM[0-9]?|PRN|AUX|NUL|LPT[0-9])$/g), {
             message: "These are reserved filenames in Windows. At some point someone will save a source file and/or its content as \"<id>.json\" and won't realise the hell this causes for Windows users. So rip the 'Casmaron Orienteering Manual' or whatever I guess ¯\\_(ツ)_/¯",
         }),
-        page: z.number().int().gte(1).describe("The page number (if any) on which the content begins.").optional(),
+        page: z
+            .number()
+            .int()
+            .gte(1)
+            .describe("The page number (if any) on which the content begins.")
+            .optional(),
     })
         .describe("Source object for a content entity."),
     data: z
@@ -77,7 +82,44 @@ export const event = z
             .describe("An array of objects representing a list of traits")
             .optional(),
         applicableSkills: z
-            .array(z.any())
+            .array(z
+            .object({
+            skill: z.enum([
+                "Acrobatics",
+                "Arcana",
+                "Athletics",
+                "Crafting",
+                "Deception",
+                "Diplomacy",
+                "Intimidation",
+                "Lore",
+                "Medicine",
+                "Nature",
+                "Occultism",
+                "Performance",
+                "Religion",
+                "Society",
+                "Stealth",
+                "Survival",
+                "Thievery",
+            ]),
+            variables: z
+                .array(z
+                .string()
+                .regex(new RegExp("^[A-Z]"))
+                .min(1)
+                .describe('A skill\'s variable element (e.g. "Accounting" and "Midwifery" in "Accounting or Midwifery Lore").'))
+                .min(1)
+                .describe("An array of the skill's variable elements. Most often, this is a list of Lore topics.")
+                .optional(),
+            display: z
+                .string()
+                .min(1)
+                .describe("How the skill should display, if it cannot be trivially inferred from `skill` and `variables`.")
+                .optional(),
+        })
+            .strict()
+            .describe("A combined object to describe a type of skill referenced by other content."))
             .min(1)
             .describe("An array of objects representing the event's applicable skills.")
             .optional(),
@@ -118,7 +160,10 @@ export const event = z
         modifications: z
             .array(z
             .object({
-            type: z.string().min(1).describe("The type of modification being applied."),
+            type: z
+                .string()
+                .min(1)
+                .describe("The type of modification being applied."),
             target: z
                 .object({
                 property: z

@@ -42,7 +42,12 @@ export const condition = z
             .refine((val) => !val.match(/^(COM[0-9]?|PRN|AUX|NUL|LPT[0-9])$/g), {
             message: "These are reserved filenames in Windows. At some point someone will save a source file and/or its content as \"<id>.json\" and won't realise the hell this causes for Windows users. So rip the 'Casmaron Orienteering Manual' or whatever I guess ¯\\_(ツ)_/¯",
         }),
-        page: z.number().int().gte(1).describe("The page number (if any) on which the content begins.").optional(),
+        page: z
+            .number()
+            .int()
+            .gte(1)
+            .describe("The page number (if any) on which the content begins.")
+            .optional(),
     })
         .describe("Source object for a content entity."),
     data: z
@@ -84,7 +89,10 @@ export const condition = z
         modifications: z
             .array(z
             .object({
-            type: z.string().min(1).describe("The type of modification being applied."),
+            type: z
+                .string()
+                .min(1)
+                .describe("The type of modification being applied."),
             target: z
                 .object({
                 property: z
@@ -132,7 +140,10 @@ export const condition = z
                 .literal(true)
                 .describe("The condition is in the 'Lowered Abilities' group (CRB p619).")
                 .optional(),
-            Senses: z.literal(true).describe("The condition is in the 'Senses' group (CRB p619).").optional(),
+            Senses: z
+                .literal(true)
+                .describe("The condition is in the 'Senses' group (CRB p619).")
+                .optional(),
         })
             .catchall(z.literal(true))
             .describe("An object containing any groups the condition belongs to. The properties should be in title case.")

@@ -42,7 +42,12 @@ export const background = z
             .refine((val) => !val.match(/^(COM[0-9]?|PRN|AUX|NUL|LPT[0-9])$/g), {
             message: "These are reserved filenames in Windows. At some point someone will save a source file and/or its content as \"<id>.json\" and won't realise the hell this causes for Windows users. So rip the 'Casmaron Orienteering Manual' or whatever I guess ¯\\_(ツ)_/¯",
         }),
-        page: z.number().int().gte(1).describe("The page number (if any) on which the content begins.").optional(),
+        page: z
+            .number()
+            .int()
+            .gte(1)
+            .describe("The page number (if any) on which the content begins.")
+            .optional(),
     })
         .describe("Source object for a content entity."),
     data: z
@@ -112,7 +117,10 @@ export const background = z
         modifications: z
             .array(z
             .object({
-            type: z.string().min(1).describe("The type of modification being applied."),
+            type: z
+                .string()
+                .min(1)
+                .describe("The type of modification being applied."),
             target: z
                 .object({
                 property: z
@@ -156,7 +164,12 @@ export const background = z
             })
                 .strict()
                 .describe("An object containing the types of boost that the background can grant."),
-            count: z.number().int().gte(1).lte(3).describe("The total number of boosts the background can grant."),
+            count: z
+                .number()
+                .int()
+                .gte(1)
+                .lte(3)
+                .describe("The total number of boosts the background can grant."),
         })
             .strict()
             .describe("The ability boosts the background grants.")
@@ -195,7 +208,12 @@ export const background = z
                 .describe('A direct reference to another statblock. The `type` of the content is typically inferred from the context in which it is invoked (e.g. a reference in a deity\'s "Cleric Spells" entry is a spell).'))
                 .min(1)
                 .describe("A list of feats the background can grant."),
-            count: z.number().int().gte(1).lte(2).describe("The total number of feats the background can grant."),
+            count: z
+                .number()
+                .int()
+                .gte(1)
+                .lte(2)
+                .describe("The total number of feats the background can grant."),
         })
             .strict()
             .describe("The feats the background grants.")
@@ -219,7 +237,12 @@ export const background = z
                 .describe('A direct reference to another statblock. The `type` of the content is typically inferred from the context in which it is invoked (e.g. a reference in a deity\'s "Cleric Spells" entry is a spell).'))
                 .min(1)
                 .describe("A list of spells the background can grant."),
-            count: z.number().int().gte(1).lte(2).describe("The total number of spells the background can grant."),
+            count: z
+                .number()
+                .int()
+                .gte(1)
+                .lte(2)
+                .describe("The total number of spells the background can grant."),
         })
             .strict()
             .describe("The spells the background grants.")
@@ -234,8 +257,14 @@ export const background = z
                 .literal(true)
                 .describe("The background grants a free item (not just access or proficiency—the actual concrete thing).")
                 .optional(),
-            "Grants language": z.literal(true).describe("The background grants a language.").optional(),
-            "Grants resistance": z.literal(true).describe("The background grants a damage resistance.").optional(),
+            "Grants language": z
+                .literal(true)
+                .describe("The background grants a language.")
+                .optional(),
+            "Grants resistance": z
+                .literal(true)
+                .describe("The background grants a damage resistance.")
+                .optional(),
             "Grants sense": z
                 .literal(true)
                 .describe("The background grants a sense (e.g. darkvision, scent).")

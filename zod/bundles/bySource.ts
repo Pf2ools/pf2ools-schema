@@ -1,13 +1,13 @@
 import { z } from "zod";
 
 import { datatype } from "../indexes/datatypes.js";
-import { source } from "../source.js";
-import { content } from "../content.js";
+import { data } from "../_data.js";
 import { nonEmpty } from "../utils/nonEmpty.js";
 
 export const bySource = z
-	.record(datatype, z.array(content).min(1).or(source))
+	.record(datatype, z.array(data).min(1))
 	.describe(
-		"A bundle of all content in a given source. The `source` key is required and maps to the `source` object; all other keys map from a datatype present in the source to an array of objects of that datatype.",
+		"A bundle of all content in a given source. Keys map from a datatype to an array of objects of that datatype. The `source` key is required.",
 	)
-	.refine(...nonEmpty);
+	.refine(...nonEmpty)
+	.refine((obj) => obj.source);
