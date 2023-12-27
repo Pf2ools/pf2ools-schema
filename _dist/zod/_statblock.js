@@ -8,11 +8,11 @@ import { event } from "./content/event.js";
 import { relicGift } from "./content/relicGift.js";
 import { skill } from "./content/skill.js";
 export const statblock = z.discriminatedUnion("type", [
-    background,
-    condition,
-    divineIntercession,
-    domain,
-    event,
-    relicGift,
-    skill,
+	background,
+	condition,
+	divineIntercession,
+	domain,
+	event,
+	relicGift,
+	skill,
 ]);

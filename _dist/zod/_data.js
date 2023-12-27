@@ -11,14 +11,14 @@ import { event } from "./content/event.js";
 import { relicGift } from "./content/relicGift.js";
 import { skill } from "./content/skill.js";
 export const data = z.discriminatedUnion("type", [
-    license,
-    source,
-    sourceGroup,
-    background,
-    condition,
-    divineIntercession,
-    domain,
-    event,
-    relicGift,
-    skill,
+	license,
+	source,
+	sourceGroup,
+	background,
+	condition,
+	divineIntercession,
+	domain,
+	event,
+	relicGift,
+	skill,
 ]);
