@@ -11,14 +11,14 @@ const program = new Command()
 	.summary("validate data for Pf2ools")
 	.description(
 		`Validates a file or directory of files against the Pf2ools schema. Only JSON files will be tested. Tests can be performed using:\n\t- JSON Schema via Ajv ${chalk.dim(
-			"(-t ajv)",
+			"(--test ajv)",
 		)}\n\t- Zod ${chalk.dim(
-			"(-t zod)",
+			"(--test zod)",
 		)}\nAll methods are roughly equivalent, but some may have more or less specific validation for certain edge cases.`,
 	)
 	.argument("<paths...>", "File or directory paths to test")
 	.option("-a, --all", `Test all files ${chalk.dim("(default: break at first validation failure)")}`)
-	.option("-e, --error", "Suppress printing of validation status for passing files")
+	.option("-e, --error", "Print only the validation status of failing files")
 	.option("-r, --recurse", "Recursively test files in directories")
 	.option(
 		"-s, --summary",
@@ -26,7 +26,7 @@ const program = new Command()
 			"(note: implies --all)",
 		)}`,
 	)
-	.option("-t, --test <methods...>", `Define the test methods: ${chalk.dim("(default: Zod only)")}`)
+	.option("-t, --test <methods...>", `Define validation methods ${chalk.dim("(default: Zod only)")}`)
 	.parse(process.argv);
 
 // Load and validate arguments
