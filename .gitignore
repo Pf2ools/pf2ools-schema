@@ -1,4 +1,9 @@
-zod/mega-schema.json
+_zod-fromSchema
+
+# Generic test script
+scripts/#test*.*
+
+# Defaults below
 
 # Logs
 logs
