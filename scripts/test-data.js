@@ -1,17 +1,20 @@
 #! /usr/bin/env node
 
-import Ajv from "ajv";
-import addFormats from "ajv-formats";
 import chalk from "chalk";
 import { Command } from "commander";
 import fs from "fs";
 import path from "path";
+import { getJSONsRecursively } from "./utils/getFilesRecursively.js";
 
 // Define CLI
 const program = new Command()
 	.summary("validate data for Pf2ools")
 	.description(
-		"Validates a file or directory of files against the Pf2ools schema. Only JSON files will be tested.",
+		`Validates a file or directory of files against the Pf2ools schema. Only JSON files will be tested. Tests can be performed using:\n\t- JSON Schema via Ajv ${chalk.dim(
+			"(-t ajv)",
+		)}\n\t- Zod ${chalk.dim(
+			"(-t zod)",
+		)}\nAll methods are roughly equivalent, but some may have more or less specific validation for certain edge cases.`,
 	)
 	.argument("<paths...>", "File or directory paths to test")
 	.option("-a, --all", `Test all files ${chalk.dim("(default: break at first validation failure)")}`)
@@ -23,28 +26,29 @@ const program = new Command()
 			"(note: implies --all)",
 		)}`,
 	)
+	.option("-t, --test <methods...>", `Define the test methods: ${chalk.dim("(default: Zod only)")}`)
 	.parse(process.argv);
-
-// File-tree-walker to find JSONs
-function getJSONsRecursively(targetPath) {
-	let fileList = [];
-	fs.readdirSync(targetPath).forEach((file) => {
-		const filePath = path.join(targetPath, file);
-		if (fs.statSync(filePath).isDirectory()) {
-			fileList = fileList.concat(getJSONsRecursively(filePath));
-		} else if (isJSON(filePath)) {
-			fileList.push(filePath);
-		}
-	});
-	return fileList;
-}
-function isJSON(filename) {
-	return path.extname(filename) === ".json";
-}
 
 // Load and validate arguments
 const opts = program.opts();
 if (opts.summary) opts.all = true;
+const testMethods = ["ajv", "zod"];
+if (opts.test) {
+	opts.test.forEach((method) => {
+		if (!testMethods.includes(method))
+			program.error(
+				chalk.red(
+					`"${method}" is not a valid test method\n${chalk.dim(
+						`Available methods: "${testMethods.join('", "')}"`,
+					)}`,
+				),
+				{
+					exitCode: 1,
+					code: "invalid.testMethod",
+				},
+			);
+	});
+} else opts.test = ["zod"];
 let files = [];
 for (const arg of program.args) {
 	const argClean = path.join(...arg.toString().split(path.sep));
@@ -64,11 +68,11 @@ for (const arg of program.args) {
 			files = files.concat(
 				fs
 					.readdirSync(argClean)
-					.filter((file) => isJSON(file))
+					.filter((file) => path.extname(file) === ".json")
 					.map((file) => path.join(argClean, file)),
 			);
 		}
-	} else if (!isJSON(argClean)) {
+	} else if (path.extname(argClean) !== ".json") {
 		program.error(chalk.red(`"${argClean}" is not a JSON file`), {
 			exitCode: 1,
 			code: "invalid.file",
@@ -82,16 +86,13 @@ if (!files.length) {
 	process.exit();
 }
 
-// Load schema
-const schemas = getJSONsRecursively("schema").map((file) =>
-	JSON.parse(fs.readFileSync(file, { encoding: "utf8" })),
-);
-const ajv = new Ajv({
-	schemas: schemas,
-	verbose: true,
-});
-addFormats(ajv);
-const validator = ajv.getSchema("pf2ools-schema/_schema.json");
+// Get validation functions
+import { validateAjv } from "./test-data-ajv.js";
+import { validateZod } from "./test-data-zod.js";
+const methods = {
+	ajv: validateAjv,
+	zod: validateZod,
+};
 
 // Validate files
 const failed = `\t${chalk.red("[Failed]")}  `;
@@ -113,32 +114,18 @@ for (const file of files) {
 			});
 		}
 	}
-	const test = validator(testJSON);
-	if (test) {
-		if (!opts.error && !opts.summary) console.log(chalk.dim(passed + file));
-	} else {
-		console.log(failed + file);
-		if (!opts.all) {
-			const errors = validator.errors.filter((obj) => obj.instancePath !== "" && obj.instancePath !== "/type");
-			let errorMessage;
-			if (errors.length) {
-				if (errors.length === 1) {
-					// TODO
-				} else {
-					// TODO
-				}
-			} else {
-				errorMessage = `${chalk.bold(
-					"Unknown error.",
-				)} Check that your top-level properties (\`type\`, \`data\`, etc.) are named correctly and that they have the correct types. Also ensure that the value of \`type\` is valid.`;
+	opts.test.forEach((method) => {
+		const testResult = methods[method](testJSON);
+		if (testResult.success) {
+			if (!opts.error && !opts.summary) console.log(chalk.dim(passed + file));
+		} else {
+			console.log(failed + file);
+			if (!opts.all) {
+				throw testResult.error;
 			}
-			program.error(errorMessage, {
-				exitCode: 1,
-				code: "validation.failure",
-			});
+			failCount++;
 		}
-		failCount++;
-	}
+	});
 }
 
 // Summarise

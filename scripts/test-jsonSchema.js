@@ -12,6 +12,7 @@ import chalk from "chalk";
 import { Command } from "commander";
 import * as fs from "fs";
 import path from "path";
+import { getJSONsRecursively } from "./utils/getFilesRecursively.js";
 
 // Define CLI
 const program = new Command()
@@ -28,24 +29,6 @@ const program = new Command()
 		"Suppress printing of validation status for all files and only summarise results (note: implies --all)",
 	)
 	.parse(process.argv);
-
-// File-tree-walker to find JSONs
-function getJSONsRecursively(targetPath) {
-	let fileList = [];
-	fs.readdirSync(targetPath).forEach((file) => {
-		const filePath = path.join(targetPath, file);
-		if (fs.statSync(filePath).isDirectory()) {
-			fileList = fileList.concat(getJSONsRecursively(filePath));
-		} else if (isJSON(filePath)) {
-			fileList.push(filePath);
-		}
-	});
-	return fileList;
-}
-
-function isJSON(filename) {
-	return !!filename.match(/\.json$/);
-}
 
 // Load and validate arguments
 const opts = program.opts();
@@ -69,11 +52,11 @@ for (const arg of program.args) {
 			files = files.concat(
 				fs
 					.readdirSync(argClean)
-					.filter((file) => isJSON(file))
+					.filter((file) => path.extname(file) === ".json")
 					.map((file) => path.join(argClean, file)),
 			);
 		}
-	} else if (!isJSON(argClean)) {
+	} else if (path.extname(argClean) !== ".json") {
 		program.error(`"${argClean}" is not a JSON file`, {
 			exitCode: 1,
 			code: "invalid.file",
