@@ -195,7 +195,7 @@
 				"released",
 				"added",
 				"modified",
-				"license"
+				"licenseID"
 			],
 			"additionalProperties": false
 		},
