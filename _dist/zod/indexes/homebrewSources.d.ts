@@ -252,13 +252,13 @@ export declare const homebrewSourceSummary: z.ZodObject<
 			| "source"
 			| "background"
 			| "event"
+			| "license"
+			| "sourceGroup"
 			| "condition"
 			| "divineIntercession"
 			| "domain"
 			| "skill"
 			| "relicGift"
-			| "license"
-			| "sourceGroup"
 		)[];
 		tags?:
 			| {
@@ -301,13 +301,13 @@ export declare const homebrewSourceSummary: z.ZodObject<
 			| "source"
 			| "background"
 			| "event"
+			| "license"
+			| "sourceGroup"
 			| "condition"
 			| "divineIntercession"
 			| "domain"
 			| "skill"
 			| "relicGift"
-			| "license"
-			| "sourceGroup"
 		)[];
 		tags?:
 			| {
@@ -344,6 +344,9 @@ export declare const homebrewSources: z.ZodArray<
 		{
 			path: z.ZodString;
 			released: z.ZodString;
+			added: z.ZodString;
+			modified: z.ZodString;
+			URL: z.ZodString;
 			tags: z.ZodOptional<
 				z.ZodEffects<
 					z.ZodObject<
@@ -563,9 +566,6 @@ export declare const homebrewSources: z.ZodArray<
 					}
 				>
 			>;
-			added: z.ZodString;
-			modified: z.ZodString;
-			URL: z.ZodString;
 			fullTitle: z.ZodString;
 			publisherAuthors: z.ZodString;
 			datatypes: z.ZodArray<
@@ -585,23 +585,23 @@ export declare const homebrewSources: z.ZodArray<
 		{
 			path: string;
 			released: string;
-			ID: string;
 			added: string;
 			modified: string;
 			URL: string;
+			ID: string;
 			fullTitle: string;
 			publisherAuthors: string;
 			datatypes: (
 				| "source"
 				| "background"
 				| "event"
+				| "license"
+				| "sourceGroup"
 				| "condition"
 				| "divineIntercession"
 				| "domain"
 				| "skill"
 				| "relicGift"
-				| "license"
-				| "sourceGroup"
 			)[];
 			tags?:
 				| {
@@ -635,23 +635,23 @@ export declare const homebrewSources: z.ZodArray<
 		{
 			path: string;
 			released: string;
-			ID: string;
 			added: string;
 			modified: string;
 			URL: string;
+			ID: string;
 			fullTitle: string;
 			publisherAuthors: string;
 			datatypes: (
 				| "source"
 				| "background"
 				| "event"
+				| "license"
+				| "sourceGroup"
 				| "condition"
 				| "divineIntercession"
 				| "domain"
 				| "skill"
 				| "relicGift"
-				| "license"
-				| "sourceGroup"
 			)[];
 			tags?:
 				| {
@@ -943,13 +943,13 @@ export declare const homebrewSourcesRecord: z.ZodEffects<
 					| "source"
 					| "background"
 					| "event"
+					| "license"
+					| "sourceGroup"
 					| "condition"
 					| "divineIntercession"
 					| "domain"
 					| "skill"
 					| "relicGift"
-					| "license"
-					| "sourceGroup"
 				)[];
 				tags?:
 					| {
@@ -992,13 +992,13 @@ export declare const homebrewSourcesRecord: z.ZodEffects<
 					| "source"
 					| "background"
 					| "event"
+					| "license"
+					| "sourceGroup"
 					| "condition"
 					| "divineIntercession"
 					| "domain"
 					| "skill"
 					| "relicGift"
-					| "license"
-					| "sourceGroup"
 				)[];
 				tags?:
 					| {
@@ -1045,13 +1045,13 @@ export declare const homebrewSourcesRecord: z.ZodEffects<
 				| "source"
 				| "background"
 				| "event"
+				| "license"
+				| "sourceGroup"
 				| "condition"
 				| "divineIntercession"
 				| "domain"
 				| "skill"
 				| "relicGift"
-				| "license"
-				| "sourceGroup"
 			)[];
 			tags?:
 				| {
@@ -1097,13 +1097,13 @@ export declare const homebrewSourcesRecord: z.ZodEffects<
 				| "source"
 				| "background"
 				| "event"
+				| "license"
+				| "sourceGroup"
 				| "condition"
 				| "divineIntercession"
 				| "domain"
 				| "skill"
 				| "relicGift"
-				| "license"
-				| "sourceGroup"
 			)[];
 			tags?:
 				| {

@@ -1,6 +1,588 @@
 import { z } from "zod";
 export declare const bySource: z.ZodEffects<
-	z.ZodEffects<
+	z.ZodIntersection<
+		z.ZodObject<
+			{
+				source: z.ZodObject<
+					{
+						type: z.ZodLiteral<"source">;
+						ID: z.ZodEffects<z.ZodString, string, string>;
+						title: z.ZodObject<
+							{
+								full: z.ZodEffects<z.ZodString, string, string>;
+								short: z.ZodString;
+							},
+							"strict",
+							z.ZodTypeAny,
+							{
+								short: string;
+								full: string;
+							},
+							{
+								short: string;
+								full: string;
+							}
+						>;
+						data: z.ZodObject<
+							{
+								released: z.ZodString;
+								version: z.ZodOptional<z.ZodString>;
+								errataed: z.ZodOptional<z.ZodString>;
+								added: z.ZodString;
+								modified: z.ZodString;
+								URL: z.ZodString;
+								groupIDs: z.ZodOptional<
+									z.ZodEffects<
+										z.ZodArray<z.ZodEffects<z.ZodString, string, string>, "atleastone">,
+										[string, ...string[]],
+										[string, ...string[]]
+									>
+								>;
+								requiredSourceIDs: z.ZodOptional<
+									z.ZodEffects<
+										z.ZodArray<z.ZodEffects<z.ZodString, string, string>, "atleastone">,
+										[string, ...string[]],
+										[string, ...string[]]
+									>
+								>;
+								licenseID: z.ZodEffects<z.ZodString, string, string>;
+								copyright: z.ZodOptional<
+									z.ZodArray<
+										z.ZodUnion<
+											[
+												z.ZodString,
+												z.ZodObject<
+													{
+														type: z.ZodString;
+													},
+													"strip",
+													z.ZodTypeAny,
+													{
+														type: string;
+													},
+													{
+														type: string;
+													}
+												>,
+											]
+										>,
+										"many"
+									>
+								>;
+								authors: z.ZodOptional<
+									z.ZodEffects<z.ZodArray<z.ZodString, "atleastone">, [string, ...string[]], [string, ...string[]]>
+								>;
+								publisher: z.ZodOptional<z.ZodString>;
+								converters: z.ZodOptional<
+									z.ZodEffects<z.ZodArray<z.ZodString, "atleastone">, [string, ...string[]], [string, ...string[]]>
+								>;
+							},
+							"strict",
+							z.ZodTypeAny,
+							{
+								released: string;
+								added: string;
+								modified: string;
+								URL: string;
+								licenseID: string;
+								version?: string | undefined;
+								errataed?: string | undefined;
+								groupIDs?: [string, ...string[]] | undefined;
+								requiredSourceIDs?: [string, ...string[]] | undefined;
+								copyright?:
+									| (
+											| string
+											| {
+													type: string;
+											  }
+									  )[]
+									| undefined;
+								authors?: [string, ...string[]] | undefined;
+								publisher?: string | undefined;
+								converters?: [string, ...string[]] | undefined;
+							},
+							{
+								released: string;
+								added: string;
+								modified: string;
+								URL: string;
+								licenseID: string;
+								version?: string | undefined;
+								errataed?: string | undefined;
+								groupIDs?: [string, ...string[]] | undefined;
+								requiredSourceIDs?: [string, ...string[]] | undefined;
+								copyright?:
+									| (
+											| string
+											| {
+													type: string;
+											  }
+									  )[]
+									| undefined;
+								authors?: [string, ...string[]] | undefined;
+								publisher?: string | undefined;
+								converters?: [string, ...string[]] | undefined;
+							}
+						>;
+						tags: z.ZodOptional<
+							z.ZodEffects<
+								z.ZodObject<
+									{
+										publicationType: z.ZodOptional<
+											z.ZodEffects<
+												z.ZodObject<
+													{
+														Comic: z.ZodOptional<z.ZodLiteral<true>>;
+														"Blog post": z.ZodOptional<z.ZodLiteral<true>>;
+													},
+													"strict",
+													z.ZodTypeAny,
+													{
+														Comic?: true | undefined;
+														"Blog post"?: true | undefined;
+													},
+													{
+														Comic?: true | undefined;
+														"Blog post"?: true | undefined;
+													}
+												>,
+												{
+													Comic?: true | undefined;
+													"Blog post"?: true | undefined;
+												},
+												{
+													Comic?: true | undefined;
+													"Blog post"?: true | undefined;
+												}
+											>
+										>;
+										status: z.ZodOptional<
+											z.ZodEffects<
+												z.ZodObject<
+													{
+														"Missing content": z.ZodOptional<z.ZodLiteral<true>>;
+														"Missing tags": z.ZodOptional<z.ZodLiteral<true>>;
+														Invalid: z.ZodOptional<z.ZodLiteral<true>>;
+													},
+													"strict",
+													z.ZodTypeAny,
+													{
+														"Missing content"?: true | undefined;
+														"Missing tags"?: true | undefined;
+														Invalid?: true | undefined;
+													},
+													{
+														"Missing content"?: true | undefined;
+														"Missing tags"?: true | undefined;
+														Invalid?: true | undefined;
+													}
+												>,
+												{
+													"Missing content"?: true | undefined;
+													"Missing tags"?: true | undefined;
+													Invalid?: true | undefined;
+												},
+												{
+													"Missing content"?: true | undefined;
+													"Missing tags"?: true | undefined;
+													Invalid?: true | undefined;
+												}
+											>
+										>;
+										misc: z.ZodOptional<
+											z.ZodEffects<
+												z.ZodObject<
+													{
+														Official: z.ZodOptional<z.ZodLiteral<true>>;
+														"GM-facing": z.ZodOptional<z.ZodLiteral<true>>;
+														"PFS-legal": z.ZodOptional<z.ZodLiteral<true>>;
+														Playtest: z.ZodOptional<z.ZodLiteral<true>>;
+														Ongoing: z.ZodOptional<z.ZodLiteral<true>>;
+														Deprecated: z.ZodOptional<z.ZodLiteral<true>>;
+													},
+													"strict",
+													z.ZodTypeAny,
+													{
+														Official?: true | undefined;
+														"GM-facing"?: true | undefined;
+														"PFS-legal"?: true | undefined;
+														Playtest?: true | undefined;
+														Ongoing?: true | undefined;
+														Deprecated?: true | undefined;
+													},
+													{
+														Official?: true | undefined;
+														"GM-facing"?: true | undefined;
+														"PFS-legal"?: true | undefined;
+														Playtest?: true | undefined;
+														Ongoing?: true | undefined;
+														Deprecated?: true | undefined;
+													}
+												>,
+												{
+													Official?: true | undefined;
+													"GM-facing"?: true | undefined;
+													"PFS-legal"?: true | undefined;
+													Playtest?: true | undefined;
+													Ongoing?: true | undefined;
+													Deprecated?: true | undefined;
+												},
+												{
+													Official?: true | undefined;
+													"GM-facing"?: true | undefined;
+													"PFS-legal"?: true | undefined;
+													Playtest?: true | undefined;
+													Ongoing?: true | undefined;
+													Deprecated?: true | undefined;
+												}
+											>
+										>;
+									},
+									"strict",
+									z.ZodTypeAny,
+									{
+										publicationType?:
+											| {
+													Comic?: true | undefined;
+													"Blog post"?: true | undefined;
+											  }
+											| undefined;
+										status?:
+											| {
+													"Missing content"?: true | undefined;
+													"Missing tags"?: true | undefined;
+													Invalid?: true | undefined;
+											  }
+											| undefined;
+										misc?:
+											| {
+													Official?: true | undefined;
+													"GM-facing"?: true | undefined;
+													"PFS-legal"?: true | undefined;
+													Playtest?: true | undefined;
+													Ongoing?: true | undefined;
+													Deprecated?: true | undefined;
+											  }
+											| undefined;
+									},
+									{
+										publicationType?:
+											| {
+													Comic?: true | undefined;
+													"Blog post"?: true | undefined;
+											  }
+											| undefined;
+										status?:
+											| {
+													"Missing content"?: true | undefined;
+													"Missing tags"?: true | undefined;
+													Invalid?: true | undefined;
+											  }
+											| undefined;
+										misc?:
+											| {
+													Official?: true | undefined;
+													"GM-facing"?: true | undefined;
+													"PFS-legal"?: true | undefined;
+													Playtest?: true | undefined;
+													Ongoing?: true | undefined;
+													Deprecated?: true | undefined;
+											  }
+											| undefined;
+									}
+								>,
+								{
+									publicationType?:
+										| {
+												Comic?: true | undefined;
+												"Blog post"?: true | undefined;
+										  }
+										| undefined;
+									status?:
+										| {
+												"Missing content"?: true | undefined;
+												"Missing tags"?: true | undefined;
+												Invalid?: true | undefined;
+										  }
+										| undefined;
+									misc?:
+										| {
+												Official?: true | undefined;
+												"GM-facing"?: true | undefined;
+												"PFS-legal"?: true | undefined;
+												Playtest?: true | undefined;
+												Ongoing?: true | undefined;
+												Deprecated?: true | undefined;
+										  }
+										| undefined;
+								},
+								{
+									publicationType?:
+										| {
+												Comic?: true | undefined;
+												"Blog post"?: true | undefined;
+										  }
+										| undefined;
+									status?:
+										| {
+												"Missing content"?: true | undefined;
+												"Missing tags"?: true | undefined;
+												Invalid?: true | undefined;
+										  }
+										| undefined;
+									misc?:
+										| {
+												Official?: true | undefined;
+												"GM-facing"?: true | undefined;
+												"PFS-legal"?: true | undefined;
+												Playtest?: true | undefined;
+												Ongoing?: true | undefined;
+												Deprecated?: true | undefined;
+										  }
+										| undefined;
+								}
+							>
+						>;
+					},
+					"strict",
+					z.ZodTypeAny,
+					{
+						type: "source";
+						data: {
+							released: string;
+							added: string;
+							modified: string;
+							URL: string;
+							licenseID: string;
+							version?: string | undefined;
+							errataed?: string | undefined;
+							groupIDs?: [string, ...string[]] | undefined;
+							requiredSourceIDs?: [string, ...string[]] | undefined;
+							copyright?:
+								| (
+										| string
+										| {
+												type: string;
+										  }
+								  )[]
+								| undefined;
+							authors?: [string, ...string[]] | undefined;
+							publisher?: string | undefined;
+							converters?: [string, ...string[]] | undefined;
+						};
+						title: {
+							short: string;
+							full: string;
+						};
+						ID: string;
+						tags?:
+							| {
+									publicationType?:
+										| {
+												Comic?: true | undefined;
+												"Blog post"?: true | undefined;
+										  }
+										| undefined;
+									status?:
+										| {
+												"Missing content"?: true | undefined;
+												"Missing tags"?: true | undefined;
+												Invalid?: true | undefined;
+										  }
+										| undefined;
+									misc?:
+										| {
+												Official?: true | undefined;
+												"GM-facing"?: true | undefined;
+												"PFS-legal"?: true | undefined;
+												Playtest?: true | undefined;
+												Ongoing?: true | undefined;
+												Deprecated?: true | undefined;
+										  }
+										| undefined;
+							  }
+							| undefined;
+					},
+					{
+						type: "source";
+						data: {
+							released: string;
+							added: string;
+							modified: string;
+							URL: string;
+							licenseID: string;
+							version?: string | undefined;
+							errataed?: string | undefined;
+							groupIDs?: [string, ...string[]] | undefined;
+							requiredSourceIDs?: [string, ...string[]] | undefined;
+							copyright?:
+								| (
+										| string
+										| {
+												type: string;
+										  }
+								  )[]
+								| undefined;
+							authors?: [string, ...string[]] | undefined;
+							publisher?: string | undefined;
+							converters?: [string, ...string[]] | undefined;
+						};
+						title: {
+							short: string;
+							full: string;
+						};
+						ID: string;
+						tags?:
+							| {
+									publicationType?:
+										| {
+												Comic?: true | undefined;
+												"Blog post"?: true | undefined;
+										  }
+										| undefined;
+									status?:
+										| {
+												"Missing content"?: true | undefined;
+												"Missing tags"?: true | undefined;
+												Invalid?: true | undefined;
+										  }
+										| undefined;
+									misc?:
+										| {
+												Official?: true | undefined;
+												"GM-facing"?: true | undefined;
+												"PFS-legal"?: true | undefined;
+												Playtest?: true | undefined;
+												Ongoing?: true | undefined;
+												Deprecated?: true | undefined;
+										  }
+										| undefined;
+							  }
+							| undefined;
+					}
+				>;
+			},
+			"strip",
+			z.ZodTypeAny,
+			{
+				source: {
+					type: "source";
+					data: {
+						released: string;
+						added: string;
+						modified: string;
+						URL: string;
+						licenseID: string;
+						version?: string | undefined;
+						errataed?: string | undefined;
+						groupIDs?: [string, ...string[]] | undefined;
+						requiredSourceIDs?: [string, ...string[]] | undefined;
+						copyright?:
+							| (
+									| string
+									| {
+											type: string;
+									  }
+							  )[]
+							| undefined;
+						authors?: [string, ...string[]] | undefined;
+						publisher?: string | undefined;
+						converters?: [string, ...string[]] | undefined;
+					};
+					title: {
+						short: string;
+						full: string;
+					};
+					ID: string;
+					tags?:
+						| {
+								publicationType?:
+									| {
+											Comic?: true | undefined;
+											"Blog post"?: true | undefined;
+									  }
+									| undefined;
+								status?:
+									| {
+											"Missing content"?: true | undefined;
+											"Missing tags"?: true | undefined;
+											Invalid?: true | undefined;
+									  }
+									| undefined;
+								misc?:
+									| {
+											Official?: true | undefined;
+											"GM-facing"?: true | undefined;
+											"PFS-legal"?: true | undefined;
+											Playtest?: true | undefined;
+											Ongoing?: true | undefined;
+											Deprecated?: true | undefined;
+									  }
+									| undefined;
+						  }
+						| undefined;
+				};
+			},
+			{
+				source: {
+					type: "source";
+					data: {
+						released: string;
+						added: string;
+						modified: string;
+						URL: string;
+						licenseID: string;
+						version?: string | undefined;
+						errataed?: string | undefined;
+						groupIDs?: [string, ...string[]] | undefined;
+						requiredSourceIDs?: [string, ...string[]] | undefined;
+						copyright?:
+							| (
+									| string
+									| {
+											type: string;
+									  }
+							  )[]
+							| undefined;
+						authors?: [string, ...string[]] | undefined;
+						publisher?: string | undefined;
+						converters?: [string, ...string[]] | undefined;
+					};
+					title: {
+						short: string;
+						full: string;
+					};
+					ID: string;
+					tags?:
+						| {
+								publicationType?:
+									| {
+											Comic?: true | undefined;
+											"Blog post"?: true | undefined;
+									  }
+									| undefined;
+								status?:
+									| {
+											"Missing content"?: true | undefined;
+											"Missing tags"?: true | undefined;
+											Invalid?: true | undefined;
+									  }
+									| undefined;
+								misc?:
+									| {
+											Official?: true | undefined;
+											"GM-facing"?: true | undefined;
+											"PFS-legal"?: true | undefined;
+											Playtest?: true | undefined;
+											Ongoing?: true | undefined;
+											Deprecated?: true | undefined;
+									  }
+									| undefined;
+						  }
+						| undefined;
+				};
+			}
+		>,
 		z.ZodRecord<
 			z.ZodUnion<
 				[
@@ -4011,1014 +4593,78 @@ export declare const bySource: z.ZodEffects<
 				>,
 				"many"
 			>
-		>,
-		Partial<
-			Record<
-				| "source"
-				| "background"
-				| "event"
-				| "condition"
-				| "divineIntercession"
-				| "domain"
-				| "skill"
-				| "relicGift"
-				| "license"
-				| "sourceGroup",
-				(
-					| {
-							type: "source";
-							data: {
-								released: string;
-								added: string;
-								modified: string;
-								URL: string;
-								licenseID: string;
-								version?: string | undefined;
-								errataed?: string | undefined;
-								groupIDs?: [string, ...string[]] | undefined;
-								requiredSourceIDs?: [string, ...string[]] | undefined;
-								copyright?:
-									| (
-											| string
-											| {
-													type: string;
-											  }
-									  )[]
-									| undefined;
-								authors?: [string, ...string[]] | undefined;
-								publisher?: string | undefined;
-								converters?: [string, ...string[]] | undefined;
-							};
-							title: {
-								short: string;
-								full: string;
-							};
-							ID: string;
-							tags?:
-								| {
-										publicationType?:
-											| {
-													Comic?: true | undefined;
-													"Blog post"?: true | undefined;
-											  }
-											| undefined;
-										status?:
-											| {
-													"Missing content"?: true | undefined;
-													"Missing tags"?: true | undefined;
-													Invalid?: true | undefined;
-											  }
-											| undefined;
-										misc?:
-											| {
-													Official?: true | undefined;
-													"GM-facing"?: true | undefined;
-													"PFS-legal"?: true | undefined;
-													Playtest?: true | undefined;
-													Ongoing?: true | undefined;
-													Deprecated?: true | undefined;
-											  }
-											| undefined;
-								  }
-								| undefined;
-					  }
-					| {
-							type: "license";
-							data: {
-								entries: (
-									| string
-									| {
-											type: string;
-									  }
-								)[];
-							};
-							title: {
-								short: string;
-								full: string;
-							};
-							ID: string;
-					  }
-					| {
-							type: "sourceGroup";
-							title: {
-								short: string;
-								full: string;
-							};
-							ID: string;
-							data?:
-								| {
-										publisher: string;
-								  }
-								| undefined;
-							tags?:
-								| {
-										misc: {
-											Adventure?: true | undefined;
-											Ongoing?: true | undefined;
-										};
-								  }
-								| undefined;
-					  }
-					| {
-							type: "background";
-							data: {
-								entries: (
-									| string
-									| {
-											type: string;
-									  }
-								)[];
-								traits?:
-									| {
-											trait: string;
-											variables?: string[] | undefined;
-											display?: string | undefined;
-									  }[]
-									| undefined;
-							};
-							source: {
-								ID: string;
-								page?: number | undefined;
-							};
-							name: {
-								primary: string;
-								aliases?: string[] | undefined;
-								specifier?: string | undefined;
-							};
-							tags?:
-								| {
-										abilityBoosts?:
-											| {
-													abilities: Partial<
-														Record<
-															| "Strength"
-															| "Dexterity"
-															| "Constitution"
-															| "Intelligence"
-															| "Wisdom"
-															| "Charisma"
-															| "Free",
-															true
-														>
-													>;
-													count: number;
-											  }
-											| undefined;
-										trainedSkills?:
-											| {
-													count: number;
-													skills: Partial<
-														Record<
-															| "Acrobatics"
-															| "Arcana"
-															| "Athletics"
-															| "Crafting"
-															| "Deception"
-															| "Diplomacy"
-															| "Intimidation"
-															| "Lore"
-															| "Medicine"
-															| "Nature"
-															| "Occultism"
-															| "Performance"
-															| "Religion"
-															| "Society"
-															| "Stealth"
-															| "Survival"
-															| "Thievery"
-															| "Any",
-															true
-														>
-													>;
-											  }
-											| undefined;
-										gainedFeats?:
-											| {
-													options: {
-														name: string;
-														sourceID: string;
-														specifier?: string | undefined;
-													}[];
-													count: number;
-											  }
-											| undefined;
-										gainedSpells?:
-											| {
-													options: {
-														name: string;
-														sourceID: string;
-														specifier?: string | undefined;
-													}[];
-													count: number;
-											  }
-											| undefined;
-										misc?:
-											| {
-													"Grants ability"?: true | undefined;
-													"Grants equipment"?: true | undefined;
-													"Grants language"?: true | undefined;
-													"Grants resistance"?: true | undefined;
-													"Grants sense"?: true | undefined;
-													"Grants situational benefit"?: true | undefined;
-													"Has drawback"?: true | undefined;
-													"GM influence"?: true | undefined;
-											  }
-											| undefined;
-								  }
-								| undefined;
-					  }
-					| {
-							type: "condition";
-							data: {
-								entries: (
-									| string
-									| {
-											type: string;
-									  }
-								)[];
-							};
-							source: {
-								ID: string;
-								page?: number | undefined;
-							};
-							name: {
-								primary: string;
-								aliases?: string[] | undefined;
-								specifier?: string | undefined;
-							};
-							tags?:
-								| {
-										group?:
-											| z.objectOutputType<
-													{
-														Attitudes: z.ZodOptional<z.ZodLiteral<true>>;
-														"Death and Dying": z.ZodOptional<z.ZodLiteral<true>>;
-														"Degrees of Detection": z.ZodOptional<z.ZodLiteral<true>>;
-														"Lowered Abilities": z.ZodOptional<z.ZodLiteral<true>>;
-														Senses: z.ZodOptional<z.ZodLiteral<true>>;
-													},
-													z.ZodLiteral<true>,
-													"strip"
-											  >
-											| undefined;
-								  }
-								| undefined;
-					  }
-					| {
-							type: "divineIntercession";
-							data: {
-								preamble?:
-									| (
-											| string
-											| {
-													type: string;
-											  }
-									  )[]
-									| undefined;
-								"Minor Boon"?:
-									| (
-											| string
-											| {
-													type: string;
-											  }
-									  )[]
-									| undefined;
-								"Moderate Boon"?:
-									| (
-											| string
-											| {
-													type: string;
-											  }
-									  )[]
-									| undefined;
-								"Major Boon"?:
-									| (
-											| string
-											| {
-													type: string;
-											  }
-									  )[]
-									| undefined;
-								"Minor Curse"?:
-									| (
-											| string
-											| {
-													type: string;
-											  }
-									  )[]
-									| undefined;
-								"Moderate Curse"?:
-									| (
-											| string
-											| {
-													type: string;
-											  }
-									  )[]
-									| undefined;
-								"Major Curse"?:
-									| (
-											| string
-											| {
-													type: string;
-											  }
-									  )[]
-									| undefined;
-							};
-							source: {
-								ID: string;
-								page?: number | undefined;
-							};
-							name: {
-								primary: string;
-								aliases?: string[] | undefined;
-								specifier?: string | undefined;
-							};
-							tags?: {} | undefined;
-					  }
-					| {
-							type: "domain";
-							data: {
-								domainSpell: {
-									name: string;
-									sourceID: string;
-									specifier?: string | undefined;
-								};
-								advancedDomainSpell: {
-									name: string;
-									sourceID: string;
-									specifier?: string | undefined;
-								};
-								preamble?: string | undefined;
-								apocryphalSpell?:
-									| {
-											name: string;
-											sourceID: string;
-											specifier?: string | undefined;
-									  }
-									| undefined;
-								advancedApocryphalSpell?:
-									| {
-											name: string;
-											sourceID: string;
-											specifier?: string | undefined;
-									  }
-									| undefined;
-							};
-							source: {
-								ID: string;
-								page?: number | undefined;
-							};
-							name: {
-								primary: string;
-								aliases?: string[] | undefined;
-								specifier?: string | undefined;
-							};
-							tags?: {} | undefined;
-					  }
-					| {
-							type: "event";
-							data: {
-								entries: (
-									| string
-									| {
-											type: string;
-									  }
-								)[];
-								level: number;
-								traits?:
-									| {
-											trait: string;
-											variables?: string[] | undefined;
-											display?: string | undefined;
-									  }[]
-									| undefined;
-								applicableSkills?:
-									| {
-											skill:
-												| "Acrobatics"
-												| "Arcana"
-												| "Athletics"
-												| "Crafting"
-												| "Deception"
-												| "Diplomacy"
-												| "Intimidation"
-												| "Lore"
-												| "Medicine"
-												| "Nature"
-												| "Occultism"
-												| "Performance"
-												| "Religion"
-												| "Society"
-												| "Stealth"
-												| "Survival"
-												| "Thievery";
-											variables?: string[] | undefined;
-											display?: string | undefined;
-									  }[]
-									| undefined;
-							};
-							source: {
-								ID: string;
-								page?: number | undefined;
-							};
-							name: {
-								primary: string;
-								aliases?: string[] | undefined;
-								specifier?: string | undefined;
-							};
-							tags?: {} | undefined;
-					  }
-					| {
-							type: "relicGift";
-							data: {
-								entries: (
-									| string
-									| {
-											type: string;
-									  }
-								)[];
-								tier: string;
-								aspects: {
-									name: string;
-									note?: string | undefined;
-								}[];
-								traits?:
-									| {
-											trait: string;
-											variables?: string[] | undefined;
-											display?: string | undefined;
-									  }[]
-									| undefined;
-								prerequisites?: string | undefined;
-							};
-							source: {
-								ID: string;
-								page?: number | undefined;
-							};
-							name: {
-								primary: string;
-								aliases?: string[] | undefined;
-								specifier?: string | undefined;
-							};
-							tags?:
-								| {
-										itemTypes?:
-											| z.objectOutputType<
-													{
-														Armor: z.ZodOptional<z.ZodLiteral<true>>;
-														"Worn Item": z.ZodOptional<z.ZodLiteral<true>>;
-														Weapon: z.ZodOptional<z.ZodLiteral<true>>;
-													},
-													z.ZodLiteral<true>,
-													"strip"
-											  >
-											| undefined;
-										misc?:
-											| {
-													"Alters relic"?: true | undefined;
-													"Grants ability"?: true | undefined;
-													"Grants passive attribute"?: true | undefined;
-													"Is rune"?: true | undefined;
-													"Soul seed"?: true | undefined;
-											  }
-											| undefined;
-								  }
-								| undefined;
-					  }
-					| {
-							type: "skill";
-							data: {
-								entries: (
-									| string
-									| {
-											type: string;
-									  }
-								)[];
-							};
-							source: {
-								ID: string;
-								page?: number | undefined;
-							};
-							name: {
-								primary: string;
-								aliases?: string[] | undefined;
-								specifier?: string | undefined;
-							};
-							tags?: {} | undefined;
-					  }
-				)[]
-			>
-		>,
-		Partial<
-			Record<
-				| "source"
-				| "background"
-				| "event"
-				| "condition"
-				| "divineIntercession"
-				| "domain"
-				| "skill"
-				| "relicGift"
-				| "license"
-				| "sourceGroup",
-				(
-					| {
-							type: "source";
-							data: {
-								released: string;
-								added: string;
-								modified: string;
-								URL: string;
-								licenseID: string;
-								version?: string | undefined;
-								errataed?: string | undefined;
-								groupIDs?: [string, ...string[]] | undefined;
-								requiredSourceIDs?: [string, ...string[]] | undefined;
-								copyright?:
-									| (
-											| string
-											| {
-													type: string;
-											  }
-									  )[]
-									| undefined;
-								authors?: [string, ...string[]] | undefined;
-								publisher?: string | undefined;
-								converters?: [string, ...string[]] | undefined;
-							};
-							title: {
-								short: string;
-								full: string;
-							};
-							ID: string;
-							tags?:
-								| {
-										publicationType?:
-											| {
-													Comic?: true | undefined;
-													"Blog post"?: true | undefined;
-											  }
-											| undefined;
-										status?:
-											| {
-													"Missing content"?: true | undefined;
-													"Missing tags"?: true | undefined;
-													Invalid?: true | undefined;
-											  }
-											| undefined;
-										misc?:
-											| {
-													Official?: true | undefined;
-													"GM-facing"?: true | undefined;
-													"PFS-legal"?: true | undefined;
-													Playtest?: true | undefined;
-													Ongoing?: true | undefined;
-													Deprecated?: true | undefined;
-											  }
-											| undefined;
-								  }
-								| undefined;
-					  }
-					| {
-							type: "license";
-							data: {
-								entries: (
-									| string
-									| {
-											type: string;
-									  }
-								)[];
-							};
-							title: {
-								short: string;
-								full: string;
-							};
-							ID: string;
-					  }
-					| {
-							type: "sourceGroup";
-							title: {
-								short: string;
-								full: string;
-							};
-							ID: string;
-							data?:
-								| {
-										publisher: string;
-								  }
-								| undefined;
-							tags?:
-								| {
-										misc: {
-											Adventure?: true | undefined;
-											Ongoing?: true | undefined;
-										};
-								  }
-								| undefined;
-					  }
-					| {
-							type: "background";
-							data: {
-								entries: (
-									| string
-									| {
-											type: string;
-									  }
-								)[];
-								traits?:
-									| {
-											trait: string;
-											variables?: string[] | undefined;
-											display?: string | undefined;
-									  }[]
-									| undefined;
-							};
-							source: {
-								ID: string;
-								page?: number | undefined;
-							};
-							name: {
-								primary: string;
-								aliases?: string[] | undefined;
-								specifier?: string | undefined;
-							};
-							tags?:
-								| {
-										abilityBoosts?:
-											| {
-													abilities: Partial<
-														Record<
-															| "Strength"
-															| "Dexterity"
-															| "Constitution"
-															| "Intelligence"
-															| "Wisdom"
-															| "Charisma"
-															| "Free",
-															true
-														>
-													>;
-													count: number;
-											  }
-											| undefined;
-										trainedSkills?:
-											| {
-													count: number;
-													skills: Partial<
-														Record<
-															| "Acrobatics"
-															| "Arcana"
-															| "Athletics"
-															| "Crafting"
-															| "Deception"
-															| "Diplomacy"
-															| "Intimidation"
-															| "Lore"
-															| "Medicine"
-															| "Nature"
-															| "Occultism"
-															| "Performance"
-															| "Religion"
-															| "Society"
-															| "Stealth"
-															| "Survival"
-															| "Thievery"
-															| "Any",
-															true
-														>
-													>;
-											  }
-											| undefined;
-										gainedFeats?:
-											| {
-													options: {
-														name: string;
-														sourceID: string;
-														specifier?: string | undefined;
-													}[];
-													count: number;
-											  }
-											| undefined;
-										gainedSpells?:
-											| {
-													options: {
-														name: string;
-														sourceID: string;
-														specifier?: string | undefined;
-													}[];
-													count: number;
-											  }
-											| undefined;
-										misc?:
-											| {
-													"Grants ability"?: true | undefined;
-													"Grants equipment"?: true | undefined;
-													"Grants language"?: true | undefined;
-													"Grants resistance"?: true | undefined;
-													"Grants sense"?: true | undefined;
-													"Grants situational benefit"?: true | undefined;
-													"Has drawback"?: true | undefined;
-													"GM influence"?: true | undefined;
-											  }
-											| undefined;
-								  }
-								| undefined;
-					  }
-					| {
-							type: "condition";
-							data: {
-								entries: (
-									| string
-									| {
-											type: string;
-									  }
-								)[];
-							};
-							source: {
-								ID: string;
-								page?: number | undefined;
-							};
-							name: {
-								primary: string;
-								aliases?: string[] | undefined;
-								specifier?: string | undefined;
-							};
-							tags?:
-								| {
-										group?:
-											| z.objectInputType<
-													{
-														Attitudes: z.ZodOptional<z.ZodLiteral<true>>;
-														"Death and Dying": z.ZodOptional<z.ZodLiteral<true>>;
-														"Degrees of Detection": z.ZodOptional<z.ZodLiteral<true>>;
-														"Lowered Abilities": z.ZodOptional<z.ZodLiteral<true>>;
-														Senses: z.ZodOptional<z.ZodLiteral<true>>;
-													},
-													z.ZodLiteral<true>,
-													"strip"
-											  >
-											| undefined;
-								  }
-								| undefined;
-					  }
-					| {
-							type: "divineIntercession";
-							data: {
-								preamble?:
-									| (
-											| string
-											| {
-													type: string;
-											  }
-									  )[]
-									| undefined;
-								"Minor Boon"?:
-									| (
-											| string
-											| {
-													type: string;
-											  }
-									  )[]
-									| undefined;
-								"Moderate Boon"?:
-									| (
-											| string
-											| {
-													type: string;
-											  }
-									  )[]
-									| undefined;
-								"Major Boon"?:
-									| (
-											| string
-											| {
-													type: string;
-											  }
-									  )[]
-									| undefined;
-								"Minor Curse"?:
-									| (
-											| string
-											| {
-													type: string;
-											  }
-									  )[]
-									| undefined;
-								"Moderate Curse"?:
-									| (
-											| string
-											| {
-													type: string;
-											  }
-									  )[]
-									| undefined;
-								"Major Curse"?:
-									| (
-											| string
-											| {
-													type: string;
-											  }
-									  )[]
-									| undefined;
-							};
-							source: {
-								ID: string;
-								page?: number | undefined;
-							};
-							name: {
-								primary: string;
-								aliases?: string[] | undefined;
-								specifier?: string | undefined;
-							};
-							tags?: {} | undefined;
-					  }
-					| {
-							type: "domain";
-							data: {
-								domainSpell: {
-									name: string;
-									sourceID: string;
-									specifier?: string | undefined;
-								};
-								advancedDomainSpell: {
-									name: string;
-									sourceID: string;
-									specifier?: string | undefined;
-								};
-								preamble?: string | undefined;
-								apocryphalSpell?:
-									| {
-											name: string;
-											sourceID: string;
-											specifier?: string | undefined;
-									  }
-									| undefined;
-								advancedApocryphalSpell?:
-									| {
-											name: string;
-											sourceID: string;
-											specifier?: string | undefined;
-									  }
-									| undefined;
-							};
-							source: {
-								ID: string;
-								page?: number | undefined;
-							};
-							name: {
-								primary: string;
-								aliases?: string[] | undefined;
-								specifier?: string | undefined;
-							};
-							tags?: {} | undefined;
-					  }
-					| {
-							type: "event";
-							data: {
-								entries: (
-									| string
-									| {
-											type: string;
-									  }
-								)[];
-								level: number;
-								traits?:
-									| {
-											trait: string;
-											variables?: string[] | undefined;
-											display?: string | undefined;
-									  }[]
-									| undefined;
-								applicableSkills?:
-									| {
-											skill:
-												| "Acrobatics"
-												| "Arcana"
-												| "Athletics"
-												| "Crafting"
-												| "Deception"
-												| "Diplomacy"
-												| "Intimidation"
-												| "Lore"
-												| "Medicine"
-												| "Nature"
-												| "Occultism"
-												| "Performance"
-												| "Religion"
-												| "Society"
-												| "Stealth"
-												| "Survival"
-												| "Thievery";
-											variables?: string[] | undefined;
-											display?: string | undefined;
-									  }[]
-									| undefined;
-							};
-							source: {
-								ID: string;
-								page?: number | undefined;
-							};
-							name: {
-								primary: string;
-								aliases?: string[] | undefined;
-								specifier?: string | undefined;
-							};
-							tags?: {} | undefined;
-					  }
-					| {
-							type: "relicGift";
-							data: {
-								entries: (
-									| string
-									| {
-											type: string;
-									  }
-								)[];
-								tier: string;
-								aspects: {
-									name: string;
-									note?: string | undefined;
-								}[];
-								traits?:
-									| {
-											trait: string;
-											variables?: string[] | undefined;
-											display?: string | undefined;
-									  }[]
-									| undefined;
-								prerequisites?: string | undefined;
-							};
-							source: {
-								ID: string;
-								page?: number | undefined;
-							};
-							name: {
-								primary: string;
-								aliases?: string[] | undefined;
-								specifier?: string | undefined;
-							};
-							tags?:
-								| {
-										itemTypes?:
-											| z.objectInputType<
-													{
-														Armor: z.ZodOptional<z.ZodLiteral<true>>;
-														"Worn Item": z.ZodOptional<z.ZodLiteral<true>>;
-														Weapon: z.ZodOptional<z.ZodLiteral<true>>;
-													},
-													z.ZodLiteral<true>,
-													"strip"
-											  >
-											| undefined;
-										misc?:
-											| {
-													"Alters relic"?: true | undefined;
-													"Grants ability"?: true | undefined;
-													"Grants passive attribute"?: true | undefined;
-													"Is rune"?: true | undefined;
-													"Soul seed"?: true | undefined;
-											  }
-											| undefined;
-								  }
-								| undefined;
-					  }
-					| {
-							type: "skill";
-							data: {
-								entries: (
-									| string
-									| {
-											type: string;
-									  }
-								)[];
-							};
-							source: {
-								ID: string;
-								page?: number | undefined;
-							};
-							name: {
-								primary: string;
-								aliases?: string[] | undefined;
-								specifier?: string | undefined;
-							};
-							tags?: {} | undefined;
-					  }
-				)[]
-			>
 		>
 	>,
-	Partial<
+	{
+		source: {
+			type: "source";
+			data: {
+				released: string;
+				added: string;
+				modified: string;
+				URL: string;
+				licenseID: string;
+				version?: string | undefined;
+				errataed?: string | undefined;
+				groupIDs?: [string, ...string[]] | undefined;
+				requiredSourceIDs?: [string, ...string[]] | undefined;
+				copyright?:
+					| (
+							| string
+							| {
+									type: string;
+							  }
+					  )[]
+					| undefined;
+				authors?: [string, ...string[]] | undefined;
+				publisher?: string | undefined;
+				converters?: [string, ...string[]] | undefined;
+			};
+			title: {
+				short: string;
+				full: string;
+			};
+			ID: string;
+			tags?:
+				| {
+						publicationType?:
+							| {
+									Comic?: true | undefined;
+									"Blog post"?: true | undefined;
+							  }
+							| undefined;
+						status?:
+							| {
+									"Missing content"?: true | undefined;
+									"Missing tags"?: true | undefined;
+									Invalid?: true | undefined;
+							  }
+							| undefined;
+						misc?:
+							| {
+									Official?: true | undefined;
+									"GM-facing"?: true | undefined;
+									"PFS-legal"?: true | undefined;
+									Playtest?: true | undefined;
+									Ongoing?: true | undefined;
+									Deprecated?: true | undefined;
+							  }
+							| undefined;
+				  }
+				| undefined;
+		};
+	} & Partial<
 		Record<
 			| "source"
 			| "background"
 			| "event"
+			| "license"
+			| "sourceGroup"
 			| "condition"
 			| "divineIntercession"
 			| "domain"
 			| "skill"
-			| "relicGift"
-			| "license"
-			| "sourceGroup",
+			| "relicGift",
 			(
 				| {
 						type: "source";
@@ -5504,18 +5150,76 @@ export declare const bySource: z.ZodEffects<
 			)[]
 		>
 	>,
-	Partial<
+	{
+		source: {
+			type: "source";
+			data: {
+				released: string;
+				added: string;
+				modified: string;
+				URL: string;
+				licenseID: string;
+				version?: string | undefined;
+				errataed?: string | undefined;
+				groupIDs?: [string, ...string[]] | undefined;
+				requiredSourceIDs?: [string, ...string[]] | undefined;
+				copyright?:
+					| (
+							| string
+							| {
+									type: string;
+							  }
+					  )[]
+					| undefined;
+				authors?: [string, ...string[]] | undefined;
+				publisher?: string | undefined;
+				converters?: [string, ...string[]] | undefined;
+			};
+			title: {
+				short: string;
+				full: string;
+			};
+			ID: string;
+			tags?:
+				| {
+						publicationType?:
+							| {
+									Comic?: true | undefined;
+									"Blog post"?: true | undefined;
+							  }
+							| undefined;
+						status?:
+							| {
+									"Missing content"?: true | undefined;
+									"Missing tags"?: true | undefined;
+									Invalid?: true | undefined;
+							  }
+							| undefined;
+						misc?:
+							| {
+									Official?: true | undefined;
+									"GM-facing"?: true | undefined;
+									"PFS-legal"?: true | undefined;
+									Playtest?: true | undefined;
+									Ongoing?: true | undefined;
+									Deprecated?: true | undefined;
+							  }
+							| undefined;
+				  }
+				| undefined;
+		};
+	} & Partial<
 		Record<
 			| "source"
 			| "background"
 			| "event"
+			| "license"
+			| "sourceGroup"
 			| "condition"
 			| "divineIntercession"
 			| "domain"
 			| "skill"
-			| "relicGift"
-			| "license"
-			| "sourceGroup",
+			| "relicGift",
 			(
 				| {
 						type: "source";

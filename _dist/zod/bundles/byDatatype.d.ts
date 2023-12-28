@@ -4016,13 +4016,13 @@ export declare const byDatatype: z.ZodEffects<
 			| "source"
 			| "background"
 			| "event"
+			| "license"
+			| "sourceGroup"
 			| "condition"
 			| "divineIntercession"
 			| "domain"
 			| "skill"
-			| "relicGift"
-			| "license"
-			| "sourceGroup",
+			| "relicGift",
 			(
 				| {
 						type: "source";
@@ -4513,13 +4513,13 @@ export declare const byDatatype: z.ZodEffects<
 			| "source"
 			| "background"
 			| "event"
+			| "license"
+			| "sourceGroup"
 			| "condition"
 			| "divineIntercession"
 			| "domain"
 			| "skill"
-			| "relicGift"
-			| "license"
-			| "sourceGroup",
+			| "relicGift",
 			(
 				| {
 						type: "source";
