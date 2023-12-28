@@ -17,3 +17,4 @@ export { datatypes } from "./indexes/datatypes.js";
 export { homebrewSources } from "./indexes/homebrewSources.js";
 export { IDs } from "./indexes/IDs.js";
 export { shortNames } from "./indexes/shortNames.js";
+export { UUIDs } from "./indexes/UUIDs.js";
