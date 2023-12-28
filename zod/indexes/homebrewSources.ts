@@ -2,6 +2,7 @@ import { z } from "zod";
 
 import { sourceData, sourceTags, ID } from "../source.js";
 import { datatypes } from "./datatypes.js";
+import { nonEmpty } from "../utils/nonEmpty.js";
 
 export const homebrewSourceSummary = sourceData
 	.pick({ URL: true, released: true, added: true, modified: true })
@@ -32,7 +33,15 @@ export const homebrewSourceSummary = sourceData
 	});
 
 export const homebrewSources = z
+	.array(homebrewSourceSummary.extend({ ID: ID }))
+	.describe(
+		"An array of objects containing some summary data about the homebrew source assigned that ID. This is primarily used by `pf2ools-app`.",
+	)
+	.min(1);
+
+export const homebrewSourcesRecord = z
 	.record(ID, homebrewSourceSummary)
 	.describe(
-		"An object mapping IDs as keys to an object containing some summary data about the homebrew source assigned that ID. This is primarily used by `pf2ools-app`.",
-	);
+		"An object mapping IDs as keys to an object containing some summary data about the homebrew source assigned that ID.",
+	)
+	.refine(...nonEmpty);
