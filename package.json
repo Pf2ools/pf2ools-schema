@@ -14,7 +14,7 @@
 	},
 	"devDependencies": {
 		"json-refs": "^3.0.15",
-		"json-schema-to-zod": "^2.0.12",
+		"json-schema-to-zod": "^2.0.13",
 		"prettier": "^3.1.0",
 		"typescript": "^5.3.3"
 	},
