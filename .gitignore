@@ -1,9 +1,12 @@
+.vscode/
 _zod-fromSchema/
 
 # Generic test script
 scripts/\#temp*.*
 
-# Defaults below
+
+
+### Github default NodeJS .gitignore below
 
 # Logs
 logs
