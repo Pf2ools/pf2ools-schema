@@ -48,6 +48,9 @@
 			"$ref": "content/event.json"
 		},
 		{
+			"$ref": "content/familiarAbility.json"
+		},
+		{
 			"$ref": "content/relicGift.json"
 		},
 		{
