@@ -173,7 +173,7 @@
 						},
 						"Grants equipment": {
 							"const": true,
-							"description": "The background grants a free item (not just access or proficiency—the actual concrete thing)."
+							"description": "The background grants a free item (not just access or proficiency\u2014the actual concrete thing)."
 						},
 						"Grants language": {
 							"const": true,
