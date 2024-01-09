@@ -1,7 +1,16 @@
 import { z } from "zod";
 // TODO: find a way to auto-generate this?
 export const contentDatatype = z
-	.enum(["background", "condition", "divineIntercession", "domain", "event", "relicGift", "skill"])
+	.enum([
+		"background",
+		"condition",
+		"divineIntercession",
+		"domain",
+		"event",
+		"familiarAbility",
+		"relicGift",
+		"skill",
+	])
 	.describe("A content datatype's name, as it appears in the JSON data itself.");
 export const metaDatatype = z
 	.enum(["license", "source", "sourceGroup"])

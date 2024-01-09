@@ -11,6 +11,7 @@ export { condition } from "./content/condition.js";
 export { divineIntercession } from "./content/divineIntercession.js";
 export { domain } from "./content/domain.js";
 export { event } from "./content/event.js";
+export { familiarAbility } from "./content/familiarAbility.js";
 export { relicGift } from "./content/relicGift.js";
 export { skill } from "./content/skill.js";
 export { datatypes } from "./indexes/datatypes.js";
