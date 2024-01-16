@@ -6,7 +6,7 @@ import { entries } from "./common/entries.js";
 import { nonEmpty } from "../utils/nonEmpty.js";
 import { listOfAbilities } from "./constants/listOfAbilities.js";
 import { listOfSkills } from "./constants/listOfSkills.js";
-import { directReference } from "./common/directReference.js";
+import { referenceTarget } from "./common/referenceTarget.js";
 import { uniqueObjects } from "../utils/uniqueObjects.js";
 
 export const background = content.merge(
@@ -56,7 +56,7 @@ export const background = content.merge(
 					gainedFeats: z
 						.object({
 							options: z
-								.array(directReference)
+								.array(referenceTarget)
 								.describe("A list of feats the background can grant.")
 								.min(1)
 								.refine(...uniqueObjects),
@@ -73,7 +73,7 @@ export const background = content.merge(
 					gainedSpells: z
 						.object({
 							options: z
-								.array(directReference)
+								.array(referenceTarget)
 								.describe("A list of spells the background can grant.")
 								.min(1)
 								.refine(...uniqueObjects),

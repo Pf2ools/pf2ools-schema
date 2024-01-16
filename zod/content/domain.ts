@@ -2,7 +2,7 @@ import { z } from "zod";
 
 import { content } from "../content.js";
 import { entryString } from "./common/entryString.js";
-import { directReference } from "./common/directReference.js";
+import { referenceTarget } from "./common/referenceTarget.js";
 
 export const domain = content.merge(
 	z
@@ -15,10 +15,10 @@ export const domain = content.merge(
 							"The typically brief sentence or two of flavour text that describes the domain or otherwise provides guidance on its use.",
 						)
 						.optional(),
-					domainSpell: directReference,
-					advancedDomainSpell: directReference,
-					apocryphalSpell: directReference.optional(),
-					advancedApocryphalSpell: directReference.optional(),
+					domainSpell: referenceTarget,
+					advancedDomainSpell: referenceTarget,
+					apocryphalSpell: referenceTarget.optional(),
+					advancedApocryphalSpell: referenceTarget.optional(),
 				})
 				.strict(),
 		})

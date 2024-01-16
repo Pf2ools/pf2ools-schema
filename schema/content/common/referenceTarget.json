@@ -1,8 +1,8 @@
 {
 	"$schema": "http://json-schema.org/draft-07/schema",
-	"$id": "pf2ools-schema/content/common/directReference.json",
+	"$id": "pf2ools-schema/content/common/referenceTarget.json",
 	"title": "Statblock Reference",
-	"description": "A direct reference to another statblock. The `type` of the content is typically inferred from the context in which it is invoked (e.g. a reference in a deity's \"Cleric Spells\" entry is a spell).",
+	"description": "A pointer to another statblock. The `type` of the content is typically inferred from the context in which it is invoked (e.g. a reference target in a deity's \"Cleric Spells\" entry is a spell).",
 	"type": "object",
 	"properties": {
 		"name": {

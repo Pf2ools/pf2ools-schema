@@ -2,7 +2,7 @@ import { z } from "zod";
 
 import { ID } from "../../source.js";
 
-export const directReference = z
+export const referenceTarget = z
 	.object({
 		name: z.string().min(1),
 		specifier: z.string().min(1).optional(),
