@@ -24,7 +24,7 @@ You can learn about the available options using `npx pf2ools-schema --help`.
 #### Example
 
 ```console
-$ npx pf2ools-schema -ra ./myFile.json ./myDirectory
+$ npx pf2ools-schema -rat zod ./myFile.json ./myDirectory
 	[Passed]  myFile.json
 	[Passed]  myDirectory/file1.json
 	[Failed]  myDirectory/file2.json
