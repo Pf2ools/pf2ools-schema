@@ -265,6 +265,10 @@
 						"Deprecated": {
 							"const": true,
 							"description": "This source has been wholly superseded by another version of the same content. This applies when a completely rewritten, revised version of the source exists; simple, minor modifications via errata do not."
+						},
+						"NSFW": {
+							"const": true,
+							"description": "This source contains content of a particularly provocative, unsavoury, or otherwise adult-oriented nature."
 						}
 					},
 					"minProperties": 1,
