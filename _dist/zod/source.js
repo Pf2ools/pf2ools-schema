@@ -121,8 +121,11 @@ export const sourceTags = z
             .literal(true)
             .describe("This source has been wholly superseded by another version of the same content. This applies when a completely rewritten, revised version of the source exists; simple, minor modifications via errata do not.")
             .optional(),
+        NSFW: z
+            .literal(true)
+            .describe("This source contains content of a particularly provocative, unsavoury, or otherwise adult-oriented nature.")
+            .optional(),
     })
-        .describe("This source was created and published by Paizo as 'official' Pathfinder 2e content (that is, it's official insofar that something can be 'official').")
         .strict()
         .refine(...nonEmpty)
         .optional(),

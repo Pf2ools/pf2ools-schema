@@ -164,6 +164,7 @@ export declare const data: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             Playtest: z.ZodOptional<z.ZodLiteral<true>>;
             Ongoing: z.ZodOptional<z.ZodLiteral<true>>;
             Deprecated: z.ZodOptional<z.ZodLiteral<true>>;
+            NSFW: z.ZodOptional<z.ZodLiteral<true>>;
         }, "strict", z.ZodTypeAny, {
             Official?: true | undefined;
             "GM-facing"?: true | undefined;
@@ -171,6 +172,7 @@ export declare const data: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             Playtest?: true | undefined;
             Ongoing?: true | undefined;
             Deprecated?: true | undefined;
+            NSFW?: true | undefined;
         }, {
             Official?: true | undefined;
             "GM-facing"?: true | undefined;
@@ -178,6 +180,7 @@ export declare const data: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             Playtest?: true | undefined;
             Ongoing?: true | undefined;
             Deprecated?: true | undefined;
+            NSFW?: true | undefined;
         }>, {
             Official?: true | undefined;
             "GM-facing"?: true | undefined;
@@ -185,6 +188,7 @@ export declare const data: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             Playtest?: true | undefined;
             Ongoing?: true | undefined;
             Deprecated?: true | undefined;
+            NSFW?: true | undefined;
         }, {
             Official?: true | undefined;
             "GM-facing"?: true | undefined;
@@ -192,6 +196,7 @@ export declare const data: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             Playtest?: true | undefined;
             Ongoing?: true | undefined;
             Deprecated?: true | undefined;
+            NSFW?: true | undefined;
         }>>;
     }, "strict", z.ZodTypeAny, {
         publicationType?: {
@@ -210,6 +215,7 @@ export declare const data: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             Playtest?: true | undefined;
             Ongoing?: true | undefined;
             Deprecated?: true | undefined;
+            NSFW?: true | undefined;
         } | undefined;
     }, {
         publicationType?: {
@@ -228,6 +234,7 @@ export declare const data: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             Playtest?: true | undefined;
             Ongoing?: true | undefined;
             Deprecated?: true | undefined;
+            NSFW?: true | undefined;
         } | undefined;
     }>, {
         publicationType?: {
@@ -246,6 +253,7 @@ export declare const data: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             Playtest?: true | undefined;
             Ongoing?: true | undefined;
             Deprecated?: true | undefined;
+            NSFW?: true | undefined;
         } | undefined;
     }, {
         publicationType?: {
@@ -264,6 +272,7 @@ export declare const data: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             Playtest?: true | undefined;
             Ongoing?: true | undefined;
             Deprecated?: true | undefined;
+            NSFW?: true | undefined;
         } | undefined;
     }>>;
 }, "strict", z.ZodTypeAny, {
@@ -307,6 +316,7 @@ export declare const data: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             Playtest?: true | undefined;
             Ongoing?: true | undefined;
             Deprecated?: true | undefined;
+            NSFW?: true | undefined;
         } | undefined;
     } | undefined;
 }, {
@@ -350,6 +360,7 @@ export declare const data: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             Playtest?: true | undefined;
             Ongoing?: true | undefined;
             Deprecated?: true | undefined;
+            NSFW?: true | undefined;
         } | undefined;
     } | undefined;
 }>, z.ZodObject<{

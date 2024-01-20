@@ -52,6 +52,7 @@ export declare const homebrewSourceSummary: z.ZodObject<{
             Playtest: z.ZodOptional<z.ZodLiteral<true>>;
             Ongoing: z.ZodOptional<z.ZodLiteral<true>>;
             Deprecated: z.ZodOptional<z.ZodLiteral<true>>;
+            NSFW: z.ZodOptional<z.ZodLiteral<true>>;
         }, "strict", z.ZodTypeAny, {
             Official?: true | undefined;
             "GM-facing"?: true | undefined;
@@ -59,6 +60,7 @@ export declare const homebrewSourceSummary: z.ZodObject<{
             Playtest?: true | undefined;
             Ongoing?: true | undefined;
             Deprecated?: true | undefined;
+            NSFW?: true | undefined;
         }, {
             Official?: true | undefined;
             "GM-facing"?: true | undefined;
@@ -66,6 +68,7 @@ export declare const homebrewSourceSummary: z.ZodObject<{
             Playtest?: true | undefined;
             Ongoing?: true | undefined;
             Deprecated?: true | undefined;
+            NSFW?: true | undefined;
         }>, {
             Official?: true | undefined;
             "GM-facing"?: true | undefined;
@@ -73,6 +76,7 @@ export declare const homebrewSourceSummary: z.ZodObject<{
             Playtest?: true | undefined;
             Ongoing?: true | undefined;
             Deprecated?: true | undefined;
+            NSFW?: true | undefined;
         }, {
             Official?: true | undefined;
             "GM-facing"?: true | undefined;
@@ -80,6 +84,7 @@ export declare const homebrewSourceSummary: z.ZodObject<{
             Playtest?: true | undefined;
             Ongoing?: true | undefined;
             Deprecated?: true | undefined;
+            NSFW?: true | undefined;
         }>>;
     }, "strict", z.ZodTypeAny, {
         publicationType?: {
@@ -98,6 +103,7 @@ export declare const homebrewSourceSummary: z.ZodObject<{
             Playtest?: true | undefined;
             Ongoing?: true | undefined;
             Deprecated?: true | undefined;
+            NSFW?: true | undefined;
         } | undefined;
     }, {
         publicationType?: {
@@ -116,6 +122,7 @@ export declare const homebrewSourceSummary: z.ZodObject<{
             Playtest?: true | undefined;
             Ongoing?: true | undefined;
             Deprecated?: true | undefined;
+            NSFW?: true | undefined;
         } | undefined;
     }>, {
         publicationType?: {
@@ -134,6 +141,7 @@ export declare const homebrewSourceSummary: z.ZodObject<{
             Playtest?: true | undefined;
             Ongoing?: true | undefined;
             Deprecated?: true | undefined;
+            NSFW?: true | undefined;
         } | undefined;
     }, {
         publicationType?: {
@@ -152,6 +160,7 @@ export declare const homebrewSourceSummary: z.ZodObject<{
             Playtest?: true | undefined;
             Ongoing?: true | undefined;
             Deprecated?: true | undefined;
+            NSFW?: true | undefined;
         } | undefined;
     }>>;
     datatypes: z.ZodArray<z.ZodUnion<[z.ZodEnum<["background", "condition", "divineIntercession", "domain", "event", "familiarAbility", "relicGift", "skill"]>, z.ZodEnum<["license", "source", "sourceGroup"]>]>, "many">;
@@ -182,6 +191,7 @@ export declare const homebrewSourceSummary: z.ZodObject<{
             Playtest?: true | undefined;
             Ongoing?: true | undefined;
             Deprecated?: true | undefined;
+            NSFW?: true | undefined;
         } | undefined;
     } | undefined;
     sourceURL?: string | undefined;
@@ -211,6 +221,7 @@ export declare const homebrewSourceSummary: z.ZodObject<{
             Playtest?: true | undefined;
             Ongoing?: true | undefined;
             Deprecated?: true | undefined;
+            NSFW?: true | undefined;
         } | undefined;
     } | undefined;
     sourceURL?: string | undefined;
@@ -263,6 +274,7 @@ export declare const homebrewSources: z.ZodArray<z.ZodObject<{
             Playtest: z.ZodOptional<z.ZodLiteral<true>>;
             Ongoing: z.ZodOptional<z.ZodLiteral<true>>;
             Deprecated: z.ZodOptional<z.ZodLiteral<true>>;
+            NSFW: z.ZodOptional<z.ZodLiteral<true>>;
         }, "strict", z.ZodTypeAny, {
             Official?: true | undefined;
             "GM-facing"?: true | undefined;
@@ -270,6 +282,7 @@ export declare const homebrewSources: z.ZodArray<z.ZodObject<{
             Playtest?: true | undefined;
             Ongoing?: true | undefined;
             Deprecated?: true | undefined;
+            NSFW?: true | undefined;
         }, {
             Official?: true | undefined;
             "GM-facing"?: true | undefined;
@@ -277,6 +290,7 @@ export declare const homebrewSources: z.ZodArray<z.ZodObject<{
             Playtest?: true | undefined;
             Ongoing?: true | undefined;
             Deprecated?: true | undefined;
+            NSFW?: true | undefined;
         }>, {
             Official?: true | undefined;
             "GM-facing"?: true | undefined;
@@ -284,6 +298,7 @@ export declare const homebrewSources: z.ZodArray<z.ZodObject<{
             Playtest?: true | undefined;
             Ongoing?: true | undefined;
             Deprecated?: true | undefined;
+            NSFW?: true | undefined;
         }, {
             Official?: true | undefined;
             "GM-facing"?: true | undefined;
@@ -291,6 +306,7 @@ export declare const homebrewSources: z.ZodArray<z.ZodObject<{
             Playtest?: true | undefined;
             Ongoing?: true | undefined;
             Deprecated?: true | undefined;
+            NSFW?: true | undefined;
         }>>;
     }, "strict", z.ZodTypeAny, {
         publicationType?: {
@@ -309,6 +325,7 @@ export declare const homebrewSources: z.ZodArray<z.ZodObject<{
             Playtest?: true | undefined;
             Ongoing?: true | undefined;
             Deprecated?: true | undefined;
+            NSFW?: true | undefined;
         } | undefined;
     }, {
         publicationType?: {
@@ -327,6 +344,7 @@ export declare const homebrewSources: z.ZodArray<z.ZodObject<{
             Playtest?: true | undefined;
             Ongoing?: true | undefined;
             Deprecated?: true | undefined;
+            NSFW?: true | undefined;
         } | undefined;
     }>, {
         publicationType?: {
@@ -345,6 +363,7 @@ export declare const homebrewSources: z.ZodArray<z.ZodObject<{
             Playtest?: true | undefined;
             Ongoing?: true | undefined;
             Deprecated?: true | undefined;
+            NSFW?: true | undefined;
         } | undefined;
     }, {
         publicationType?: {
@@ -363,6 +382,7 @@ export declare const homebrewSources: z.ZodArray<z.ZodObject<{
             Playtest?: true | undefined;
             Ongoing?: true | undefined;
             Deprecated?: true | undefined;
+            NSFW?: true | undefined;
         } | undefined;
     }>>;
     added: z.ZodString;
@@ -400,6 +420,7 @@ export declare const homebrewSources: z.ZodArray<z.ZodObject<{
             Playtest?: true | undefined;
             Ongoing?: true | undefined;
             Deprecated?: true | undefined;
+            NSFW?: true | undefined;
         } | undefined;
     } | undefined;
     sourceURL?: string | undefined;
@@ -430,6 +451,7 @@ export declare const homebrewSources: z.ZodArray<z.ZodObject<{
             Playtest?: true | undefined;
             Ongoing?: true | undefined;
             Deprecated?: true | undefined;
+            NSFW?: true | undefined;
         } | undefined;
     } | undefined;
     sourceURL?: string | undefined;
@@ -487,6 +509,7 @@ export declare const homebrewSourcesRecord: z.ZodEffects<z.ZodRecord<z.ZodEffect
             Playtest: z.ZodOptional<z.ZodLiteral<true>>;
             Ongoing: z.ZodOptional<z.ZodLiteral<true>>;
             Deprecated: z.ZodOptional<z.ZodLiteral<true>>;
+            NSFW: z.ZodOptional<z.ZodLiteral<true>>;
         }, "strict", z.ZodTypeAny, {
             Official?: true | undefined;
             "GM-facing"?: true | undefined;
@@ -494,6 +517,7 @@ export declare const homebrewSourcesRecord: z.ZodEffects<z.ZodRecord<z.ZodEffect
             Playtest?: true | undefined;
             Ongoing?: true | undefined;
             Deprecated?: true | undefined;
+            NSFW?: true | undefined;
         }, {
             Official?: true | undefined;
             "GM-facing"?: true | undefined;
@@ -501,6 +525,7 @@ export declare const homebrewSourcesRecord: z.ZodEffects<z.ZodRecord<z.ZodEffect
             Playtest?: true | undefined;
             Ongoing?: true | undefined;
             Deprecated?: true | undefined;
+            NSFW?: true | undefined;
         }>, {
             Official?: true | undefined;
             "GM-facing"?: true | undefined;
@@ -508,6 +533,7 @@ export declare const homebrewSourcesRecord: z.ZodEffects<z.ZodRecord<z.ZodEffect
             Playtest?: true | undefined;
             Ongoing?: true | undefined;
             Deprecated?: true | undefined;
+            NSFW?: true | undefined;
         }, {
             Official?: true | undefined;
             "GM-facing"?: true | undefined;
@@ -515,6 +541,7 @@ export declare const homebrewSourcesRecord: z.ZodEffects<z.ZodRecord<z.ZodEffect
             Playtest?: true | undefined;
             Ongoing?: true | undefined;
             Deprecated?: true | undefined;
+            NSFW?: true | undefined;
         }>>;
     }, "strict", z.ZodTypeAny, {
         publicationType?: {
@@ -533,6 +560,7 @@ export declare const homebrewSourcesRecord: z.ZodEffects<z.ZodRecord<z.ZodEffect
             Playtest?: true | undefined;
             Ongoing?: true | undefined;
             Deprecated?: true | undefined;
+            NSFW?: true | undefined;
         } | undefined;
     }, {
         publicationType?: {
@@ -551,6 +579,7 @@ export declare const homebrewSourcesRecord: z.ZodEffects<z.ZodRecord<z.ZodEffect
             Playtest?: true | undefined;
             Ongoing?: true | undefined;
             Deprecated?: true | undefined;
+            NSFW?: true | undefined;
         } | undefined;
     }>, {
         publicationType?: {
@@ -569,6 +598,7 @@ export declare const homebrewSourcesRecord: z.ZodEffects<z.ZodRecord<z.ZodEffect
             Playtest?: true | undefined;
             Ongoing?: true | undefined;
             Deprecated?: true | undefined;
+            NSFW?: true | undefined;
         } | undefined;
     }, {
         publicationType?: {
@@ -587,6 +617,7 @@ export declare const homebrewSourcesRecord: z.ZodEffects<z.ZodRecord<z.ZodEffect
             Playtest?: true | undefined;
             Ongoing?: true | undefined;
             Deprecated?: true | undefined;
+            NSFW?: true | undefined;
         } | undefined;
     }>>;
     datatypes: z.ZodArray<z.ZodUnion<[z.ZodEnum<["background", "condition", "divineIntercession", "domain", "event", "familiarAbility", "relicGift", "skill"]>, z.ZodEnum<["license", "source", "sourceGroup"]>]>, "many">;
@@ -617,6 +648,7 @@ export declare const homebrewSourcesRecord: z.ZodEffects<z.ZodRecord<z.ZodEffect
             Playtest?: true | undefined;
             Ongoing?: true | undefined;
             Deprecated?: true | undefined;
+            NSFW?: true | undefined;
         } | undefined;
     } | undefined;
     sourceURL?: string | undefined;
@@ -646,6 +678,7 @@ export declare const homebrewSourcesRecord: z.ZodEffects<z.ZodRecord<z.ZodEffect
             Playtest?: true | undefined;
             Ongoing?: true | undefined;
             Deprecated?: true | undefined;
+            NSFW?: true | undefined;
         } | undefined;
     } | undefined;
     sourceURL?: string | undefined;
@@ -675,6 +708,7 @@ export declare const homebrewSourcesRecord: z.ZodEffects<z.ZodRecord<z.ZodEffect
             Playtest?: true | undefined;
             Ongoing?: true | undefined;
             Deprecated?: true | undefined;
+            NSFW?: true | undefined;
         } | undefined;
     } | undefined;
     sourceURL?: string | undefined;
@@ -704,6 +738,7 @@ export declare const homebrewSourcesRecord: z.ZodEffects<z.ZodRecord<z.ZodEffect
             Playtest?: true | undefined;
             Ongoing?: true | undefined;
             Deprecated?: true | undefined;
+            NSFW?: true | undefined;
         } | undefined;
     } | undefined;
     sourceURL?: string | undefined;
