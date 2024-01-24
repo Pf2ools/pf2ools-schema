@@ -3,6 +3,7 @@
 	"type": "module",
 	"name": "pf2ools-schema",
 	"version": "0.0.1",
+	"main": "./_dist/zod/_index.js",
 	"module": "./_dist/zod/_index.js",
 	"types": "./_dist/zod/_index.d.ts",
 	"files": [
