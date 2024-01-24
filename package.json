@@ -8,6 +8,7 @@
 	"files": [
 		"_dist",
 		"scripts",
+		"schema",
 		"package.json"
 	],
 	"dependencies": {
