@@ -105,6 +105,6 @@ fs.writeFileSync(
 			.join("")
 			.concat(typeImports),
 		`\t${metaTypes.join(",\n\t")},\n${typeArray}`,
-	) + `\nexport const objectIndex = {\n${typeArray.concat("\t" + metaTypes.join(",\n\t"))}\n}`,
+	) + `\nexport const objectIndex = {\n\t${metaTypes.join(",\n\t")},\n${typeArray}}`,
 );
 console.log(chalk.green("Data type file generated"));
