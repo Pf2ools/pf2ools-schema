@@ -105,6 +105,10 @@ fs.writeFileSync(
 			.join("")
 			.concat(typeImports),
 		`\t${metaTypes.join(",\n\t")},\n${typeArray}`,
-	) + `\nexport const schemaIndex = {\n\t${metaTypes.join(",\n\t")},\n${typeArray}}`.replaceAll(/(\w+),/g, "$1: $1.array().min(1).optional(),"),
+	) +
+		`\nexport const schemaIndex = {\n\t${metaTypes.join(",\n\t")},\n${typeArray}}`.replaceAll(
+			/(\w+),/g,
+			"$1: $1.array().min(1).optional(),",
+		),
 );
 console.log(chalk.green("Data type file generated"));
