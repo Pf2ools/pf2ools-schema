@@ -403,7 +403,7 @@ export declare const bySource: z.ZodEffects<z.ZodIntersection<z.ZodObject<{
             } | undefined;
         } | undefined;
     }[];
-}>, z.ZodRecord<z.ZodUnion<[z.ZodEnum<["background", "condition", "divineIntercession", "domain", "event", "familiarAbility", "relicGift", "skill"]>, z.ZodEnum<["license", "source", "sourceGroup"]>]>, z.ZodArray<z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
+}>, z.ZodRecord<z.ZodUnion<[z.ZodEnum<["background", "condition", "divineIntercession", "domain", "event", "familiarAbility", "relicGift", "skill"]>, z.ZodEnum<["license", "sourceGroup"]>]>, z.ZodArray<z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     type: z.ZodLiteral<"license">;
     ID: z.ZodEffects<z.ZodString, string, string>;
     title: z.ZodObject<{
@@ -3756,7 +3756,7 @@ export declare const bySource: z.ZodEffects<z.ZodIntersection<z.ZodObject<{
             } | undefined;
         } | undefined;
     }[];
-} & Partial<Record<"source" | "background" | "event" | "condition" | "divineIntercession" | "domain" | "skill" | "relicGift" | "license" | "sourceGroup" | "familiarAbility", ({
+} & Partial<Record<"background" | "event" | "condition" | "divineIntercession" | "domain" | "skill" | "relicGift" | "license" | "sourceGroup" | "familiarAbility", ({
     type: "source";
     data: {
         released: string;
@@ -4267,7 +4267,7 @@ export declare const bySource: z.ZodEffects<z.ZodIntersection<z.ZodObject<{
             } | undefined;
         } | undefined;
     }[];
-} & Partial<Record<"source" | "background" | "event" | "condition" | "divineIntercession" | "domain" | "skill" | "relicGift" | "license" | "sourceGroup" | "familiarAbility", ({
+} & Partial<Record<"background" | "event" | "condition" | "divineIntercession" | "domain" | "skill" | "relicGift" | "license" | "sourceGroup" | "familiarAbility", ({
     type: "source";
     data: {
         released: string;

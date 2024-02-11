@@ -1,5 +1,5 @@
 import { z } from "zod";
-export declare const byDatatype: z.ZodEffects<z.ZodRecord<z.ZodUnion<[z.ZodEnum<["background", "condition", "divineIntercession", "domain", "event", "familiarAbility", "relicGift", "skill"]>, z.ZodEnum<["license", "source", "sourceGroup"]>]>, z.ZodArray<z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
+export declare const byDatatype: z.ZodEffects<z.ZodRecord<z.ZodUnion<[z.ZodEnum<["background", "condition", "divineIntercession", "domain", "event", "familiarAbility", "relicGift", "skill"]>, z.ZodUnion<[z.ZodEnum<["license", "sourceGroup"]>, z.ZodEnum<["source"]>]>]>, z.ZodArray<z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     type: z.ZodLiteral<"license">;
     ID: z.ZodEffects<z.ZodString, string, string>;
     title: z.ZodObject<{

@@ -163,7 +163,7 @@ export declare const homebrewSourceSummary: z.ZodObject<{
             NSFW?: true | undefined;
         } | undefined;
     }>>;
-    datatypes: z.ZodArray<z.ZodUnion<[z.ZodEnum<["background", "condition", "divineIntercession", "domain", "event", "familiarAbility", "relicGift", "skill"]>, z.ZodEnum<["license", "source", "sourceGroup"]>]>, "many">;
+    datatypes: z.ZodArray<z.ZodUnion<[z.ZodEnum<["background", "condition", "divineIntercession", "domain", "event", "familiarAbility", "relicGift", "skill"]>, z.ZodUnion<[z.ZodEnum<["license", "sourceGroup"]>, z.ZodEnum<["source"]>]>]>, "many">;
     sourceURL: z.ZodOptional<z.ZodString>;
 }, "strict", z.ZodTypeAny, {
     path: string;
@@ -390,7 +390,7 @@ export declare const homebrewSources: z.ZodArray<z.ZodObject<{
     URL: z.ZodString;
     fullTitle: z.ZodString;
     publisherAuthors: z.ZodString;
-    datatypes: z.ZodArray<z.ZodUnion<[z.ZodEnum<["background", "condition", "divineIntercession", "domain", "event", "familiarAbility", "relicGift", "skill"]>, z.ZodEnum<["license", "source", "sourceGroup"]>]>, "many">;
+    datatypes: z.ZodArray<z.ZodUnion<[z.ZodEnum<["background", "condition", "divineIntercession", "domain", "event", "familiarAbility", "relicGift", "skill"]>, z.ZodUnion<[z.ZodEnum<["license", "sourceGroup"]>, z.ZodEnum<["source"]>]>]>, "many">;
     sourceURL: z.ZodOptional<z.ZodString>;
     ID: z.ZodEffects<z.ZodString, string, string>;
 }, "strict", z.ZodTypeAny, {
@@ -620,7 +620,7 @@ export declare const homebrewSourcesRecord: z.ZodEffects<z.ZodRecord<z.ZodEffect
             NSFW?: true | undefined;
         } | undefined;
     }>>;
-    datatypes: z.ZodArray<z.ZodUnion<[z.ZodEnum<["background", "condition", "divineIntercession", "domain", "event", "familiarAbility", "relicGift", "skill"]>, z.ZodEnum<["license", "source", "sourceGroup"]>]>, "many">;
+    datatypes: z.ZodArray<z.ZodUnion<[z.ZodEnum<["background", "condition", "divineIntercession", "domain", "event", "familiarAbility", "relicGift", "skill"]>, z.ZodUnion<[z.ZodEnum<["license", "sourceGroup"]>, z.ZodEnum<["source"]>]>]>, "many">;
     sourceURL: z.ZodOptional<z.ZodString>;
 }, "strict", z.ZodTypeAny, {
     path: string;
