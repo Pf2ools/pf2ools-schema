@@ -1389,7 +1389,6 @@ export declare const data: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         aliases?: string[] | undefined;
         specifier?: string | undefined;
     }>;
-    tags: z.ZodOptional<z.ZodObject<{}, "strip", z.ZodTypeAny, {}, {}>>;
     reference: z.ZodOptional<z.ZodObject<{
         type: z.ZodEnum<["reprint", "variant", "replacement", "extension"]>;
         target: z.ZodObject<{
@@ -1492,6 +1491,7 @@ export declare const data: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             value?: string | number | boolean | any[] | z.objectInputType<{}, z.ZodTypeAny, "passthrough"> | undefined;
         }[] | undefined;
     }>>;
+    tags: z.ZodOptional<z.ZodObject<{}, "strip", z.ZodTypeAny, {}, {}>>;
     type: z.ZodLiteral<"divineIntercession">;
     data: z.ZodEffects<z.ZodObject<{
         preamble: z.ZodOptional<z.ZodArray<z.ZodUnion<[z.ZodString, z.ZodObject<{
@@ -1666,7 +1666,6 @@ export declare const data: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         aliases?: string[] | undefined;
         specifier?: string | undefined;
     };
-    tags?: {} | undefined;
     reference?: {
         type: "variant" | "reprint" | "replacement" | "extension";
         target: {
@@ -1683,6 +1682,7 @@ export declare const data: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             value?: string | number | boolean | any[] | z.objectOutputType<{}, z.ZodTypeAny, "passthrough"> | undefined;
         }[] | undefined;
     } | undefined;
+    tags?: {} | undefined;
 }, {
     type: "divineIntercession";
     data: {
@@ -1717,7 +1717,6 @@ export declare const data: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         aliases?: string[] | undefined;
         specifier?: string | undefined;
     };
-    tags?: {} | undefined;
     reference?: {
         type: "variant" | "reprint" | "replacement" | "extension";
         target: {
@@ -1734,6 +1733,7 @@ export declare const data: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             value?: string | number | boolean | any[] | z.objectInputType<{}, z.ZodTypeAny, "passthrough"> | undefined;
         }[] | undefined;
     } | undefined;
+    tags?: {} | undefined;
 }>, z.ZodObject<{
     source: z.ZodObject<{
         ID: z.ZodEffects<z.ZodString, string, string>;
@@ -1758,7 +1758,6 @@ export declare const data: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         aliases?: string[] | undefined;
         specifier?: string | undefined;
     }>;
-    tags: z.ZodOptional<z.ZodObject<{}, "strip", z.ZodTypeAny, {}, {}>>;
     reference: z.ZodOptional<z.ZodObject<{
         type: z.ZodEnum<["reprint", "variant", "replacement", "extension"]>;
         target: z.ZodObject<{
@@ -1861,6 +1860,7 @@ export declare const data: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             value?: string | number | boolean | any[] | z.objectInputType<{}, z.ZodTypeAny, "passthrough"> | undefined;
         }[] | undefined;
     }>>;
+    tags: z.ZodOptional<z.ZodObject<{}, "strip", z.ZodTypeAny, {}, {}>>;
     type: z.ZodLiteral<"domain">;
     data: z.ZodObject<{
         preamble: z.ZodOptional<z.ZodString>;
@@ -1995,7 +1995,6 @@ export declare const data: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         aliases?: string[] | undefined;
         specifier?: string | undefined;
     };
-    tags?: {} | undefined;
     reference?: {
         type: "variant" | "reprint" | "replacement" | "extension";
         target: {
@@ -2012,6 +2011,7 @@ export declare const data: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             value?: string | number | boolean | any[] | z.objectOutputType<{}, z.ZodTypeAny, "passthrough"> | undefined;
         }[] | undefined;
     } | undefined;
+    tags?: {} | undefined;
 }, {
     type: "domain";
     data: {
@@ -2046,7 +2046,6 @@ export declare const data: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         aliases?: string[] | undefined;
         specifier?: string | undefined;
     };
-    tags?: {} | undefined;
     reference?: {
         type: "variant" | "reprint" | "replacement" | "extension";
         target: {
@@ -2063,6 +2062,7 @@ export declare const data: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             value?: string | number | boolean | any[] | z.objectInputType<{}, z.ZodTypeAny, "passthrough"> | undefined;
         }[] | undefined;
     } | undefined;
+    tags?: {} | undefined;
 }>, z.ZodObject<{
     source: z.ZodObject<{
         ID: z.ZodEffects<z.ZodString, string, string>;
@@ -2087,7 +2087,6 @@ export declare const data: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         aliases?: string[] | undefined;
         specifier?: string | undefined;
     }>;
-    tags: z.ZodOptional<z.ZodObject<{}, "strip", z.ZodTypeAny, {}, {}>>;
     reference: z.ZodOptional<z.ZodObject<{
         type: z.ZodEnum<["reprint", "variant", "replacement", "extension"]>;
         target: z.ZodObject<{
@@ -2190,6 +2189,7 @@ export declare const data: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             value?: string | number | boolean | any[] | z.objectInputType<{}, z.ZodTypeAny, "passthrough"> | undefined;
         }[] | undefined;
     }>>;
+    tags: z.ZodOptional<z.ZodObject<{}, "strip", z.ZodTypeAny, {}, {}>>;
     type: z.ZodLiteral<"event">;
     data: z.ZodObject<{
         level: z.ZodNumber;
@@ -2300,7 +2300,6 @@ export declare const data: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         aliases?: string[] | undefined;
         specifier?: string | undefined;
     };
-    tags?: {} | undefined;
     reference?: {
         type: "variant" | "reprint" | "replacement" | "extension";
         target: {
@@ -2317,6 +2316,7 @@ export declare const data: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             value?: string | number | boolean | any[] | z.objectOutputType<{}, z.ZodTypeAny, "passthrough"> | undefined;
         }[] | undefined;
     } | undefined;
+    tags?: {} | undefined;
 }, {
     type: "event";
     data: {
@@ -2344,7 +2344,6 @@ export declare const data: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         aliases?: string[] | undefined;
         specifier?: string | undefined;
     };
-    tags?: {} | undefined;
     reference?: {
         type: "variant" | "reprint" | "replacement" | "extension";
         target: {
@@ -2361,6 +2360,7 @@ export declare const data: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             value?: string | number | boolean | any[] | z.objectInputType<{}, z.ZodTypeAny, "passthrough"> | undefined;
         }[] | undefined;
     } | undefined;
+    tags?: {} | undefined;
 }>, z.ZodObject<{
     source: z.ZodObject<{
         ID: z.ZodEffects<z.ZodString, string, string>;
@@ -3119,7 +3119,6 @@ export declare const data: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         aliases?: string[] | undefined;
         specifier?: string | undefined;
     }>;
-    tags: z.ZodOptional<z.ZodObject<{}, "strip", z.ZodTypeAny, {}, {}>>;
     reference: z.ZodOptional<z.ZodObject<{
         type: z.ZodEnum<["reprint", "variant", "replacement", "extension"]>;
         target: z.ZodObject<{
@@ -3222,6 +3221,7 @@ export declare const data: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             value?: string | number | boolean | any[] | z.objectInputType<{}, z.ZodTypeAny, "passthrough"> | undefined;
         }[] | undefined;
     }>>;
+    tags: z.ZodOptional<z.ZodObject<{}, "strip", z.ZodTypeAny, {}, {}>>;
     type: z.ZodLiteral<"skill">;
     data: z.ZodObject<{
         entries: z.ZodArray<z.ZodUnion<[z.ZodString, z.ZodObject<{
@@ -3256,7 +3256,6 @@ export declare const data: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         aliases?: string[] | undefined;
         specifier?: string | undefined;
     };
-    tags?: {} | undefined;
     reference?: {
         type: "variant" | "reprint" | "replacement" | "extension";
         target: {
@@ -3273,6 +3272,7 @@ export declare const data: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             value?: string | number | boolean | any[] | z.objectOutputType<{}, z.ZodTypeAny, "passthrough"> | undefined;
         }[] | undefined;
     } | undefined;
+    tags?: {} | undefined;
 }, {
     type: "skill";
     data: {
@@ -3289,7 +3289,6 @@ export declare const data: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         aliases?: string[] | undefined;
         specifier?: string | undefined;
     };
-    tags?: {} | undefined;
     reference?: {
         type: "variant" | "reprint" | "replacement" | "extension";
         target: {
@@ -3306,4 +3305,5 @@ export declare const data: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             value?: string | number | boolean | any[] | z.objectInputType<{}, z.ZodTypeAny, "passthrough"> | undefined;
         }[] | undefined;
     } | undefined;
+    tags?: {} | undefined;
 }>]>;

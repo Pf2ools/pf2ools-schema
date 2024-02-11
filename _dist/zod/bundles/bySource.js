@@ -1,15 +1,10 @@
-import { ZodArray, z } from "zod";
-import { dataTypesArray } from "../indexes/datatypes.js";
-import * as data from "../_index.js";
+import { z } from "zod";
+import { datatypeSansSource } from "../indexes/datatypes.js";
+import { data } from "../_data.js";
 import { nonEmpty } from "../utils/nonEmpty.js";
 import { source } from "../source.js";
-const bySourceObj = new Map(dataTypesArray.map((datatype) => {
-    return [
-        datatype,
-        datatype === "source" ? z.array(data[datatype]).min(1) : z.array(data[datatype]).min(1).optional(),
-    ];
-}));
 export const bySource = z
-    .object(Object.fromEntries(bySourceObj))
+    .object({ source: z.array(source) })
+    .and(z.record(datatypeSansSource, z.array(data).min(1)))
     .describe("A bundle of all content in a given source. Keys map from a datatype to an array of objects of that datatype. The `source` key is required.")
     .refine(...nonEmpty);

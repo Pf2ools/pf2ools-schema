@@ -163,7 +163,7 @@ export declare const homebrewSourceSummary: z.ZodObject<{
             NSFW?: true | undefined;
         } | undefined;
     }>>;
-    datatypes: z.ZodArray<z.ZodEnum<["background", "condition", "divineIntercession", "domain", "event", "familiarAbility", "relicGift", "skill", "license", "source", "sourceGroup"]>, "many">;
+    datatypes: z.ZodArray<z.ZodUnion<[z.ZodEnum<["background", "condition", "divineIntercession", "domain", "event", "familiarAbility", "relicGift", "skill"]>, z.ZodUnion<[z.ZodEnum<["license", "sourceGroup"]>, z.ZodEnum<["source"]>]>]>, "many">;
     sourceURL: z.ZodOptional<z.ZodString>;
 }, "strict", z.ZodTypeAny, {
     path: string;
@@ -173,7 +173,7 @@ export declare const homebrewSourceSummary: z.ZodObject<{
     URL: string;
     fullTitle: string;
     publisherAuthors: string;
-    datatypes: ("source" | "background" | "event" | "license" | "sourceGroup" | "condition" | "divineIntercession" | "domain" | "skill" | "familiarAbility" | "relicGift")[];
+    datatypes: ("source" | "background" | "event" | "condition" | "divineIntercession" | "domain" | "skill" | "relicGift" | "license" | "sourceGroup" | "familiarAbility")[];
     tags?: {
         publicationType?: {
             Comic?: true | undefined;
@@ -203,7 +203,7 @@ export declare const homebrewSourceSummary: z.ZodObject<{
     URL: string;
     fullTitle: string;
     publisherAuthors: string;
-    datatypes: ("source" | "background" | "event" | "license" | "sourceGroup" | "condition" | "divineIntercession" | "domain" | "skill" | "familiarAbility" | "relicGift")[];
+    datatypes: ("source" | "background" | "event" | "condition" | "divineIntercession" | "domain" | "skill" | "relicGift" | "license" | "sourceGroup" | "familiarAbility")[];
     tags?: {
         publicationType?: {
             Comic?: true | undefined;
@@ -229,9 +229,6 @@ export declare const homebrewSourceSummary: z.ZodObject<{
 export declare const homebrewSources: z.ZodArray<z.ZodObject<{
     path: z.ZodString;
     released: z.ZodString;
-    added: z.ZodString;
-    modified: z.ZodString;
-    URL: z.ZodString;
     tags: z.ZodOptional<z.ZodEffects<z.ZodObject<{
         publicationType: z.ZodOptional<z.ZodEffects<z.ZodObject<{
             Comic: z.ZodOptional<z.ZodLiteral<true>>;
@@ -388,21 +385,24 @@ export declare const homebrewSources: z.ZodArray<z.ZodObject<{
             NSFW?: true | undefined;
         } | undefined;
     }>>;
+    added: z.ZodString;
+    modified: z.ZodString;
+    URL: z.ZodString;
     fullTitle: z.ZodString;
     publisherAuthors: z.ZodString;
-    datatypes: z.ZodArray<z.ZodEnum<["background", "condition", "divineIntercession", "domain", "event", "familiarAbility", "relicGift", "skill", "license", "source", "sourceGroup"]>, "many">;
+    datatypes: z.ZodArray<z.ZodUnion<[z.ZodEnum<["background", "condition", "divineIntercession", "domain", "event", "familiarAbility", "relicGift", "skill"]>, z.ZodUnion<[z.ZodEnum<["license", "sourceGroup"]>, z.ZodEnum<["source"]>]>]>, "many">;
     sourceURL: z.ZodOptional<z.ZodString>;
     ID: z.ZodEffects<z.ZodString, string, string>;
 }, "strict", z.ZodTypeAny, {
     path: string;
     released: string;
+    ID: string;
     added: string;
     modified: string;
     URL: string;
-    ID: string;
     fullTitle: string;
     publisherAuthors: string;
-    datatypes: ("source" | "background" | "event" | "license" | "sourceGroup" | "condition" | "divineIntercession" | "domain" | "skill" | "familiarAbility" | "relicGift")[];
+    datatypes: ("source" | "background" | "event" | "condition" | "divineIntercession" | "domain" | "skill" | "relicGift" | "license" | "sourceGroup" | "familiarAbility")[];
     tags?: {
         publicationType?: {
             Comic?: true | undefined;
@@ -427,13 +427,13 @@ export declare const homebrewSources: z.ZodArray<z.ZodObject<{
 }, {
     path: string;
     released: string;
+    ID: string;
     added: string;
     modified: string;
     URL: string;
-    ID: string;
     fullTitle: string;
     publisherAuthors: string;
-    datatypes: ("source" | "background" | "event" | "license" | "sourceGroup" | "condition" | "divineIntercession" | "domain" | "skill" | "familiarAbility" | "relicGift")[];
+    datatypes: ("source" | "background" | "event" | "condition" | "divineIntercession" | "domain" | "skill" | "relicGift" | "license" | "sourceGroup" | "familiarAbility")[];
     tags?: {
         publicationType?: {
             Comic?: true | undefined;
@@ -620,7 +620,7 @@ export declare const homebrewSourcesRecord: z.ZodEffects<z.ZodRecord<z.ZodEffect
             NSFW?: true | undefined;
         } | undefined;
     }>>;
-    datatypes: z.ZodArray<z.ZodEnum<["background", "condition", "divineIntercession", "domain", "event", "familiarAbility", "relicGift", "skill", "license", "source", "sourceGroup"]>, "many">;
+    datatypes: z.ZodArray<z.ZodUnion<[z.ZodEnum<["background", "condition", "divineIntercession", "domain", "event", "familiarAbility", "relicGift", "skill"]>, z.ZodUnion<[z.ZodEnum<["license", "sourceGroup"]>, z.ZodEnum<["source"]>]>]>, "many">;
     sourceURL: z.ZodOptional<z.ZodString>;
 }, "strict", z.ZodTypeAny, {
     path: string;
@@ -630,7 +630,7 @@ export declare const homebrewSourcesRecord: z.ZodEffects<z.ZodRecord<z.ZodEffect
     URL: string;
     fullTitle: string;
     publisherAuthors: string;
-    datatypes: ("source" | "background" | "event" | "license" | "sourceGroup" | "condition" | "divineIntercession" | "domain" | "skill" | "familiarAbility" | "relicGift")[];
+    datatypes: ("source" | "background" | "event" | "condition" | "divineIntercession" | "domain" | "skill" | "relicGift" | "license" | "sourceGroup" | "familiarAbility")[];
     tags?: {
         publicationType?: {
             Comic?: true | undefined;
@@ -660,7 +660,7 @@ export declare const homebrewSourcesRecord: z.ZodEffects<z.ZodRecord<z.ZodEffect
     URL: string;
     fullTitle: string;
     publisherAuthors: string;
-    datatypes: ("source" | "background" | "event" | "license" | "sourceGroup" | "condition" | "divineIntercession" | "domain" | "skill" | "familiarAbility" | "relicGift")[];
+    datatypes: ("source" | "background" | "event" | "condition" | "divineIntercession" | "domain" | "skill" | "relicGift" | "license" | "sourceGroup" | "familiarAbility")[];
     tags?: {
         publicationType?: {
             Comic?: true | undefined;
@@ -690,7 +690,7 @@ export declare const homebrewSourcesRecord: z.ZodEffects<z.ZodRecord<z.ZodEffect
     URL: string;
     fullTitle: string;
     publisherAuthors: string;
-    datatypes: ("source" | "background" | "event" | "license" | "sourceGroup" | "condition" | "divineIntercession" | "domain" | "skill" | "familiarAbility" | "relicGift")[];
+    datatypes: ("source" | "background" | "event" | "condition" | "divineIntercession" | "domain" | "skill" | "relicGift" | "license" | "sourceGroup" | "familiarAbility")[];
     tags?: {
         publicationType?: {
             Comic?: true | undefined;
@@ -720,7 +720,7 @@ export declare const homebrewSourcesRecord: z.ZodEffects<z.ZodRecord<z.ZodEffect
     URL: string;
     fullTitle: string;
     publisherAuthors: string;
-    datatypes: ("source" | "background" | "event" | "license" | "sourceGroup" | "condition" | "divineIntercession" | "domain" | "skill" | "familiarAbility" | "relicGift")[];
+    datatypes: ("source" | "background" | "event" | "condition" | "divineIntercession" | "domain" | "skill" | "relicGift" | "license" | "sourceGroup" | "familiarAbility")[];
     tags?: {
         publicationType?: {
             Comic?: true | undefined;
