@@ -14,16 +14,13 @@ export const contentDatatype = z
 	])
 	.describe("A content datatype's name, as it appears in the JSON data itself.");
 
-// TODO: merge the below once Zod works properly with records and optional properties
-const sourceDatatype = z.enum(["source"]);
-const metaDatatypeSansSource = z.enum(["license", "sourceGroup"]);
 
-export const metaDatatype = metaDatatypeSansSource
-	.or(sourceDatatype)
+export const metaDatatype = z.enum(["license", "source", "sourceGroup"])
 	.describe("A metafile datatype's name, as it appears in the JSON data itself.");
 
+const metaDatatypeSansSource = metaDatatype.exclude(["source"]);
+
 export const datatypeSansSource = contentDatatype.or(metaDatatypeSansSource);
-// END TODO
 
 export const datatype = contentDatatype
 	.or(metaDatatype)
