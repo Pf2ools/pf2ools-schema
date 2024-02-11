@@ -14,8 +14,8 @@ export const contentDatatype = z
 	])
 	.describe("A content datatype's name, as it appears in the JSON data itself.");
 
-
-export const metaDatatype = z.enum(["license", "source", "sourceGroup"])
+export const metaDatatype = z
+	.enum(["license", "source", "sourceGroup"])
 	.describe("A metafile datatype's name, as it appears in the JSON data itself.");
 
 const metaDatatypeSansSource = metaDatatype.exclude(["source"]);
