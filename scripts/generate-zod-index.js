@@ -3,6 +3,7 @@ import { Command } from "commander";
 import fs from "fs";
 import { sep as localPathSeparator } from "path";
 import path from "path/posix";
+import { getTSsRecursively } from "./utils/getFilesRecursively.js";
 
 // Define CLI
 const program = new Command()
@@ -16,21 +17,6 @@ const program = new Command()
 	.parse(process.argv);
 
 // File-tree-walker to find .ts files
-function getTSsRecursively(targetPath) {
-	let fileList = [];
-	fs.readdirSync(targetPath).forEach((file) => {
-		const filePath = path.join(targetPath, file);
-		if (fs.statSync(filePath).isDirectory()) {
-			fileList = fileList.concat(getTSsRecursively(filePath));
-		} else if (isTS(filePath)) {
-			fileList.push(filePath);
-		}
-	});
-	return fileList;
-}
-function isTS(filename) {
-	return path.extname(filename) === ".ts";
-}
 
 const opts = program.opts();
 const [zodDir] = program.args.map((arg) => path.join(...arg.toString().split(localPathSeparator)));

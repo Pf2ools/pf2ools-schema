@@ -40,4 +40,4 @@ export const schemaIndex = {
 	familiarAbility: familiarAbility.array().min(1).optional(),
 	relicGift: relicGift.array().min(1).optional(),
 	skill: skill.array().min(1).optional(),
-}
+};
