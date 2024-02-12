@@ -1,10 +1,10 @@
 import { z } from "zod";
 
-import { content } from "../content.js";
+import { contentTemplate } from "../contentTemplate.js";
 import { entryString } from "./common/entryString.js";
 import { referenceTarget } from "./common/referenceTarget.js";
 
-export const domain = content.merge(
+export const domain = contentTemplate.merge(
 	z
 		.object({
 			type: z.literal("domain"),

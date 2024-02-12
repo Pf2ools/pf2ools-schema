@@ -1,11 +1,11 @@
 import { z } from "zod";
 
-import { content } from "../content.js";
+import { contentTemplate } from "../contentTemplate.js";
 import { entries } from "./common/entries.js";
 import { nonEmpty } from "../utils/nonEmpty.js";
 import { titleCaseProperties } from "../utils/titleCaseProperties.js";
 
-export const condition = content.merge(
+export const condition = contentTemplate.merge(
 	z
 		.object({
 			type: z.literal("condition"),

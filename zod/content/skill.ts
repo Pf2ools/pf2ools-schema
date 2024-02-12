@@ -1,9 +1,9 @@
 import { z } from "zod";
 
-import { content } from "../content.js";
+import { contentTemplate } from "../contentTemplate.js";
 import { entries } from "./common/entries.js";
 
-export const skill = content.merge(
+export const skill = contentTemplate.merge(
 	z
 		.object({
 			type: z.literal("skill"),

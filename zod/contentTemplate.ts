@@ -5,7 +5,7 @@ import { contentSource } from "./content/common/contentSource.js";
 import { reference } from "./content/common/reference.js";
 // import { nonEmpty } from "./utils/nonEmpty.js";
 
-export const content = z
+export const contentTemplate = z
 	.object({
 		type: z.string().describe("The type of data described."),
 		name: name,
