@@ -12,11 +12,10 @@ const ajv = new Ajv({
 	verbose: true,
 });
 addFormats(ajv);
-const validator = ajv.getSchema("pf2ools-schema/_schema.json");
+const dataValidator = ajv.getSchema("pf2ools-schema/_schema.json");
+const bundleValidator = ajv.getSchema("pf2ools-schema/bundle.json");
 
-export function validateAjv(obj) {
-	const result = validator(obj);
-
+function validationReporter(result, validator) {
 	if (result === true) return { success: true };
 
 	const errors = validator.errors.filter((obj) => obj.instancePath !== "" && obj.instancePath !== "/type");
@@ -25,8 +24,10 @@ export function validateAjv(obj) {
 	if (errors.length) {
 		if (errors.length === 1) {
 			// TODO
+			errorMessage = "Unknown error.";
 		} else {
 			// TODO
+			errorMessage = "Unknown error.";
 		}
 	} else {
 		errorMessage = `${chalk.bold(
@@ -37,4 +38,11 @@ export function validateAjv(obj) {
 		success: false,
 		error: errorMessage,
 	};
+}
+
+export function validateData(obj) {
+	return validationReporter(dataValidator(obj), dataValidator);
+}
+export function validateBundle(obj) {
+	return validationReporter(bundleValidator(obj), bundleValidator);
 }

@@ -3,7 +3,8 @@
 import chalk from "chalk";
 import { Command } from "commander";
 import fs from "fs";
-import path from "path";
+import { sep as localPathSeparator } from "path";
+import path from "path/posix";
 import { getJSONsRecursively } from "./utils/getFilesRecursively.js";
 
 // Define CLI
@@ -18,6 +19,7 @@ const program = new Command()
 	)
 	.argument("<paths...>", "File or directory paths to test")
 	.option("-a, --all", `Test all files ${chalk.dim("(default: break at first validation failure)")}`)
+	.option("-b, --bundle", "Test data-bundle files rather than data files")
 	.option("-e, --error", "Print only the validation status of failing files")
 	.option("-r, --recurse", "Recursively test files in directories")
 	.option(
@@ -51,7 +53,7 @@ if (opts.test) {
 } else opts.test = ["zod"];
 let files = [];
 for (const arg of program.args) {
-	const argClean = path.join(...arg.toString().split(path.sep));
+	const argClean = path.join(...arg.toString().split(localPathSeparator));
 	let filePoint;
 	try {
 		filePoint = fs.statSync(argClean);
@@ -87,11 +89,17 @@ if (!files.length) {
 }
 
 // Get validation functions
-import { validateAjv } from "./test-data-ajv.js";
-import { validateZod } from "./test-data-zod.js";
+import * as ajv from "./test-data-ajv.js";
+import * as zod from "./test-data-zod.js";
 const methods = {
-	ajv: validateAjv,
-	zod: validateZod,
+	ajv: {
+		data: ajv.validateData,
+		bundle: ajv.validateBundle,
+	},
+	zod: {
+		data: zod.validateData,
+		bundle: zod.validateBundle,
+	},
 };
 
 // Validate files
@@ -115,7 +123,7 @@ for (const file of files) {
 		}
 	}
 	opts.test.forEach((method) => {
-		const testResult = methods[method](testJSON);
+		const testResult = methods[method][opts.bundle ? "bundle" : "data"](testJSON);
 		if (testResult.success) {
 			if (!opts.error && !opts.summary) console.log(chalk.dim(passed + file));
 		} else {

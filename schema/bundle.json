@@ -1,0 +1,96 @@
+{
+	"$schema": "http://json-schema.org/draft-07/schema#",
+	"$id": "pf2ools-schema/bundle.json",
+	"title": "Bundle",
+	"description": "A bundle of arbitrary Pf2ools data.",
+	"type": "object",
+	"properties": {
+		"source": {
+			"type": "array",
+			"items": {
+				"$ref": "source.json"
+			},
+			"minItems": 1
+		},
+		"sourceGroup": {
+			"type": "array",
+			"items": {
+				"$ref": "sourceGroup.json"
+			},
+			"minItems": 1
+		},
+		"license": {
+			"type": "array",
+			"items": {
+				"$ref": "license.json"
+			},
+			"minItems": 1
+		},
+		"background": {
+			"type": "array",
+			"items": {
+				"$ref": "content/background.json"
+			},
+			"minItems": 1
+		},
+		"condition": {
+			"type": "array",
+			"items": {
+				"$ref": "content/condition.json"
+			},
+			"minItems": 1
+		},
+		"deity": {
+			"type": "array",
+			"items": {
+				"$ref": "content/deity.json"
+			},
+			"minItems": 1
+		},
+		"divineIntercession": {
+			"type": "array",
+			"items": {
+				"$ref": "content/divineIntercession.json"
+			},
+			"minItems": 1
+		},
+		"domain": {
+			"type": "array",
+			"items": {
+				"$ref": "content/domain.json"
+			},
+			"minItems": 1
+		},
+		"event": {
+			"type": "array",
+			"items": {
+				"$ref": "content/event.json"
+			},
+			"minItems": 1
+		},
+		"familiarAbility": {
+			"type": "array",
+			"items": {
+				"$ref": "content/familiarAbility.json"
+			},
+			"minItems": 1
+		},
+		"relicGift": {
+			"type": "array",
+			"items": {
+				"$ref": "content/relicGift.json"
+			},
+			"minItems": 1
+		},
+		"skill": {
+			"type": "array",
+			"items": {
+				"$ref": "content/skill.json"
+			},
+			"minItems": 1
+		}
+	},
+	"required": [
+		"source"
+	]
+}
