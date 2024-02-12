@@ -18,10 +18,6 @@ export const metaDatatype = z
 	.enum(["license", "source", "sourceGroup"])
 	.describe("A metafile datatype's name, as it appears in the JSON data itself.");
 
-const metaDatatypeSansSource = metaDatatype.exclude(["source"]);
-
-export const datatypeSansSource = contentDatatype.or(metaDatatypeSansSource);
-
 export const datatype = contentDatatype
 	.or(metaDatatype)
 	.describe("A datatype's name, as it appears in the JSON data itself.");
