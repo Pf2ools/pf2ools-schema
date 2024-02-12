@@ -1,5 +1,5 @@
 import { readdirSync as fsReadDirSync, statSync as fsStatSync } from "fs";
-import { join as pathJoin, extname as pathExtName } from "path";
+import { join as pathJoin, extname as pathExtName } from "path/posix";
 
 export function getFilesRecursively(targetPath) {
 	let fileList = [];
