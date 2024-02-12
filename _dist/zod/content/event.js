@@ -1,10 +1,10 @@
 import { z } from "zod";
-import { content } from "../content.js";
+import { contentTemplate } from "../contentTemplate.js";
 import { traits } from "./common/traits.js";
 import { skillType } from "./common/skillType.js";
 import { entries } from "./common/entries.js";
 import { uniqueObjects } from "../utils/uniqueObjects.js";
-export const event = content.merge(z
+export const event = contentTemplate.merge(z
     .object({
     type: z.literal("event"),
     data: z

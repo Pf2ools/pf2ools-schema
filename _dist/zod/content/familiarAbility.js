@@ -1,8 +1,8 @@
 import { z } from "zod";
-import { content } from "../content.js";
+import { contentTemplate } from "../contentTemplate.js";
 import { entries } from "./common/entries.js";
 import { nonEmpty } from "../utils/nonEmpty.js";
-export const familiarAbility = content.merge(z
+export const familiarAbility = contentTemplate.merge(z
     .object({
     type: z.literal("familiarAbility"),
     data: z

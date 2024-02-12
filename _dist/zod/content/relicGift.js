@@ -1,11 +1,11 @@
 import { z } from "zod";
-import { content } from "../content.js";
+import { contentTemplate } from "../contentTemplate.js";
 import { entries } from "./common/entries.js";
 import { traits } from "./common/traits.js";
 import { nonEmpty } from "../utils/nonEmpty.js";
 import { titleCaseProperties } from "../utils/titleCaseProperties.js";
 import { entryString } from "./common/entryString.js";
-export const relicGift = content.merge(z
+export const relicGift = contentTemplate.merge(z
     .object({
     type: z.literal("relicGift"),
     data: z

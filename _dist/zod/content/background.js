@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { content } from "../content.js";
+import { contentTemplate } from "../contentTemplate.js";
 import { traits } from "./common/traits.js";
 import { entries } from "./common/entries.js";
 import { nonEmpty } from "../utils/nonEmpty.js";
@@ -7,7 +7,7 @@ import { listOfAbilities } from "./constants/listOfAbilities.js";
 import { listOfSkills } from "./constants/listOfSkills.js";
 import { referenceTarget } from "./common/referenceTarget.js";
 import { uniqueObjects } from "../utils/uniqueObjects.js";
-export const background = content.merge(z
+export const background = contentTemplate.merge(z
     .object({
     type: z.literal("background"),
     data: z

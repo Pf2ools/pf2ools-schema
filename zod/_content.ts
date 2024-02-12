@@ -2,9 +2,6 @@
 
 import { z } from "zod";
 
-import { license } from "./license.js";
-import { source } from "./source.js";
-import { sourceGroup } from "./sourceGroup.js";
 import { background } from "./content/background.js";
 import { condition } from "./content/condition.js";
 import { divineIntercession } from "./content/divineIntercession.js";
@@ -14,10 +11,7 @@ import { familiarAbility } from "./content/familiarAbility.js";
 import { relicGift } from "./content/relicGift.js";
 import { skill } from "./content/skill.js";
 
-export const data = z.discriminatedUnion("type", [
-	license,
-	source,
-	sourceGroup,
+export const content = z.discriminatedUnion("type", [
 	background,
 	condition,
 	divineIntercession,
