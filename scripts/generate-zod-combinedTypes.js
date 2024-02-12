@@ -21,7 +21,7 @@ let contentTypesImportString = "";
 const contentTypes = [];
 for (const file of relativeFiles) {
 	const code = fs.readFileSync(path.join(zodDir, file), { encoding: "utf8" });
-	if (code.split("\n").some((line) => line.match(/=\s*content.merge\(/))) {
+	if (code.split("\n").some((line) => line.match(/=\s*contentTemplate.merge\(/))) {
 		contentTypesImportString += `import { ${path.basename(file, ".ts")} } from "./${file.replace(/\.ts$/, ".js")}";\n`;
 		contentTypes.push(path.basename(file, ".ts"));
 	}
@@ -36,9 +36,9 @@ fs.writeFileSync(
 		contentTypesImportString,
 		"\n",
 		'export const content = z.discriminatedUnion("type", [',
-		"\n",
-		`\t${contentTypes.join(",\n\t")},\n`,
-		"]);\n",
+		"\n\t",
+		contentTypes.join(",\n\t"),
+		",\n]);\n",
 	),
 );
 console.log(chalk.green("Content type file generated"));
@@ -59,9 +59,31 @@ fs.writeFileSync(
 		contentTypesImportString,
 		"\n",
 		'export const data = z.discriminatedUnion("type", [',
-		"\n",
-		`\t${metaTypes.concat(contentTypes).join(",\n\t")},\n`,
-		"]);\n",
+		"\n\t",
+		metaTypes.concat(contentTypes).join(",\n\t"),
+		",\n]);\n",
 	),
 );
 console.log(chalk.green("Data type file generated"));
+
+fs.writeFileSync(
+	`${zodDir}/_bundle.ts`,
+	getTSTemplate().concat(
+		metaTypesImportString,
+		"\n",
+		contentTypesImportString,
+		"\n",
+		"export const bundle = z.object({",
+		"\n\t",
+		metaTypes
+			.map((type) => `${type}: z.array(${type}).min(1)${type === "source" ? "" : ".optional()"}`)
+			.join(",\n\t"),
+		",\n\t",
+		contentTypes.map((type) => `${type}: z.array(${type}).min(1).optional()`).join(",\n\t"),
+		",\n});",
+		"\n\n",
+		'import { nonEmpty } from "./utils/nonEmpty.js";\n',
+		"export const anyBundle = bundle.partial().refine(...nonEmpty);\n",
+	),
+);
+console.log(chalk.green("Bundle types file generated"));
