@@ -122,18 +122,18 @@ for (const file of files) {
 			});
 		}
 	}
-	opts.test.forEach((method) => {
-		const testResult = methods[method][opts.bundle ? "bundle" : "data"](testJSON);
-		if (testResult.success) {
-			if (!opts.error && !opts.summary) console.log(chalk.dim(passed + file));
-		} else {
-			console.log(failed + file);
-			if (!opts.all) {
-				throw testResult.error;
-			}
-			failCount++;
+	const validationFailure = opts.test
+		.map((method) => methods[method][opts.bundle ? "bundle" : "data"](testJSON))
+		.find((result) => !result.success);
+	if (validationFailure) {
+		console.log(failed + file);
+		if (!opts.all) {
+			throw validationFailure.error;
 		}
-	});
+		failCount++;
+	} else {
+		if (!opts.error && !opts.summary) console.log(chalk.dim(passed + file));
+	}
 }
 
 // Summarise
