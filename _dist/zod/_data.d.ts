@@ -1494,6 +1494,19 @@ export declare const data: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     tags: z.ZodOptional<z.ZodObject<{}, "strip", z.ZodTypeAny, {}, {}>>;
     type: z.ZodLiteral<"divineIntercession">;
     data: z.ZodEffects<z.ZodObject<{
+        deity: z.ZodObject<{
+            name: z.ZodString;
+            specifier: z.ZodOptional<z.ZodString>;
+            sourceID: z.ZodEffects<z.ZodString, string, string>;
+        }, "strict", z.ZodTypeAny, {
+            name: string;
+            sourceID: string;
+            specifier?: string | undefined;
+        }, {
+            name: string;
+            sourceID: string;
+            specifier?: string | undefined;
+        }>;
         preamble: z.ZodOptional<z.ZodArray<z.ZodUnion<[z.ZodString, z.ZodObject<{
             type: z.ZodString;
         }, "strip", z.ZodTypeAny, {
@@ -1544,6 +1557,11 @@ export declare const data: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             type: string;
         }>]>, "many">>;
     }, "strict", z.ZodTypeAny, {
+        deity: {
+            name: string;
+            sourceID: string;
+            specifier?: string | undefined;
+        };
         preamble?: (string | {
             type: string;
         })[] | undefined;
@@ -1566,6 +1584,11 @@ export declare const data: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             type: string;
         })[] | undefined;
     }, {
+        deity: {
+            name: string;
+            sourceID: string;
+            specifier?: string | undefined;
+        };
         preamble?: (string | {
             type: string;
         })[] | undefined;
@@ -1588,6 +1611,11 @@ export declare const data: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             type: string;
         })[] | undefined;
     }>, {
+        deity: {
+            name: string;
+            sourceID: string;
+            specifier?: string | undefined;
+        };
         preamble?: (string | {
             type: string;
         })[] | undefined;
@@ -1610,6 +1638,11 @@ export declare const data: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             type: string;
         })[] | undefined;
     }, {
+        deity: {
+            name: string;
+            sourceID: string;
+            specifier?: string | undefined;
+        };
         preamble?: (string | {
             type: string;
         })[] | undefined;
@@ -1635,6 +1668,11 @@ export declare const data: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
 }, "strict", z.ZodTypeAny, {
     type: "divineIntercession";
     data: {
+        deity: {
+            name: string;
+            sourceID: string;
+            specifier?: string | undefined;
+        };
         preamble?: (string | {
             type: string;
         })[] | undefined;
@@ -1686,6 +1724,11 @@ export declare const data: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
 }, {
     type: "divineIntercession";
     data: {
+        deity: {
+            name: string;
+            sourceID: string;
+            specifier?: string | undefined;
+        };
         preamble?: (string | {
             type: string;
         })[] | undefined;
