@@ -11,6 +11,10 @@
 		"data": {
 			"type": "object",
 			"properties": {
+				"deity": {
+					"description": "The deity whose intercessions are being described.",
+					"$ref": "common/referenceTarget.json"
+				},
 				"preamble": {
 					"description": "The flavour text or GM guidance that precedes the boons/curses themselves.",
 					"$ref": "common/entries.json"
@@ -34,6 +38,9 @@
 					"$ref": "common/entries.json"
 				}
 			},
+			"required": [
+				"deity"
+			],
 			"additionalProperties": false,
 			"minProperties": 1
 		}

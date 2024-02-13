@@ -3,6 +3,7 @@ import { z } from "zod";
 import { contentTemplate } from "../contentTemplate.js";
 import { entries } from "./common/entries.js";
 import { nonEmpty } from "../utils/nonEmpty.js";
+import { referenceTarget } from "./common/referenceTarget.js";
 
 export const divineIntercession = contentTemplate.merge(
 	z
@@ -10,6 +11,7 @@ export const divineIntercession = contentTemplate.merge(
 			type: z.literal("divineIntercession"),
 			data: z
 				.object({
+					deity: referenceTarget.describe("The deity whose intercessions are being described."),
 					preamble: entries
 						.describe("The flavour text or GM guidance that precedes the boons/curses themselves.")
 						.optional(),
@@ -23,6 +25,6 @@ export const divineIntercession = contentTemplate.merge(
 				.strict()
 				.refine(...nonEmpty),
 		})
-		.describe("A domain (for a deity)")
+		.describe("A set of divine intercessions")
 		.strict(),
 );
