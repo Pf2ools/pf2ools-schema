@@ -127,9 +127,7 @@ for (const file of files) {
 		.find((result) => !result.success);
 	if (validationFailure) {
 		console.log(failed + file);
-		if (!opts.all) {
-			throw validationFailure.error;
-		}
+		if (!opts.all) throw validationFailure.error;
 		failCount++;
 	} else {
 		if (!opts.error && !opts.summary) console.log(chalk.dim(passed + file));
