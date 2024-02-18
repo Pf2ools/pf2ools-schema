@@ -145,6 +145,12 @@ export const sourceTags = z
 			.optional(),
 		misc: z
 			.object({
+				Legacy: z
+					.literal(true)
+					.describe(
+						"This source targets the original Pathfinder 2e ruleset, as published in the Core Rulebook (2019), and not as published in Player Core (2023).",
+					)
+					.optional(),
 				Official: z
 					.literal(true)
 					.describe(
