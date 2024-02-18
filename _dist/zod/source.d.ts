@@ -92,7 +92,7 @@ export declare const sourceTags: z.ZodOptional<z.ZodEffects<z.ZodObject<{
         Invalid?: true | undefined;
     }>>;
     misc: z.ZodOptional<z.ZodEffects<z.ZodObject<{
-        legacyRules: z.ZodOptional<z.ZodLiteral<true>>;
+        legacyRuleset: z.ZodOptional<z.ZodLiteral<true>>;
         Official: z.ZodOptional<z.ZodLiteral<true>>;
         "GM-facing": z.ZodOptional<z.ZodLiteral<true>>;
         "PFS-legal": z.ZodOptional<z.ZodLiteral<true>>;
@@ -101,7 +101,7 @@ export declare const sourceTags: z.ZodOptional<z.ZodEffects<z.ZodObject<{
         Deprecated: z.ZodOptional<z.ZodLiteral<true>>;
         NSFW: z.ZodOptional<z.ZodLiteral<true>>;
     }, "strict", z.ZodTypeAny, {
-        legacyRules?: true | undefined;
+        legacyRuleset?: true | undefined;
         Official?: true | undefined;
         "GM-facing"?: true | undefined;
         "PFS-legal"?: true | undefined;
@@ -110,7 +110,7 @@ export declare const sourceTags: z.ZodOptional<z.ZodEffects<z.ZodObject<{
         Deprecated?: true | undefined;
         NSFW?: true | undefined;
     }, {
-        legacyRules?: true | undefined;
+        legacyRuleset?: true | undefined;
         Official?: true | undefined;
         "GM-facing"?: true | undefined;
         "PFS-legal"?: true | undefined;
@@ -119,7 +119,7 @@ export declare const sourceTags: z.ZodOptional<z.ZodEffects<z.ZodObject<{
         Deprecated?: true | undefined;
         NSFW?: true | undefined;
     }>, {
-        legacyRules?: true | undefined;
+        legacyRuleset?: true | undefined;
         Official?: true | undefined;
         "GM-facing"?: true | undefined;
         "PFS-legal"?: true | undefined;
@@ -128,7 +128,7 @@ export declare const sourceTags: z.ZodOptional<z.ZodEffects<z.ZodObject<{
         Deprecated?: true | undefined;
         NSFW?: true | undefined;
     }, {
-        legacyRules?: true | undefined;
+        legacyRuleset?: true | undefined;
         Official?: true | undefined;
         "GM-facing"?: true | undefined;
         "PFS-legal"?: true | undefined;
@@ -148,7 +148,7 @@ export declare const sourceTags: z.ZodOptional<z.ZodEffects<z.ZodObject<{
         Invalid?: true | undefined;
     } | undefined;
     misc?: {
-        legacyRules?: true | undefined;
+        legacyRuleset?: true | undefined;
         Official?: true | undefined;
         "GM-facing"?: true | undefined;
         "PFS-legal"?: true | undefined;
@@ -168,7 +168,7 @@ export declare const sourceTags: z.ZodOptional<z.ZodEffects<z.ZodObject<{
         Invalid?: true | undefined;
     } | undefined;
     misc?: {
-        legacyRules?: true | undefined;
+        legacyRuleset?: true | undefined;
         Official?: true | undefined;
         "GM-facing"?: true | undefined;
         "PFS-legal"?: true | undefined;
@@ -188,7 +188,7 @@ export declare const sourceTags: z.ZodOptional<z.ZodEffects<z.ZodObject<{
         Invalid?: true | undefined;
     } | undefined;
     misc?: {
-        legacyRules?: true | undefined;
+        legacyRuleset?: true | undefined;
         Official?: true | undefined;
         "GM-facing"?: true | undefined;
         "PFS-legal"?: true | undefined;
@@ -208,7 +208,7 @@ export declare const sourceTags: z.ZodOptional<z.ZodEffects<z.ZodObject<{
         Invalid?: true | undefined;
     } | undefined;
     misc?: {
-        legacyRules?: true | undefined;
+        legacyRuleset?: true | undefined;
         Official?: true | undefined;
         "GM-facing"?: true | undefined;
         "PFS-legal"?: true | undefined;
@@ -323,7 +323,7 @@ export declare const source: z.ZodObject<{
             Invalid?: true | undefined;
         }>>;
         misc: z.ZodOptional<z.ZodEffects<z.ZodObject<{
-            legacyRules: z.ZodOptional<z.ZodLiteral<true>>;
+            legacyRuleset: z.ZodOptional<z.ZodLiteral<true>>;
             Official: z.ZodOptional<z.ZodLiteral<true>>;
             "GM-facing": z.ZodOptional<z.ZodLiteral<true>>;
             "PFS-legal": z.ZodOptional<z.ZodLiteral<true>>;
@@ -332,7 +332,7 @@ export declare const source: z.ZodObject<{
             Deprecated: z.ZodOptional<z.ZodLiteral<true>>;
             NSFW: z.ZodOptional<z.ZodLiteral<true>>;
         }, "strict", z.ZodTypeAny, {
-            legacyRules?: true | undefined;
+            legacyRuleset?: true | undefined;
             Official?: true | undefined;
             "GM-facing"?: true | undefined;
             "PFS-legal"?: true | undefined;
@@ -341,7 +341,7 @@ export declare const source: z.ZodObject<{
             Deprecated?: true | undefined;
             NSFW?: true | undefined;
         }, {
-            legacyRules?: true | undefined;
+            legacyRuleset?: true | undefined;
             Official?: true | undefined;
             "GM-facing"?: true | undefined;
             "PFS-legal"?: true | undefined;
@@ -350,7 +350,7 @@ export declare const source: z.ZodObject<{
             Deprecated?: true | undefined;
             NSFW?: true | undefined;
         }>, {
-            legacyRules?: true | undefined;
+            legacyRuleset?: true | undefined;
             Official?: true | undefined;
             "GM-facing"?: true | undefined;
             "PFS-legal"?: true | undefined;
@@ -359,7 +359,7 @@ export declare const source: z.ZodObject<{
             Deprecated?: true | undefined;
             NSFW?: true | undefined;
         }, {
-            legacyRules?: true | undefined;
+            legacyRuleset?: true | undefined;
             Official?: true | undefined;
             "GM-facing"?: true | undefined;
             "PFS-legal"?: true | undefined;
@@ -379,7 +379,7 @@ export declare const source: z.ZodObject<{
             Invalid?: true | undefined;
         } | undefined;
         misc?: {
-            legacyRules?: true | undefined;
+            legacyRuleset?: true | undefined;
             Official?: true | undefined;
             "GM-facing"?: true | undefined;
             "PFS-legal"?: true | undefined;
@@ -399,7 +399,7 @@ export declare const source: z.ZodObject<{
             Invalid?: true | undefined;
         } | undefined;
         misc?: {
-            legacyRules?: true | undefined;
+            legacyRuleset?: true | undefined;
             Official?: true | undefined;
             "GM-facing"?: true | undefined;
             "PFS-legal"?: true | undefined;
@@ -419,7 +419,7 @@ export declare const source: z.ZodObject<{
             Invalid?: true | undefined;
         } | undefined;
         misc?: {
-            legacyRules?: true | undefined;
+            legacyRuleset?: true | undefined;
             Official?: true | undefined;
             "GM-facing"?: true | undefined;
             "PFS-legal"?: true | undefined;
@@ -439,7 +439,7 @@ export declare const source: z.ZodObject<{
             Invalid?: true | undefined;
         } | undefined;
         misc?: {
-            legacyRules?: true | undefined;
+            legacyRuleset?: true | undefined;
             Official?: true | undefined;
             "GM-facing"?: true | undefined;
             "PFS-legal"?: true | undefined;
@@ -484,7 +484,7 @@ export declare const source: z.ZodObject<{
             Invalid?: true | undefined;
         } | undefined;
         misc?: {
-            legacyRules?: true | undefined;
+            legacyRuleset?: true | undefined;
             Official?: true | undefined;
             "GM-facing"?: true | undefined;
             "PFS-legal"?: true | undefined;
@@ -529,7 +529,7 @@ export declare const source: z.ZodObject<{
             Invalid?: true | undefined;
         } | undefined;
         misc?: {
-            legacyRules?: true | undefined;
+            legacyRuleset?: true | undefined;
             Official?: true | undefined;
             "GM-facing"?: true | undefined;
             "PFS-legal"?: true | undefined;
