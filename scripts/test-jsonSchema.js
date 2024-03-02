@@ -1,10 +1,10 @@
 #! /usr/bin/env node
 
 /*
-  NOTE
-  This script is mostly identical to (an older) `test-data.js`. The only substantial difference is that the
-  schema-loading lines are vacant, and `validator` is switched out with instances of `ajv`. This is due to
-  limitations in the ajv package.
+	NOTE
+	This script is mostly identical to (an older) `test-data.js`. The only substantial difference is that the
+	schema-loading lines are vacant, and `validator` is switched out with instances of `ajv`. This is due to
+	limitations in the ajv package.
 */
 
 import Ajv from "ajv";

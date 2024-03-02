@@ -29,7 +29,8 @@
 	"scripts": {
 		"build": "npm run test && npm run clean && npm run generate",
 		"clean": "npx prettier . --write --cache --log-level warn",
-		"generate": "npm run generate:zod && echo \"Compiling TypeScript...\" && tsc",
+		"generate": "npm run generate:clear && npm run generate:zod && echo \"Compiling TypeScript...\" && tsc",
+		"generate:clear": "node ./scripts/generate-clear.js",
 		"generate:zod": "npm run generate:zod:combinedTypes && npm run generate:zod:index",
 		"generate:zod:combinedTypes": "node ./scripts/generate-zod-combinedTypes.js ./zod -r -e ./zod/utils ./zod/content/constants ./zod/content/common",
 		"generate:zod:fromSchema": "node ./scripts/generate-zod-fromSchema.js",
