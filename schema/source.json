@@ -22,7 +22,7 @@
 		},
 		"ID": {
 			"$ref": "#/definitions/ID",
-			"description": "The source's identifying string for the computer. This must be only composed of alphanumeric characters and non-initial, non-terminal hyphens. It must be globally and case-insensitively unique across the Pf2ools ecosystem. For multi-part adventures, the standard is to use \"<groupID>0\" for the player's guide (if any), and then \"<groupID>#\" for each part, where \"#\" is the part's number.",
+			"description": "The source's identifying string for the computer. This must be only composed of alphanumeric characters and non-initial, non-terminal hyphens. It must be globally and case-insensitively unique across the Pf2ools ecosystem.\nFor multi-part adventures, the standard is to use \"<groupID>0\" for the player's guide (if any), and then \"<groupID>#\" for each part, where \"#\" is the part's number.",
 			"examples": [
 				"CRB",
 				"BotD",
