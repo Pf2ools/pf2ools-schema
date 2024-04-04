@@ -33,28 +33,31 @@ export const sourceGroup = z
 						"The name of the original, first-party publisher of the source group. Sources with publishers not matching this value are considered 'third-party' contributors to the source group.",
 					)
 					.min(2),
-			})
-			.strict()
-			.refine(...nonEmpty)
-			.optional(),
-		tags: z
-			.object({
-				misc: z
+				_tags: z
 					.object({
-						Adventure: z.literal(true).describe("This source group is an adventure path or the like.").optional(),
-						Ongoing: z
-							.literal(true)
-							.describe(
-								"This source group is being continually expanded. Not all member-sources may exist on Pf2ools.",
-							)
-							.optional(),
+						misc: z
+							.object({
+								Adventure: z
+									.literal(true)
+									.describe("This source group is an adventure path or the like.")
+									.optional(),
+								Ongoing: z
+									.literal(true)
+									.describe(
+										"This source group is being continually expanded. Not all member-sources may exist on Pf2ools.",
+									)
+									.optional(),
+							})
+							.strict()
+							.refine(...nonEmpty),
 					})
+					.describe(
+						"This object contains a list of categories the source falls into, for sorting, searching, and filtering purposes.",
+					)
 					.strict()
-					.refine(...nonEmpty),
+					.refine(...nonEmpty)
+					.optional(),
 			})
-			.describe(
-				"This object contains a list of categories the source falls into, for sorting, searching, and filtering purposes.",
-			)
 			.strict()
 			.refine(...nonEmpty)
 			.optional(),

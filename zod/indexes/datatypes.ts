@@ -5,7 +5,6 @@ export const contentDatatype = z
 	.enum([
 		"background",
 		"condition",
-		"divineIntercession",
 		"domain",
 		"event",
 		"familiarAbility",

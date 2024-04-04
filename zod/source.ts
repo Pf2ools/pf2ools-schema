@@ -5,6 +5,101 @@ import { nonEmpty } from "./utils/nonEmpty.js";
 import { entries } from "./content/common/entries.js";
 import { ID } from "./content/common/ID.js";
 
+const sourceTags = z
+	.object({
+		publicationType: z
+			.object({
+				Comic: z.literal(true).describe("The source is content bundled with a comic.").optional(),
+				"Blog post": z
+					.literal(true)
+					.describe("The source is a blog post or another similar type of short, online article.")
+					.optional(),
+			})
+			.describe(
+				"An object representing the type of publication the source can be categorised as. This is most relevant when the game content is bundled along with something that isn't a typical Pathfinder rulebook.",
+			)
+			.strict()
+			.refine(...nonEmpty)
+			.optional(),
+		status: z
+			.object({
+				"Missing content": z
+					.literal(true)
+					.describe(
+						"This source is only partially converted right now (i.e. it lacks some content), but, one day, it could be completely up-to-date.",
+					)
+					.optional(),
+				"Missing tags": z
+					.literal(true)
+					.describe(
+						"The converted content this source contains isn't completely tagged, even if it all displays correctly.",
+					)
+					.optional(),
+				Invalid: z
+					.literal(true)
+					.describe(
+						"This source's data is invalid and either contains serious schema errors or is generally malformed. It exists for archival purposes only and is unmaintained.",
+					)
+					.optional(),
+			})
+			.strict()
+			.refine(...nonEmpty)
+			.optional(),
+		misc: z
+			.object({
+				legacyRuleset: z
+					.literal(true)
+					.describe(
+						"This source targets the original Pathfinder 2e ruleset, as published in the Core Rulebook (2019), and not as published in Player Core (2023).",
+					)
+					.optional(),
+				Official: z
+					.literal(true)
+					.describe(
+						"This source was created and published by Paizo as 'official' Pathfinder 2e content (that is, it's official insofar that something can be 'official').",
+					)
+					.optional(),
+				"GM-facing": z
+					.literal(true)
+					.describe(
+						"This source is intended to be GM-facing, to the exclusion of players. This is typically due to it being an adventure, module, one-shot, scenario, or the like.",
+					)
+					.optional(),
+				"PFS-legal": z.literal(true).describe("This source is legal for Pathfinder Society play.").optional(),
+				Playtest: z
+					.literal(true)
+					.describe("This source contains playtest, early-access, or otherwise 'unfinished' content.")
+					.optional(),
+				Ongoing: z
+					.literal(true)
+					.describe(
+						"This source is being continually expanded. The data only reflects content only up until the `errataed` date. This is used for 'monster a day' projects and the like, where the conversion may entail a substantial lag behind the publication.",
+					)
+					.optional(),
+				Deprecated: z
+					.literal(true)
+					.describe(
+						"This source has been wholly superseded by another version of the same content. This applies when a completely rewritten, revised version of the source exists; simple, minor modifications via errata do not.",
+					)
+					.optional(),
+				NSFW: z
+					.literal(true)
+					.describe(
+						"This source contains content of a particularly provocative, unsavoury, or otherwise adult-oriented nature.",
+					)
+					.optional(),
+			})
+			.strict()
+			.refine(...nonEmpty)
+			.optional(),
+	})
+	.describe(
+		"This object contains a list of categories the source falls into, for sorting, searching, and filtering purposes.",
+	)
+	.strict()
+	.refine(...nonEmpty)
+	.optional();
+
 export const sourceData = z
 	.object({
 		released: z
@@ -101,103 +196,9 @@ export const sourceData = z
 			.nonempty()
 			.refine(...uniqueStrings)
 			.optional(),
+		_tags: sourceTags,
 	})
 	.strict();
-
-export const sourceTags = z
-	.object({
-		publicationType: z
-			.object({
-				Comic: z.literal(true).describe("The source is content bundled with a comic.").optional(),
-				"Blog post": z
-					.literal(true)
-					.describe("The source is a blog post or another similar type of short, online article.")
-					.optional(),
-			})
-			.describe(
-				"An object representing the type of publication the source can be categorised as. This is most relevant when the game content is bundled along with something that isn't a typical Pathfinder rulebook.",
-			)
-			.strict()
-			.refine(...nonEmpty)
-			.optional(),
-		status: z
-			.object({
-				"Missing content": z
-					.literal(true)
-					.describe(
-						"This source is only partially converted right now (i.e. it lacks some content), but, one day, it could be completely up-to-date.",
-					)
-					.optional(),
-				"Missing tags": z
-					.literal(true)
-					.describe(
-						"The converted content this source contains isn't completely tagged, even if it all displays correctly.",
-					)
-					.optional(),
-				Invalid: z
-					.literal(true)
-					.describe(
-						"This source's data is invalid and either contains serious schema errors or is generally malformed. It exists for archival purposes only and is unmaintained.",
-					)
-					.optional(),
-			})
-			.strict()
-			.refine(...nonEmpty)
-			.optional(),
-		misc: z
-			.object({
-				legacyRuleset: z
-					.literal(true)
-					.describe(
-						"This source targets the original Pathfinder 2e ruleset, as published in the Core Rulebook (2019), and not as published in Player Core (2023).",
-					)
-					.optional(),
-				Official: z
-					.literal(true)
-					.describe(
-						"This source was created and published by Paizo as 'official' Pathfinder 2e content (that is, it's official insofar that something can be 'official').",
-					)
-					.optional(),
-				"GM-facing": z
-					.literal(true)
-					.describe(
-						"This source is intended to be GM-facing, to the exclusion of players. This is typically due to it being an adventure, module, one-shot, scenario, or the like.",
-					)
-					.optional(),
-				"PFS-legal": z.literal(true).describe("This source is legal for Pathfinder Society play.").optional(),
-				Playtest: z
-					.literal(true)
-					.describe("This source contains playtest, early-access, or otherwise 'unfinished' content.")
-					.optional(),
-				Ongoing: z
-					.literal(true)
-					.describe(
-						"This source is being continually expanded. The data only reflects content only up until the `errataed` date. This is used for 'monster a day' projects and the like, where the conversion may entail a substantial lag behind the publication.",
-					)
-					.optional(),
-				Deprecated: z
-					.literal(true)
-					.describe(
-						"This source has been wholly superseded by another version of the same content. This applies when a completely rewritten, revised version of the source exists; simple, minor modifications via errata do not.",
-					)
-					.optional(),
-				NSFW: z
-					.literal(true)
-					.describe(
-						"This source contains content of a particularly provocative, unsavoury, or otherwise adult-oriented nature.",
-					)
-					.optional(),
-			})
-			.strict()
-			.refine(...nonEmpty)
-			.optional(),
-	})
-	.describe(
-		"This object contains a list of categories the source falls into, for sorting, searching, and filtering purposes.",
-	)
-	.strict()
-	.refine(...nonEmpty)
-	.optional();
 
 export const source = z
 	.object({
@@ -228,6 +229,5 @@ export const source = z
 			.describe("An object representing the source's name")
 			.strict(),
 		data: sourceData,
-		tags: sourceTags,
 	})
 	.strict();
