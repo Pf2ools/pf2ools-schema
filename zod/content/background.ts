@@ -24,7 +24,7 @@ export const background = contentTemplate.merge(
 					abilityBoosts: z
 						.object({
 							abilities: z
-								.record(listOfAbilities.or(z.literal("Free")), z.literal(true))
+								.record(listOfAbilities.or(z.literal("free")), z.literal(true))
 								.describe("An object containing the types of boost that the background can grant.")
 								.refine(...nonEmpty),
 							count: z

@@ -52,7 +52,7 @@
 								"Charisma": {
 									"const": true
 								},
-								"Free": {
+								"free": {
 									"const": true
 								}
 							},

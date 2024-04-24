@@ -176,13 +176,13 @@ export declare const content: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     }>;
     tags: z.ZodOptional<z.ZodEffects<z.ZodObject<{
         abilityBoosts: z.ZodOptional<z.ZodObject<{
-            abilities: z.ZodEffects<z.ZodRecord<z.ZodUnion<[z.ZodEnum<["Strength", "Dexterity", "Constitution", "Intelligence", "Wisdom", "Charisma"]>, z.ZodLiteral<"Free">]>, z.ZodLiteral<true>>, Partial<Record<"Strength" | "Dexterity" | "Constitution" | "Intelligence" | "Wisdom" | "Charisma" | "Free", true>>, Partial<Record<"Strength" | "Dexterity" | "Constitution" | "Intelligence" | "Wisdom" | "Charisma" | "Free", true>>>;
+            abilities: z.ZodEffects<z.ZodRecord<z.ZodUnion<[z.ZodEnum<["Strength", "Dexterity", "Constitution", "Intelligence", "Wisdom", "Charisma"]>, z.ZodLiteral<"free">]>, z.ZodLiteral<true>>, Partial<Record<"Strength" | "Dexterity" | "Constitution" | "Intelligence" | "Wisdom" | "Charisma" | "free", true>>, Partial<Record<"Strength" | "Dexterity" | "Constitution" | "Intelligence" | "Wisdom" | "Charisma" | "free", true>>>;
             count: z.ZodNumber;
         }, "strict", z.ZodTypeAny, {
-            abilities: Partial<Record<"Strength" | "Dexterity" | "Constitution" | "Intelligence" | "Wisdom" | "Charisma" | "Free", true>>;
+            abilities: Partial<Record<"Strength" | "Dexterity" | "Constitution" | "Intelligence" | "Wisdom" | "Charisma" | "free", true>>;
             count: number;
         }, {
-            abilities: Partial<Record<"Strength" | "Dexterity" | "Constitution" | "Intelligence" | "Wisdom" | "Charisma" | "Free", true>>;
+            abilities: Partial<Record<"Strength" | "Dexterity" | "Constitution" | "Intelligence" | "Wisdom" | "Charisma" | "free", true>>;
             count: number;
         }>>;
         trainedSkills: z.ZodOptional<z.ZodObject<{
@@ -319,7 +319,7 @@ export declare const content: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         }>>;
     }, "strict", z.ZodTypeAny, {
         abilityBoosts?: {
-            abilities: Partial<Record<"Strength" | "Dexterity" | "Constitution" | "Intelligence" | "Wisdom" | "Charisma" | "Free", true>>;
+            abilities: Partial<Record<"Strength" | "Dexterity" | "Constitution" | "Intelligence" | "Wisdom" | "Charisma" | "free", true>>;
             count: number;
         } | undefined;
         trainedSkills?: {
@@ -354,7 +354,7 @@ export declare const content: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         } | undefined;
     }, {
         abilityBoosts?: {
-            abilities: Partial<Record<"Strength" | "Dexterity" | "Constitution" | "Intelligence" | "Wisdom" | "Charisma" | "Free", true>>;
+            abilities: Partial<Record<"Strength" | "Dexterity" | "Constitution" | "Intelligence" | "Wisdom" | "Charisma" | "free", true>>;
             count: number;
         } | undefined;
         trainedSkills?: {
@@ -389,7 +389,7 @@ export declare const content: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         } | undefined;
     }>, {
         abilityBoosts?: {
-            abilities: Partial<Record<"Strength" | "Dexterity" | "Constitution" | "Intelligence" | "Wisdom" | "Charisma" | "Free", true>>;
+            abilities: Partial<Record<"Strength" | "Dexterity" | "Constitution" | "Intelligence" | "Wisdom" | "Charisma" | "free", true>>;
             count: number;
         } | undefined;
         trainedSkills?: {
@@ -424,7 +424,7 @@ export declare const content: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         } | undefined;
     }, {
         abilityBoosts?: {
-            abilities: Partial<Record<"Strength" | "Dexterity" | "Constitution" | "Intelligence" | "Wisdom" | "Charisma" | "Free", true>>;
+            abilities: Partial<Record<"Strength" | "Dexterity" | "Constitution" | "Intelligence" | "Wisdom" | "Charisma" | "free", true>>;
             count: number;
         } | undefined;
         trainedSkills?: {
@@ -497,7 +497,7 @@ export declare const content: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     } | undefined;
     tags?: {
         abilityBoosts?: {
-            abilities: Partial<Record<"Strength" | "Dexterity" | "Constitution" | "Intelligence" | "Wisdom" | "Charisma" | "Free", true>>;
+            abilities: Partial<Record<"Strength" | "Dexterity" | "Constitution" | "Intelligence" | "Wisdom" | "Charisma" | "free", true>>;
             count: number;
         } | undefined;
         trainedSkills?: {
@@ -570,7 +570,7 @@ export declare const content: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     } | undefined;
     tags?: {
         abilityBoosts?: {
-            abilities: Partial<Record<"Strength" | "Dexterity" | "Constitution" | "Intelligence" | "Wisdom" | "Charisma" | "Free", true>>;
+            abilities: Partial<Record<"Strength" | "Dexterity" | "Constitution" | "Intelligence" | "Wisdom" | "Charisma" | "free", true>>;
             count: number;
         } | undefined;
         trainedSkills?: {
