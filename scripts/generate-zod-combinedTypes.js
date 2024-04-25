@@ -43,7 +43,7 @@ fs.writeFileSync(
 		",\n]);\n",
 	),
 );
-console.log(chalk.green(`${chalk.italic("Content")} type file generated`));
+console.log(chalk.green(`Generated ${chalk.italic("content")} type file`));
 
 const metaTypes = ["license", "source", "sourceGroup"];
 const metaTypesImportString = metaTypes
@@ -66,7 +66,7 @@ fs.writeFileSync(
 		",\n]);\n",
 	),
 );
-console.log(chalk.green(`${chalk.italic("Data")} type file generated`));
+console.log(chalk.green(`Generated ${chalk.italic("data")} type file`));
 
 fs.writeFileSync(
 	`${zodDir}/_bundle.ts`,
@@ -88,4 +88,4 @@ fs.writeFileSync(
 		"export const anyBundle = bundle.partial().refine(...nonEmpty);\n",
 	),
 );
-console.log(chalk.green(`${chalk.italic("Bundle")} types file generated`));
+console.log(chalk.green(`Generated ${chalk.italic("bundle")} types file`));
