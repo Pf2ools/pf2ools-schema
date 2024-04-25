@@ -28,37 +28,37 @@ export declare const sourceGroup: z.ZodObject<{
             Adventure: z.ZodOptional<z.ZodLiteral<true>>;
             Ongoing: z.ZodOptional<z.ZodLiteral<true>>;
         }, "strict", z.ZodTypeAny, {
-            Adventure?: true | undefined;
             Ongoing?: true | undefined;
+            Adventure?: true | undefined;
         }, {
-            Adventure?: true | undefined;
             Ongoing?: true | undefined;
+            Adventure?: true | undefined;
         }>, {
-            Adventure?: true | undefined;
             Ongoing?: true | undefined;
+            Adventure?: true | undefined;
         }, {
-            Adventure?: true | undefined;
             Ongoing?: true | undefined;
+            Adventure?: true | undefined;
         }>;
     }, "strict", z.ZodTypeAny, {
         misc: {
-            Adventure?: true | undefined;
             Ongoing?: true | undefined;
+            Adventure?: true | undefined;
         };
     }, {
         misc: {
-            Adventure?: true | undefined;
             Ongoing?: true | undefined;
+            Adventure?: true | undefined;
         };
     }>, {
         misc: {
-            Adventure?: true | undefined;
             Ongoing?: true | undefined;
+            Adventure?: true | undefined;
         };
     }, {
         misc: {
-            Adventure?: true | undefined;
             Ongoing?: true | undefined;
+            Adventure?: true | undefined;
         };
     }>>;
 }, "strict", z.ZodTypeAny, {
@@ -73,8 +73,8 @@ export declare const sourceGroup: z.ZodObject<{
     } | undefined;
     tags?: {
         misc: {
-            Adventure?: true | undefined;
             Ongoing?: true | undefined;
+            Adventure?: true | undefined;
         };
     } | undefined;
 }, {
@@ -89,8 +89,8 @@ export declare const sourceGroup: z.ZodObject<{
     } | undefined;
     tags?: {
         misc: {
-            Adventure?: true | undefined;
             Ongoing?: true | undefined;
+            Adventure?: true | undefined;
         };
     } | undefined;
 }>;

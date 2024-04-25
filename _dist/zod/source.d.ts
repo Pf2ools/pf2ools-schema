@@ -138,14 +138,14 @@ export declare const sourceTags: z.ZodOptional<z.ZodEffects<z.ZodObject<{
         NSFW?: true | undefined;
     }>>;
 }, "strict", z.ZodTypeAny, {
-    publicationType?: {
-        Comic?: true | undefined;
-        "Blog post"?: true | undefined;
-    } | undefined;
     status?: {
         "Missing content"?: true | undefined;
         "Missing tags"?: true | undefined;
         Invalid?: true | undefined;
+    } | undefined;
+    publicationType?: {
+        Comic?: true | undefined;
+        "Blog post"?: true | undefined;
     } | undefined;
     misc?: {
         legacyRuleset?: true | undefined;
@@ -158,14 +158,14 @@ export declare const sourceTags: z.ZodOptional<z.ZodEffects<z.ZodObject<{
         NSFW?: true | undefined;
     } | undefined;
 }, {
-    publicationType?: {
-        Comic?: true | undefined;
-        "Blog post"?: true | undefined;
-    } | undefined;
     status?: {
         "Missing content"?: true | undefined;
         "Missing tags"?: true | undefined;
         Invalid?: true | undefined;
+    } | undefined;
+    publicationType?: {
+        Comic?: true | undefined;
+        "Blog post"?: true | undefined;
     } | undefined;
     misc?: {
         legacyRuleset?: true | undefined;
@@ -178,14 +178,14 @@ export declare const sourceTags: z.ZodOptional<z.ZodEffects<z.ZodObject<{
         NSFW?: true | undefined;
     } | undefined;
 }>, {
-    publicationType?: {
-        Comic?: true | undefined;
-        "Blog post"?: true | undefined;
-    } | undefined;
     status?: {
         "Missing content"?: true | undefined;
         "Missing tags"?: true | undefined;
         Invalid?: true | undefined;
+    } | undefined;
+    publicationType?: {
+        Comic?: true | undefined;
+        "Blog post"?: true | undefined;
     } | undefined;
     misc?: {
         legacyRuleset?: true | undefined;
@@ -198,14 +198,14 @@ export declare const sourceTags: z.ZodOptional<z.ZodEffects<z.ZodObject<{
         NSFW?: true | undefined;
     } | undefined;
 }, {
-    publicationType?: {
-        Comic?: true | undefined;
-        "Blog post"?: true | undefined;
-    } | undefined;
     status?: {
         "Missing content"?: true | undefined;
         "Missing tags"?: true | undefined;
         Invalid?: true | undefined;
+    } | undefined;
+    publicationType?: {
+        Comic?: true | undefined;
+        "Blog post"?: true | undefined;
     } | undefined;
     misc?: {
         legacyRuleset?: true | undefined;
@@ -369,14 +369,14 @@ export declare const source: z.ZodObject<{
             NSFW?: true | undefined;
         }>>;
     }, "strict", z.ZodTypeAny, {
-        publicationType?: {
-            Comic?: true | undefined;
-            "Blog post"?: true | undefined;
-        } | undefined;
         status?: {
             "Missing content"?: true | undefined;
             "Missing tags"?: true | undefined;
             Invalid?: true | undefined;
+        } | undefined;
+        publicationType?: {
+            Comic?: true | undefined;
+            "Blog post"?: true | undefined;
         } | undefined;
         misc?: {
             legacyRuleset?: true | undefined;
@@ -389,14 +389,14 @@ export declare const source: z.ZodObject<{
             NSFW?: true | undefined;
         } | undefined;
     }, {
-        publicationType?: {
-            Comic?: true | undefined;
-            "Blog post"?: true | undefined;
-        } | undefined;
         status?: {
             "Missing content"?: true | undefined;
             "Missing tags"?: true | undefined;
             Invalid?: true | undefined;
+        } | undefined;
+        publicationType?: {
+            Comic?: true | undefined;
+            "Blog post"?: true | undefined;
         } | undefined;
         misc?: {
             legacyRuleset?: true | undefined;
@@ -409,14 +409,14 @@ export declare const source: z.ZodObject<{
             NSFW?: true | undefined;
         } | undefined;
     }>, {
-        publicationType?: {
-            Comic?: true | undefined;
-            "Blog post"?: true | undefined;
-        } | undefined;
         status?: {
             "Missing content"?: true | undefined;
             "Missing tags"?: true | undefined;
             Invalid?: true | undefined;
+        } | undefined;
+        publicationType?: {
+            Comic?: true | undefined;
+            "Blog post"?: true | undefined;
         } | undefined;
         misc?: {
             legacyRuleset?: true | undefined;
@@ -429,14 +429,14 @@ export declare const source: z.ZodObject<{
             NSFW?: true | undefined;
         } | undefined;
     }, {
-        publicationType?: {
-            Comic?: true | undefined;
-            "Blog post"?: true | undefined;
-        } | undefined;
         status?: {
             "Missing content"?: true | undefined;
             "Missing tags"?: true | undefined;
             Invalid?: true | undefined;
+        } | undefined;
+        publicationType?: {
+            Comic?: true | undefined;
+            "Blog post"?: true | undefined;
         } | undefined;
         misc?: {
             legacyRuleset?: true | undefined;
@@ -474,14 +474,14 @@ export declare const source: z.ZodObject<{
     };
     ID: string;
     tags?: {
-        publicationType?: {
-            Comic?: true | undefined;
-            "Blog post"?: true | undefined;
-        } | undefined;
         status?: {
             "Missing content"?: true | undefined;
             "Missing tags"?: true | undefined;
             Invalid?: true | undefined;
+        } | undefined;
+        publicationType?: {
+            Comic?: true | undefined;
+            "Blog post"?: true | undefined;
         } | undefined;
         misc?: {
             legacyRuleset?: true | undefined;
@@ -519,14 +519,14 @@ export declare const source: z.ZodObject<{
     };
     ID: string;
     tags?: {
-        publicationType?: {
-            Comic?: true | undefined;
-            "Blog post"?: true | undefined;
-        } | undefined;
         status?: {
             "Missing content"?: true | undefined;
             "Missing tags"?: true | undefined;
             Invalid?: true | undefined;
+        } | undefined;
+        publicationType?: {
+            Comic?: true | undefined;
+            "Blog post"?: true | undefined;
         } | undefined;
         misc?: {
             legacyRuleset?: true | undefined;

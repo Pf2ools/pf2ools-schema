@@ -1,9 +1,25 @@
 import { z } from "zod";
-export declare const homebrewSourceSummary: z.ZodObject<{
+export declare const homebrewSourceSummary: z.ZodObject<z.objectUtil.extendShape<Pick<{
     released: z.ZodString;
+    version: z.ZodOptional<z.ZodString>;
+    errataed: z.ZodOptional<z.ZodString>;
     added: z.ZodString;
     modified: z.ZodString;
     URL: z.ZodString;
+    groupIDs: z.ZodOptional<z.ZodEffects<z.ZodArray<z.ZodEffects<z.ZodString, string, string>, "atleastone">, [string, ...string[]], [string, ...string[]]>>;
+    requiredSourceIDs: z.ZodOptional<z.ZodEffects<z.ZodArray<z.ZodEffects<z.ZodString, string, string>, "atleastone">, [string, ...string[]], [string, ...string[]]>>;
+    licenseID: z.ZodEffects<z.ZodString, string, string>;
+    copyright: z.ZodOptional<z.ZodArray<z.ZodUnion<[z.ZodString, z.ZodObject<{
+        type: z.ZodString;
+    }, "strip", z.ZodTypeAny, {
+        type: string;
+    }, {
+        type: string;
+    }>]>, "many">>;
+    authors: z.ZodOptional<z.ZodEffects<z.ZodArray<z.ZodString, "atleastone">, [string, ...string[]], [string, ...string[]]>>;
+    publisher: z.ZodOptional<z.ZodString>;
+    converters: z.ZodOptional<z.ZodEffects<z.ZodArray<z.ZodString, "atleastone">, [string, ...string[]], [string, ...string[]]>>;
+}, "released" | "added" | "modified" | "URL">, {
     path: z.ZodString;
     fullTitle: z.ZodString;
     publisherAuthors: z.ZodString;
@@ -92,14 +108,14 @@ export declare const homebrewSourceSummary: z.ZodObject<{
             NSFW?: true | undefined;
         }>>;
     }, "strict", z.ZodTypeAny, {
-        publicationType?: {
-            Comic?: true | undefined;
-            "Blog post"?: true | undefined;
-        } | undefined;
         status?: {
             "Missing content"?: true | undefined;
             "Missing tags"?: true | undefined;
             Invalid?: true | undefined;
+        } | undefined;
+        publicationType?: {
+            Comic?: true | undefined;
+            "Blog post"?: true | undefined;
         } | undefined;
         misc?: {
             legacyRuleset?: true | undefined;
@@ -112,14 +128,14 @@ export declare const homebrewSourceSummary: z.ZodObject<{
             NSFW?: true | undefined;
         } | undefined;
     }, {
-        publicationType?: {
-            Comic?: true | undefined;
-            "Blog post"?: true | undefined;
-        } | undefined;
         status?: {
             "Missing content"?: true | undefined;
             "Missing tags"?: true | undefined;
             Invalid?: true | undefined;
+        } | undefined;
+        publicationType?: {
+            Comic?: true | undefined;
+            "Blog post"?: true | undefined;
         } | undefined;
         misc?: {
             legacyRuleset?: true | undefined;
@@ -132,14 +148,14 @@ export declare const homebrewSourceSummary: z.ZodObject<{
             NSFW?: true | undefined;
         } | undefined;
     }>, {
-        publicationType?: {
-            Comic?: true | undefined;
-            "Blog post"?: true | undefined;
-        } | undefined;
         status?: {
             "Missing content"?: true | undefined;
             "Missing tags"?: true | undefined;
             Invalid?: true | undefined;
+        } | undefined;
+        publicationType?: {
+            Comic?: true | undefined;
+            "Blog post"?: true | undefined;
         } | undefined;
         misc?: {
             legacyRuleset?: true | undefined;
@@ -152,14 +168,14 @@ export declare const homebrewSourceSummary: z.ZodObject<{
             NSFW?: true | undefined;
         } | undefined;
     }, {
-        publicationType?: {
-            Comic?: true | undefined;
-            "Blog post"?: true | undefined;
-        } | undefined;
         status?: {
             "Missing content"?: true | undefined;
             "Missing tags"?: true | undefined;
             Invalid?: true | undefined;
+        } | undefined;
+        publicationType?: {
+            Comic?: true | undefined;
+            "Blog post"?: true | undefined;
         } | undefined;
         misc?: {
             legacyRuleset?: true | undefined;
@@ -174,7 +190,7 @@ export declare const homebrewSourceSummary: z.ZodObject<{
     }>>;
     datatypes: z.ZodArray<z.ZodUnion<[z.ZodEnum<["background", "condition", "divineIntercession", "domain", "event", "familiarAbility", "relicGift", "skill"]>, z.ZodEnum<["license", "source", "sourceGroup"]>]>, "many">;
     sourceURL: z.ZodOptional<z.ZodString>;
-}, "strict", z.ZodTypeAny, {
+}>, "strict", z.ZodTypeAny, {
     path: string;
     released: string;
     added: string;
@@ -184,14 +200,14 @@ export declare const homebrewSourceSummary: z.ZodObject<{
     publisherAuthors: string;
     datatypes: ("source" | "background" | "event" | "license" | "sourceGroup" | "condition" | "divineIntercession" | "domain" | "skill" | "familiarAbility" | "relicGift")[];
     tags?: {
-        publicationType?: {
-            Comic?: true | undefined;
-            "Blog post"?: true | undefined;
-        } | undefined;
         status?: {
             "Missing content"?: true | undefined;
             "Missing tags"?: true | undefined;
             Invalid?: true | undefined;
+        } | undefined;
+        publicationType?: {
+            Comic?: true | undefined;
+            "Blog post"?: true | undefined;
         } | undefined;
         misc?: {
             legacyRuleset?: true | undefined;
@@ -215,14 +231,14 @@ export declare const homebrewSourceSummary: z.ZodObject<{
     publisherAuthors: string;
     datatypes: ("source" | "background" | "event" | "license" | "sourceGroup" | "condition" | "divineIntercession" | "domain" | "skill" | "familiarAbility" | "relicGift")[];
     tags?: {
-        publicationType?: {
-            Comic?: true | undefined;
-            "Blog post"?: true | undefined;
-        } | undefined;
         status?: {
             "Missing content"?: true | undefined;
             "Missing tags"?: true | undefined;
             Invalid?: true | undefined;
+        } | undefined;
+        publicationType?: {
+            Comic?: true | undefined;
+            "Blog post"?: true | undefined;
         } | undefined;
         misc?: {
             legacyRuleset?: true | undefined;
@@ -237,12 +253,30 @@ export declare const homebrewSourceSummary: z.ZodObject<{
     } | undefined;
     sourceURL?: string | undefined;
 }>;
-export declare const homebrewSources: z.ZodArray<z.ZodObject<{
-    path: z.ZodString;
+export declare const homebrewSources: z.ZodArray<z.ZodObject<z.objectUtil.extendShape<z.objectUtil.extendShape<Pick<{
     released: z.ZodString;
+    version: z.ZodOptional<z.ZodString>;
+    errataed: z.ZodOptional<z.ZodString>;
     added: z.ZodString;
     modified: z.ZodString;
     URL: z.ZodString;
+    groupIDs: z.ZodOptional<z.ZodEffects<z.ZodArray<z.ZodEffects<z.ZodString, string, string>, "atleastone">, [string, ...string[]], [string, ...string[]]>>;
+    requiredSourceIDs: z.ZodOptional<z.ZodEffects<z.ZodArray<z.ZodEffects<z.ZodString, string, string>, "atleastone">, [string, ...string[]], [string, ...string[]]>>;
+    licenseID: z.ZodEffects<z.ZodString, string, string>;
+    copyright: z.ZodOptional<z.ZodArray<z.ZodUnion<[z.ZodString, z.ZodObject<{
+        type: z.ZodString;
+    }, "strip", z.ZodTypeAny, {
+        type: string;
+    }, {
+        type: string;
+    }>]>, "many">>;
+    authors: z.ZodOptional<z.ZodEffects<z.ZodArray<z.ZodString, "atleastone">, [string, ...string[]], [string, ...string[]]>>;
+    publisher: z.ZodOptional<z.ZodString>;
+    converters: z.ZodOptional<z.ZodEffects<z.ZodArray<z.ZodString, "atleastone">, [string, ...string[]], [string, ...string[]]>>;
+}, "released" | "added" | "modified" | "URL">, {
+    path: z.ZodString;
+    fullTitle: z.ZodString;
+    publisherAuthors: z.ZodString;
     tags: z.ZodOptional<z.ZodEffects<z.ZodObject<{
         publicationType: z.ZodOptional<z.ZodEffects<z.ZodObject<{
             Comic: z.ZodOptional<z.ZodLiteral<true>>;
@@ -328,14 +362,14 @@ export declare const homebrewSources: z.ZodArray<z.ZodObject<{
             NSFW?: true | undefined;
         }>>;
     }, "strict", z.ZodTypeAny, {
-        publicationType?: {
-            Comic?: true | undefined;
-            "Blog post"?: true | undefined;
-        } | undefined;
         status?: {
             "Missing content"?: true | undefined;
             "Missing tags"?: true | undefined;
             Invalid?: true | undefined;
+        } | undefined;
+        publicationType?: {
+            Comic?: true | undefined;
+            "Blog post"?: true | undefined;
         } | undefined;
         misc?: {
             legacyRuleset?: true | undefined;
@@ -348,14 +382,14 @@ export declare const homebrewSources: z.ZodArray<z.ZodObject<{
             NSFW?: true | undefined;
         } | undefined;
     }, {
-        publicationType?: {
-            Comic?: true | undefined;
-            "Blog post"?: true | undefined;
-        } | undefined;
         status?: {
             "Missing content"?: true | undefined;
             "Missing tags"?: true | undefined;
             Invalid?: true | undefined;
+        } | undefined;
+        publicationType?: {
+            Comic?: true | undefined;
+            "Blog post"?: true | undefined;
         } | undefined;
         misc?: {
             legacyRuleset?: true | undefined;
@@ -368,14 +402,14 @@ export declare const homebrewSources: z.ZodArray<z.ZodObject<{
             NSFW?: true | undefined;
         } | undefined;
     }>, {
-        publicationType?: {
-            Comic?: true | undefined;
-            "Blog post"?: true | undefined;
-        } | undefined;
         status?: {
             "Missing content"?: true | undefined;
             "Missing tags"?: true | undefined;
             Invalid?: true | undefined;
+        } | undefined;
+        publicationType?: {
+            Comic?: true | undefined;
+            "Blog post"?: true | undefined;
         } | undefined;
         misc?: {
             legacyRuleset?: true | undefined;
@@ -388,14 +422,14 @@ export declare const homebrewSources: z.ZodArray<z.ZodObject<{
             NSFW?: true | undefined;
         } | undefined;
     }, {
-        publicationType?: {
-            Comic?: true | undefined;
-            "Blog post"?: true | undefined;
-        } | undefined;
         status?: {
             "Missing content"?: true | undefined;
             "Missing tags"?: true | undefined;
             Invalid?: true | undefined;
+        } | undefined;
+        publicationType?: {
+            Comic?: true | undefined;
+            "Blog post"?: true | undefined;
         } | undefined;
         misc?: {
             legacyRuleset?: true | undefined;
@@ -408,12 +442,11 @@ export declare const homebrewSources: z.ZodArray<z.ZodObject<{
             NSFW?: true | undefined;
         } | undefined;
     }>>;
-    fullTitle: z.ZodString;
-    publisherAuthors: z.ZodString;
     datatypes: z.ZodArray<z.ZodUnion<[z.ZodEnum<["background", "condition", "divineIntercession", "domain", "event", "familiarAbility", "relicGift", "skill"]>, z.ZodEnum<["license", "source", "sourceGroup"]>]>, "many">;
     sourceURL: z.ZodOptional<z.ZodString>;
+}>, {
     ID: z.ZodEffects<z.ZodString, string, string>;
-}, "strict", z.ZodTypeAny, {
+}>, "strict", z.ZodTypeAny, {
     path: string;
     released: string;
     added: string;
@@ -424,14 +457,14 @@ export declare const homebrewSources: z.ZodArray<z.ZodObject<{
     publisherAuthors: string;
     datatypes: ("source" | "background" | "event" | "license" | "sourceGroup" | "condition" | "divineIntercession" | "domain" | "skill" | "familiarAbility" | "relicGift")[];
     tags?: {
-        publicationType?: {
-            Comic?: true | undefined;
-            "Blog post"?: true | undefined;
-        } | undefined;
         status?: {
             "Missing content"?: true | undefined;
             "Missing tags"?: true | undefined;
             Invalid?: true | undefined;
+        } | undefined;
+        publicationType?: {
+            Comic?: true | undefined;
+            "Blog post"?: true | undefined;
         } | undefined;
         misc?: {
             legacyRuleset?: true | undefined;
@@ -456,14 +489,14 @@ export declare const homebrewSources: z.ZodArray<z.ZodObject<{
     publisherAuthors: string;
     datatypes: ("source" | "background" | "event" | "license" | "sourceGroup" | "condition" | "divineIntercession" | "domain" | "skill" | "familiarAbility" | "relicGift")[];
     tags?: {
-        publicationType?: {
-            Comic?: true | undefined;
-            "Blog post"?: true | undefined;
-        } | undefined;
         status?: {
             "Missing content"?: true | undefined;
             "Missing tags"?: true | undefined;
             Invalid?: true | undefined;
+        } | undefined;
+        publicationType?: {
+            Comic?: true | undefined;
+            "Blog post"?: true | undefined;
         } | undefined;
         misc?: {
             legacyRuleset?: true | undefined;
@@ -478,11 +511,27 @@ export declare const homebrewSources: z.ZodArray<z.ZodObject<{
     } | undefined;
     sourceURL?: string | undefined;
 }>, "many">;
-export declare const homebrewSourcesRecord: z.ZodEffects<z.ZodRecord<z.ZodEffects<z.ZodString, string, string>, z.ZodObject<{
+export declare const homebrewSourcesRecord: z.ZodEffects<z.ZodRecord<z.ZodEffects<z.ZodString, string, string>, z.ZodObject<z.objectUtil.extendShape<Pick<{
     released: z.ZodString;
+    version: z.ZodOptional<z.ZodString>;
+    errataed: z.ZodOptional<z.ZodString>;
     added: z.ZodString;
     modified: z.ZodString;
     URL: z.ZodString;
+    groupIDs: z.ZodOptional<z.ZodEffects<z.ZodArray<z.ZodEffects<z.ZodString, string, string>, "atleastone">, [string, ...string[]], [string, ...string[]]>>;
+    requiredSourceIDs: z.ZodOptional<z.ZodEffects<z.ZodArray<z.ZodEffects<z.ZodString, string, string>, "atleastone">, [string, ...string[]], [string, ...string[]]>>;
+    licenseID: z.ZodEffects<z.ZodString, string, string>;
+    copyright: z.ZodOptional<z.ZodArray<z.ZodUnion<[z.ZodString, z.ZodObject<{
+        type: z.ZodString;
+    }, "strip", z.ZodTypeAny, {
+        type: string;
+    }, {
+        type: string;
+    }>]>, "many">>;
+    authors: z.ZodOptional<z.ZodEffects<z.ZodArray<z.ZodString, "atleastone">, [string, ...string[]], [string, ...string[]]>>;
+    publisher: z.ZodOptional<z.ZodString>;
+    converters: z.ZodOptional<z.ZodEffects<z.ZodArray<z.ZodString, "atleastone">, [string, ...string[]], [string, ...string[]]>>;
+}, "released" | "added" | "modified" | "URL">, {
     path: z.ZodString;
     fullTitle: z.ZodString;
     publisherAuthors: z.ZodString;
@@ -571,14 +620,14 @@ export declare const homebrewSourcesRecord: z.ZodEffects<z.ZodRecord<z.ZodEffect
             NSFW?: true | undefined;
         }>>;
     }, "strict", z.ZodTypeAny, {
-        publicationType?: {
-            Comic?: true | undefined;
-            "Blog post"?: true | undefined;
-        } | undefined;
         status?: {
             "Missing content"?: true | undefined;
             "Missing tags"?: true | undefined;
             Invalid?: true | undefined;
+        } | undefined;
+        publicationType?: {
+            Comic?: true | undefined;
+            "Blog post"?: true | undefined;
         } | undefined;
         misc?: {
             legacyRuleset?: true | undefined;
@@ -591,14 +640,14 @@ export declare const homebrewSourcesRecord: z.ZodEffects<z.ZodRecord<z.ZodEffect
             NSFW?: true | undefined;
         } | undefined;
     }, {
-        publicationType?: {
-            Comic?: true | undefined;
-            "Blog post"?: true | undefined;
-        } | undefined;
         status?: {
             "Missing content"?: true | undefined;
             "Missing tags"?: true | undefined;
             Invalid?: true | undefined;
+        } | undefined;
+        publicationType?: {
+            Comic?: true | undefined;
+            "Blog post"?: true | undefined;
         } | undefined;
         misc?: {
             legacyRuleset?: true | undefined;
@@ -611,14 +660,14 @@ export declare const homebrewSourcesRecord: z.ZodEffects<z.ZodRecord<z.ZodEffect
             NSFW?: true | undefined;
         } | undefined;
     }>, {
-        publicationType?: {
-            Comic?: true | undefined;
-            "Blog post"?: true | undefined;
-        } | undefined;
         status?: {
             "Missing content"?: true | undefined;
             "Missing tags"?: true | undefined;
             Invalid?: true | undefined;
+        } | undefined;
+        publicationType?: {
+            Comic?: true | undefined;
+            "Blog post"?: true | undefined;
         } | undefined;
         misc?: {
             legacyRuleset?: true | undefined;
@@ -631,14 +680,14 @@ export declare const homebrewSourcesRecord: z.ZodEffects<z.ZodRecord<z.ZodEffect
             NSFW?: true | undefined;
         } | undefined;
     }, {
-        publicationType?: {
-            Comic?: true | undefined;
-            "Blog post"?: true | undefined;
-        } | undefined;
         status?: {
             "Missing content"?: true | undefined;
             "Missing tags"?: true | undefined;
             Invalid?: true | undefined;
+        } | undefined;
+        publicationType?: {
+            Comic?: true | undefined;
+            "Blog post"?: true | undefined;
         } | undefined;
         misc?: {
             legacyRuleset?: true | undefined;
@@ -653,7 +702,7 @@ export declare const homebrewSourcesRecord: z.ZodEffects<z.ZodRecord<z.ZodEffect
     }>>;
     datatypes: z.ZodArray<z.ZodUnion<[z.ZodEnum<["background", "condition", "divineIntercession", "domain", "event", "familiarAbility", "relicGift", "skill"]>, z.ZodEnum<["license", "source", "sourceGroup"]>]>, "many">;
     sourceURL: z.ZodOptional<z.ZodString>;
-}, "strict", z.ZodTypeAny, {
+}>, "strict", z.ZodTypeAny, {
     path: string;
     released: string;
     added: string;
@@ -663,14 +712,14 @@ export declare const homebrewSourcesRecord: z.ZodEffects<z.ZodRecord<z.ZodEffect
     publisherAuthors: string;
     datatypes: ("source" | "background" | "event" | "license" | "sourceGroup" | "condition" | "divineIntercession" | "domain" | "skill" | "familiarAbility" | "relicGift")[];
     tags?: {
-        publicationType?: {
-            Comic?: true | undefined;
-            "Blog post"?: true | undefined;
-        } | undefined;
         status?: {
             "Missing content"?: true | undefined;
             "Missing tags"?: true | undefined;
             Invalid?: true | undefined;
+        } | undefined;
+        publicationType?: {
+            Comic?: true | undefined;
+            "Blog post"?: true | undefined;
         } | undefined;
         misc?: {
             legacyRuleset?: true | undefined;
@@ -694,14 +743,14 @@ export declare const homebrewSourcesRecord: z.ZodEffects<z.ZodRecord<z.ZodEffect
     publisherAuthors: string;
     datatypes: ("source" | "background" | "event" | "license" | "sourceGroup" | "condition" | "divineIntercession" | "domain" | "skill" | "familiarAbility" | "relicGift")[];
     tags?: {
-        publicationType?: {
-            Comic?: true | undefined;
-            "Blog post"?: true | undefined;
-        } | undefined;
         status?: {
             "Missing content"?: true | undefined;
             "Missing tags"?: true | undefined;
             Invalid?: true | undefined;
+        } | undefined;
+        publicationType?: {
+            Comic?: true | undefined;
+            "Blog post"?: true | undefined;
         } | undefined;
         misc?: {
             legacyRuleset?: true | undefined;
@@ -725,14 +774,14 @@ export declare const homebrewSourcesRecord: z.ZodEffects<z.ZodRecord<z.ZodEffect
     publisherAuthors: string;
     datatypes: ("source" | "background" | "event" | "license" | "sourceGroup" | "condition" | "divineIntercession" | "domain" | "skill" | "familiarAbility" | "relicGift")[];
     tags?: {
-        publicationType?: {
-            Comic?: true | undefined;
-            "Blog post"?: true | undefined;
-        } | undefined;
         status?: {
             "Missing content"?: true | undefined;
             "Missing tags"?: true | undefined;
             Invalid?: true | undefined;
+        } | undefined;
+        publicationType?: {
+            Comic?: true | undefined;
+            "Blog post"?: true | undefined;
         } | undefined;
         misc?: {
             legacyRuleset?: true | undefined;
@@ -756,14 +805,14 @@ export declare const homebrewSourcesRecord: z.ZodEffects<z.ZodRecord<z.ZodEffect
     publisherAuthors: string;
     datatypes: ("source" | "background" | "event" | "license" | "sourceGroup" | "condition" | "divineIntercession" | "domain" | "skill" | "familiarAbility" | "relicGift")[];
     tags?: {
-        publicationType?: {
-            Comic?: true | undefined;
-            "Blog post"?: true | undefined;
-        } | undefined;
         status?: {
             "Missing content"?: true | undefined;
             "Missing tags"?: true | undefined;
             Invalid?: true | undefined;
+        } | undefined;
+        publicationType?: {
+            Comic?: true | undefined;
+            "Blog post"?: true | undefined;
         } | undefined;
         misc?: {
             legacyRuleset?: true | undefined;

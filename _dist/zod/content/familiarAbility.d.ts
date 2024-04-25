@@ -1,15 +1,6 @@
 import { z } from "zod";
-export declare const familiarAbility: z.ZodObject<{
-    source: z.ZodObject<{
-        ID: z.ZodEffects<z.ZodString, string, string>;
-        page: z.ZodOptional<z.ZodNumber>;
-    }, "strict", z.ZodTypeAny, {
-        ID: string;
-        page?: number | undefined;
-    }, {
-        ID: string;
-        page?: number | undefined;
-    }>;
+export declare const familiarAbility: z.ZodObject<z.objectUtil.extendShape<{
+    type: z.ZodString;
     name: z.ZodObject<{
         primary: z.ZodEffects<z.ZodString, string, string>;
         aliases: z.ZodOptional<z.ZodEffects<z.ZodArray<z.ZodString, "many">, string[], string[]>>;
@@ -23,6 +14,17 @@ export declare const familiarAbility: z.ZodObject<{
         aliases?: string[] | undefined;
         specifier?: string | undefined;
     }>;
+    source: z.ZodObject<{
+        ID: z.ZodEffects<z.ZodString, string, string>;
+        page: z.ZodOptional<z.ZodNumber>;
+    }, "strict", z.ZodTypeAny, {
+        ID: string;
+        page?: number | undefined;
+    }, {
+        ID: string;
+        page?: number | undefined;
+    }>;
+    data: z.ZodOptional<z.ZodObject<{}, "strip", z.ZodTypeAny, {}, {}>>;
     reference: z.ZodOptional<z.ZodObject<{
         type: z.ZodEnum<["reprint", "variant", "replacement", "extension"]>;
         target: z.ZodObject<{
@@ -125,6 +127,8 @@ export declare const familiarAbility: z.ZodObject<{
             value?: string | number | boolean | any[] | z.objectInputType<{}, z.ZodTypeAny, "passthrough"> | undefined;
         }[] | undefined;
     }>>;
+    tags: z.ZodOptional<z.ZodObject<{}, "strip", z.ZodTypeAny, {}, {}>>;
+}, {
     type: z.ZodLiteral<"familiarAbility">;
     data: z.ZodObject<{
         abilityType: z.ZodEnum<["Familiar", "Master"]>;
@@ -220,7 +224,7 @@ export declare const familiarAbility: z.ZodObject<{
             repeatable?: true | undefined;
         } | undefined;
     }>>;
-}, "strict", z.ZodTypeAny, {
+}>, "strict", z.ZodTypeAny, {
     type: "familiarAbility";
     data: {
         entries: (string | {
@@ -237,6 +241,16 @@ export declare const familiarAbility: z.ZodObject<{
         aliases?: string[] | undefined;
         specifier?: string | undefined;
     };
+    tags?: {
+        misc?: {
+            affectsCommunication?: true | undefined;
+            affectsSenses?: true | undefined;
+            affectsMovement?: true | undefined;
+            hasRequirement?: true | undefined;
+            grantsAbility?: true | undefined;
+            repeatable?: true | undefined;
+        } | undefined;
+    } | undefined;
     reference?: {
         type: "variant" | "reprint" | "replacement" | "extension";
         target: {
@@ -252,16 +266,6 @@ export declare const familiarAbility: z.ZodObject<{
             };
             value?: string | number | boolean | any[] | z.objectOutputType<{}, z.ZodTypeAny, "passthrough"> | undefined;
         }[] | undefined;
-    } | undefined;
-    tags?: {
-        misc?: {
-            affectsCommunication?: true | undefined;
-            affectsSenses?: true | undefined;
-            affectsMovement?: true | undefined;
-            hasRequirement?: true | undefined;
-            grantsAbility?: true | undefined;
-            repeatable?: true | undefined;
-        } | undefined;
     } | undefined;
 }, {
     type: "familiarAbility";
@@ -280,6 +284,16 @@ export declare const familiarAbility: z.ZodObject<{
         aliases?: string[] | undefined;
         specifier?: string | undefined;
     };
+    tags?: {
+        misc?: {
+            affectsCommunication?: true | undefined;
+            affectsSenses?: true | undefined;
+            affectsMovement?: true | undefined;
+            hasRequirement?: true | undefined;
+            grantsAbility?: true | undefined;
+            repeatable?: true | undefined;
+        } | undefined;
+    } | undefined;
     reference?: {
         type: "variant" | "reprint" | "replacement" | "extension";
         target: {
@@ -295,15 +309,5 @@ export declare const familiarAbility: z.ZodObject<{
             };
             value?: string | number | boolean | any[] | z.objectInputType<{}, z.ZodTypeAny, "passthrough"> | undefined;
         }[] | undefined;
-    } | undefined;
-    tags?: {
-        misc?: {
-            affectsCommunication?: true | undefined;
-            affectsSenses?: true | undefined;
-            affectsMovement?: true | undefined;
-            hasRequirement?: true | undefined;
-            grantsAbility?: true | undefined;
-            repeatable?: true | undefined;
-        } | undefined;
     } | undefined;
 }>;

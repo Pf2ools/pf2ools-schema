@@ -5,18 +5,18 @@ export declare const traits: z.ZodEffects<z.ZodArray<z.ZodObject<{
     display: z.ZodOptional<z.ZodString>;
 }, "strict", z.ZodTypeAny, {
     trait: string;
-    variables?: string[] | undefined;
     display?: string | undefined;
+    variables?: string[] | undefined;
 }, {
     trait: string;
-    variables?: string[] | undefined;
     display?: string | undefined;
+    variables?: string[] | undefined;
 }>, "many">, {
     trait: string;
-    variables?: string[] | undefined;
     display?: string | undefined;
+    variables?: string[] | undefined;
 }[], {
     trait: string;
-    variables?: string[] | undefined;
     display?: string | undefined;
+    variables?: string[] | undefined;
 }[]>;

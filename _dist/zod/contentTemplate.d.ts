@@ -140,6 +140,7 @@ export declare const contentTemplate: z.ZodObject<{
         specifier?: string | undefined;
     };
     data?: {} | undefined;
+    tags?: {} | undefined;
     reference?: {
         type: "variant" | "reprint" | "replacement" | "extension";
         target: {
@@ -156,7 +157,6 @@ export declare const contentTemplate: z.ZodObject<{
             value?: string | number | boolean | any[] | z.objectOutputType<{}, z.ZodTypeAny, "passthrough"> | undefined;
         }[] | undefined;
     } | undefined;
-    tags?: {} | undefined;
 }, {
     type: string;
     source: {
@@ -169,6 +169,7 @@ export declare const contentTemplate: z.ZodObject<{
         specifier?: string | undefined;
     };
     data?: {} | undefined;
+    tags?: {} | undefined;
     reference?: {
         type: "variant" | "reprint" | "replacement" | "extension";
         target: {
@@ -185,5 +186,4 @@ export declare const contentTemplate: z.ZodObject<{
             value?: string | number | boolean | any[] | z.objectInputType<{}, z.ZodTypeAny, "passthrough"> | undefined;
         }[] | undefined;
     } | undefined;
-    tags?: {} | undefined;
 }>;

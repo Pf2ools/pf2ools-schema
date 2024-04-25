@@ -1,15 +1,6 @@
 import { z } from "zod";
-export declare const condition: z.ZodObject<{
-    source: z.ZodObject<{
-        ID: z.ZodEffects<z.ZodString, string, string>;
-        page: z.ZodOptional<z.ZodNumber>;
-    }, "strict", z.ZodTypeAny, {
-        ID: string;
-        page?: number | undefined;
-    }, {
-        ID: string;
-        page?: number | undefined;
-    }>;
+export declare const condition: z.ZodObject<z.objectUtil.extendShape<{
+    type: z.ZodString;
     name: z.ZodObject<{
         primary: z.ZodEffects<z.ZodString, string, string>;
         aliases: z.ZodOptional<z.ZodEffects<z.ZodArray<z.ZodString, "many">, string[], string[]>>;
@@ -23,6 +14,17 @@ export declare const condition: z.ZodObject<{
         aliases?: string[] | undefined;
         specifier?: string | undefined;
     }>;
+    source: z.ZodObject<{
+        ID: z.ZodEffects<z.ZodString, string, string>;
+        page: z.ZodOptional<z.ZodNumber>;
+    }, "strict", z.ZodTypeAny, {
+        ID: string;
+        page?: number | undefined;
+    }, {
+        ID: string;
+        page?: number | undefined;
+    }>;
+    data: z.ZodOptional<z.ZodObject<{}, "strip", z.ZodTypeAny, {}, {}>>;
     reference: z.ZodOptional<z.ZodObject<{
         type: z.ZodEnum<["reprint", "variant", "replacement", "extension"]>;
         target: z.ZodObject<{
@@ -125,6 +127,8 @@ export declare const condition: z.ZodObject<{
             value?: string | number | boolean | any[] | z.objectInputType<{}, z.ZodTypeAny, "passthrough"> | undefined;
         }[] | undefined;
     }>>;
+    tags: z.ZodOptional<z.ZodObject<{}, "strip", z.ZodTypeAny, {}, {}>>;
+}, {
     type: z.ZodLiteral<"condition">;
     data: z.ZodObject<{
         entries: z.ZodArray<z.ZodUnion<[z.ZodString, z.ZodObject<{
@@ -220,7 +224,7 @@ export declare const condition: z.ZodObject<{
             Senses: z.ZodOptional<z.ZodLiteral<true>>;
         }, z.ZodLiteral<true>, "strip"> | undefined;
     }>>;
-}, "strict", z.ZodTypeAny, {
+}>, "strict", z.ZodTypeAny, {
     type: "condition";
     data: {
         entries: (string | {
@@ -236,6 +240,15 @@ export declare const condition: z.ZodObject<{
         aliases?: string[] | undefined;
         specifier?: string | undefined;
     };
+    tags?: {
+        group?: z.objectOutputType<{
+            Attitudes: z.ZodOptional<z.ZodLiteral<true>>;
+            "Death and Dying": z.ZodOptional<z.ZodLiteral<true>>;
+            "Degrees of Detection": z.ZodOptional<z.ZodLiteral<true>>;
+            "Lowered Abilities": z.ZodOptional<z.ZodLiteral<true>>;
+            Senses: z.ZodOptional<z.ZodLiteral<true>>;
+        }, z.ZodLiteral<true>, "strip"> | undefined;
+    } | undefined;
     reference?: {
         type: "variant" | "reprint" | "replacement" | "extension";
         target: {
@@ -251,15 +264,6 @@ export declare const condition: z.ZodObject<{
             };
             value?: string | number | boolean | any[] | z.objectOutputType<{}, z.ZodTypeAny, "passthrough"> | undefined;
         }[] | undefined;
-    } | undefined;
-    tags?: {
-        group?: z.objectOutputType<{
-            Attitudes: z.ZodOptional<z.ZodLiteral<true>>;
-            "Death and Dying": z.ZodOptional<z.ZodLiteral<true>>;
-            "Degrees of Detection": z.ZodOptional<z.ZodLiteral<true>>;
-            "Lowered Abilities": z.ZodOptional<z.ZodLiteral<true>>;
-            Senses: z.ZodOptional<z.ZodLiteral<true>>;
-        }, z.ZodLiteral<true>, "strip"> | undefined;
     } | undefined;
 }, {
     type: "condition";
@@ -277,6 +281,15 @@ export declare const condition: z.ZodObject<{
         aliases?: string[] | undefined;
         specifier?: string | undefined;
     };
+    tags?: {
+        group?: z.objectInputType<{
+            Attitudes: z.ZodOptional<z.ZodLiteral<true>>;
+            "Death and Dying": z.ZodOptional<z.ZodLiteral<true>>;
+            "Degrees of Detection": z.ZodOptional<z.ZodLiteral<true>>;
+            "Lowered Abilities": z.ZodOptional<z.ZodLiteral<true>>;
+            Senses: z.ZodOptional<z.ZodLiteral<true>>;
+        }, z.ZodLiteral<true>, "strip"> | undefined;
+    } | undefined;
     reference?: {
         type: "variant" | "reprint" | "replacement" | "extension";
         target: {
@@ -292,14 +305,5 @@ export declare const condition: z.ZodObject<{
             };
             value?: string | number | boolean | any[] | z.objectInputType<{}, z.ZodTypeAny, "passthrough"> | undefined;
         }[] | undefined;
-    } | undefined;
-    tags?: {
-        group?: z.objectInputType<{
-            Attitudes: z.ZodOptional<z.ZodLiteral<true>>;
-            "Death and Dying": z.ZodOptional<z.ZodLiteral<true>>;
-            "Degrees of Detection": z.ZodOptional<z.ZodLiteral<true>>;
-            "Lowered Abilities": z.ZodOptional<z.ZodLiteral<true>>;
-            Senses: z.ZodOptional<z.ZodLiteral<true>>;
-        }, z.ZodLiteral<true>, "strip"> | undefined;
     } | undefined;
 }>;

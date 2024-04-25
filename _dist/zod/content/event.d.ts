@@ -1,15 +1,6 @@
 import { z } from "zod";
-export declare const event: z.ZodObject<{
-    source: z.ZodObject<{
-        ID: z.ZodEffects<z.ZodString, string, string>;
-        page: z.ZodOptional<z.ZodNumber>;
-    }, "strict", z.ZodTypeAny, {
-        ID: string;
-        page?: number | undefined;
-    }, {
-        ID: string;
-        page?: number | undefined;
-    }>;
+export declare const event: z.ZodObject<z.objectUtil.extendShape<{
+    type: z.ZodString;
     name: z.ZodObject<{
         primary: z.ZodEffects<z.ZodString, string, string>;
         aliases: z.ZodOptional<z.ZodEffects<z.ZodArray<z.ZodString, "many">, string[], string[]>>;
@@ -23,7 +14,17 @@ export declare const event: z.ZodObject<{
         aliases?: string[] | undefined;
         specifier?: string | undefined;
     }>;
-    tags: z.ZodOptional<z.ZodObject<{}, "strip", z.ZodTypeAny, {}, {}>>;
+    source: z.ZodObject<{
+        ID: z.ZodEffects<z.ZodString, string, string>;
+        page: z.ZodOptional<z.ZodNumber>;
+    }, "strict", z.ZodTypeAny, {
+        ID: string;
+        page?: number | undefined;
+    }, {
+        ID: string;
+        page?: number | undefined;
+    }>;
+    data: z.ZodOptional<z.ZodObject<{}, "strip", z.ZodTypeAny, {}, {}>>;
     reference: z.ZodOptional<z.ZodObject<{
         type: z.ZodEnum<["reprint", "variant", "replacement", "extension"]>;
         target: z.ZodObject<{
@@ -126,6 +127,8 @@ export declare const event: z.ZodObject<{
             value?: string | number | boolean | any[] | z.objectInputType<{}, z.ZodTypeAny, "passthrough"> | undefined;
         }[] | undefined;
     }>>;
+    tags: z.ZodOptional<z.ZodObject<{}, "strip", z.ZodTypeAny, {}, {}>>;
+}, {
     type: z.ZodLiteral<"event">;
     data: z.ZodObject<{
         level: z.ZodNumber;
@@ -135,20 +138,20 @@ export declare const event: z.ZodObject<{
             display: z.ZodOptional<z.ZodString>;
         }, "strict", z.ZodTypeAny, {
             trait: string;
-            variables?: string[] | undefined;
             display?: string | undefined;
+            variables?: string[] | undefined;
         }, {
             trait: string;
-            variables?: string[] | undefined;
             display?: string | undefined;
+            variables?: string[] | undefined;
         }>, "many">, {
             trait: string;
-            variables?: string[] | undefined;
             display?: string | undefined;
+            variables?: string[] | undefined;
         }[], {
             trait: string;
-            variables?: string[] | undefined;
             display?: string | undefined;
+            variables?: string[] | undefined;
         }[]>>;
         applicableSkills: z.ZodOptional<z.ZodEffects<z.ZodArray<z.ZodObject<{
             skill: z.ZodEnum<["Acrobatics", "Arcana", "Athletics", "Crafting", "Deception", "Diplomacy", "Intimidation", "Lore", "Medicine", "Nature", "Occultism", "Performance", "Religion", "Society", "Stealth", "Survival", "Thievery"]>;
@@ -156,20 +159,20 @@ export declare const event: z.ZodObject<{
             display: z.ZodOptional<z.ZodString>;
         }, "strict", z.ZodTypeAny, {
             skill: "Acrobatics" | "Arcana" | "Athletics" | "Crafting" | "Deception" | "Diplomacy" | "Intimidation" | "Lore" | "Medicine" | "Nature" | "Occultism" | "Performance" | "Religion" | "Society" | "Stealth" | "Survival" | "Thievery";
-            variables?: string[] | undefined;
             display?: string | undefined;
+            variables?: string[] | undefined;
         }, {
             skill: "Acrobatics" | "Arcana" | "Athletics" | "Crafting" | "Deception" | "Diplomacy" | "Intimidation" | "Lore" | "Medicine" | "Nature" | "Occultism" | "Performance" | "Religion" | "Society" | "Stealth" | "Survival" | "Thievery";
-            variables?: string[] | undefined;
             display?: string | undefined;
+            variables?: string[] | undefined;
         }>, "many">, {
             skill: "Acrobatics" | "Arcana" | "Athletics" | "Crafting" | "Deception" | "Diplomacy" | "Intimidation" | "Lore" | "Medicine" | "Nature" | "Occultism" | "Performance" | "Religion" | "Society" | "Stealth" | "Survival" | "Thievery";
-            variables?: string[] | undefined;
             display?: string | undefined;
+            variables?: string[] | undefined;
         }[], {
             skill: "Acrobatics" | "Arcana" | "Athletics" | "Crafting" | "Deception" | "Diplomacy" | "Intimidation" | "Lore" | "Medicine" | "Nature" | "Occultism" | "Performance" | "Religion" | "Society" | "Stealth" | "Survival" | "Thievery";
-            variables?: string[] | undefined;
             display?: string | undefined;
+            variables?: string[] | undefined;
         }[]>>;
         entries: z.ZodArray<z.ZodUnion<[z.ZodString, z.ZodObject<{
             type: z.ZodString;
@@ -185,13 +188,13 @@ export declare const event: z.ZodObject<{
         level: number;
         traits?: {
             trait: string;
-            variables?: string[] | undefined;
             display?: string | undefined;
+            variables?: string[] | undefined;
         }[] | undefined;
         applicableSkills?: {
             skill: "Acrobatics" | "Arcana" | "Athletics" | "Crafting" | "Deception" | "Diplomacy" | "Intimidation" | "Lore" | "Medicine" | "Nature" | "Occultism" | "Performance" | "Religion" | "Society" | "Stealth" | "Survival" | "Thievery";
-            variables?: string[] | undefined;
             display?: string | undefined;
+            variables?: string[] | undefined;
         }[] | undefined;
     }, {
         entries: (string | {
@@ -200,16 +203,16 @@ export declare const event: z.ZodObject<{
         level: number;
         traits?: {
             trait: string;
-            variables?: string[] | undefined;
             display?: string | undefined;
+            variables?: string[] | undefined;
         }[] | undefined;
         applicableSkills?: {
             skill: "Acrobatics" | "Arcana" | "Athletics" | "Crafting" | "Deception" | "Diplomacy" | "Intimidation" | "Lore" | "Medicine" | "Nature" | "Occultism" | "Performance" | "Religion" | "Society" | "Stealth" | "Survival" | "Thievery";
-            variables?: string[] | undefined;
             display?: string | undefined;
+            variables?: string[] | undefined;
         }[] | undefined;
     }>;
-}, "strict", z.ZodTypeAny, {
+}>, "strict", z.ZodTypeAny, {
     type: "event";
     data: {
         entries: (string | {
@@ -218,13 +221,13 @@ export declare const event: z.ZodObject<{
         level: number;
         traits?: {
             trait: string;
-            variables?: string[] | undefined;
             display?: string | undefined;
+            variables?: string[] | undefined;
         }[] | undefined;
         applicableSkills?: {
             skill: "Acrobatics" | "Arcana" | "Athletics" | "Crafting" | "Deception" | "Diplomacy" | "Intimidation" | "Lore" | "Medicine" | "Nature" | "Occultism" | "Performance" | "Religion" | "Society" | "Stealth" | "Survival" | "Thievery";
-            variables?: string[] | undefined;
             display?: string | undefined;
+            variables?: string[] | undefined;
         }[] | undefined;
     };
     source: {
@@ -262,13 +265,13 @@ export declare const event: z.ZodObject<{
         level: number;
         traits?: {
             trait: string;
-            variables?: string[] | undefined;
             display?: string | undefined;
+            variables?: string[] | undefined;
         }[] | undefined;
         applicableSkills?: {
             skill: "Acrobatics" | "Arcana" | "Athletics" | "Crafting" | "Deception" | "Diplomacy" | "Intimidation" | "Lore" | "Medicine" | "Nature" | "Occultism" | "Performance" | "Religion" | "Society" | "Stealth" | "Survival" | "Thievery";
-            variables?: string[] | undefined;
             display?: string | undefined;
+            variables?: string[] | undefined;
         }[] | undefined;
     };
     source: {

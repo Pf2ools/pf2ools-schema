@@ -1,15 +1,6 @@
 import { z } from "zod";
-export declare const background: z.ZodObject<{
-    source: z.ZodObject<{
-        ID: z.ZodEffects<z.ZodString, string, string>;
-        page: z.ZodOptional<z.ZodNumber>;
-    }, "strict", z.ZodTypeAny, {
-        ID: string;
-        page?: number | undefined;
-    }, {
-        ID: string;
-        page?: number | undefined;
-    }>;
+export declare const background: z.ZodObject<z.objectUtil.extendShape<{
+    type: z.ZodString;
     name: z.ZodObject<{
         primary: z.ZodEffects<z.ZodString, string, string>;
         aliases: z.ZodOptional<z.ZodEffects<z.ZodArray<z.ZodString, "many">, string[], string[]>>;
@@ -23,6 +14,17 @@ export declare const background: z.ZodObject<{
         aliases?: string[] | undefined;
         specifier?: string | undefined;
     }>;
+    source: z.ZodObject<{
+        ID: z.ZodEffects<z.ZodString, string, string>;
+        page: z.ZodOptional<z.ZodNumber>;
+    }, "strict", z.ZodTypeAny, {
+        ID: string;
+        page?: number | undefined;
+    }, {
+        ID: string;
+        page?: number | undefined;
+    }>;
+    data: z.ZodOptional<z.ZodObject<{}, "strip", z.ZodTypeAny, {}, {}>>;
     reference: z.ZodOptional<z.ZodObject<{
         type: z.ZodEnum<["reprint", "variant", "replacement", "extension"]>;
         target: z.ZodObject<{
@@ -125,6 +127,8 @@ export declare const background: z.ZodObject<{
             value?: string | number | boolean | any[] | z.objectInputType<{}, z.ZodTypeAny, "passthrough"> | undefined;
         }[] | undefined;
     }>>;
+    tags: z.ZodOptional<z.ZodObject<{}, "strip", z.ZodTypeAny, {}, {}>>;
+}, {
     type: z.ZodLiteral<"background">;
     data: z.ZodObject<{
         traits: z.ZodOptional<z.ZodEffects<z.ZodArray<z.ZodObject<{
@@ -133,20 +137,20 @@ export declare const background: z.ZodObject<{
             display: z.ZodOptional<z.ZodString>;
         }, "strict", z.ZodTypeAny, {
             trait: string;
-            variables?: string[] | undefined;
             display?: string | undefined;
+            variables?: string[] | undefined;
         }, {
             trait: string;
-            variables?: string[] | undefined;
             display?: string | undefined;
+            variables?: string[] | undefined;
         }>, "many">, {
             trait: string;
-            variables?: string[] | undefined;
             display?: string | undefined;
+            variables?: string[] | undefined;
         }[], {
             trait: string;
-            variables?: string[] | undefined;
             display?: string | undefined;
+            variables?: string[] | undefined;
         }[]>>;
         entries: z.ZodArray<z.ZodUnion<[z.ZodString, z.ZodObject<{
             type: z.ZodString;
@@ -161,8 +165,8 @@ export declare const background: z.ZodObject<{
         })[];
         traits?: {
             trait: string;
-            variables?: string[] | undefined;
             display?: string | undefined;
+            variables?: string[] | undefined;
         }[] | undefined;
     }, {
         entries: (string | {
@@ -170,8 +174,8 @@ export declare const background: z.ZodObject<{
         })[];
         traits?: {
             trait: string;
-            variables?: string[] | undefined;
             display?: string | undefined;
+            variables?: string[] | undefined;
         }[] | undefined;
     }>;
     tags: z.ZodOptional<z.ZodEffects<z.ZodObject<{
@@ -318,6 +322,16 @@ export declare const background: z.ZodObject<{
             "GM influence"?: true | undefined;
         }>>;
     }, "strict", z.ZodTypeAny, {
+        misc?: {
+            "Grants ability"?: true | undefined;
+            "Grants equipment"?: true | undefined;
+            "Grants language"?: true | undefined;
+            "Grants resistance"?: true | undefined;
+            "Grants sense"?: true | undefined;
+            "Grants situational benefit"?: true | undefined;
+            "Has drawback"?: true | undefined;
+            "GM influence"?: true | undefined;
+        } | undefined;
         abilityBoosts?: {
             abilities: Partial<Record<"Strength" | "Dexterity" | "Constitution" | "Intelligence" | "Wisdom" | "Charisma" | "free", true>>;
             count: number;
@@ -341,18 +355,18 @@ export declare const background: z.ZodObject<{
                 specifier?: string | undefined;
             }[];
             count: number;
-        } | undefined;
-        misc?: {
-            "Grants ability"?: true | undefined;
-            "Grants equipment"?: true | undefined;
-            "Grants language"?: true | undefined;
-            "Grants resistance"?: true | undefined;
-            "Grants sense"?: true | undefined;
-            "Grants situational benefit"?: true | undefined;
-            "Has drawback"?: true | undefined;
-            "GM influence"?: true | undefined;
         } | undefined;
     }, {
+        misc?: {
+            "Grants ability"?: true | undefined;
+            "Grants equipment"?: true | undefined;
+            "Grants language"?: true | undefined;
+            "Grants resistance"?: true | undefined;
+            "Grants sense"?: true | undefined;
+            "Grants situational benefit"?: true | undefined;
+            "Has drawback"?: true | undefined;
+            "GM influence"?: true | undefined;
+        } | undefined;
         abilityBoosts?: {
             abilities: Partial<Record<"Strength" | "Dexterity" | "Constitution" | "Intelligence" | "Wisdom" | "Charisma" | "free", true>>;
             count: number;
@@ -376,18 +390,18 @@ export declare const background: z.ZodObject<{
                 specifier?: string | undefined;
             }[];
             count: number;
-        } | undefined;
-        misc?: {
-            "Grants ability"?: true | undefined;
-            "Grants equipment"?: true | undefined;
-            "Grants language"?: true | undefined;
-            "Grants resistance"?: true | undefined;
-            "Grants sense"?: true | undefined;
-            "Grants situational benefit"?: true | undefined;
-            "Has drawback"?: true | undefined;
-            "GM influence"?: true | undefined;
         } | undefined;
     }>, {
+        misc?: {
+            "Grants ability"?: true | undefined;
+            "Grants equipment"?: true | undefined;
+            "Grants language"?: true | undefined;
+            "Grants resistance"?: true | undefined;
+            "Grants sense"?: true | undefined;
+            "Grants situational benefit"?: true | undefined;
+            "Has drawback"?: true | undefined;
+            "GM influence"?: true | undefined;
+        } | undefined;
         abilityBoosts?: {
             abilities: Partial<Record<"Strength" | "Dexterity" | "Constitution" | "Intelligence" | "Wisdom" | "Charisma" | "free", true>>;
             count: number;
@@ -411,18 +425,18 @@ export declare const background: z.ZodObject<{
                 specifier?: string | undefined;
             }[];
             count: number;
-        } | undefined;
-        misc?: {
-            "Grants ability"?: true | undefined;
-            "Grants equipment"?: true | undefined;
-            "Grants language"?: true | undefined;
-            "Grants resistance"?: true | undefined;
-            "Grants sense"?: true | undefined;
-            "Grants situational benefit"?: true | undefined;
-            "Has drawback"?: true | undefined;
-            "GM influence"?: true | undefined;
         } | undefined;
     }, {
+        misc?: {
+            "Grants ability"?: true | undefined;
+            "Grants equipment"?: true | undefined;
+            "Grants language"?: true | undefined;
+            "Grants resistance"?: true | undefined;
+            "Grants sense"?: true | undefined;
+            "Grants situational benefit"?: true | undefined;
+            "Has drawback"?: true | undefined;
+            "GM influence"?: true | undefined;
+        } | undefined;
         abilityBoosts?: {
             abilities: Partial<Record<"Strength" | "Dexterity" | "Constitution" | "Intelligence" | "Wisdom" | "Charisma" | "free", true>>;
             count: number;
@@ -447,18 +461,8 @@ export declare const background: z.ZodObject<{
             }[];
             count: number;
         } | undefined;
-        misc?: {
-            "Grants ability"?: true | undefined;
-            "Grants equipment"?: true | undefined;
-            "Grants language"?: true | undefined;
-            "Grants resistance"?: true | undefined;
-            "Grants sense"?: true | undefined;
-            "Grants situational benefit"?: true | undefined;
-            "Has drawback"?: true | undefined;
-            "GM influence"?: true | undefined;
-        } | undefined;
     }>>;
-}, "strict", z.ZodTypeAny, {
+}>, "strict", z.ZodTypeAny, {
     type: "background";
     data: {
         entries: (string | {
@@ -466,8 +470,8 @@ export declare const background: z.ZodObject<{
         })[];
         traits?: {
             trait: string;
-            variables?: string[] | undefined;
             display?: string | undefined;
+            variables?: string[] | undefined;
         }[] | undefined;
     };
     source: {
@@ -479,6 +483,42 @@ export declare const background: z.ZodObject<{
         aliases?: string[] | undefined;
         specifier?: string | undefined;
     };
+    tags?: {
+        misc?: {
+            "Grants ability"?: true | undefined;
+            "Grants equipment"?: true | undefined;
+            "Grants language"?: true | undefined;
+            "Grants resistance"?: true | undefined;
+            "Grants sense"?: true | undefined;
+            "Grants situational benefit"?: true | undefined;
+            "Has drawback"?: true | undefined;
+            "GM influence"?: true | undefined;
+        } | undefined;
+        abilityBoosts?: {
+            abilities: Partial<Record<"Strength" | "Dexterity" | "Constitution" | "Intelligence" | "Wisdom" | "Charisma" | "free", true>>;
+            count: number;
+        } | undefined;
+        trainedSkills?: {
+            count: number;
+            skills: Partial<Record<"Acrobatics" | "Arcana" | "Athletics" | "Crafting" | "Deception" | "Diplomacy" | "Intimidation" | "Lore" | "Medicine" | "Nature" | "Occultism" | "Performance" | "Religion" | "Society" | "Stealth" | "Survival" | "Thievery" | "Any", true>>;
+        } | undefined;
+        gainedFeats?: {
+            options: {
+                name: string;
+                sourceID: string;
+                specifier?: string | undefined;
+            }[];
+            count: number;
+        } | undefined;
+        gainedSpells?: {
+            options: {
+                name: string;
+                sourceID: string;
+                specifier?: string | undefined;
+            }[];
+            count: number;
+        } | undefined;
+    } | undefined;
     reference?: {
         type: "variant" | "reprint" | "replacement" | "extension";
         target: {
@@ -495,7 +535,38 @@ export declare const background: z.ZodObject<{
             value?: string | number | boolean | any[] | z.objectOutputType<{}, z.ZodTypeAny, "passthrough"> | undefined;
         }[] | undefined;
     } | undefined;
+}, {
+    type: "background";
+    data: {
+        entries: (string | {
+            type: string;
+        })[];
+        traits?: {
+            trait: string;
+            display?: string | undefined;
+            variables?: string[] | undefined;
+        }[] | undefined;
+    };
+    source: {
+        ID: string;
+        page?: number | undefined;
+    };
+    name: {
+        primary: string;
+        aliases?: string[] | undefined;
+        specifier?: string | undefined;
+    };
     tags?: {
+        misc?: {
+            "Grants ability"?: true | undefined;
+            "Grants equipment"?: true | undefined;
+            "Grants language"?: true | undefined;
+            "Grants resistance"?: true | undefined;
+            "Grants sense"?: true | undefined;
+            "Grants situational benefit"?: true | undefined;
+            "Has drawback"?: true | undefined;
+            "GM influence"?: true | undefined;
+        } | undefined;
         abilityBoosts?: {
             abilities: Partial<Record<"Strength" | "Dexterity" | "Constitution" | "Intelligence" | "Wisdom" | "Charisma" | "free", true>>;
             count: number;
@@ -520,38 +591,7 @@ export declare const background: z.ZodObject<{
             }[];
             count: number;
         } | undefined;
-        misc?: {
-            "Grants ability"?: true | undefined;
-            "Grants equipment"?: true | undefined;
-            "Grants language"?: true | undefined;
-            "Grants resistance"?: true | undefined;
-            "Grants sense"?: true | undefined;
-            "Grants situational benefit"?: true | undefined;
-            "Has drawback"?: true | undefined;
-            "GM influence"?: true | undefined;
-        } | undefined;
     } | undefined;
-}, {
-    type: "background";
-    data: {
-        entries: (string | {
-            type: string;
-        })[];
-        traits?: {
-            trait: string;
-            variables?: string[] | undefined;
-            display?: string | undefined;
-        }[] | undefined;
-    };
-    source: {
-        ID: string;
-        page?: number | undefined;
-    };
-    name: {
-        primary: string;
-        aliases?: string[] | undefined;
-        specifier?: string | undefined;
-    };
     reference?: {
         type: "variant" | "reprint" | "replacement" | "extension";
         target: {
@@ -567,41 +607,5 @@ export declare const background: z.ZodObject<{
             };
             value?: string | number | boolean | any[] | z.objectInputType<{}, z.ZodTypeAny, "passthrough"> | undefined;
         }[] | undefined;
-    } | undefined;
-    tags?: {
-        abilityBoosts?: {
-            abilities: Partial<Record<"Strength" | "Dexterity" | "Constitution" | "Intelligence" | "Wisdom" | "Charisma" | "free", true>>;
-            count: number;
-        } | undefined;
-        trainedSkills?: {
-            count: number;
-            skills: Partial<Record<"Acrobatics" | "Arcana" | "Athletics" | "Crafting" | "Deception" | "Diplomacy" | "Intimidation" | "Lore" | "Medicine" | "Nature" | "Occultism" | "Performance" | "Religion" | "Society" | "Stealth" | "Survival" | "Thievery" | "Any", true>>;
-        } | undefined;
-        gainedFeats?: {
-            options: {
-                name: string;
-                sourceID: string;
-                specifier?: string | undefined;
-            }[];
-            count: number;
-        } | undefined;
-        gainedSpells?: {
-            options: {
-                name: string;
-                sourceID: string;
-                specifier?: string | undefined;
-            }[];
-            count: number;
-        } | undefined;
-        misc?: {
-            "Grants ability"?: true | undefined;
-            "Grants equipment"?: true | undefined;
-            "Grants language"?: true | undefined;
-            "Grants resistance"?: true | undefined;
-            "Grants sense"?: true | undefined;
-            "Grants situational benefit"?: true | undefined;
-            "Has drawback"?: true | undefined;
-            "GM influence"?: true | undefined;
-        } | undefined;
     } | undefined;
 }>;

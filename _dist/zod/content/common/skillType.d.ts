@@ -5,10 +5,10 @@ export declare const skillType: z.ZodObject<{
     display: z.ZodOptional<z.ZodString>;
 }, "strict", z.ZodTypeAny, {
     skill: "Acrobatics" | "Arcana" | "Athletics" | "Crafting" | "Deception" | "Diplomacy" | "Intimidation" | "Lore" | "Medicine" | "Nature" | "Occultism" | "Performance" | "Religion" | "Society" | "Stealth" | "Survival" | "Thievery";
-    variables?: string[] | undefined;
     display?: string | undefined;
+    variables?: string[] | undefined;
 }, {
     skill: "Acrobatics" | "Arcana" | "Athletics" | "Crafting" | "Deception" | "Diplomacy" | "Intimidation" | "Lore" | "Medicine" | "Nature" | "Occultism" | "Performance" | "Religion" | "Society" | "Stealth" | "Survival" | "Thievery";
-    variables?: string[] | undefined;
     display?: string | undefined;
+    variables?: string[] | undefined;
 }>;
