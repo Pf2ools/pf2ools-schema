@@ -26,7 +26,7 @@
 	"scripts": {
 		"build": "npm run clean && npm run generate",
 		"clean": "npx prettier . --write --cache --log-level warn",
-		"generate": "npm run generate:clear && npm run generate:zod && echo \"Compiling TypeScript...\" && tsc && npm run generate:schema",
+		"generate": "npm run generate:clear && npm run generate:zod && echo \"`n`Compiling TypeScript...\" && tsc && npm run generate:schema",
 		"generate:clear": "node ./scripts/generate-clear.js",
 		"generate:schema": "node ./scripts/generate-schema.js",
 		"generate:zod": "npm run generate:zod:combinedTypes && npm run generate:zod:index",

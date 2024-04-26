@@ -11,7 +11,7 @@ export const sourceData = z
         .describe("The source's publication date (YYYY-MM-DD). For content with a staggered release or early-access program, use the date the source was first made publicly available."),
     version: z
         .string()
-        .describe('The target version for the converted data (if any). This value serves akin to a `specifier` in case multiple distinct versions of the same source are maintained. Leave undefined if there has only ever been one version. (Examples: "2nd Printing", "2.0.1", "Revised 2023")')
+        .describe('The target version for the converted data (if any). This value serves akin to a `specifier` in case multiple distinct versions of the same source are maintained. Leave undefined if there has only ever been one version. (Examples: "2nd Printing", "v1.2", "Revised 2025")')
         .min(1)
         .optional(),
     errataed: z
@@ -33,19 +33,19 @@ export const sourceData = z
         .url(),
     groupIDs: z
         .array(ID.describe("The `ID` of a source group."))
-        .describe('A list of `ID`s of the source\'s parent groups (if any). This is used for a source that is one piece of a larger, clearly defined, multi-part series. For instance, "Extinction Curse 1: The Show Must Go On" belongs to the "Extinction Curse" series ("EC"), and "Lost Omens: Travel Guide" belongs to the "Lost Omens" series ("LO").')
+        .describe('A list of `ID`s of the source\'s parent groups (if any). This is used for a source that is part of a larger, clearly defined, multi-part series. For instance, "Extinction Curse #1: The Show Must Go On" belongs to the "Extinction Curse" series ("EC"), and "Lost Omens: Travel Guide" belongs to the "Lost Omens" series ("LO").')
         .nonempty()
         .refine(...uniqueStrings)
         .optional(),
     requiredSourceIDs: z
         .array(ID.describe("The `ID` of the dependent homebrew source."))
-        .describe("A list of `ID`s of other homebrew sources that this source requires. The requirement is strict: a source that adds a subclass to another, external homebrew class would list that class' source ID; sources that merely add complementary subclasses to the same core class should be instead linked via a `sourceGroup`.")
+        .describe("A list of `ID`s of other homebrew sources that this source requires. The requirement is strict: a source that adds a subclass to another, external homebrew class would list that class' source `ID`.")
         .nonempty()
         .refine(...uniqueStrings)
         .optional(),
     licenseID: ID.describe("The `ID` of the source's license."),
     copyright: entries
-        .describe("Any additional copyright text associated with the source. For instance, the copyright notice that accompanies the OGLv1.0a license would be entered here (but not the license itself). Formatting may be used where it doesn't detract from its interpretation.")
+        .describe("Any additional copyright text associated with the source. For instance, the copyright notice that accompanies the OGLv1.0a license would be entered here (but not the license itself), as does the ORC license's attribution notice. Formatting may be used where it doesn't detract from its interpretation.")
         .optional(),
     authors: z
         .array(z
@@ -63,9 +63,9 @@ export const sourceData = z
     converters: z
         .array(z
         .string()
-        .describe("A converter's name. Discord usernames are strongly prefered; other online handles should be reasonably indicated.")
+        .describe("A converter's name. Discord usernames are strongly preferred; other online handles should be reasonably indicated.")
         .min(2))
-        .describe("A list of unqiue Pf2ools contributors who converted this source. If multiple converters exist, choose one 'principal' to go first in the case of questions or bug reports. This is particularly used for homebrew, both for attributing work done and to help organise updates.")
+        .describe("A list of unique Pf2ools contributors who converted this source. If multiple converters exist, choose one 'principal' to go first in the case of questions or bug reports. This is particularly used for homebrew, both for attributing work done and to help organise updates.")
         .nonempty()
         .refine(...uniqueStrings)
         .optional(),
@@ -89,7 +89,7 @@ export const sourceTags = z
         .object({
         "Missing content": z
             .literal(true)
-            .describe("This source is only partially converted right now (i.e. it lacks some content), but, one day, could be completely up-to-date.")
+            .describe("This source is only partially converted right now (i.e. it lacks some content), but, one day, it could be completely up-to-date.")
             .optional(),
         "Missing tags": z
             .literal(true)
@@ -115,7 +115,7 @@ export const sourceTags = z
             .optional(),
         "GM-facing": z
             .literal(true)
-            .describe("This source is intended to be GM-facing. This is typically due to it being an adventure, module, one-shot, scenario, or the like.")
+            .describe("This source is intended to be GM-facing, to the exclusion of players. This is typically due to it being an adventure, module, one-shot, scenario, or the like.")
             .optional(),
         "PFS-legal": z.literal(true).describe("This source is legal for Pathfinder Society play.").optional(),
         Playtest: z
@@ -124,7 +124,7 @@ export const sourceTags = z
             .optional(),
         Ongoing: z
             .literal(true)
-            .describe("This source is being continually expanded. The data only reflects content only up until the `errataed` date. This is used for 'monster a day' projects and the like, where the content may entail a substantial lag behind the present.")
+            .describe("This source is being continually expanded. The data only reflects content only up until the `errataed` date. This is used for 'monster a day' projects and the like, where the conversion may entail a substantial lag behind the publication.")
             .optional(),
         Deprecated: z
             .literal(true)
@@ -146,7 +146,7 @@ export const sourceTags = z
 export const source = z
     .object({
     type: z.literal("source"),
-    ID: ID.describe('The source\'s identifying string for the computer. This must be only composed of alphanumeric characters and non-initial, non-terminal hyphens. It must be globally and case-insensitively uniqueStrings across the Pf2ools ecosystem. For multi-part adventures, the standard is to use "<groupID>0" for the player\'s guide (if any), and then "<groupID>#" for each part, where "#" is the part\'s number.'),
+    ID: ID.describe('The source\'s identifying string for the computer. This must be only composed of alphanumeric characters and non-initial, non-terminal hyphens. It must be globally and case-insensitively unique across the Pf2ools ecosystem.\n\nFor multi-part adventures, the standard is to use "<groupID>0" for the player\'s guide (if any), and then "<groupID>#" for each part, where "#" is the part\'s number.'),
     title: z
         .object({
         full: z
@@ -154,7 +154,7 @@ export const source = z
             .describe("The source's full, human-readable name. Title case is preferred but anything can be used within reason.")
             .min(1)
             // These are reserved filenames in Windows. At some point, someone will save a source file and/or its content as "<name>.json" and won't realise the hell this causes for Windows users. Unlikely any source is named this, though ¯\_(ツ)_/¯
-            .refine((str) => !str.match(/^(COM[0-9]?|PRN|AUX|NUL|LPT[0-9])$/i), "This title is prohibited."),
+            .refine((str) => !str.match(/^(?:[cC][oO][mM][0-9]?|[pP][rR][nN]|[aA][uU][xX]|[nN][uU][lL]|[lL][pP][tT][0-9])$/), "This title is prohibited."),
         short: z
             .string()
             .describe("An abbreviation or other shortening of the source's name for display purposes.")

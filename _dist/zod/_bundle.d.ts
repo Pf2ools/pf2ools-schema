@@ -474,11 +474,19 @@ export declare const bundle: z.ZodObject<{
     }>, "many">>;
     background: z.ZodOptional<z.ZodArray<z.ZodObject<z.objectUtil.extendShape<{
         type: z.ZodString;
-        name: z.ZodObject<{
+        name: z.ZodEffects<z.ZodObject<{
             primary: z.ZodEffects<z.ZodString, string, string>;
             aliases: z.ZodOptional<z.ZodEffects<z.ZodArray<z.ZodString, "many">, string[], string[]>>;
             specifier: z.ZodOptional<z.ZodEffects<z.ZodString, string, string>>;
         }, "strict", z.ZodTypeAny, {
+            primary: string;
+            aliases?: string[] | undefined;
+            specifier?: string | undefined;
+        }, {
+            primary: string;
+            aliases?: string[] | undefined;
+            specifier?: string | undefined;
+        }>, {
             primary: string;
             aliases?: string[] | undefined;
             specifier?: string | undefined;
@@ -1084,11 +1092,19 @@ export declare const bundle: z.ZodObject<{
     }>, "many">>;
     condition: z.ZodOptional<z.ZodArray<z.ZodObject<z.objectUtil.extendShape<{
         type: z.ZodString;
-        name: z.ZodObject<{
+        name: z.ZodEffects<z.ZodObject<{
             primary: z.ZodEffects<z.ZodString, string, string>;
             aliases: z.ZodOptional<z.ZodEffects<z.ZodArray<z.ZodString, "many">, string[], string[]>>;
             specifier: z.ZodOptional<z.ZodEffects<z.ZodString, string, string>>;
         }, "strict", z.ZodTypeAny, {
+            primary: string;
+            aliases?: string[] | undefined;
+            specifier?: string | undefined;
+        }, {
+            primary: string;
+            aliases?: string[] | undefined;
+            specifier?: string | undefined;
+        }>, {
             primary: string;
             aliases?: string[] | undefined;
             specifier?: string | undefined;
@@ -1392,11 +1408,19 @@ export declare const bundle: z.ZodObject<{
     }>, "many">>;
     divineIntercession: z.ZodOptional<z.ZodArray<z.ZodObject<z.objectUtil.extendShape<{
         type: z.ZodString;
-        name: z.ZodObject<{
+        name: z.ZodEffects<z.ZodObject<{
             primary: z.ZodEffects<z.ZodString, string, string>;
             aliases: z.ZodOptional<z.ZodEffects<z.ZodArray<z.ZodString, "many">, string[], string[]>>;
             specifier: z.ZodOptional<z.ZodEffects<z.ZodString, string, string>>;
         }, "strict", z.ZodTypeAny, {
+            primary: string;
+            aliases?: string[] | undefined;
+            specifier?: string | undefined;
+        }, {
+            primary: string;
+            aliases?: string[] | undefined;
+            specifier?: string | undefined;
+        }>, {
             primary: string;
             aliases?: string[] | undefined;
             specifier?: string | undefined;
@@ -1808,11 +1832,19 @@ export declare const bundle: z.ZodObject<{
     }>, "many">>;
     domain: z.ZodOptional<z.ZodArray<z.ZodObject<z.objectUtil.extendShape<{
         type: z.ZodString;
-        name: z.ZodObject<{
+        name: z.ZodEffects<z.ZodObject<{
             primary: z.ZodEffects<z.ZodString, string, string>;
             aliases: z.ZodOptional<z.ZodEffects<z.ZodArray<z.ZodString, "many">, string[], string[]>>;
             specifier: z.ZodOptional<z.ZodEffects<z.ZodString, string, string>>;
         }, "strict", z.ZodTypeAny, {
+            primary: string;
+            aliases?: string[] | undefined;
+            specifier?: string | undefined;
+        }, {
+            primary: string;
+            aliases?: string[] | undefined;
+            specifier?: string | undefined;
+        }>, {
             primary: string;
             aliases?: string[] | undefined;
             specifier?: string | undefined;
@@ -2141,11 +2173,19 @@ export declare const bundle: z.ZodObject<{
     }>, "many">>;
     event: z.ZodOptional<z.ZodArray<z.ZodObject<z.objectUtil.extendShape<{
         type: z.ZodString;
-        name: z.ZodObject<{
+        name: z.ZodEffects<z.ZodObject<{
             primary: z.ZodEffects<z.ZodString, string, string>;
             aliases: z.ZodOptional<z.ZodEffects<z.ZodArray<z.ZodString, "many">, string[], string[]>>;
             specifier: z.ZodOptional<z.ZodEffects<z.ZodString, string, string>>;
         }, "strict", z.ZodTypeAny, {
+            primary: string;
+            aliases?: string[] | undefined;
+            specifier?: string | undefined;
+        }, {
+            primary: string;
+            aliases?: string[] | undefined;
+            specifier?: string | undefined;
+        }>, {
             primary: string;
             aliases?: string[] | undefined;
             specifier?: string | undefined;
@@ -2443,11 +2483,19 @@ export declare const bundle: z.ZodObject<{
     }>, "many">>;
     familiarAbility: z.ZodOptional<z.ZodArray<z.ZodObject<z.objectUtil.extendShape<{
         type: z.ZodString;
-        name: z.ZodObject<{
+        name: z.ZodEffects<z.ZodObject<{
             primary: z.ZodEffects<z.ZodString, string, string>;
             aliases: z.ZodOptional<z.ZodEffects<z.ZodArray<z.ZodString, "many">, string[], string[]>>;
             specifier: z.ZodOptional<z.ZodEffects<z.ZodString, string, string>>;
         }, "strict", z.ZodTypeAny, {
+            primary: string;
+            aliases?: string[] | undefined;
+            specifier?: string | undefined;
+        }, {
+            primary: string;
+            aliases?: string[] | undefined;
+            specifier?: string | undefined;
+        }>, {
             primary: string;
             aliases?: string[] | undefined;
             specifier?: string | undefined;
@@ -2755,11 +2803,19 @@ export declare const bundle: z.ZodObject<{
     }>, "many">>;
     relicGift: z.ZodOptional<z.ZodArray<z.ZodObject<z.objectUtil.extendShape<{
         type: z.ZodString;
-        name: z.ZodObject<{
+        name: z.ZodEffects<z.ZodObject<{
             primary: z.ZodEffects<z.ZodString, string, string>;
             aliases: z.ZodOptional<z.ZodEffects<z.ZodArray<z.ZodString, "many">, string[], string[]>>;
             specifier: z.ZodOptional<z.ZodEffects<z.ZodString, string, string>>;
         }, "strict", z.ZodTypeAny, {
+            primary: string;
+            aliases?: string[] | undefined;
+            specifier?: string | undefined;
+        }, {
+            primary: string;
+            aliases?: string[] | undefined;
+            specifier?: string | undefined;
+        }>, {
             primary: string;
             aliases?: string[] | undefined;
             specifier?: string | undefined;
@@ -3187,11 +3243,19 @@ export declare const bundle: z.ZodObject<{
     }>, "many">>;
     skill: z.ZodOptional<z.ZodArray<z.ZodObject<z.objectUtil.extendShape<{
         type: z.ZodString;
-        name: z.ZodObject<{
+        name: z.ZodEffects<z.ZodObject<{
             primary: z.ZodEffects<z.ZodString, string, string>;
             aliases: z.ZodOptional<z.ZodEffects<z.ZodArray<z.ZodString, "many">, string[], string[]>>;
             specifier: z.ZodOptional<z.ZodEffects<z.ZodString, string, string>>;
         }, "strict", z.ZodTypeAny, {
+            primary: string;
+            aliases?: string[] | undefined;
+            specifier?: string | undefined;
+        }, {
+            primary: string;
+            aliases?: string[] | undefined;
+            specifier?: string | undefined;
+        }>, {
             primary: string;
             aliases?: string[] | undefined;
             specifier?: string | undefined;
@@ -4842,11 +4906,19 @@ export declare const anyBundle: z.ZodEffects<z.ZodObject<{
     }>, "many">>>;
     background: z.ZodOptional<z.ZodOptional<z.ZodArray<z.ZodObject<z.objectUtil.extendShape<{
         type: z.ZodString;
-        name: z.ZodObject<{
+        name: z.ZodEffects<z.ZodObject<{
             primary: z.ZodEffects<z.ZodString, string, string>;
             aliases: z.ZodOptional<z.ZodEffects<z.ZodArray<z.ZodString, "many">, string[], string[]>>;
             specifier: z.ZodOptional<z.ZodEffects<z.ZodString, string, string>>;
         }, "strict", z.ZodTypeAny, {
+            primary: string;
+            aliases?: string[] | undefined;
+            specifier?: string | undefined;
+        }, {
+            primary: string;
+            aliases?: string[] | undefined;
+            specifier?: string | undefined;
+        }>, {
             primary: string;
             aliases?: string[] | undefined;
             specifier?: string | undefined;
@@ -5452,11 +5524,19 @@ export declare const anyBundle: z.ZodEffects<z.ZodObject<{
     }>, "many">>>;
     condition: z.ZodOptional<z.ZodOptional<z.ZodArray<z.ZodObject<z.objectUtil.extendShape<{
         type: z.ZodString;
-        name: z.ZodObject<{
+        name: z.ZodEffects<z.ZodObject<{
             primary: z.ZodEffects<z.ZodString, string, string>;
             aliases: z.ZodOptional<z.ZodEffects<z.ZodArray<z.ZodString, "many">, string[], string[]>>;
             specifier: z.ZodOptional<z.ZodEffects<z.ZodString, string, string>>;
         }, "strict", z.ZodTypeAny, {
+            primary: string;
+            aliases?: string[] | undefined;
+            specifier?: string | undefined;
+        }, {
+            primary: string;
+            aliases?: string[] | undefined;
+            specifier?: string | undefined;
+        }>, {
             primary: string;
             aliases?: string[] | undefined;
             specifier?: string | undefined;
@@ -5760,11 +5840,19 @@ export declare const anyBundle: z.ZodEffects<z.ZodObject<{
     }>, "many">>>;
     divineIntercession: z.ZodOptional<z.ZodOptional<z.ZodArray<z.ZodObject<z.objectUtil.extendShape<{
         type: z.ZodString;
-        name: z.ZodObject<{
+        name: z.ZodEffects<z.ZodObject<{
             primary: z.ZodEffects<z.ZodString, string, string>;
             aliases: z.ZodOptional<z.ZodEffects<z.ZodArray<z.ZodString, "many">, string[], string[]>>;
             specifier: z.ZodOptional<z.ZodEffects<z.ZodString, string, string>>;
         }, "strict", z.ZodTypeAny, {
+            primary: string;
+            aliases?: string[] | undefined;
+            specifier?: string | undefined;
+        }, {
+            primary: string;
+            aliases?: string[] | undefined;
+            specifier?: string | undefined;
+        }>, {
             primary: string;
             aliases?: string[] | undefined;
             specifier?: string | undefined;
@@ -6176,11 +6264,19 @@ export declare const anyBundle: z.ZodEffects<z.ZodObject<{
     }>, "many">>>;
     domain: z.ZodOptional<z.ZodOptional<z.ZodArray<z.ZodObject<z.objectUtil.extendShape<{
         type: z.ZodString;
-        name: z.ZodObject<{
+        name: z.ZodEffects<z.ZodObject<{
             primary: z.ZodEffects<z.ZodString, string, string>;
             aliases: z.ZodOptional<z.ZodEffects<z.ZodArray<z.ZodString, "many">, string[], string[]>>;
             specifier: z.ZodOptional<z.ZodEffects<z.ZodString, string, string>>;
         }, "strict", z.ZodTypeAny, {
+            primary: string;
+            aliases?: string[] | undefined;
+            specifier?: string | undefined;
+        }, {
+            primary: string;
+            aliases?: string[] | undefined;
+            specifier?: string | undefined;
+        }>, {
             primary: string;
             aliases?: string[] | undefined;
             specifier?: string | undefined;
@@ -6509,11 +6605,19 @@ export declare const anyBundle: z.ZodEffects<z.ZodObject<{
     }>, "many">>>;
     event: z.ZodOptional<z.ZodOptional<z.ZodArray<z.ZodObject<z.objectUtil.extendShape<{
         type: z.ZodString;
-        name: z.ZodObject<{
+        name: z.ZodEffects<z.ZodObject<{
             primary: z.ZodEffects<z.ZodString, string, string>;
             aliases: z.ZodOptional<z.ZodEffects<z.ZodArray<z.ZodString, "many">, string[], string[]>>;
             specifier: z.ZodOptional<z.ZodEffects<z.ZodString, string, string>>;
         }, "strict", z.ZodTypeAny, {
+            primary: string;
+            aliases?: string[] | undefined;
+            specifier?: string | undefined;
+        }, {
+            primary: string;
+            aliases?: string[] | undefined;
+            specifier?: string | undefined;
+        }>, {
             primary: string;
             aliases?: string[] | undefined;
             specifier?: string | undefined;
@@ -6811,11 +6915,19 @@ export declare const anyBundle: z.ZodEffects<z.ZodObject<{
     }>, "many">>>;
     familiarAbility: z.ZodOptional<z.ZodOptional<z.ZodArray<z.ZodObject<z.objectUtil.extendShape<{
         type: z.ZodString;
-        name: z.ZodObject<{
+        name: z.ZodEffects<z.ZodObject<{
             primary: z.ZodEffects<z.ZodString, string, string>;
             aliases: z.ZodOptional<z.ZodEffects<z.ZodArray<z.ZodString, "many">, string[], string[]>>;
             specifier: z.ZodOptional<z.ZodEffects<z.ZodString, string, string>>;
         }, "strict", z.ZodTypeAny, {
+            primary: string;
+            aliases?: string[] | undefined;
+            specifier?: string | undefined;
+        }, {
+            primary: string;
+            aliases?: string[] | undefined;
+            specifier?: string | undefined;
+        }>, {
             primary: string;
             aliases?: string[] | undefined;
             specifier?: string | undefined;
@@ -7123,11 +7235,19 @@ export declare const anyBundle: z.ZodEffects<z.ZodObject<{
     }>, "many">>>;
     relicGift: z.ZodOptional<z.ZodOptional<z.ZodArray<z.ZodObject<z.objectUtil.extendShape<{
         type: z.ZodString;
-        name: z.ZodObject<{
+        name: z.ZodEffects<z.ZodObject<{
             primary: z.ZodEffects<z.ZodString, string, string>;
             aliases: z.ZodOptional<z.ZodEffects<z.ZodArray<z.ZodString, "many">, string[], string[]>>;
             specifier: z.ZodOptional<z.ZodEffects<z.ZodString, string, string>>;
         }, "strict", z.ZodTypeAny, {
+            primary: string;
+            aliases?: string[] | undefined;
+            specifier?: string | undefined;
+        }, {
+            primary: string;
+            aliases?: string[] | undefined;
+            specifier?: string | undefined;
+        }>, {
             primary: string;
             aliases?: string[] | undefined;
             specifier?: string | undefined;
@@ -7555,11 +7675,19 @@ export declare const anyBundle: z.ZodEffects<z.ZodObject<{
     }>, "many">>>;
     skill: z.ZodOptional<z.ZodOptional<z.ZodArray<z.ZodObject<z.objectUtil.extendShape<{
         type: z.ZodString;
-        name: z.ZodObject<{
+        name: z.ZodEffects<z.ZodObject<{
             primary: z.ZodEffects<z.ZodString, string, string>;
             aliases: z.ZodOptional<z.ZodEffects<z.ZodArray<z.ZodString, "many">, string[], string[]>>;
             specifier: z.ZodOptional<z.ZodEffects<z.ZodString, string, string>>;
         }, "strict", z.ZodTypeAny, {
+            primary: string;
+            aliases?: string[] | undefined;
+            specifier?: string | undefined;
+        }, {
+            primary: string;
+            aliases?: string[] | undefined;
+            specifier?: string | undefined;
+        }>, {
             primary: string;
             aliases?: string[] | undefined;
             specifier?: string | undefined;

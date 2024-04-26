@@ -14,13 +14,13 @@ const program = new Command()
 		"Validates a file or directory of files against the Pf2ools schema. Only JSON files will be tested.",
 	)
 	.argument("<paths...>", "File or directory paths to test")
-	.option("-a, --all", `Test all files ${chalk.dim("(default: break at first validationResult failure)")}`)
+	.option("-a, --all", `Test all files ${chalk.dim("(default: break at first validation failure)")}`)
 	.option("-b, --bundle", "Test data-bundle files rather than data files")
-	.option("-e, --error", "Print only the validationResult status of failing files")
+	.option("-e, --error", "Print only the validation status of failing files")
 	.option("-r, --recurse", "Recursively test files in directories")
 	.option(
 		"-s, --summary",
-		`Suppress printing of validationResult status for all files and only summarise results ${chalk.dim(
+		`Suppress printing of validation status for all files and only summarise results ${chalk.dim(
 			"(note: implies --all)",
 		)}`,
 	)
@@ -66,7 +66,7 @@ if (!files.length) {
 	process.exit();
 }
 
-// Set validationResult function
+// Set test function
 import { data } from "../_dist/zod/_data.js";
 import { bundle } from "../_dist/zod/_bundle.js";
 function validate(schema, test) {
@@ -109,18 +109,18 @@ for (const file of files) {
 if (opts.summary || files.length > 1) {
 	if (failCount === 0) {
 		console.log(
-			chalk.green(`All ${chalk.bold(files.length)} file${files.length !== 1 ? "s" : ""} passed validationResult.`),
+			chalk.green(`All ${chalk.bold(files.length)} file${files.length !== 1 ? "s" : ""} passed validation.`),
 		);
 	} else {
 		program.error(
 			chalk.red(
 				`${chalk.bold(failCount)} file${failCount !== 1 ? "s" : ""} (${
 					Math.round((1000 * failCount) / files.length) / 10
-				}%) failed validationResult.`,
+				}%) failed validation.`,
 			),
 			{
 				exitCode: 1,
-				code: "validationResult.failure",
+				code: "validation.failure",
 			},
 		);
 	}

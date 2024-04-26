@@ -15,7 +15,7 @@ export const reference = z
             property: z
                 .string()
                 .describe('A dot-separated hierarchy of properties leading to the target from the top-level `data` (e.g. "castingTime.unit").')
-                .regex(/^\w+(\.\w+)+&/, "Invalid property accessor"),
+                .regex(/^\w+(?:\.\w+)+&/, "Invalid property accessor"),
             name: z
                 .string()
                 .describe("The `name` of the target object, if it is found in an array. This typically refers to arrays of `entryObject`s.")
@@ -32,7 +32,7 @@ export const reference = z
         if (obj.type === "deletion")
             return !obj.value;
         return obj.value;
-    }))
+    }, "This modification doesn't make sense."))
         .describe("An array of changes which, when applied consecutively, transforms the target content into the referring content.")
         .min(1)
         .refine(...uniqueObjects)

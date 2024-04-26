@@ -21,4 +21,7 @@ export const name = z
         .refine((s) => !s.match(/@|\|/), "`@` and `|` are reserved characters")
         .optional(),
 })
-    .strict();
+    .strict()
+    .refine((name) => name.specifier
+    ? true
+    : !name.primary.match(/^(?:[cC][oO][mM][0-9]?|[pP][rR][nN]|[aA][uU][xX]|[nN][uU][lL]|[lL][pP][tT][0-9])$/), "This name is prohibited.");

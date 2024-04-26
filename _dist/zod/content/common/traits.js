@@ -8,7 +8,7 @@ export const traits = z
         .string()
         .describe('The bare, keyworded name of the trait (e.g. the "versatile" in "versatile P").')
         .min(1)
-        .regex(/^[a-z]/), // Enforces lowercase
+        .regex(/^[a-z]/, "Trait should be in lowercase"),
     variables: z
         .array(z.string().min(1))
         .describe("The variable elements of a trait in an array.")

@@ -24,9 +24,9 @@ const bundleSchema = zodToJSONSchema(bundle, options);
 fs.writeFileSync(`${OUTPUT_DIRECTORY}/data.json`, JSON.stringify(dataSchema), {
 	encoding: "utf8",
 });
-console.log(chalk.green(`Generated ${chalk.italic("data")} schema`));
+console.log(chalk.green(`Generated ${chalk.italic("data")} JSON schema`));
 
 fs.writeFileSync(`${OUTPUT_DIRECTORY}/bundle.json`, JSON.stringify(bundleSchema), {
 	encoding: "utf8",
 });
-console.log(chalk.green(`Generated ${chalk.italic("bundle")} schema`));
+console.log(chalk.green(`Generated ${chalk.italic("bundle")} JSON schema`));
