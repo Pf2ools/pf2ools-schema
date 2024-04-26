@@ -1,5 +1,4 @@
 import { z } from "zod";
-export declare const ID: z.ZodEffects<z.ZodString, string, string>;
 export declare const sourceData: z.ZodObject<{
     released: z.ZodString;
     version: z.ZodOptional<z.ZodString>;

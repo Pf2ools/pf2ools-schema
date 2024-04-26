@@ -1,27 +1,32 @@
 import { z } from "zod";
-import { date } from "./utils/date.js";
 import { uniqueStrings } from "./utils/uniqueStrings.js";
 import { nonEmpty } from "./utils/nonEmpty.js";
 import { entries } from "./content/common/entries.js";
-export const ID = z
-    .string()
-    // Format derives from the following logic: 1) the ID should be URI-safe to ensure, well, maximum safety; 2) the ID should not include "." because that looks confusing in a URI; 3) the ID should not include "_" because that is reserved for use by the Pf2ools' website; 4) "~" and initial/terminal "-" is confusing and looks ugly. The minimum length is just to ensure a modicum of variety and meaningfulness.
-    .regex(/^[a-zA-Z0-9][a-zA-Z0-9-]*[a-zA-Z0-9]$/, "Use alphanumeric characters only (minimum length 2), along with hyphens that aren't in first or last position")
-    // These are reserved filenames in Windows. At some point, someone will save a source file and/or its content as "<id>.json" and won't realise the hell this causes for Windows users. So rip the 'Casmaron Orienteering Manual' or whatever I guess ¯\_(ツ)_/¯
-    .refine((str) => !str.match(/^(COM[0-9]?|PRN|AUX|NUL|LPT[0-9])$/i), "This ID is reserved");
+import { ID } from "./content/common/ID.js";
 export const sourceData = z
     .object({
-    released: date.describe("The source's publication date (YYYY-MM-DD). For content with a staggered release or early-access program, use the date the source was first made publicly available."),
+    released: z
+        .string()
+        .date()
+        .describe("The source's publication date (YYYY-MM-DD). For content with a staggered release or early-access program, use the date the source was first made publicly available."),
     version: z
         .string()
         .describe('The target version for the converted data (if any). This value serves akin to a `specifier` in case multiple distinct versions of the same source are maintained. Leave undefined if there has only ever been one version. (Examples: "2nd Printing", "2.0.1", "Revised 2023")')
         .min(1)
         .optional(),
-    errataed: date
+    errataed: z
+        .string()
+        .date()
         .describe("The date (YYYY-MM-DD) of the source's most recent errata applied to Pf2ools' content. Leave undefined if the source has never been errataed.")
         .optional(),
-    added: date.describe("The date (YYYY-MM-DD) the source was first made available on the Pf2ools ecosystem (complete or otherwise)."),
-    modified: date.describe("The date (YYYY-MM-DD) the source's content-data as maintained by the Pf2ools project was last modified."),
+    added: z
+        .string()
+        .date()
+        .describe("The date (YYYY-MM-DD) the source was first made available on the Pf2ools ecosystem (complete or otherwise)."),
+    modified: z
+        .string()
+        .date()
+        .describe("The date (YYYY-MM-DD) the source's content-data as maintained by the Pf2ools project was last modified."),
     URL: z
         .string()
         .describe('A website on which the content can be legally and publicly viewed, downloaded, or purchased. A first-party website (i.e. one controlled by the authors) is preferred. If the Pf2ools source is the authoritative version for distribution, you can use "https://github.com/pf2ools/pf2ools-data".')

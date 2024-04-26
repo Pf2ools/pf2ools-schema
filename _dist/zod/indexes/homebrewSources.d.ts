@@ -449,10 +449,10 @@ export declare const homebrewSources: z.ZodArray<z.ZodObject<z.objectUtil.extend
 }>, "strict", z.ZodTypeAny, {
     path: string;
     released: string;
+    ID: string;
     added: string;
     modified: string;
     URL: string;
-    ID: string;
     fullTitle: string;
     publisherAuthors: string;
     datatypes: ("source" | "background" | "event" | "license" | "sourceGroup" | "condition" | "divineIntercession" | "domain" | "skill" | "familiarAbility" | "relicGift")[];
@@ -481,10 +481,10 @@ export declare const homebrewSources: z.ZodArray<z.ZodObject<z.objectUtil.extend
 }, {
     path: string;
     released: string;
+    ID: string;
     added: string;
     modified: string;
     URL: string;
-    ID: string;
     fullTitle: string;
     publisherAuthors: string;
     datatypes: ("source" | "background" | "event" | "license" | "sourceGroup" | "condition" | "divineIntercession" | "domain" | "skill" | "familiarAbility" | "relicGift")[];
