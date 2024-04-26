@@ -16,7 +16,7 @@ export const sourceData = z
 		version: z
 			.string()
 			.describe(
-				'The target version for the converted data (if any). This value serves akin to a `specifier` in case multiple distinct versions of the same source are maintained. Leave undefined if there has only ever been one version. (Examples: "2nd Printing", "2.0.1", "Revised 2023")',
+				'The target version for the converted data (if any). This value serves akin to a `specifier` in case multiple distinct versions of the same source are maintained. Leave undefined if there has only ever been one version. (Examples: "2nd Printing", "v1.2", "Revised 2025")',
 			)
 			.min(1)
 			.optional(),
