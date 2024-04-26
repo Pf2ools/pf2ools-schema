@@ -17,9 +17,12 @@ export const ID = z
 
 export const sourceData = z
 	.object({
-		released: date.describe(
-			"The source's publication date (YYYY-MM-DD). For content with a staggered release or early-access program, use the date the source was first made publicly available.",
-		),
+		released: z
+			.string()
+			.date()
+			.describe(
+				"The source's publication date (YYYY-MM-DD). For content with a staggered release or early-access program, use the date the source was first made publicly available.",
+			),
 		version: z
 			.string()
 			.describe(
@@ -27,17 +30,25 @@ export const sourceData = z
 			)
 			.min(1)
 			.optional(),
-		errataed: date
+		errataed: z
+			.string()
+			.date()
 			.describe(
 				"The date (YYYY-MM-DD) of the source's most recent errata applied to Pf2ools' content. Leave undefined if the source has never been errataed.",
 			)
 			.optional(),
-		added: date.describe(
-			"The date (YYYY-MM-DD) the source was first made available on the Pf2ools ecosystem (complete or otherwise).",
-		),
-		modified: date.describe(
-			"The date (YYYY-MM-DD) the source's content-data as maintained by the Pf2ools project was last modified.",
-		),
+		added: z
+			.string()
+			.date()
+			.describe(
+				"The date (YYYY-MM-DD) the source was first made available on the Pf2ools ecosystem (complete or otherwise).",
+			),
+		modified: z
+			.string()
+			.date()
+			.describe(
+				"The date (YYYY-MM-DD) the source's content-data as maintained by the Pf2ools project was last modified.",
+			),
 		URL: z
 			.string()
 			.describe(
