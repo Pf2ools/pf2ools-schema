@@ -12,7 +12,7 @@ export const dataSummary = z
 		path: z
 			.string()
 			.describe("A relative Unix path from the `pf2ools-data` top-level directory to the file itself.")
-			.regex(/\.\/data\/([^\/]+\/)*.+\.json/, "Must be a valid relative Unix path"),
+			.regex(/\.\/data\/(?:[^\/]+\/)*.+\.json/, "Must be a valid relative Unix path"),
 		official: z
 			.boolean()
 			.nullable()

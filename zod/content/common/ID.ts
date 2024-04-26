@@ -8,4 +8,7 @@ export const ID = z
 		"Use alphanumeric characters only (minimum length 2), along with hyphens that aren't in first or last position",
 	)
 	// These are reserved filenames in Windows. At some point, someone will save a source file and/or its content as "<id>.json" and won't realise the hell this causes for Windows users. So rip the 'Casmaron Orienteering Manual' or whatever I guess ¯\_(ツ)_/¯
-	.refine((str) => !str.match(/^(COM[0-9]?|PRN|AUX|NUL|LPT[0-9])$/i), "This ID is reserved");
+	.refine(
+		(str) => !str.match(/^(?:[cC][oO][mM][0-9]?|[pP][rR][nN]|[aA][uU][xX]|[nN][uU][lL]|[lL][pP][tT][0-9])$/),
+		"This ID is reserved",
+	);

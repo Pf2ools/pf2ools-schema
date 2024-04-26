@@ -22,7 +22,7 @@ export const reference = z
 								.describe(
 									'A dot-separated hierarchy of properties leading to the target from the top-level `data` (e.g. "castingTime.unit").',
 								)
-								.regex(/^\w+(\.\w+)+&/, "Invalid property accessor"),
+								.regex(/^\w+(?:\.\w+)+&/, "Invalid property accessor"),
 							name: z
 								.string()
 								.describe(
@@ -40,7 +40,7 @@ export const reference = z
 					.refine((obj) => {
 						if (obj.type === "deletion") return !obj.value;
 						return obj.value;
-					}),
+					}, "This modification doesn't make sense."),
 			)
 			.describe(
 				"An array of changes which, when applied consecutively, transforms the target content into the referring content.",

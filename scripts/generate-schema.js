@@ -14,7 +14,7 @@ if (!outputDirectory) fs.mkdirSync(OUTPUT_DIRECTORY);
 const options = {
 	dateStrategy: "format:date",
 	//errorMessages: true,   // Seems to be causing problems for VSC?
-	//markdownDescription: true,   // Not used yet
+	markdownDescription: true,
 	removeAdditionalStrategy: "strict",
 };
 

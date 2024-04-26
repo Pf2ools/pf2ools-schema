@@ -2,5 +2,5 @@
 
 export const titleCaseProperties: [(o: object) => boolean, string] = [
 	(obj) => Object.keys(obj).every((key) => key.match(/^[A-Z]/)),
-	"Property name should be in title case",
+	"Property names should be in title case",
 ];

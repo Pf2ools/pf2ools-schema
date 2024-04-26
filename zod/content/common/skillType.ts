@@ -11,7 +11,7 @@ export const skillType = z
 				z
 					.string()
 					.min(1)
-					.regex(/^[A-Z]/), // Enforces title case
+					.regex(/^[A-Z]/, "Skill should be in title case"),
 			)
 			.describe(
 				'A skill\'s variable element (e.g. "Accounting" and "Midwifery" in "Accounting or Midwifery Lore").',
