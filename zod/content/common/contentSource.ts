@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-import { ID } from "../../source.js";
+import { ID } from "./ID.js";
 
 export const contentSource = z
 	.object({

@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-import { ID } from "./source.js";
+import { ID } from "./content/common/ID.js";
 import { entries } from "./content/common/entries.js";
 
 export const license = z

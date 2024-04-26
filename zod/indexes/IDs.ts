@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-import { ID } from "../source.js";
+import { ID } from "../content/common/ID.js";
 
 export const dataSummary = z
 	.object({

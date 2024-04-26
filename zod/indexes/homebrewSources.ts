@@ -1,6 +1,7 @@
 import { z } from "zod";
 
-import { sourceData, sourceTags, ID } from "../source.js";
+import { sourceData, sourceTags } from "../source.js";
+import { ID } from "../content/common/ID.js";
 import { datatypes } from "./datatypes.js";
 import { nonEmpty } from "../utils/nonEmpty.js";
 

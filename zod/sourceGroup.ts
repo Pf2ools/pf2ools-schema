@@ -1,7 +1,7 @@
 import { z } from "zod";
 
 import { nonEmpty } from "./utils/nonEmpty.js";
-import { ID } from "./source.js";
+import { ID } from "./content/common/ID.js";
 
 export const sourceGroup = z
 	.object({
