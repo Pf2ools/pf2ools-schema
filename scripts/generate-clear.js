@@ -11,4 +11,6 @@ const _dist = fs.statSync(DISTRIBUTION_PATH, { throwIfNoEntry: false });
 if (_dist) {
 	fs.rmSync(DISTRIBUTION_PATH, { recursive: true });
 	console.log(chalk.green("Cleared distribution files"));
+} else {
+	console.log(chalk.blue("No distribution files to clear"));
 }

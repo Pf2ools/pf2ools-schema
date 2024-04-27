@@ -32,4 +32,4 @@ for (const file of relativeFiles) {
 	)}.js";\n`;
 }
 fs.writeFileSync(`${zodDir}/_index.ts`, indexTS);
-console.log(chalk.green("Index file generated"));
+console.log(chalk.green("Generated index file"));
