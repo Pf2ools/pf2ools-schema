@@ -25,7 +25,6 @@
 	"bin": "scripts/test-data.js",
 	"scripts": {
 		"build": "node -e \"process.stdout.write('Cleaning files... ')\" && npm run -s clean && node -p \"'Done'\" && npm run -s generate",
-		"a": "node -e ",
 		"clean": "npx prettier . --write --cache --log-level warn",
 		"generate": "npm run generate:clear && npm run generate:zod && node -e \"process.stdout.write('Compiling Typescript... ')\" && tsc && node -p \"'Done'\" && npm run generate:schema",
 		"generate:clear": "node ./scripts/generate-clear.js",
