@@ -23,7 +23,7 @@ let contentTypesImportString = "";
 const contentTypes = [];
 for (const file of relativeFiles) {
 	const code = fs.readFileSync(path.join(zodDir, file), { encoding: "utf8" });
-	if (code.match(/\nexport const \w+ = contentTemplate(\n\t+)?\.extend\(/)) {
+	if (code.match(/\nexport const \w+ = contentTemplate(?:\n\t+)?\.extend\(/)) {
 		contentTypesImportString += `import { ${path.basename(file, ".ts")} } from "./${file.replace(/\.ts$/, ".js")}";\n`;
 		contentTypes.push(path.basename(file, ".ts"));
 	}
