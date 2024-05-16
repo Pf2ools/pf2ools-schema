@@ -184,7 +184,7 @@ export declare const homebrewSourceSummary: z.ZodObject<z.objectUtil.extendShape
             NSFW?: true | undefined;
         } | undefined;
     }>>;
-}, "released" | "added" | "modified" | "URL">, {
+}, "released" | "added" | "modified" | "URL" | "_tags">, {
     path: z.ZodString;
     fullTitle: z.ZodString;
     publisherAuthors: z.ZodString;
@@ -199,6 +199,27 @@ export declare const homebrewSourceSummary: z.ZodObject<z.objectUtil.extendShape
     fullTitle: string;
     publisherAuthors: string;
     datatypes: ("source" | "background" | "event" | "license" | "sourceGroup" | "condition" | "domain" | "skill" | "familiarAbility" | "relicGift")[];
+    _tags?: {
+        status?: {
+            "Missing content"?: true | undefined;
+            "Missing tags"?: true | undefined;
+            Invalid?: true | undefined;
+        } | undefined;
+        publicationType?: {
+            Comic?: true | undefined;
+            "Blog post"?: true | undefined;
+        } | undefined;
+        misc?: {
+            legacyRuleset?: true | undefined;
+            Official?: true | undefined;
+            "GM-facing"?: true | undefined;
+            "PFS-legal"?: true | undefined;
+            Playtest?: true | undefined;
+            Ongoing?: true | undefined;
+            Deprecated?: true | undefined;
+            NSFW?: true | undefined;
+        } | undefined;
+    } | undefined;
     sourceURL?: string | undefined;
 }, {
     path: string;
@@ -209,6 +230,27 @@ export declare const homebrewSourceSummary: z.ZodObject<z.objectUtil.extendShape
     fullTitle: string;
     publisherAuthors: string;
     datatypes: ("source" | "background" | "event" | "license" | "sourceGroup" | "condition" | "domain" | "skill" | "familiarAbility" | "relicGift")[];
+    _tags?: {
+        status?: {
+            "Missing content"?: true | undefined;
+            "Missing tags"?: true | undefined;
+            Invalid?: true | undefined;
+        } | undefined;
+        publicationType?: {
+            Comic?: true | undefined;
+            "Blog post"?: true | undefined;
+        } | undefined;
+        misc?: {
+            legacyRuleset?: true | undefined;
+            Official?: true | undefined;
+            "GM-facing"?: true | undefined;
+            "PFS-legal"?: true | undefined;
+            Playtest?: true | undefined;
+            Ongoing?: true | undefined;
+            Deprecated?: true | undefined;
+            NSFW?: true | undefined;
+        } | undefined;
+    } | undefined;
     sourceURL?: string | undefined;
 }>;
 export declare const homebrewSources: z.ZodArray<z.ZodObject<z.objectUtil.extendShape<z.objectUtil.extendShape<Pick<{
@@ -396,7 +438,7 @@ export declare const homebrewSources: z.ZodArray<z.ZodObject<z.objectUtil.extend
             NSFW?: true | undefined;
         } | undefined;
     }>>;
-}, "released" | "added" | "modified" | "URL">, {
+}, "released" | "added" | "modified" | "URL" | "_tags">, {
     path: z.ZodString;
     fullTitle: z.ZodString;
     publisherAuthors: z.ZodString;
@@ -414,6 +456,27 @@ export declare const homebrewSources: z.ZodArray<z.ZodObject<z.objectUtil.extend
     fullTitle: string;
     publisherAuthors: string;
     datatypes: ("source" | "background" | "event" | "license" | "sourceGroup" | "condition" | "domain" | "skill" | "familiarAbility" | "relicGift")[];
+    _tags?: {
+        status?: {
+            "Missing content"?: true | undefined;
+            "Missing tags"?: true | undefined;
+            Invalid?: true | undefined;
+        } | undefined;
+        publicationType?: {
+            Comic?: true | undefined;
+            "Blog post"?: true | undefined;
+        } | undefined;
+        misc?: {
+            legacyRuleset?: true | undefined;
+            Official?: true | undefined;
+            "GM-facing"?: true | undefined;
+            "PFS-legal"?: true | undefined;
+            Playtest?: true | undefined;
+            Ongoing?: true | undefined;
+            Deprecated?: true | undefined;
+            NSFW?: true | undefined;
+        } | undefined;
+    } | undefined;
     sourceURL?: string | undefined;
 }, {
     path: string;
@@ -425,6 +488,27 @@ export declare const homebrewSources: z.ZodArray<z.ZodObject<z.objectUtil.extend
     fullTitle: string;
     publisherAuthors: string;
     datatypes: ("source" | "background" | "event" | "license" | "sourceGroup" | "condition" | "domain" | "skill" | "familiarAbility" | "relicGift")[];
+    _tags?: {
+        status?: {
+            "Missing content"?: true | undefined;
+            "Missing tags"?: true | undefined;
+            Invalid?: true | undefined;
+        } | undefined;
+        publicationType?: {
+            Comic?: true | undefined;
+            "Blog post"?: true | undefined;
+        } | undefined;
+        misc?: {
+            legacyRuleset?: true | undefined;
+            Official?: true | undefined;
+            "GM-facing"?: true | undefined;
+            "PFS-legal"?: true | undefined;
+            Playtest?: true | undefined;
+            Ongoing?: true | undefined;
+            Deprecated?: true | undefined;
+            NSFW?: true | undefined;
+        } | undefined;
+    } | undefined;
     sourceURL?: string | undefined;
 }>, "many">;
 export declare const homebrewSourcesRecord: z.ZodEffects<z.ZodRecord<z.ZodEffects<z.ZodString, string, string>, z.ZodObject<z.objectUtil.extendShape<Pick<{
@@ -612,7 +696,7 @@ export declare const homebrewSourcesRecord: z.ZodEffects<z.ZodRecord<z.ZodEffect
             NSFW?: true | undefined;
         } | undefined;
     }>>;
-}, "released" | "added" | "modified" | "URL">, {
+}, "released" | "added" | "modified" | "URL" | "_tags">, {
     path: z.ZodString;
     fullTitle: z.ZodString;
     publisherAuthors: z.ZodString;
@@ -627,6 +711,27 @@ export declare const homebrewSourcesRecord: z.ZodEffects<z.ZodRecord<z.ZodEffect
     fullTitle: string;
     publisherAuthors: string;
     datatypes: ("source" | "background" | "event" | "license" | "sourceGroup" | "condition" | "domain" | "skill" | "familiarAbility" | "relicGift")[];
+    _tags?: {
+        status?: {
+            "Missing content"?: true | undefined;
+            "Missing tags"?: true | undefined;
+            Invalid?: true | undefined;
+        } | undefined;
+        publicationType?: {
+            Comic?: true | undefined;
+            "Blog post"?: true | undefined;
+        } | undefined;
+        misc?: {
+            legacyRuleset?: true | undefined;
+            Official?: true | undefined;
+            "GM-facing"?: true | undefined;
+            "PFS-legal"?: true | undefined;
+            Playtest?: true | undefined;
+            Ongoing?: true | undefined;
+            Deprecated?: true | undefined;
+            NSFW?: true | undefined;
+        } | undefined;
+    } | undefined;
     sourceURL?: string | undefined;
 }, {
     path: string;
@@ -637,6 +742,27 @@ export declare const homebrewSourcesRecord: z.ZodEffects<z.ZodRecord<z.ZodEffect
     fullTitle: string;
     publisherAuthors: string;
     datatypes: ("source" | "background" | "event" | "license" | "sourceGroup" | "condition" | "domain" | "skill" | "familiarAbility" | "relicGift")[];
+    _tags?: {
+        status?: {
+            "Missing content"?: true | undefined;
+            "Missing tags"?: true | undefined;
+            Invalid?: true | undefined;
+        } | undefined;
+        publicationType?: {
+            Comic?: true | undefined;
+            "Blog post"?: true | undefined;
+        } | undefined;
+        misc?: {
+            legacyRuleset?: true | undefined;
+            Official?: true | undefined;
+            "GM-facing"?: true | undefined;
+            "PFS-legal"?: true | undefined;
+            Playtest?: true | undefined;
+            Ongoing?: true | undefined;
+            Deprecated?: true | undefined;
+            NSFW?: true | undefined;
+        } | undefined;
+    } | undefined;
     sourceURL?: string | undefined;
 }>>, Record<string, {
     path: string;
@@ -647,6 +773,27 @@ export declare const homebrewSourcesRecord: z.ZodEffects<z.ZodRecord<z.ZodEffect
     fullTitle: string;
     publisherAuthors: string;
     datatypes: ("source" | "background" | "event" | "license" | "sourceGroup" | "condition" | "domain" | "skill" | "familiarAbility" | "relicGift")[];
+    _tags?: {
+        status?: {
+            "Missing content"?: true | undefined;
+            "Missing tags"?: true | undefined;
+            Invalid?: true | undefined;
+        } | undefined;
+        publicationType?: {
+            Comic?: true | undefined;
+            "Blog post"?: true | undefined;
+        } | undefined;
+        misc?: {
+            legacyRuleset?: true | undefined;
+            Official?: true | undefined;
+            "GM-facing"?: true | undefined;
+            "PFS-legal"?: true | undefined;
+            Playtest?: true | undefined;
+            Ongoing?: true | undefined;
+            Deprecated?: true | undefined;
+            NSFW?: true | undefined;
+        } | undefined;
+    } | undefined;
     sourceURL?: string | undefined;
 }>, Record<string, {
     path: string;
@@ -657,5 +804,26 @@ export declare const homebrewSourcesRecord: z.ZodEffects<z.ZodRecord<z.ZodEffect
     fullTitle: string;
     publisherAuthors: string;
     datatypes: ("source" | "background" | "event" | "license" | "sourceGroup" | "condition" | "domain" | "skill" | "familiarAbility" | "relicGift")[];
+    _tags?: {
+        status?: {
+            "Missing content"?: true | undefined;
+            "Missing tags"?: true | undefined;
+            Invalid?: true | undefined;
+        } | undefined;
+        publicationType?: {
+            Comic?: true | undefined;
+            "Blog post"?: true | undefined;
+        } | undefined;
+        misc?: {
+            legacyRuleset?: true | undefined;
+            Official?: true | undefined;
+            "GM-facing"?: true | undefined;
+            "PFS-legal"?: true | undefined;
+            Playtest?: true | undefined;
+            Ongoing?: true | undefined;
+            Deprecated?: true | undefined;
+            NSFW?: true | undefined;
+        } | undefined;
+    } | undefined;
     sourceURL?: string | undefined;
 }>>;

@@ -4,12 +4,12 @@ import { ID } from "../content/common/ID.js";
 import { datatypes } from "./datatypes.js";
 import { nonEmpty } from "../utils/nonEmpty.js";
 export const homebrewSourceSummary = sourceData
-    .pick({ URL: true, released: true, added: true, modified: true })
+    .pick({ URL: true, released: true, added: true, modified: true, _tags: true })
     .extend({
     path: z
         .string()
         .describe("A relative Unix path from the top-level `pf2ools-data` directory to the source's file.")
-        .regex(/bundles\/bySource\/homebrew\/.+\.json/, "Must be a valid relative Unix path"),
+        .regex(/^bundles\/bySource\/homebrew\/.+\.json$/, "Must be a valid relative Unix path"),
     fullTitle: z
         .string()
         .describe("The source's `title.full` property, which corresponds to the source's complete, proper name")
@@ -23,11 +23,13 @@ export const homebrewSourceSummary = sourceData
         .string()
         .url()
         .optional()
-        .describe("The root URL of the homebrew source's website, which prepends the `path` property to form a full URL to the source's file. If absent, `pf2ools-app` will assume the URL to be the same as that of the index this is being read from."),
-});
+        .describe("The root URL of the homebrew source's website, which prepends the `path` property to form a full URL to the source's file. If absent, the Pf2ools App will assume the URL to be the same as that of the index this is being read from."),
+})
+    .describe("A flattened, curated source structure designed to be easy to parse as an index.")
+    .strict();
 export const homebrewSources = z
     .array(homebrewSourceSummary.extend({ ID: ID }))
-    .describe("An array of objects containing some summary data about the homebrew source assigned that ID. This is primarily used by `pf2ools-app`.")
+    .describe("An array of objects containing some summary data about the homebrew source assigned that ID. This is primarily used by the Pf2ools App.")
     .min(1);
 export const homebrewSourcesRecord = z
     .record(ID, homebrewSourceSummary)
