@@ -16,6 +16,10 @@ const program = new Command()
 	.argument("<paths...>", "File or directory paths to test")
 	.option("-a, --all", `Test all files ${chalk.dim("(default: break at first validation failure)")}`)
 	.option("-b, --bundle", "Test data-bundle files rather than data files")
+	.option(
+		"-B, --anybundle",
+		`Test 'any data'-bundle files, a looser superset of data-bundles that aren't valid for the Pf2ools App ${chalk.dim("(note: overrides --bundle)")}`,
+	)
 	.option("-e, --error", "Print only the validation status of failing files")
 	.option("-r, --recurse", "Recursively test files in directories")
 	.option(
@@ -68,7 +72,11 @@ if (!files.length) {
 
 // Set test function
 import { data } from "../_dist/zod/_data.js";
-import { bundle } from "../_dist/zod/_bundle.js";
+import { bundle, anyBundle } from "../_dist/zod/_bundle.js";
+let schema;
+if (opts.anybundle) schema = anyBundle;
+else if (opts.bundle) schema = bundle;
+else schema = data;
 function validate(schema, test) {
 	const result = schema.safeParse(test);
 	if (result.success) return { success: true };
@@ -95,7 +103,7 @@ for (const file of files) {
 			});
 		}
 	}
-	const validationResult = validate(opts.bundle ? bundle : data, testJSON);
+	const validationResult = validate(schema, testJSON);
 	if (validationResult.success) {
 		if (!opts.error && !opts.summary) console.log(chalk.dim(passed + file));
 	} else {
