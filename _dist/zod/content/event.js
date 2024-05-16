@@ -4,8 +4,8 @@ import { traits } from "./common/traits.js";
 import { skillType } from "./common/skillType.js";
 import { entries } from "./common/entries.js";
 import { uniqueObjects } from "../utils/uniqueObjects.js";
-export const event = contentTemplate.merge(z
-    .object({
+export const event = contentTemplate
+    .extend({
     type: z.literal("event"),
     data: z
         .object({
@@ -19,7 +19,8 @@ export const event = contentTemplate.merge(z
             .optional(),
         entries: entries,
     })
-        .strict(),
+        .strict()
+        .optional(),
 })
     .describe("An event")
-    .strict());
+    .strict();

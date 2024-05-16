@@ -135,7 +135,6 @@ export declare const skill: z.ZodObject<z.objectUtil.extendShape<{
             value?: string | number | boolean | any[] | z.objectInputType<{}, z.ZodTypeAny, "passthrough"> | undefined;
         }[] | undefined;
     }>>;
-    tags: z.ZodOptional<z.ZodObject<{}, "strip", z.ZodTypeAny, {}, {}>>;
 }, {
     type: z.ZodLiteral<"skill">;
     data: z.ZodObject<{
@@ -171,7 +170,6 @@ export declare const skill: z.ZodObject<z.objectUtil.extendShape<{
         aliases?: string[] | undefined;
         specifier?: string | undefined;
     };
-    tags?: {} | undefined;
     reference?: {
         type: "variant" | "reprint" | "replacement" | "extension";
         target: {
@@ -204,7 +202,6 @@ export declare const skill: z.ZodObject<z.objectUtil.extendShape<{
         aliases?: string[] | undefined;
         specifier?: string | undefined;
     };
-    tags?: {} | undefined;
     reference?: {
         type: "variant" | "reprint" | "replacement" | "extension";
         target: {

@@ -135,10 +135,9 @@ export declare const domain: z.ZodObject<z.objectUtil.extendShape<{
             value?: string | number | boolean | any[] | z.objectInputType<{}, z.ZodTypeAny, "passthrough"> | undefined;
         }[] | undefined;
     }>>;
-    tags: z.ZodOptional<z.ZodObject<{}, "strip", z.ZodTypeAny, {}, {}>>;
 }, {
     type: z.ZodLiteral<"domain">;
-    data: z.ZodObject<{
+    data: z.ZodOptional<z.ZodObject<{
         preamble: z.ZodOptional<z.ZodString>;
         domainSpell: z.ZodObject<{
             name: z.ZodString;
@@ -236,10 +235,19 @@ export declare const domain: z.ZodObject<z.objectUtil.extendShape<{
             sourceID: string;
             specifier?: string | undefined;
         } | undefined;
-    }>;
+    }>>;
 }>, "strict", z.ZodTypeAny, {
     type: "domain";
-    data: {
+    source: {
+        ID: string;
+        page?: number | undefined;
+    };
+    name: {
+        primary: string;
+        aliases?: string[] | undefined;
+        specifier?: string | undefined;
+    };
+    data?: {
         domainSpell: {
             name: string;
             sourceID: string;
@@ -261,17 +269,7 @@ export declare const domain: z.ZodObject<z.objectUtil.extendShape<{
             sourceID: string;
             specifier?: string | undefined;
         } | undefined;
-    };
-    source: {
-        ID: string;
-        page?: number | undefined;
-    };
-    name: {
-        primary: string;
-        aliases?: string[] | undefined;
-        specifier?: string | undefined;
-    };
-    tags?: {} | undefined;
+    } | undefined;
     reference?: {
         type: "variant" | "reprint" | "replacement" | "extension";
         target: {
@@ -290,7 +288,16 @@ export declare const domain: z.ZodObject<z.objectUtil.extendShape<{
     } | undefined;
 }, {
     type: "domain";
-    data: {
+    source: {
+        ID: string;
+        page?: number | undefined;
+    };
+    name: {
+        primary: string;
+        aliases?: string[] | undefined;
+        specifier?: string | undefined;
+    };
+    data?: {
         domainSpell: {
             name: string;
             sourceID: string;
@@ -312,17 +319,7 @@ export declare const domain: z.ZodObject<z.objectUtil.extendShape<{
             sourceID: string;
             specifier?: string | undefined;
         } | undefined;
-    };
-    source: {
-        ID: string;
-        page?: number | undefined;
-    };
-    name: {
-        primary: string;
-        aliases?: string[] | undefined;
-        specifier?: string | undefined;
-    };
-    tags?: {} | undefined;
+    } | undefined;
     reference?: {
         type: "variant" | "reprint" | "replacement" | "extension";
         target: {

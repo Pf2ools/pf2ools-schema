@@ -135,10 +135,9 @@ export declare const condition: z.ZodObject<z.objectUtil.extendShape<{
             value?: string | number | boolean | any[] | z.objectInputType<{}, z.ZodTypeAny, "passthrough"> | undefined;
         }[] | undefined;
     }>>;
-    tags: z.ZodOptional<z.ZodObject<{}, "strip", z.ZodTypeAny, {}, {}>>;
 }, {
     type: z.ZodLiteral<"condition">;
-    data: z.ZodObject<{
+    data: z.ZodOptional<z.ZodObject<{
         entries: z.ZodArray<z.ZodUnion<[z.ZodString, z.ZodObject<{
             type: z.ZodString;
         }, "strip", z.ZodTypeAny, {
@@ -146,99 +145,112 @@ export declare const condition: z.ZodObject<z.objectUtil.extendShape<{
         }, {
             type: string;
         }>]>, "many">;
+        _tags: z.ZodOptional<z.ZodEffects<z.ZodObject<{
+            group: z.ZodOptional<z.ZodEffects<z.ZodEffects<z.ZodObject<{
+                Attitudes: z.ZodOptional<z.ZodLiteral<true>>;
+                "Death and Dying": z.ZodOptional<z.ZodLiteral<true>>;
+                "Degrees of Detection": z.ZodOptional<z.ZodLiteral<true>>;
+                "Lowered Abilities": z.ZodOptional<z.ZodLiteral<true>>;
+                Senses: z.ZodOptional<z.ZodLiteral<true>>;
+            }, "strip", z.ZodLiteral<true>, z.objectOutputType<{
+                Attitudes: z.ZodOptional<z.ZodLiteral<true>>;
+                "Death and Dying": z.ZodOptional<z.ZodLiteral<true>>;
+                "Degrees of Detection": z.ZodOptional<z.ZodLiteral<true>>;
+                "Lowered Abilities": z.ZodOptional<z.ZodLiteral<true>>;
+                Senses: z.ZodOptional<z.ZodLiteral<true>>;
+            }, z.ZodLiteral<true>, "strip">, z.objectInputType<{
+                Attitudes: z.ZodOptional<z.ZodLiteral<true>>;
+                "Death and Dying": z.ZodOptional<z.ZodLiteral<true>>;
+                "Degrees of Detection": z.ZodOptional<z.ZodLiteral<true>>;
+                "Lowered Abilities": z.ZodOptional<z.ZodLiteral<true>>;
+                Senses: z.ZodOptional<z.ZodLiteral<true>>;
+            }, z.ZodLiteral<true>, "strip">>, z.objectOutputType<{
+                Attitudes: z.ZodOptional<z.ZodLiteral<true>>;
+                "Death and Dying": z.ZodOptional<z.ZodLiteral<true>>;
+                "Degrees of Detection": z.ZodOptional<z.ZodLiteral<true>>;
+                "Lowered Abilities": z.ZodOptional<z.ZodLiteral<true>>;
+                Senses: z.ZodOptional<z.ZodLiteral<true>>;
+            }, z.ZodLiteral<true>, "strip">, z.objectInputType<{
+                Attitudes: z.ZodOptional<z.ZodLiteral<true>>;
+                "Death and Dying": z.ZodOptional<z.ZodLiteral<true>>;
+                "Degrees of Detection": z.ZodOptional<z.ZodLiteral<true>>;
+                "Lowered Abilities": z.ZodOptional<z.ZodLiteral<true>>;
+                Senses: z.ZodOptional<z.ZodLiteral<true>>;
+            }, z.ZodLiteral<true>, "strip">>, z.objectOutputType<{
+                Attitudes: z.ZodOptional<z.ZodLiteral<true>>;
+                "Death and Dying": z.ZodOptional<z.ZodLiteral<true>>;
+                "Degrees of Detection": z.ZodOptional<z.ZodLiteral<true>>;
+                "Lowered Abilities": z.ZodOptional<z.ZodLiteral<true>>;
+                Senses: z.ZodOptional<z.ZodLiteral<true>>;
+            }, z.ZodLiteral<true>, "strip">, z.objectInputType<{
+                Attitudes: z.ZodOptional<z.ZodLiteral<true>>;
+                "Death and Dying": z.ZodOptional<z.ZodLiteral<true>>;
+                "Degrees of Detection": z.ZodOptional<z.ZodLiteral<true>>;
+                "Lowered Abilities": z.ZodOptional<z.ZodLiteral<true>>;
+                Senses: z.ZodOptional<z.ZodLiteral<true>>;
+            }, z.ZodLiteral<true>, "strip">>>;
+        }, "strict", z.ZodTypeAny, {
+            group?: z.objectOutputType<{
+                Attitudes: z.ZodOptional<z.ZodLiteral<true>>;
+                "Death and Dying": z.ZodOptional<z.ZodLiteral<true>>;
+                "Degrees of Detection": z.ZodOptional<z.ZodLiteral<true>>;
+                "Lowered Abilities": z.ZodOptional<z.ZodLiteral<true>>;
+                Senses: z.ZodOptional<z.ZodLiteral<true>>;
+            }, z.ZodLiteral<true>, "strip"> | undefined;
+        }, {
+            group?: z.objectInputType<{
+                Attitudes: z.ZodOptional<z.ZodLiteral<true>>;
+                "Death and Dying": z.ZodOptional<z.ZodLiteral<true>>;
+                "Degrees of Detection": z.ZodOptional<z.ZodLiteral<true>>;
+                "Lowered Abilities": z.ZodOptional<z.ZodLiteral<true>>;
+                Senses: z.ZodOptional<z.ZodLiteral<true>>;
+            }, z.ZodLiteral<true>, "strip"> | undefined;
+        }>, {
+            group?: z.objectOutputType<{
+                Attitudes: z.ZodOptional<z.ZodLiteral<true>>;
+                "Death and Dying": z.ZodOptional<z.ZodLiteral<true>>;
+                "Degrees of Detection": z.ZodOptional<z.ZodLiteral<true>>;
+                "Lowered Abilities": z.ZodOptional<z.ZodLiteral<true>>;
+                Senses: z.ZodOptional<z.ZodLiteral<true>>;
+            }, z.ZodLiteral<true>, "strip"> | undefined;
+        }, {
+            group?: z.objectInputType<{
+                Attitudes: z.ZodOptional<z.ZodLiteral<true>>;
+                "Death and Dying": z.ZodOptional<z.ZodLiteral<true>>;
+                "Degrees of Detection": z.ZodOptional<z.ZodLiteral<true>>;
+                "Lowered Abilities": z.ZodOptional<z.ZodLiteral<true>>;
+                Senses: z.ZodOptional<z.ZodLiteral<true>>;
+            }, z.ZodLiteral<true>, "strip"> | undefined;
+        }>>;
     }, "strict", z.ZodTypeAny, {
         entries: (string | {
             type: string;
         })[];
+        _tags?: {
+            group?: z.objectOutputType<{
+                Attitudes: z.ZodOptional<z.ZodLiteral<true>>;
+                "Death and Dying": z.ZodOptional<z.ZodLiteral<true>>;
+                "Degrees of Detection": z.ZodOptional<z.ZodLiteral<true>>;
+                "Lowered Abilities": z.ZodOptional<z.ZodLiteral<true>>;
+                Senses: z.ZodOptional<z.ZodLiteral<true>>;
+            }, z.ZodLiteral<true>, "strip"> | undefined;
+        } | undefined;
     }, {
         entries: (string | {
             type: string;
         })[];
-    }>;
-    tags: z.ZodOptional<z.ZodEffects<z.ZodObject<{
-        group: z.ZodOptional<z.ZodEffects<z.ZodEffects<z.ZodObject<{
-            Attitudes: z.ZodOptional<z.ZodLiteral<true>>;
-            "Death and Dying": z.ZodOptional<z.ZodLiteral<true>>;
-            "Degrees of Detection": z.ZodOptional<z.ZodLiteral<true>>;
-            "Lowered Abilities": z.ZodOptional<z.ZodLiteral<true>>;
-            Senses: z.ZodOptional<z.ZodLiteral<true>>;
-        }, "strip", z.ZodLiteral<true>, z.objectOutputType<{
-            Attitudes: z.ZodOptional<z.ZodLiteral<true>>;
-            "Death and Dying": z.ZodOptional<z.ZodLiteral<true>>;
-            "Degrees of Detection": z.ZodOptional<z.ZodLiteral<true>>;
-            "Lowered Abilities": z.ZodOptional<z.ZodLiteral<true>>;
-            Senses: z.ZodOptional<z.ZodLiteral<true>>;
-        }, z.ZodLiteral<true>, "strip">, z.objectInputType<{
-            Attitudes: z.ZodOptional<z.ZodLiteral<true>>;
-            "Death and Dying": z.ZodOptional<z.ZodLiteral<true>>;
-            "Degrees of Detection": z.ZodOptional<z.ZodLiteral<true>>;
-            "Lowered Abilities": z.ZodOptional<z.ZodLiteral<true>>;
-            Senses: z.ZodOptional<z.ZodLiteral<true>>;
-        }, z.ZodLiteral<true>, "strip">>, z.objectOutputType<{
-            Attitudes: z.ZodOptional<z.ZodLiteral<true>>;
-            "Death and Dying": z.ZodOptional<z.ZodLiteral<true>>;
-            "Degrees of Detection": z.ZodOptional<z.ZodLiteral<true>>;
-            "Lowered Abilities": z.ZodOptional<z.ZodLiteral<true>>;
-            Senses: z.ZodOptional<z.ZodLiteral<true>>;
-        }, z.ZodLiteral<true>, "strip">, z.objectInputType<{
-            Attitudes: z.ZodOptional<z.ZodLiteral<true>>;
-            "Death and Dying": z.ZodOptional<z.ZodLiteral<true>>;
-            "Degrees of Detection": z.ZodOptional<z.ZodLiteral<true>>;
-            "Lowered Abilities": z.ZodOptional<z.ZodLiteral<true>>;
-            Senses: z.ZodOptional<z.ZodLiteral<true>>;
-        }, z.ZodLiteral<true>, "strip">>, z.objectOutputType<{
-            Attitudes: z.ZodOptional<z.ZodLiteral<true>>;
-            "Death and Dying": z.ZodOptional<z.ZodLiteral<true>>;
-            "Degrees of Detection": z.ZodOptional<z.ZodLiteral<true>>;
-            "Lowered Abilities": z.ZodOptional<z.ZodLiteral<true>>;
-            Senses: z.ZodOptional<z.ZodLiteral<true>>;
-        }, z.ZodLiteral<true>, "strip">, z.objectInputType<{
-            Attitudes: z.ZodOptional<z.ZodLiteral<true>>;
-            "Death and Dying": z.ZodOptional<z.ZodLiteral<true>>;
-            "Degrees of Detection": z.ZodOptional<z.ZodLiteral<true>>;
-            "Lowered Abilities": z.ZodOptional<z.ZodLiteral<true>>;
-            Senses: z.ZodOptional<z.ZodLiteral<true>>;
-        }, z.ZodLiteral<true>, "strip">>>;
-    }, "strict", z.ZodTypeAny, {
-        group?: z.objectOutputType<{
-            Attitudes: z.ZodOptional<z.ZodLiteral<true>>;
-            "Death and Dying": z.ZodOptional<z.ZodLiteral<true>>;
-            "Degrees of Detection": z.ZodOptional<z.ZodLiteral<true>>;
-            "Lowered Abilities": z.ZodOptional<z.ZodLiteral<true>>;
-            Senses: z.ZodOptional<z.ZodLiteral<true>>;
-        }, z.ZodLiteral<true>, "strip"> | undefined;
-    }, {
-        group?: z.objectInputType<{
-            Attitudes: z.ZodOptional<z.ZodLiteral<true>>;
-            "Death and Dying": z.ZodOptional<z.ZodLiteral<true>>;
-            "Degrees of Detection": z.ZodOptional<z.ZodLiteral<true>>;
-            "Lowered Abilities": z.ZodOptional<z.ZodLiteral<true>>;
-            Senses: z.ZodOptional<z.ZodLiteral<true>>;
-        }, z.ZodLiteral<true>, "strip"> | undefined;
-    }>, {
-        group?: z.objectOutputType<{
-            Attitudes: z.ZodOptional<z.ZodLiteral<true>>;
-            "Death and Dying": z.ZodOptional<z.ZodLiteral<true>>;
-            "Degrees of Detection": z.ZodOptional<z.ZodLiteral<true>>;
-            "Lowered Abilities": z.ZodOptional<z.ZodLiteral<true>>;
-            Senses: z.ZodOptional<z.ZodLiteral<true>>;
-        }, z.ZodLiteral<true>, "strip"> | undefined;
-    }, {
-        group?: z.objectInputType<{
-            Attitudes: z.ZodOptional<z.ZodLiteral<true>>;
-            "Death and Dying": z.ZodOptional<z.ZodLiteral<true>>;
-            "Degrees of Detection": z.ZodOptional<z.ZodLiteral<true>>;
-            "Lowered Abilities": z.ZodOptional<z.ZodLiteral<true>>;
-            Senses: z.ZodOptional<z.ZodLiteral<true>>;
-        }, z.ZodLiteral<true>, "strip"> | undefined;
+        _tags?: {
+            group?: z.objectInputType<{
+                Attitudes: z.ZodOptional<z.ZodLiteral<true>>;
+                "Death and Dying": z.ZodOptional<z.ZodLiteral<true>>;
+                "Degrees of Detection": z.ZodOptional<z.ZodLiteral<true>>;
+                "Lowered Abilities": z.ZodOptional<z.ZodLiteral<true>>;
+                Senses: z.ZodOptional<z.ZodLiteral<true>>;
+            }, z.ZodLiteral<true>, "strip"> | undefined;
+        } | undefined;
     }>>;
 }>, "strict", z.ZodTypeAny, {
     type: "condition";
-    data: {
-        entries: (string | {
-            type: string;
-        })[];
-    };
     source: {
         ID: string;
         page?: number | undefined;
@@ -248,14 +260,19 @@ export declare const condition: z.ZodObject<z.objectUtil.extendShape<{
         aliases?: string[] | undefined;
         specifier?: string | undefined;
     };
-    tags?: {
-        group?: z.objectOutputType<{
-            Attitudes: z.ZodOptional<z.ZodLiteral<true>>;
-            "Death and Dying": z.ZodOptional<z.ZodLiteral<true>>;
-            "Degrees of Detection": z.ZodOptional<z.ZodLiteral<true>>;
-            "Lowered Abilities": z.ZodOptional<z.ZodLiteral<true>>;
-            Senses: z.ZodOptional<z.ZodLiteral<true>>;
-        }, z.ZodLiteral<true>, "strip"> | undefined;
+    data?: {
+        entries: (string | {
+            type: string;
+        })[];
+        _tags?: {
+            group?: z.objectOutputType<{
+                Attitudes: z.ZodOptional<z.ZodLiteral<true>>;
+                "Death and Dying": z.ZodOptional<z.ZodLiteral<true>>;
+                "Degrees of Detection": z.ZodOptional<z.ZodLiteral<true>>;
+                "Lowered Abilities": z.ZodOptional<z.ZodLiteral<true>>;
+                Senses: z.ZodOptional<z.ZodLiteral<true>>;
+            }, z.ZodLiteral<true>, "strip"> | undefined;
+        } | undefined;
     } | undefined;
     reference?: {
         type: "variant" | "reprint" | "replacement" | "extension";
@@ -275,11 +292,6 @@ export declare const condition: z.ZodObject<z.objectUtil.extendShape<{
     } | undefined;
 }, {
     type: "condition";
-    data: {
-        entries: (string | {
-            type: string;
-        })[];
-    };
     source: {
         ID: string;
         page?: number | undefined;
@@ -289,14 +301,19 @@ export declare const condition: z.ZodObject<z.objectUtil.extendShape<{
         aliases?: string[] | undefined;
         specifier?: string | undefined;
     };
-    tags?: {
-        group?: z.objectInputType<{
-            Attitudes: z.ZodOptional<z.ZodLiteral<true>>;
-            "Death and Dying": z.ZodOptional<z.ZodLiteral<true>>;
-            "Degrees of Detection": z.ZodOptional<z.ZodLiteral<true>>;
-            "Lowered Abilities": z.ZodOptional<z.ZodLiteral<true>>;
-            Senses: z.ZodOptional<z.ZodLiteral<true>>;
-        }, z.ZodLiteral<true>, "strip"> | undefined;
+    data?: {
+        entries: (string | {
+            type: string;
+        })[];
+        _tags?: {
+            group?: z.objectInputType<{
+                Attitudes: z.ZodOptional<z.ZodLiteral<true>>;
+                "Death and Dying": z.ZodOptional<z.ZodLiteral<true>>;
+                "Degrees of Detection": z.ZodOptional<z.ZodLiteral<true>>;
+                "Lowered Abilities": z.ZodOptional<z.ZodLiteral<true>>;
+                Senses: z.ZodOptional<z.ZodLiteral<true>>;
+            }, z.ZodLiteral<true>, "strip"> | undefined;
+        } | undefined;
     } | undefined;
     reference?: {
         type: "variant" | "reprint" | "replacement" | "extension";

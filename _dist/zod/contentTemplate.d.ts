@@ -135,8 +135,7 @@ export declare const contentTemplate: z.ZodObject<{
             value?: string | number | boolean | any[] | z.objectInputType<{}, z.ZodTypeAny, "passthrough"> | undefined;
         }[] | undefined;
     }>>;
-    tags: z.ZodOptional<z.ZodObject<{}, "strip", z.ZodTypeAny, {}, {}>>;
-}, "strip", z.ZodTypeAny, {
+}, "strict", z.ZodTypeAny, {
     type: string;
     source: {
         ID: string;
@@ -148,7 +147,6 @@ export declare const contentTemplate: z.ZodObject<{
         specifier?: string | undefined;
     };
     data?: {} | undefined;
-    tags?: {} | undefined;
     reference?: {
         type: "variant" | "reprint" | "replacement" | "extension";
         target: {
@@ -177,7 +175,6 @@ export declare const contentTemplate: z.ZodObject<{
         specifier?: string | undefined;
     };
     data?: {} | undefined;
-    tags?: {} | undefined;
     reference?: {
         type: "variant" | "reprint" | "replacement" | "extension";
         target: {

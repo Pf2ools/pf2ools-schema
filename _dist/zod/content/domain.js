@@ -2,8 +2,8 @@ import { z } from "zod";
 import { contentTemplate } from "../contentTemplate.js";
 import { entryString } from "./common/entryString.js";
 import { referenceTarget } from "./common/referenceTarget.js";
-export const domain = contentTemplate.merge(z
-    .object({
+export const domain = contentTemplate
+    .extend({
     type: z.literal("domain"),
     data: z
         .object({
@@ -12,10 +12,15 @@ export const domain = contentTemplate.merge(z
             .optional(),
         domainSpell: referenceTarget,
         advancedDomainSpell: referenceTarget,
-        apocryphalSpell: referenceTarget.optional(),
-        advancedApocryphalSpell: referenceTarget.optional(),
+        apocryphalSpell: referenceTarget
+            .describe("A reference target to the domain's apocryphal spell (see Dark Archive p142)")
+            .optional(),
+        advancedApocryphalSpell: referenceTarget
+            .describe("The reference target to the domain's advanced apocryphal spell (see Dark Archive p142)")
+            .optional(),
     })
-        .strict(),
+        .strict()
+        .optional(),
 })
-    .describe("A domain (for a deity)")
-    .strict());
+    .describe("A domain (for a religion)")
+    .strict();

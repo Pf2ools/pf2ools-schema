@@ -14,52 +14,76 @@ export declare const sourceGroup: z.ZodObject<{
     }>;
     data: z.ZodOptional<z.ZodEffects<z.ZodObject<{
         publisher: z.ZodString;
-    }, "strict", z.ZodTypeAny, {
-        publisher: string;
-    }, {
-        publisher: string;
-    }>, {
-        publisher: string;
-    }, {
-        publisher: string;
-    }>>;
-    tags: z.ZodOptional<z.ZodEffects<z.ZodObject<{
-        misc: z.ZodEffects<z.ZodObject<{
-            Adventure: z.ZodOptional<z.ZodLiteral<true>>;
-            Ongoing: z.ZodOptional<z.ZodLiteral<true>>;
+        _tags: z.ZodOptional<z.ZodEffects<z.ZodObject<{
+            misc: z.ZodEffects<z.ZodObject<{
+                Adventure: z.ZodOptional<z.ZodLiteral<true>>;
+                Ongoing: z.ZodOptional<z.ZodLiteral<true>>;
+            }, "strict", z.ZodTypeAny, {
+                Ongoing?: true | undefined;
+                Adventure?: true | undefined;
+            }, {
+                Ongoing?: true | undefined;
+                Adventure?: true | undefined;
+            }>, {
+                Ongoing?: true | undefined;
+                Adventure?: true | undefined;
+            }, {
+                Ongoing?: true | undefined;
+                Adventure?: true | undefined;
+            }>;
         }, "strict", z.ZodTypeAny, {
-            Ongoing?: true | undefined;
-            Adventure?: true | undefined;
+            misc: {
+                Ongoing?: true | undefined;
+                Adventure?: true | undefined;
+            };
         }, {
-            Ongoing?: true | undefined;
-            Adventure?: true | undefined;
+            misc: {
+                Ongoing?: true | undefined;
+                Adventure?: true | undefined;
+            };
         }>, {
-            Ongoing?: true | undefined;
-            Adventure?: true | undefined;
+            misc: {
+                Ongoing?: true | undefined;
+                Adventure?: true | undefined;
+            };
         }, {
-            Ongoing?: true | undefined;
-            Adventure?: true | undefined;
-        }>;
+            misc: {
+                Ongoing?: true | undefined;
+                Adventure?: true | undefined;
+            };
+        }>>;
     }, "strict", z.ZodTypeAny, {
-        misc: {
-            Ongoing?: true | undefined;
-            Adventure?: true | undefined;
-        };
+        publisher: string;
+        _tags?: {
+            misc: {
+                Ongoing?: true | undefined;
+                Adventure?: true | undefined;
+            };
+        } | undefined;
     }, {
-        misc: {
-            Ongoing?: true | undefined;
-            Adventure?: true | undefined;
-        };
+        publisher: string;
+        _tags?: {
+            misc: {
+                Ongoing?: true | undefined;
+                Adventure?: true | undefined;
+            };
+        } | undefined;
     }>, {
-        misc: {
-            Ongoing?: true | undefined;
-            Adventure?: true | undefined;
-        };
+        publisher: string;
+        _tags?: {
+            misc: {
+                Ongoing?: true | undefined;
+                Adventure?: true | undefined;
+            };
+        } | undefined;
     }, {
-        misc: {
-            Ongoing?: true | undefined;
-            Adventure?: true | undefined;
-        };
+        publisher: string;
+        _tags?: {
+            misc: {
+                Ongoing?: true | undefined;
+                Adventure?: true | undefined;
+            };
+        } | undefined;
     }>>;
 }, "strict", z.ZodTypeAny, {
     type: "sourceGroup";
@@ -70,12 +94,12 @@ export declare const sourceGroup: z.ZodObject<{
     ID: string;
     data?: {
         publisher: string;
-    } | undefined;
-    tags?: {
-        misc: {
-            Ongoing?: true | undefined;
-            Adventure?: true | undefined;
-        };
+        _tags?: {
+            misc: {
+                Ongoing?: true | undefined;
+                Adventure?: true | undefined;
+            };
+        } | undefined;
     } | undefined;
 }, {
     type: "sourceGroup";
@@ -86,11 +110,11 @@ export declare const sourceGroup: z.ZodObject<{
     ID: string;
     data?: {
         publisher: string;
-    } | undefined;
-    tags?: {
-        misc: {
-            Ongoing?: true | undefined;
-            Adventure?: true | undefined;
-        };
+        _tags?: {
+            misc: {
+                Ongoing?: true | undefined;
+                Adventure?: true | undefined;
+            };
+        } | undefined;
     } | undefined;
 }>;

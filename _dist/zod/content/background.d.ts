@@ -135,10 +135,9 @@ export declare const background: z.ZodObject<z.objectUtil.extendShape<{
             value?: string | number | boolean | any[] | z.objectInputType<{}, z.ZodTypeAny, "passthrough"> | undefined;
         }[] | undefined;
     }>>;
-    tags: z.ZodOptional<z.ZodObject<{}, "strip", z.ZodTypeAny, {}, {}>>;
 }, {
     type: z.ZodLiteral<"background">;
-    data: z.ZodObject<{
+    data: z.ZodOptional<z.ZodObject<{
         traits: z.ZodOptional<z.ZodEffects<z.ZodArray<z.ZodObject<{
             trait: z.ZodString;
             variables: z.ZodOptional<z.ZodEffects<z.ZodArray<z.ZodString, "many">, string[], string[]>>;
@@ -167,321 +166,383 @@ export declare const background: z.ZodObject<z.objectUtil.extendShape<{
         }, {
             type: string;
         }>]>, "many">;
-    }, "strict", z.ZodTypeAny, {
-        entries: (string | {
-            type: string;
-        })[];
-        traits?: {
-            trait: string;
-            display?: string | undefined;
-            variables?: string[] | undefined;
-        }[] | undefined;
-    }, {
-        entries: (string | {
-            type: string;
-        })[];
-        traits?: {
-            trait: string;
-            display?: string | undefined;
-            variables?: string[] | undefined;
-        }[] | undefined;
-    }>;
-    tags: z.ZodOptional<z.ZodEffects<z.ZodObject<{
-        abilityBoosts: z.ZodOptional<z.ZodObject<{
-            abilities: z.ZodEffects<z.ZodRecord<z.ZodUnion<[z.ZodEnum<["Strength", "Dexterity", "Constitution", "Intelligence", "Wisdom", "Charisma"]>, z.ZodLiteral<"free">]>, z.ZodLiteral<true>>, Partial<Record<"Strength" | "Dexterity" | "Constitution" | "Intelligence" | "Wisdom" | "Charisma" | "free", true>>, Partial<Record<"Strength" | "Dexterity" | "Constitution" | "Intelligence" | "Wisdom" | "Charisma" | "free", true>>>;
-            count: z.ZodNumber;
-        }, "strict", z.ZodTypeAny, {
-            abilities: Partial<Record<"Strength" | "Dexterity" | "Constitution" | "Intelligence" | "Wisdom" | "Charisma" | "free", true>>;
-            count: number;
-        }, {
-            abilities: Partial<Record<"Strength" | "Dexterity" | "Constitution" | "Intelligence" | "Wisdom" | "Charisma" | "free", true>>;
-            count: number;
-        }>>;
-        trainedSkills: z.ZodOptional<z.ZodObject<{
-            skills: z.ZodEffects<z.ZodRecord<z.ZodUnion<[z.ZodEnum<["Acrobatics", "Arcana", "Athletics", "Crafting", "Deception", "Diplomacy", "Intimidation", "Lore", "Medicine", "Nature", "Occultism", "Performance", "Religion", "Society", "Stealth", "Survival", "Thievery"]>, z.ZodLiteral<"Any">]>, z.ZodLiteral<true>>, Partial<Record<"Acrobatics" | "Arcana" | "Athletics" | "Crafting" | "Deception" | "Diplomacy" | "Intimidation" | "Lore" | "Medicine" | "Nature" | "Occultism" | "Performance" | "Religion" | "Society" | "Stealth" | "Survival" | "Thievery" | "Any", true>>, Partial<Record<"Acrobatics" | "Arcana" | "Athletics" | "Crafting" | "Deception" | "Diplomacy" | "Intimidation" | "Lore" | "Medicine" | "Nature" | "Occultism" | "Performance" | "Religion" | "Society" | "Stealth" | "Survival" | "Thievery" | "Any", true>>>;
-            count: z.ZodNumber;
-        }, "strict", z.ZodTypeAny, {
-            count: number;
-            skills: Partial<Record<"Acrobatics" | "Arcana" | "Athletics" | "Crafting" | "Deception" | "Diplomacy" | "Intimidation" | "Lore" | "Medicine" | "Nature" | "Occultism" | "Performance" | "Religion" | "Society" | "Stealth" | "Survival" | "Thievery" | "Any", true>>;
-        }, {
-            count: number;
-            skills: Partial<Record<"Acrobatics" | "Arcana" | "Athletics" | "Crafting" | "Deception" | "Diplomacy" | "Intimidation" | "Lore" | "Medicine" | "Nature" | "Occultism" | "Performance" | "Religion" | "Society" | "Stealth" | "Survival" | "Thievery" | "Any", true>>;
-        }>>;
-        gainedFeats: z.ZodOptional<z.ZodObject<{
-            options: z.ZodEffects<z.ZodArray<z.ZodObject<{
-                name: z.ZodString;
-                specifier: z.ZodOptional<z.ZodString>;
-                sourceID: z.ZodEffects<z.ZodString, string, string>;
+        _tags: z.ZodOptional<z.ZodEffects<z.ZodObject<{
+            abilityBoosts: z.ZodOptional<z.ZodObject<{
+                abilities: z.ZodEffects<z.ZodRecord<z.ZodUnion<[z.ZodEnum<["Strength", "Dexterity", "Constitution", "Intelligence", "Wisdom", "Charisma"]>, z.ZodLiteral<"free">]>, z.ZodLiteral<true>>, Partial<Record<"Strength" | "Dexterity" | "Constitution" | "Intelligence" | "Wisdom" | "Charisma" | "free", true>>, Partial<Record<"Strength" | "Dexterity" | "Constitution" | "Intelligence" | "Wisdom" | "Charisma" | "free", true>>>;
+                count: z.ZodNumber;
             }, "strict", z.ZodTypeAny, {
-                name: string;
-                sourceID: string;
-                specifier?: string | undefined;
+                abilities: Partial<Record<"Strength" | "Dexterity" | "Constitution" | "Intelligence" | "Wisdom" | "Charisma" | "free", true>>;
+                count: number;
             }, {
-                name: string;
-                sourceID: string;
-                specifier?: string | undefined;
-            }>, "many">, {
-                name: string;
-                sourceID: string;
-                specifier?: string | undefined;
-            }[], {
-                name: string;
-                sourceID: string;
-                specifier?: string | undefined;
-            }[]>;
-            count: z.ZodNumber;
-        }, "strict", z.ZodTypeAny, {
-            options: {
-                name: string;
-                sourceID: string;
-                specifier?: string | undefined;
-            }[];
-            count: number;
-        }, {
-            options: {
-                name: string;
-                sourceID: string;
-                specifier?: string | undefined;
-            }[];
-            count: number;
-        }>>;
-        gainedSpells: z.ZodOptional<z.ZodObject<{
-            options: z.ZodEffects<z.ZodArray<z.ZodObject<{
-                name: z.ZodString;
-                specifier: z.ZodOptional<z.ZodString>;
-                sourceID: z.ZodEffects<z.ZodString, string, string>;
+                abilities: Partial<Record<"Strength" | "Dexterity" | "Constitution" | "Intelligence" | "Wisdom" | "Charisma" | "free", true>>;
+                count: number;
+            }>>;
+            trainedSkills: z.ZodOptional<z.ZodObject<{
+                skills: z.ZodEffects<z.ZodRecord<z.ZodUnion<[z.ZodEnum<["Acrobatics", "Arcana", "Athletics", "Crafting", "Deception", "Diplomacy", "Intimidation", "Lore", "Medicine", "Nature", "Occultism", "Performance", "Religion", "Society", "Stealth", "Survival", "Thievery"]>, z.ZodLiteral<"Any">]>, z.ZodLiteral<true>>, Partial<Record<"Acrobatics" | "Arcana" | "Athletics" | "Crafting" | "Deception" | "Diplomacy" | "Intimidation" | "Lore" | "Medicine" | "Nature" | "Occultism" | "Performance" | "Religion" | "Society" | "Stealth" | "Survival" | "Thievery" | "Any", true>>, Partial<Record<"Acrobatics" | "Arcana" | "Athletics" | "Crafting" | "Deception" | "Diplomacy" | "Intimidation" | "Lore" | "Medicine" | "Nature" | "Occultism" | "Performance" | "Religion" | "Society" | "Stealth" | "Survival" | "Thievery" | "Any", true>>>;
+                count: z.ZodNumber;
             }, "strict", z.ZodTypeAny, {
-                name: string;
-                sourceID: string;
-                specifier?: string | undefined;
+                count: number;
+                skills: Partial<Record<"Acrobatics" | "Arcana" | "Athletics" | "Crafting" | "Deception" | "Diplomacy" | "Intimidation" | "Lore" | "Medicine" | "Nature" | "Occultism" | "Performance" | "Religion" | "Society" | "Stealth" | "Survival" | "Thievery" | "Any", true>>;
             }, {
-                name: string;
-                sourceID: string;
-                specifier?: string | undefined;
-            }>, "many">, {
-                name: string;
-                sourceID: string;
-                specifier?: string | undefined;
-            }[], {
-                name: string;
-                sourceID: string;
-                specifier?: string | undefined;
-            }[]>;
-            count: z.ZodNumber;
+                count: number;
+                skills: Partial<Record<"Acrobatics" | "Arcana" | "Athletics" | "Crafting" | "Deception" | "Diplomacy" | "Intimidation" | "Lore" | "Medicine" | "Nature" | "Occultism" | "Performance" | "Religion" | "Society" | "Stealth" | "Survival" | "Thievery" | "Any", true>>;
+            }>>;
+            gainedFeats: z.ZodOptional<z.ZodObject<{
+                options: z.ZodEffects<z.ZodArray<z.ZodObject<{
+                    name: z.ZodString;
+                    specifier: z.ZodOptional<z.ZodString>;
+                    sourceID: z.ZodEffects<z.ZodString, string, string>;
+                }, "strict", z.ZodTypeAny, {
+                    name: string;
+                    sourceID: string;
+                    specifier?: string | undefined;
+                }, {
+                    name: string;
+                    sourceID: string;
+                    specifier?: string | undefined;
+                }>, "many">, {
+                    name: string;
+                    sourceID: string;
+                    specifier?: string | undefined;
+                }[], {
+                    name: string;
+                    sourceID: string;
+                    specifier?: string | undefined;
+                }[]>;
+                count: z.ZodNumber;
+            }, "strict", z.ZodTypeAny, {
+                options: {
+                    name: string;
+                    sourceID: string;
+                    specifier?: string | undefined;
+                }[];
+                count: number;
+            }, {
+                options: {
+                    name: string;
+                    sourceID: string;
+                    specifier?: string | undefined;
+                }[];
+                count: number;
+            }>>;
+            gainedSpells: z.ZodOptional<z.ZodObject<{
+                options: z.ZodEffects<z.ZodArray<z.ZodObject<{
+                    name: z.ZodString;
+                    specifier: z.ZodOptional<z.ZodString>;
+                    sourceID: z.ZodEffects<z.ZodString, string, string>;
+                }, "strict", z.ZodTypeAny, {
+                    name: string;
+                    sourceID: string;
+                    specifier?: string | undefined;
+                }, {
+                    name: string;
+                    sourceID: string;
+                    specifier?: string | undefined;
+                }>, "many">, {
+                    name: string;
+                    sourceID: string;
+                    specifier?: string | undefined;
+                }[], {
+                    name: string;
+                    sourceID: string;
+                    specifier?: string | undefined;
+                }[]>;
+                count: z.ZodNumber;
+            }, "strict", z.ZodTypeAny, {
+                options: {
+                    name: string;
+                    sourceID: string;
+                    specifier?: string | undefined;
+                }[];
+                count: number;
+            }, {
+                options: {
+                    name: string;
+                    sourceID: string;
+                    specifier?: string | undefined;
+                }[];
+                count: number;
+            }>>;
+            misc: z.ZodOptional<z.ZodEffects<z.ZodObject<{
+                "Grants ability": z.ZodOptional<z.ZodLiteral<true>>;
+                "Grants equipment": z.ZodOptional<z.ZodLiteral<true>>;
+                "Grants language": z.ZodOptional<z.ZodLiteral<true>>;
+                "Grants resistance": z.ZodOptional<z.ZodLiteral<true>>;
+                "Grants sense": z.ZodOptional<z.ZodLiteral<true>>;
+                "Grants situational benefit": z.ZodOptional<z.ZodLiteral<true>>;
+                "Has drawback": z.ZodOptional<z.ZodLiteral<true>>;
+                "GM influence": z.ZodOptional<z.ZodLiteral<true>>;
+            }, "strict", z.ZodTypeAny, {
+                "Grants ability"?: true | undefined;
+                "Grants equipment"?: true | undefined;
+                "Grants language"?: true | undefined;
+                "Grants resistance"?: true | undefined;
+                "Grants sense"?: true | undefined;
+                "Grants situational benefit"?: true | undefined;
+                "Has drawback"?: true | undefined;
+                "GM influence"?: true | undefined;
+            }, {
+                "Grants ability"?: true | undefined;
+                "Grants equipment"?: true | undefined;
+                "Grants language"?: true | undefined;
+                "Grants resistance"?: true | undefined;
+                "Grants sense"?: true | undefined;
+                "Grants situational benefit"?: true | undefined;
+                "Has drawback"?: true | undefined;
+                "GM influence"?: true | undefined;
+            }>, {
+                "Grants ability"?: true | undefined;
+                "Grants equipment"?: true | undefined;
+                "Grants language"?: true | undefined;
+                "Grants resistance"?: true | undefined;
+                "Grants sense"?: true | undefined;
+                "Grants situational benefit"?: true | undefined;
+                "Has drawback"?: true | undefined;
+                "GM influence"?: true | undefined;
+            }, {
+                "Grants ability"?: true | undefined;
+                "Grants equipment"?: true | undefined;
+                "Grants language"?: true | undefined;
+                "Grants resistance"?: true | undefined;
+                "Grants sense"?: true | undefined;
+                "Grants situational benefit"?: true | undefined;
+                "Has drawback"?: true | undefined;
+                "GM influence"?: true | undefined;
+            }>>;
         }, "strict", z.ZodTypeAny, {
-            options: {
-                name: string;
-                sourceID: string;
-                specifier?: string | undefined;
-            }[];
-            count: number;
+            misc?: {
+                "Grants ability"?: true | undefined;
+                "Grants equipment"?: true | undefined;
+                "Grants language"?: true | undefined;
+                "Grants resistance"?: true | undefined;
+                "Grants sense"?: true | undefined;
+                "Grants situational benefit"?: true | undefined;
+                "Has drawback"?: true | undefined;
+                "GM influence"?: true | undefined;
+            } | undefined;
+            abilityBoosts?: {
+                abilities: Partial<Record<"Strength" | "Dexterity" | "Constitution" | "Intelligence" | "Wisdom" | "Charisma" | "free", true>>;
+                count: number;
+            } | undefined;
+            trainedSkills?: {
+                count: number;
+                skills: Partial<Record<"Acrobatics" | "Arcana" | "Athletics" | "Crafting" | "Deception" | "Diplomacy" | "Intimidation" | "Lore" | "Medicine" | "Nature" | "Occultism" | "Performance" | "Religion" | "Society" | "Stealth" | "Survival" | "Thievery" | "Any", true>>;
+            } | undefined;
+            gainedFeats?: {
+                options: {
+                    name: string;
+                    sourceID: string;
+                    specifier?: string | undefined;
+                }[];
+                count: number;
+            } | undefined;
+            gainedSpells?: {
+                options: {
+                    name: string;
+                    sourceID: string;
+                    specifier?: string | undefined;
+                }[];
+                count: number;
+            } | undefined;
         }, {
-            options: {
-                name: string;
-                sourceID: string;
-                specifier?: string | undefined;
-            }[];
-            count: number;
-        }>>;
-        misc: z.ZodOptional<z.ZodEffects<z.ZodObject<{
-            "Grants ability": z.ZodOptional<z.ZodLiteral<true>>;
-            "Grants equipment": z.ZodOptional<z.ZodLiteral<true>>;
-            "Grants language": z.ZodOptional<z.ZodLiteral<true>>;
-            "Grants resistance": z.ZodOptional<z.ZodLiteral<true>>;
-            "Grants sense": z.ZodOptional<z.ZodLiteral<true>>;
-            "Grants situational benefit": z.ZodOptional<z.ZodLiteral<true>>;
-            "Has drawback": z.ZodOptional<z.ZodLiteral<true>>;
-            "GM influence": z.ZodOptional<z.ZodLiteral<true>>;
-        }, "strict", z.ZodTypeAny, {
-            "Grants ability"?: true | undefined;
-            "Grants equipment"?: true | undefined;
-            "Grants language"?: true | undefined;
-            "Grants resistance"?: true | undefined;
-            "Grants sense"?: true | undefined;
-            "Grants situational benefit"?: true | undefined;
-            "Has drawback"?: true | undefined;
-            "GM influence"?: true | undefined;
-        }, {
-            "Grants ability"?: true | undefined;
-            "Grants equipment"?: true | undefined;
-            "Grants language"?: true | undefined;
-            "Grants resistance"?: true | undefined;
-            "Grants sense"?: true | undefined;
-            "Grants situational benefit"?: true | undefined;
-            "Has drawback"?: true | undefined;
-            "GM influence"?: true | undefined;
+            misc?: {
+                "Grants ability"?: true | undefined;
+                "Grants equipment"?: true | undefined;
+                "Grants language"?: true | undefined;
+                "Grants resistance"?: true | undefined;
+                "Grants sense"?: true | undefined;
+                "Grants situational benefit"?: true | undefined;
+                "Has drawback"?: true | undefined;
+                "GM influence"?: true | undefined;
+            } | undefined;
+            abilityBoosts?: {
+                abilities: Partial<Record<"Strength" | "Dexterity" | "Constitution" | "Intelligence" | "Wisdom" | "Charisma" | "free", true>>;
+                count: number;
+            } | undefined;
+            trainedSkills?: {
+                count: number;
+                skills: Partial<Record<"Acrobatics" | "Arcana" | "Athletics" | "Crafting" | "Deception" | "Diplomacy" | "Intimidation" | "Lore" | "Medicine" | "Nature" | "Occultism" | "Performance" | "Religion" | "Society" | "Stealth" | "Survival" | "Thievery" | "Any", true>>;
+            } | undefined;
+            gainedFeats?: {
+                options: {
+                    name: string;
+                    sourceID: string;
+                    specifier?: string | undefined;
+                }[];
+                count: number;
+            } | undefined;
+            gainedSpells?: {
+                options: {
+                    name: string;
+                    sourceID: string;
+                    specifier?: string | undefined;
+                }[];
+                count: number;
+            } | undefined;
         }>, {
-            "Grants ability"?: true | undefined;
-            "Grants equipment"?: true | undefined;
-            "Grants language"?: true | undefined;
-            "Grants resistance"?: true | undefined;
-            "Grants sense"?: true | undefined;
-            "Grants situational benefit"?: true | undefined;
-            "Has drawback"?: true | undefined;
-            "GM influence"?: true | undefined;
+            misc?: {
+                "Grants ability"?: true | undefined;
+                "Grants equipment"?: true | undefined;
+                "Grants language"?: true | undefined;
+                "Grants resistance"?: true | undefined;
+                "Grants sense"?: true | undefined;
+                "Grants situational benefit"?: true | undefined;
+                "Has drawback"?: true | undefined;
+                "GM influence"?: true | undefined;
+            } | undefined;
+            abilityBoosts?: {
+                abilities: Partial<Record<"Strength" | "Dexterity" | "Constitution" | "Intelligence" | "Wisdom" | "Charisma" | "free", true>>;
+                count: number;
+            } | undefined;
+            trainedSkills?: {
+                count: number;
+                skills: Partial<Record<"Acrobatics" | "Arcana" | "Athletics" | "Crafting" | "Deception" | "Diplomacy" | "Intimidation" | "Lore" | "Medicine" | "Nature" | "Occultism" | "Performance" | "Religion" | "Society" | "Stealth" | "Survival" | "Thievery" | "Any", true>>;
+            } | undefined;
+            gainedFeats?: {
+                options: {
+                    name: string;
+                    sourceID: string;
+                    specifier?: string | undefined;
+                }[];
+                count: number;
+            } | undefined;
+            gainedSpells?: {
+                options: {
+                    name: string;
+                    sourceID: string;
+                    specifier?: string | undefined;
+                }[];
+                count: number;
+            } | undefined;
         }, {
-            "Grants ability"?: true | undefined;
-            "Grants equipment"?: true | undefined;
-            "Grants language"?: true | undefined;
-            "Grants resistance"?: true | undefined;
-            "Grants sense"?: true | undefined;
-            "Grants situational benefit"?: true | undefined;
-            "Has drawback"?: true | undefined;
-            "GM influence"?: true | undefined;
+            misc?: {
+                "Grants ability"?: true | undefined;
+                "Grants equipment"?: true | undefined;
+                "Grants language"?: true | undefined;
+                "Grants resistance"?: true | undefined;
+                "Grants sense"?: true | undefined;
+                "Grants situational benefit"?: true | undefined;
+                "Has drawback"?: true | undefined;
+                "GM influence"?: true | undefined;
+            } | undefined;
+            abilityBoosts?: {
+                abilities: Partial<Record<"Strength" | "Dexterity" | "Constitution" | "Intelligence" | "Wisdom" | "Charisma" | "free", true>>;
+                count: number;
+            } | undefined;
+            trainedSkills?: {
+                count: number;
+                skills: Partial<Record<"Acrobatics" | "Arcana" | "Athletics" | "Crafting" | "Deception" | "Diplomacy" | "Intimidation" | "Lore" | "Medicine" | "Nature" | "Occultism" | "Performance" | "Religion" | "Society" | "Stealth" | "Survival" | "Thievery" | "Any", true>>;
+            } | undefined;
+            gainedFeats?: {
+                options: {
+                    name: string;
+                    sourceID: string;
+                    specifier?: string | undefined;
+                }[];
+                count: number;
+            } | undefined;
+            gainedSpells?: {
+                options: {
+                    name: string;
+                    sourceID: string;
+                    specifier?: string | undefined;
+                }[];
+                count: number;
+            } | undefined;
         }>>;
     }, "strict", z.ZodTypeAny, {
-        misc?: {
-            "Grants ability"?: true | undefined;
-            "Grants equipment"?: true | undefined;
-            "Grants language"?: true | undefined;
-            "Grants resistance"?: true | undefined;
-            "Grants sense"?: true | undefined;
-            "Grants situational benefit"?: true | undefined;
-            "Has drawback"?: true | undefined;
-            "GM influence"?: true | undefined;
+        entries: (string | {
+            type: string;
+        })[];
+        _tags?: {
+            misc?: {
+                "Grants ability"?: true | undefined;
+                "Grants equipment"?: true | undefined;
+                "Grants language"?: true | undefined;
+                "Grants resistance"?: true | undefined;
+                "Grants sense"?: true | undefined;
+                "Grants situational benefit"?: true | undefined;
+                "Has drawback"?: true | undefined;
+                "GM influence"?: true | undefined;
+            } | undefined;
+            abilityBoosts?: {
+                abilities: Partial<Record<"Strength" | "Dexterity" | "Constitution" | "Intelligence" | "Wisdom" | "Charisma" | "free", true>>;
+                count: number;
+            } | undefined;
+            trainedSkills?: {
+                count: number;
+                skills: Partial<Record<"Acrobatics" | "Arcana" | "Athletics" | "Crafting" | "Deception" | "Diplomacy" | "Intimidation" | "Lore" | "Medicine" | "Nature" | "Occultism" | "Performance" | "Religion" | "Society" | "Stealth" | "Survival" | "Thievery" | "Any", true>>;
+            } | undefined;
+            gainedFeats?: {
+                options: {
+                    name: string;
+                    sourceID: string;
+                    specifier?: string | undefined;
+                }[];
+                count: number;
+            } | undefined;
+            gainedSpells?: {
+                options: {
+                    name: string;
+                    sourceID: string;
+                    specifier?: string | undefined;
+                }[];
+                count: number;
+            } | undefined;
         } | undefined;
-        abilityBoosts?: {
-            abilities: Partial<Record<"Strength" | "Dexterity" | "Constitution" | "Intelligence" | "Wisdom" | "Charisma" | "free", true>>;
-            count: number;
-        } | undefined;
-        trainedSkills?: {
-            count: number;
-            skills: Partial<Record<"Acrobatics" | "Arcana" | "Athletics" | "Crafting" | "Deception" | "Diplomacy" | "Intimidation" | "Lore" | "Medicine" | "Nature" | "Occultism" | "Performance" | "Religion" | "Society" | "Stealth" | "Survival" | "Thievery" | "Any", true>>;
-        } | undefined;
-        gainedFeats?: {
-            options: {
-                name: string;
-                sourceID: string;
-                specifier?: string | undefined;
-            }[];
-            count: number;
-        } | undefined;
-        gainedSpells?: {
-            options: {
-                name: string;
-                sourceID: string;
-                specifier?: string | undefined;
-            }[];
-            count: number;
-        } | undefined;
+        traits?: {
+            trait: string;
+            display?: string | undefined;
+            variables?: string[] | undefined;
+        }[] | undefined;
     }, {
-        misc?: {
-            "Grants ability"?: true | undefined;
-            "Grants equipment"?: true | undefined;
-            "Grants language"?: true | undefined;
-            "Grants resistance"?: true | undefined;
-            "Grants sense"?: true | undefined;
-            "Grants situational benefit"?: true | undefined;
-            "Has drawback"?: true | undefined;
-            "GM influence"?: true | undefined;
+        entries: (string | {
+            type: string;
+        })[];
+        _tags?: {
+            misc?: {
+                "Grants ability"?: true | undefined;
+                "Grants equipment"?: true | undefined;
+                "Grants language"?: true | undefined;
+                "Grants resistance"?: true | undefined;
+                "Grants sense"?: true | undefined;
+                "Grants situational benefit"?: true | undefined;
+                "Has drawback"?: true | undefined;
+                "GM influence"?: true | undefined;
+            } | undefined;
+            abilityBoosts?: {
+                abilities: Partial<Record<"Strength" | "Dexterity" | "Constitution" | "Intelligence" | "Wisdom" | "Charisma" | "free", true>>;
+                count: number;
+            } | undefined;
+            trainedSkills?: {
+                count: number;
+                skills: Partial<Record<"Acrobatics" | "Arcana" | "Athletics" | "Crafting" | "Deception" | "Diplomacy" | "Intimidation" | "Lore" | "Medicine" | "Nature" | "Occultism" | "Performance" | "Religion" | "Society" | "Stealth" | "Survival" | "Thievery" | "Any", true>>;
+            } | undefined;
+            gainedFeats?: {
+                options: {
+                    name: string;
+                    sourceID: string;
+                    specifier?: string | undefined;
+                }[];
+                count: number;
+            } | undefined;
+            gainedSpells?: {
+                options: {
+                    name: string;
+                    sourceID: string;
+                    specifier?: string | undefined;
+                }[];
+                count: number;
+            } | undefined;
         } | undefined;
-        abilityBoosts?: {
-            abilities: Partial<Record<"Strength" | "Dexterity" | "Constitution" | "Intelligence" | "Wisdom" | "Charisma" | "free", true>>;
-            count: number;
-        } | undefined;
-        trainedSkills?: {
-            count: number;
-            skills: Partial<Record<"Acrobatics" | "Arcana" | "Athletics" | "Crafting" | "Deception" | "Diplomacy" | "Intimidation" | "Lore" | "Medicine" | "Nature" | "Occultism" | "Performance" | "Religion" | "Society" | "Stealth" | "Survival" | "Thievery" | "Any", true>>;
-        } | undefined;
-        gainedFeats?: {
-            options: {
-                name: string;
-                sourceID: string;
-                specifier?: string | undefined;
-            }[];
-            count: number;
-        } | undefined;
-        gainedSpells?: {
-            options: {
-                name: string;
-                sourceID: string;
-                specifier?: string | undefined;
-            }[];
-            count: number;
-        } | undefined;
-    }>, {
-        misc?: {
-            "Grants ability"?: true | undefined;
-            "Grants equipment"?: true | undefined;
-            "Grants language"?: true | undefined;
-            "Grants resistance"?: true | undefined;
-            "Grants sense"?: true | undefined;
-            "Grants situational benefit"?: true | undefined;
-            "Has drawback"?: true | undefined;
-            "GM influence"?: true | undefined;
-        } | undefined;
-        abilityBoosts?: {
-            abilities: Partial<Record<"Strength" | "Dexterity" | "Constitution" | "Intelligence" | "Wisdom" | "Charisma" | "free", true>>;
-            count: number;
-        } | undefined;
-        trainedSkills?: {
-            count: number;
-            skills: Partial<Record<"Acrobatics" | "Arcana" | "Athletics" | "Crafting" | "Deception" | "Diplomacy" | "Intimidation" | "Lore" | "Medicine" | "Nature" | "Occultism" | "Performance" | "Religion" | "Society" | "Stealth" | "Survival" | "Thievery" | "Any", true>>;
-        } | undefined;
-        gainedFeats?: {
-            options: {
-                name: string;
-                sourceID: string;
-                specifier?: string | undefined;
-            }[];
-            count: number;
-        } | undefined;
-        gainedSpells?: {
-            options: {
-                name: string;
-                sourceID: string;
-                specifier?: string | undefined;
-            }[];
-            count: number;
-        } | undefined;
-    }, {
-        misc?: {
-            "Grants ability"?: true | undefined;
-            "Grants equipment"?: true | undefined;
-            "Grants language"?: true | undefined;
-            "Grants resistance"?: true | undefined;
-            "Grants sense"?: true | undefined;
-            "Grants situational benefit"?: true | undefined;
-            "Has drawback"?: true | undefined;
-            "GM influence"?: true | undefined;
-        } | undefined;
-        abilityBoosts?: {
-            abilities: Partial<Record<"Strength" | "Dexterity" | "Constitution" | "Intelligence" | "Wisdom" | "Charisma" | "free", true>>;
-            count: number;
-        } | undefined;
-        trainedSkills?: {
-            count: number;
-            skills: Partial<Record<"Acrobatics" | "Arcana" | "Athletics" | "Crafting" | "Deception" | "Diplomacy" | "Intimidation" | "Lore" | "Medicine" | "Nature" | "Occultism" | "Performance" | "Religion" | "Society" | "Stealth" | "Survival" | "Thievery" | "Any", true>>;
-        } | undefined;
-        gainedFeats?: {
-            options: {
-                name: string;
-                sourceID: string;
-                specifier?: string | undefined;
-            }[];
-            count: number;
-        } | undefined;
-        gainedSpells?: {
-            options: {
-                name: string;
-                sourceID: string;
-                specifier?: string | undefined;
-            }[];
-            count: number;
-        } | undefined;
+        traits?: {
+            trait: string;
+            display?: string | undefined;
+            variables?: string[] | undefined;
+        }[] | undefined;
     }>>;
 }>, "strict", z.ZodTypeAny, {
     type: "background";
-    data: {
-        entries: (string | {
-            type: string;
-        })[];
-        traits?: {
-            trait: string;
-            display?: string | undefined;
-            variables?: string[] | undefined;
-        }[] | undefined;
-    };
     source: {
         ID: string;
         page?: number | undefined;
@@ -491,41 +552,51 @@ export declare const background: z.ZodObject<z.objectUtil.extendShape<{
         aliases?: string[] | undefined;
         specifier?: string | undefined;
     };
-    tags?: {
-        misc?: {
-            "Grants ability"?: true | undefined;
-            "Grants equipment"?: true | undefined;
-            "Grants language"?: true | undefined;
-            "Grants resistance"?: true | undefined;
-            "Grants sense"?: true | undefined;
-            "Grants situational benefit"?: true | undefined;
-            "Has drawback"?: true | undefined;
-            "GM influence"?: true | undefined;
+    data?: {
+        entries: (string | {
+            type: string;
+        })[];
+        _tags?: {
+            misc?: {
+                "Grants ability"?: true | undefined;
+                "Grants equipment"?: true | undefined;
+                "Grants language"?: true | undefined;
+                "Grants resistance"?: true | undefined;
+                "Grants sense"?: true | undefined;
+                "Grants situational benefit"?: true | undefined;
+                "Has drawback"?: true | undefined;
+                "GM influence"?: true | undefined;
+            } | undefined;
+            abilityBoosts?: {
+                abilities: Partial<Record<"Strength" | "Dexterity" | "Constitution" | "Intelligence" | "Wisdom" | "Charisma" | "free", true>>;
+                count: number;
+            } | undefined;
+            trainedSkills?: {
+                count: number;
+                skills: Partial<Record<"Acrobatics" | "Arcana" | "Athletics" | "Crafting" | "Deception" | "Diplomacy" | "Intimidation" | "Lore" | "Medicine" | "Nature" | "Occultism" | "Performance" | "Religion" | "Society" | "Stealth" | "Survival" | "Thievery" | "Any", true>>;
+            } | undefined;
+            gainedFeats?: {
+                options: {
+                    name: string;
+                    sourceID: string;
+                    specifier?: string | undefined;
+                }[];
+                count: number;
+            } | undefined;
+            gainedSpells?: {
+                options: {
+                    name: string;
+                    sourceID: string;
+                    specifier?: string | undefined;
+                }[];
+                count: number;
+            } | undefined;
         } | undefined;
-        abilityBoosts?: {
-            abilities: Partial<Record<"Strength" | "Dexterity" | "Constitution" | "Intelligence" | "Wisdom" | "Charisma" | "free", true>>;
-            count: number;
-        } | undefined;
-        trainedSkills?: {
-            count: number;
-            skills: Partial<Record<"Acrobatics" | "Arcana" | "Athletics" | "Crafting" | "Deception" | "Diplomacy" | "Intimidation" | "Lore" | "Medicine" | "Nature" | "Occultism" | "Performance" | "Religion" | "Society" | "Stealth" | "Survival" | "Thievery" | "Any", true>>;
-        } | undefined;
-        gainedFeats?: {
-            options: {
-                name: string;
-                sourceID: string;
-                specifier?: string | undefined;
-            }[];
-            count: number;
-        } | undefined;
-        gainedSpells?: {
-            options: {
-                name: string;
-                sourceID: string;
-                specifier?: string | undefined;
-            }[];
-            count: number;
-        } | undefined;
+        traits?: {
+            trait: string;
+            display?: string | undefined;
+            variables?: string[] | undefined;
+        }[] | undefined;
     } | undefined;
     reference?: {
         type: "variant" | "reprint" | "replacement" | "extension";
@@ -545,16 +616,6 @@ export declare const background: z.ZodObject<z.objectUtil.extendShape<{
     } | undefined;
 }, {
     type: "background";
-    data: {
-        entries: (string | {
-            type: string;
-        })[];
-        traits?: {
-            trait: string;
-            display?: string | undefined;
-            variables?: string[] | undefined;
-        }[] | undefined;
-    };
     source: {
         ID: string;
         page?: number | undefined;
@@ -564,41 +625,51 @@ export declare const background: z.ZodObject<z.objectUtil.extendShape<{
         aliases?: string[] | undefined;
         specifier?: string | undefined;
     };
-    tags?: {
-        misc?: {
-            "Grants ability"?: true | undefined;
-            "Grants equipment"?: true | undefined;
-            "Grants language"?: true | undefined;
-            "Grants resistance"?: true | undefined;
-            "Grants sense"?: true | undefined;
-            "Grants situational benefit"?: true | undefined;
-            "Has drawback"?: true | undefined;
-            "GM influence"?: true | undefined;
+    data?: {
+        entries: (string | {
+            type: string;
+        })[];
+        _tags?: {
+            misc?: {
+                "Grants ability"?: true | undefined;
+                "Grants equipment"?: true | undefined;
+                "Grants language"?: true | undefined;
+                "Grants resistance"?: true | undefined;
+                "Grants sense"?: true | undefined;
+                "Grants situational benefit"?: true | undefined;
+                "Has drawback"?: true | undefined;
+                "GM influence"?: true | undefined;
+            } | undefined;
+            abilityBoosts?: {
+                abilities: Partial<Record<"Strength" | "Dexterity" | "Constitution" | "Intelligence" | "Wisdom" | "Charisma" | "free", true>>;
+                count: number;
+            } | undefined;
+            trainedSkills?: {
+                count: number;
+                skills: Partial<Record<"Acrobatics" | "Arcana" | "Athletics" | "Crafting" | "Deception" | "Diplomacy" | "Intimidation" | "Lore" | "Medicine" | "Nature" | "Occultism" | "Performance" | "Religion" | "Society" | "Stealth" | "Survival" | "Thievery" | "Any", true>>;
+            } | undefined;
+            gainedFeats?: {
+                options: {
+                    name: string;
+                    sourceID: string;
+                    specifier?: string | undefined;
+                }[];
+                count: number;
+            } | undefined;
+            gainedSpells?: {
+                options: {
+                    name: string;
+                    sourceID: string;
+                    specifier?: string | undefined;
+                }[];
+                count: number;
+            } | undefined;
         } | undefined;
-        abilityBoosts?: {
-            abilities: Partial<Record<"Strength" | "Dexterity" | "Constitution" | "Intelligence" | "Wisdom" | "Charisma" | "free", true>>;
-            count: number;
-        } | undefined;
-        trainedSkills?: {
-            count: number;
-            skills: Partial<Record<"Acrobatics" | "Arcana" | "Athletics" | "Crafting" | "Deception" | "Diplomacy" | "Intimidation" | "Lore" | "Medicine" | "Nature" | "Occultism" | "Performance" | "Religion" | "Society" | "Stealth" | "Survival" | "Thievery" | "Any", true>>;
-        } | undefined;
-        gainedFeats?: {
-            options: {
-                name: string;
-                sourceID: string;
-                specifier?: string | undefined;
-            }[];
-            count: number;
-        } | undefined;
-        gainedSpells?: {
-            options: {
-                name: string;
-                sourceID: string;
-                specifier?: string | undefined;
-            }[];
-            count: number;
-        } | undefined;
+        traits?: {
+            trait: string;
+            display?: string | undefined;
+            variables?: string[] | undefined;
+        }[] | undefined;
     } | undefined;
     reference?: {
         type: "variant" | "reprint" | "replacement" | "extension";

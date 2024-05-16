@@ -135,10 +135,9 @@ export declare const event: z.ZodObject<z.objectUtil.extendShape<{
             value?: string | number | boolean | any[] | z.objectInputType<{}, z.ZodTypeAny, "passthrough"> | undefined;
         }[] | undefined;
     }>>;
-    tags: z.ZodOptional<z.ZodObject<{}, "strip", z.ZodTypeAny, {}, {}>>;
 }, {
     type: z.ZodLiteral<"event">;
-    data: z.ZodObject<{
+    data: z.ZodOptional<z.ZodObject<{
         level: z.ZodNumber;
         traits: z.ZodOptional<z.ZodEffects<z.ZodArray<z.ZodObject<{
             trait: z.ZodString;
@@ -219,10 +218,19 @@ export declare const event: z.ZodObject<z.objectUtil.extendShape<{
             display?: string | undefined;
             variables?: string[] | undefined;
         }[] | undefined;
-    }>;
+    }>>;
 }>, "strict", z.ZodTypeAny, {
     type: "event";
-    data: {
+    source: {
+        ID: string;
+        page?: number | undefined;
+    };
+    name: {
+        primary: string;
+        aliases?: string[] | undefined;
+        specifier?: string | undefined;
+    };
+    data?: {
         entries: (string | {
             type: string;
         })[];
@@ -237,17 +245,7 @@ export declare const event: z.ZodObject<z.objectUtil.extendShape<{
             display?: string | undefined;
             variables?: string[] | undefined;
         }[] | undefined;
-    };
-    source: {
-        ID: string;
-        page?: number | undefined;
-    };
-    name: {
-        primary: string;
-        aliases?: string[] | undefined;
-        specifier?: string | undefined;
-    };
-    tags?: {} | undefined;
+    } | undefined;
     reference?: {
         type: "variant" | "reprint" | "replacement" | "extension";
         target: {
@@ -266,7 +264,16 @@ export declare const event: z.ZodObject<z.objectUtil.extendShape<{
     } | undefined;
 }, {
     type: "event";
-    data: {
+    source: {
+        ID: string;
+        page?: number | undefined;
+    };
+    name: {
+        primary: string;
+        aliases?: string[] | undefined;
+        specifier?: string | undefined;
+    };
+    data?: {
         entries: (string | {
             type: string;
         })[];
@@ -281,17 +288,7 @@ export declare const event: z.ZodObject<z.objectUtil.extendShape<{
             display?: string | undefined;
             variables?: string[] | undefined;
         }[] | undefined;
-    };
-    source: {
-        ID: string;
-        page?: number | undefined;
-    };
-    name: {
-        primary: string;
-        aliases?: string[] | undefined;
-        specifier?: string | undefined;
-    };
-    tags?: {} | undefined;
+    } | undefined;
     reference?: {
         type: "variant" | "reprint" | "replacement" | "extension";
         target: {

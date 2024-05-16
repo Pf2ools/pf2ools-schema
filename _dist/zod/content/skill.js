@@ -1,8 +1,8 @@
 import { z } from "zod";
 import { contentTemplate } from "../contentTemplate.js";
 import { entries } from "./common/entries.js";
-export const skill = contentTemplate.merge(z
-    .object({
+export const skill = contentTemplate
+    .extend({
     type: z.literal("skill"),
     data: z
         .object({
@@ -11,4 +11,4 @@ export const skill = contentTemplate.merge(z
         .strict(),
 })
     .describe("A skill")
-    .strict());
+    .strict();

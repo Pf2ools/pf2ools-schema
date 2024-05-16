@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { sourceData, sourceTags } from "../source.js";
+import { sourceData } from "../source.js";
 import { ID } from "../content/common/ID.js";
 import { datatypes } from "./datatypes.js";
 import { nonEmpty } from "../utils/nonEmpty.js";
@@ -18,7 +18,6 @@ export const homebrewSourceSummary = sourceData
         .string()
         .describe("The homebrew source's publisher. If it doesn't have a publisher, this value is instead a comma-separated list of the homebrew source's authors (truncated by \"et al.\" after 3 names).")
         .min(1),
-    tags: sourceTags,
     datatypes: datatypes.describe("A list of the datatypes this homebrew source contains."),
     sourceURL: z
         .string()
