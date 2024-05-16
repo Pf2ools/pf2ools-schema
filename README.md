@@ -1,17 +1,16 @@
 # The Pf2ools Schema
 
-A project in the [Pf2ools](https://github.com/Pf2ools) ecosystem to define a [JSON schema](http://json-schema.org/) for Pathfinder 2nd Edition game content. We also include a parallel, mostly identical [Zod schema](https://zod.dev/) for TypeScript users!
+A project in the [Pf2ools](https://github.com/Pf2ools) ecosystem to define a schema for Pathfinder 2nd Edition game content. We use [Zod](https://zod.dev/) to development the schema in TypeScript, from which we generate a mostly identical [JSON Schema](http://json-schema.org/) for general use.
 
 - [How to validate your Pf2ools data](#how-to-validate-your-pf2ools-data)
-  - [Install and use anywhere](#install-and-use-anywhere)
-  - [Using with pf2ools-data](#using-with-pf2ools-data)
+  - [Using with Pf2ools Data](#using-with-pf2ools-data)
   - [In-editor validation](#in-editor-validation)
 - [Contributing](#contributing)
 - [Legal](#legal)
 
 ## How to validate your Pf2ools data
 
-Pf2ools Schema has one function and one function only: to validate JSON data in the Pf2ools ecosystem. The package has a simple syntax:
+Beyond providing TypeScript types for developers, the Pf2ools Schema validates JSON data for the Pf2ools ecosystem. You can validate files using this simple syntax:
 
 ```
 npx pf2ools-schema [--options ...] <paths ...>
@@ -24,7 +23,7 @@ You can learn about the available options using `npx pf2ools-schema --help`.
 #### Example
 
 ```console
-$ npx pf2ools-schema -rat zod ./myFile.json ./myDirectory
+$ npx pf2ools-schema -ar ./myFile.json ./myDirectory
 	[Passed]  myFile.json
 	[Passed]  myDirectory/file1.json
 	[Failed]  myDirectory/file2.json
@@ -33,30 +32,24 @@ $ npx pf2ools-schema -rat zod ./myFile.json ./myDirectory
 ```
 
 > [!IMPORTANT]
-> Pf2ools Schema requires you install [NodeJS](https://nodejs.org/) first.
+> Pf2ools Schema requires you install [NodeJS](https://nodejs.org/) and its package manager, [npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm), first.
 
-### Install and use anywhere
+### Using with [Pf2ools Data](https://github.com/Pf2ools/pf2ools-data)
 
-1. Open a terminal.
-2. Run `npm install -g pf2ools-schema`.
-3. You can now run `npx pf2ools-schema` anywhere you like on that computer.
+If you've made a local clone of the [Pf2ools Data](https://github.com/Pf2ools/pf2ools-data) repository, you can make use of the Pf2ools Schema automatically.
 
-Remember to run `npm update -g pf2ools-schema` whenever the schema changes!
+First run `npm i` within your cloned directory to install the latest dependencies. You can then either run `npx pf2ools-schema` as above to validate something in the repo, or you can use `npm run test:data` to test _everything_. Note that the latter might take a while, so it's not worth the effort if you're just working on a small piece!
 
-### Using with [pf2ools-data](https://github.com/Pf2ools/pf2ools-data)
-
-If you've made a local clone of the [Pf2ools Data](https://github.com/Pf2ools/pf2ools-data) repository, you can make use of the Pf2ools Schema automatically by running `npm i`.
-
-From there you can either run `npx pf2ools-schema` as above to validate something in the repo, or you can use `npm run test:data` to test _everything_. Note that the latter might take a while, and it's not worth the effort if you're just working on a small piece!
+Remember to re-run `npm i` whenever the schema changes!
 
 ### In-editor validation
 
-If your code editor supports automatic schema validation, you can point it to [this](https://raw.githubusercontent.com/Pf2ools/pf2ools-schema/master/schema/_schema.json) file.
+If your code editor supports automatic schema validation, you can point it to [this](https://raw.githubusercontent.com/Pf2ools/pf2ools-schema/master/_dist/schema/data.json) file.
 
-Alternatively, if your editor supports implicit schema validation, you can add this line to the top of a JSON file.
+Alternatively, if your editor supports implicit schema validation, you can add this property to the top level of your JSON file.
 
 ```json
-"$schema": "https://raw.githubusercontent.com/Pf2ools/pf2ools-schema/master/schema/_schema.json",
+"$schema": "https://raw.githubusercontent.com/Pf2ools/pf2ools-schema/master/_dist/schema/data.json"
 ```
 
 ## Contributing
