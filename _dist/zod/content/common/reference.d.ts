@@ -1,5 +1,5 @@
 import { z } from "zod";
-export declare const reference: z.ZodObject<{
+export declare const reference: z.ZodEffects<z.ZodObject<{
     type: z.ZodEnum<["reprint", "variant", "replacement", "extension"]>;
     target: z.ZodObject<{
         name: z.ZodString;
@@ -71,6 +71,36 @@ export declare const reference: z.ZodObject<{
         value?: string | number | boolean | any[] | z.objectInputType<{}, z.ZodTypeAny, "passthrough"> | undefined;
     }[]>>;
 }, "strict", z.ZodTypeAny, {
+    type: "variant" | "reprint" | "replacement" | "extension";
+    target: {
+        name: string;
+        sourceID: string;
+        specifier?: string | undefined;
+    };
+    modifications?: {
+        type: string;
+        target: {
+            property: string;
+            name?: string | undefined;
+        };
+        value?: string | number | boolean | any[] | z.objectOutputType<{}, z.ZodTypeAny, "passthrough"> | undefined;
+    }[] | undefined;
+}, {
+    type: "variant" | "reprint" | "replacement" | "extension";
+    target: {
+        name: string;
+        sourceID: string;
+        specifier?: string | undefined;
+    };
+    modifications?: {
+        type: string;
+        target: {
+            property: string;
+            name?: string | undefined;
+        };
+        value?: string | number | boolean | any[] | z.objectInputType<{}, z.ZodTypeAny, "passthrough"> | undefined;
+    }[] | undefined;
+}>, {
     type: "variant" | "reprint" | "replacement" | "extension";
     target: {
         name: string;
