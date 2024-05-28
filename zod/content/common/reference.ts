@@ -22,7 +22,7 @@ export const reference = z
 								.describe(
 									'A dot-separated hierarchy of properties leading to the target from the top-level `data` (e.g. "castingTime.unit").',
 								)
-								.regex(/^\w+(?:\.\w+)+&/, "Invalid property accessor"),
+								.regex(/^\w+(?:\.\w+)*$/, "Invalid property accessor"),
 							name: z
 								.string()
 								.describe(
@@ -52,4 +52,5 @@ export const reference = z
 	.describe(
 		"An explicit reference to some other content, possibly with modifications applied on top. The referenced content's type is always assumed to be the same as the referring content.",
 	)
-	.strict();
+	.strict()
+	.refine((obj) => (obj.type !== "reprint" ? !!obj.modifications : true), "This reference doesn't make sense.");

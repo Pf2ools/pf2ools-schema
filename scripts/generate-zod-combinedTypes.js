@@ -31,8 +31,8 @@ for (const file of relativeFiles) {
 
 // Define `.refine()` calls on the combined type
 const REFINE = `.refine(
-	(content) => (content.reference ? !!content.data !== !!content.reference.modifications : content.data),
-	"\`data\` and \`reference.modifications\` cannot be used simultaneously; choose one method to describe the content.",
+	(content) => (content.reference ? (content.reference.type === "reprint" ? true : !!content.data !== !!content.reference.modifications) : content.data),
+	"Choose one of \`data\` and \`reference.modifications\` to describe the content.",
 );\n`;
 
 // Define the header of each file
