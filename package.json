@@ -9,7 +9,6 @@
 	"files": [
 		"_dist",
 		"scripts",
-		"schema",
 		"package.json"
 	],
 	"dependencies": {
@@ -24,7 +23,7 @@
 	},
 	"bin": "scripts/test-data.js",
 	"scripts": {
-		"build": "npm run -s generate && node -e \"process.stdout.write('Cleaning files... ')\" && npm run -s clean && node -p \"'Done'\"",
+		"build": "npm i && npm run -s generate && node -e \"process.stdout.write('Cleaning files... ')\" && npm run -s clean && node -p \"'Done'\"",
 		"clean": "npx prettier . --write --cache --log-level warn",
 		"generate": "npm run generate:clear && npm run generate:zod && node -e \"process.stdout.write('Compiling Typescript... ')\" && tsc && node -p \"'Done'\" && npm run generate:schema",
 		"generate:clear": "node ./scripts/generate-clear.js",
