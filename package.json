@@ -17,7 +17,7 @@
 		"zod": "^3.23.8"
 	},
 	"devDependencies": {
-		"zod-to-json-schema": "^3.23.2",
+		"zod-to-json-schema": "^3.23.3",
 		"prettier": "^3.3.3",
 		"typescript": "^5.5.4"
 	},
