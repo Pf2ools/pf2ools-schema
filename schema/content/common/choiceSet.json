@@ -1,0 +1,57 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "$id": "pf2ools-schema/content/common/choiceSet.json",
+    "title": "Choice Set",
+    "description": "A primitive array of available choices. Any array defaults to AND, and as such, there is no AND operator.",
+    "type": "array",
+    "items": {
+        "oneOf": [
+            {
+                "$ref": "#/definitions/choice"
+            },
+            {
+                "$ref": "#/definitions/operators"
+            }
+        ]
+    },
+    "definitions": {
+        "choice": {
+            "type": "string",
+            "description": "WIP - A choice that can be made. In the future we may instead use a more complex object to represent a choice, like a feat and source, but for now this is just a string."
+        },
+        "operators": {
+            "oneOf": [
+                {
+                    "$ref": "#/definitions/or"
+                },
+                {
+                    "$ref": "#/definitions/not"
+                }
+            ]
+        },
+        "or": {
+            "type": "object",
+            "description": "An array of choices that can be made. If any of the choices are made, the OR operator is satisfied.",
+            "properties": {
+                "or": {
+                    "$ref": "#"
+                }
+            },
+            "required": [
+                "or"
+            ]
+        },
+        "not": {
+            "type": "object",
+            "description": "An array of choices that are *excluded*. If none of the choices are made, the NOT operator is satisfied.",
+            "properties": {
+                "not": {
+                    "$ref": "#"
+                }
+            },
+            "required": [
+                "not"
+            ]
+        }
+    }
+}
