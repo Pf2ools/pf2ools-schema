@@ -14,7 +14,7 @@
 	"dependencies": {
 		"chalk": "^5.4.1",
 		"commander": "^13.1.0",
-		"zod": "^3.23.8"
+		"zod": "^3.24.3"
 	},
 	"devDependencies": {
 		"zod-to-json-schema": "^3.24.1",
