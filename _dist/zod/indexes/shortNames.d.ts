@@ -5,3 +5,4 @@ export declare const shortNames: z.ZodRecord<z.ZodString, z.ZodArray<z.ZodObject
     path: z.ZodString;
     official: z.ZodNullable<z.ZodBoolean>;
 }, z.core.$strip>>>;
+export type shortNamesInfer = z.infer<typeof shortNames>;

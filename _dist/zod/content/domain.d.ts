@@ -55,3 +55,4 @@ export declare const domain: z.ZodObject<{
         }, z.core.$strict>>;
     }, z.core.$strict>>;
 }, z.core.$strict>;
+export type domainInfer = z.infer<typeof domain>;

@@ -39,3 +39,4 @@ export declare const datatypes: z.ZodArray<z.ZodUnion<[z.ZodEnum<{
     license: "license";
     sourceGroup: "sourceGroup";
 }>]>>;
+export type datatypesInfer = z.infer<typeof datatypes>;

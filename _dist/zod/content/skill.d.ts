@@ -37,3 +37,4 @@ export declare const skill: z.ZodObject<{
         }, z.core.$strip>]>>;
     }, z.core.$strict>;
 }, z.core.$strict>;
+export type skillInfer = z.infer<typeof skill>;

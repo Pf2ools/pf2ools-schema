@@ -493,3 +493,4 @@ export declare const data: z.ZodUnion<[z.ZodDiscriminatedUnion<[z.ZodObject<{
         }, z.core.$strict>>;
     }, z.core.$strict>>;
 }, z.core.$strict>]>]>;
+export type dataInfer = z.infer<typeof data>;

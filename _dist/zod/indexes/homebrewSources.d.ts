@@ -132,3 +132,4 @@ export declare const homebrewSourcesRecord: z.ZodRecord<z.ZodString, z.ZodObject
     }>]>>;
     sourceURL: z.ZodOptional<z.ZodString>;
 }, z.core.$strict>>;
+export type homebrewSourcesInfer = z.infer<typeof homebrewSources>;

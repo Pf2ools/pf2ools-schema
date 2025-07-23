@@ -83,3 +83,4 @@ export declare const source: z.ZodObject<{
         }, z.core.$strict>>;
     }, z.core.$strict>;
 }, z.core.$strict>;
+export type sourceInfer = z.infer<typeof source>;

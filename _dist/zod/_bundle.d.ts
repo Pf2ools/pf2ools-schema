@@ -169,3 +169,4 @@ export declare const anyBundle: z.ZodObject<{
     relicGift: z.ZodOptional<z.ZodOptional<z.ZodArray<z.ZodObject<z.core.$ZodLooseShape, z.core.$strip>>>>;
     skill: z.ZodOptional<z.ZodOptional<z.ZodArray<z.ZodObject<z.core.$ZodLooseShape, z.core.$strip>>>>;
 }, z.core.$strip>;
+export type bundleInfer = z.infer<typeof bundle>;

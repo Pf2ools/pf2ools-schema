@@ -16,3 +16,4 @@ export declare const sourceGroup: z.ZodObject<{
         }, z.core.$strict>>;
     }, z.core.$strict>>;
 }, z.core.$strict>;
+export type sourceGroupInfer = z.infer<typeof sourceGroup>;

@@ -12,3 +12,4 @@ export declare const license: z.ZodObject<{
         }, z.core.$strip>]>>;
     }, z.core.$strict>;
 }, z.core.$strict>;
+export type licenseInfer = z.infer<typeof license>;

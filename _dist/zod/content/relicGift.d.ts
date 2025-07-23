@@ -62,3 +62,4 @@ export declare const relicGift: z.ZodObject<{
         }, z.core.$strict>>;
     }, z.core.$strict>>;
 }, z.core.$strict>;
+export type relicGiftInfer = z.infer<typeof relicGift>;

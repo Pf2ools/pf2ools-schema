@@ -11,3 +11,4 @@ export declare const IDs: z.ZodRecord<z.ZodString, z.ZodObject<{
     path: z.ZodString;
     official: z.ZodNullable<z.ZodBoolean>;
 }, z.core.$strip>>;
+export type IDsInfer = z.infer<typeof IDs>;

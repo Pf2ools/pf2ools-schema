@@ -420,3 +420,4 @@ export declare const content: z.ZodDiscriminatedUnion<[z.ZodObject<{
         }, z.core.$strip>]>>;
     }, z.core.$strict>;
 }, z.core.$strict>]>;
+export type contentInfer = z.infer<typeof content>;

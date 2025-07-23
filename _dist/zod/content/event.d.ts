@@ -66,3 +66,4 @@ export declare const event: z.ZodObject<{
         }, z.core.$strip>]>>;
     }, z.core.$strict>>;
 }, z.core.$strict>;
+export type eventInfer = z.infer<typeof event>;

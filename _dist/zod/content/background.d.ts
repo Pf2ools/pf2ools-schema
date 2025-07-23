@@ -103,3 +103,4 @@ export declare const background: z.ZodObject<{
         }, z.core.$strict>>;
     }, z.core.$strict>>;
 }, z.core.$strict>;
+export type backgroundInfer = z.infer<typeof background>;

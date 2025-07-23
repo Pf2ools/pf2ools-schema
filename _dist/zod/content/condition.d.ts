@@ -46,3 +46,4 @@ export declare const condition: z.ZodObject<{
         }, z.core.$strict>>;
     }, z.core.$strict>>;
 }, z.core.$strict>;
+export type conditionInfer = z.infer<typeof condition>;

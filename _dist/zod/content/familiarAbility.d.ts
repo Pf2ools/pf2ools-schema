@@ -51,3 +51,4 @@ export declare const familiarAbility: z.ZodObject<{
         }, z.core.$strict>>;
     }, z.core.$strict>>;
 }, z.core.$strict>;
+export type familiarAbilityInfer = z.infer<typeof familiarAbility>;
