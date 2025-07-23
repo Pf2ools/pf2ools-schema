@@ -13,12 +13,12 @@
 	],
 	"dependencies": {
 		"chalk": "^5.4.1",
-		"commander": "^13.1.0",
-		"zod": "^3.24.3"
+		"commander": "^14.0.0",
+		"zod": "^4.0.5"
 	},
 	"devDependencies": {
-		"zod-to-json-schema": "^3.24.5",
-		"prettier": "^3.5.3",
+		"zod-to-json-schema": "^3.24.6",
+		"prettier": "^3.6.2",
 		"typescript": "^5.8.3"
 	},
 	"bin": "scripts/test-data.js",
