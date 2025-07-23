@@ -23,12 +23,12 @@
 	},
 	"bin": "scripts/test-data.js",
 	"scripts": {
-		"build": "npm i && npm run -s generate && node -e \"process.stdout.write('Cleaning files... ')\" && npm run -s clean && node -p \"'Done'\"",
+		"build": "bun i && bun run generate && node -e \"process.stdout.write('Cleaning files... ')\" && bun run clean && node -p \"'Done'\"",
 		"clean": "npx prettier . --write --cache --log-level warn",
-		"generate": "npm run generate:clear && npm run generate:zod && node -e \"process.stdout.write('Compiling Typescript... ')\" && tsc && node -p \"'Done'\" && npm run generate:schema",
+		"generate": "bun run generate:clear && bun run generate:zod && node -e \"process.stdout.write('Compiling Typescript... ')\" && tsc && node -p \"'Done'\" && bun run generate:schema",
 		"generate:clear": "node ./scripts/generate-clear.js",
 		"generate:schema": "node ./scripts/generate-schema.js",
-		"generate:zod": "npm run -s generate:zod:combinedTypes && npm run -s generate:zod:index",
+		"generate:zod": "bun run generate:zod:combinedTypes && bun run generate:zod:index",
 		"generate:zod:combinedTypes": "node ./scripts/generate-zod-combinedTypes.js ./zod -re ./zod/utils ./zod/content/constants ./zod/content/common",
 		"generate:zod:index": "node ./scripts/generate-zod-index.js ./zod -r -e ./zod/utils ./zod/content/constants ./zod/content/common"
 	},
