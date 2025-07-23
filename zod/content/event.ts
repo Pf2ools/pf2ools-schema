@@ -26,3 +26,5 @@ export const event = contentTemplate
 	})
 	.describe("An event")
 	.strict();
+
+export type eventInfer = z.infer<typeof event>;

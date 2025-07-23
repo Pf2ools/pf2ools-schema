@@ -27,3 +27,5 @@ export const IDs = z
 	.describe(
 		"An object mapping IDs as keys to an object containing some basic information about the data assigned that ID.",
 	);
+
+export type IDsInfer = z.infer<typeof IDs>;

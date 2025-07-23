@@ -14,3 +14,5 @@ export const datatype = contentDatatype
 	.describe("A datatype's name, as it appears in the JSON data itself.");
 
 export const datatypes = z.array(datatype).describe("A list of datatypes used by pf2ools-data.").min(1);
+
+export type datatypesInfer = z.infer<typeof datatypes>;

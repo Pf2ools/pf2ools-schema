@@ -47,3 +47,5 @@ export const homebrewSourcesRecord = z
 		"An object mapping IDs as keys to an object containing some summary data about the homebrew source assigned that ID.",
 	)
 	.refine(...nonEmpty);
+
+export type homebrewSourcesInfer = z.infer<typeof homebrewSources>;

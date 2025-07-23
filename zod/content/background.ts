@@ -139,3 +139,5 @@ export const background = contentTemplate
 	})
 	.describe("A condition")
 	.strict();
+
+export type backgroundInfer = z.infer<typeof background>;

@@ -26,7 +26,7 @@ for (const file of relativeFiles) {
 		lastDir = path.dirname(file);
 		indexTS += `\n// ${path.dirname(file).replace(/^.*\//, "")}\n`;
 	}
-	indexTS += `export { ${path.basename(file, ".ts").replace(/^_/, "")} } from "./${file.replace(
+	indexTS += `export { ${path.basename(file, ".ts").replace(/^_/, "")}, type ${path.basename(file, ".ts").replace(/^_/, "")}Infer  } from "./${file.replace(
 		/\.ts$/,
 		"",
 	)}.js";\n`;

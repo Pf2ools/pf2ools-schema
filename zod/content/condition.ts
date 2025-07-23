@@ -51,3 +51,5 @@ export const condition = contentTemplate
 	})
 	.describe("A condition")
 	.strict();
+
+export type conditionInfer = z.infer<typeof condition>;

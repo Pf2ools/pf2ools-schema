@@ -14,3 +14,5 @@ export const skill = contentTemplate
 	})
 	.describe("A skill")
 	.strict();
+
+export type skillInfer = z.infer<typeof skill>;

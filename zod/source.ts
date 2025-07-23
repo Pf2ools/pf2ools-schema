@@ -231,3 +231,5 @@ export const source = z
 		data: sourceData,
 	})
 	.strict();
+
+export type sourceInfer = z.infer<typeof source>;

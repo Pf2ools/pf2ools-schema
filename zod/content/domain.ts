@@ -28,3 +28,5 @@ export const domain = contentTemplate
 	})
 	.describe("A domain (for a religion)")
 	.strict();
+
+export type domainInfer = z.infer<typeof domain>;

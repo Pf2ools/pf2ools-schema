@@ -14,3 +14,5 @@ export const contentTemplate = z
 	})
 	.describe("This is the general form of 'content' files (e.g. statblocks).")
 	.strict();
+
+export type contentTemplateInfer = z.infer<typeof contentTemplate>;

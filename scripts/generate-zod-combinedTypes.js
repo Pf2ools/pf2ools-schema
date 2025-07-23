@@ -55,6 +55,7 @@ fs.writeFileSync(
 		contentTypes.join(",\n\t"),
 		",\n])",
 		REFINE,
+		"export type contentInfer = z.infer<typeof content>;\n",
 	),
 );
 console.log(chalk.green(`Generated ${chalk.italic("content")} type file`));
@@ -77,6 +78,7 @@ fs.writeFileSync(
 		"\n\n",
 		'import { content } from "./_content.js";\n',
 		"export const data = content.or(metaType);\n",
+		"export type dataInfer = z.infer<typeof data>;\n",
 	),
 );
 console.log(chalk.green(`Generated ${chalk.italic("data")} type file`));
@@ -102,6 +104,7 @@ fs.writeFileSync(
 		"\n\n",
 		'import { nonEmpty } from "./utils/nonEmpty.js";\n',
 		"export const anyBundle = bundle.partial().refine(...nonEmpty);\n",
+		"export type bundleInfer = z.infer<typeof bundle>;\n",
 	),
 );
 console.log(chalk.green(`Generated ${chalk.italic("bundle")} types file`));

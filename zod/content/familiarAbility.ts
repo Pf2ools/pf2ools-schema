@@ -57,3 +57,5 @@ export const familiarAbility = contentTemplate
 	})
 	.describe("A familiar ability")
 	.strict();
+
+export type familiarAbilityInfer = z.infer<typeof familiarAbility>;

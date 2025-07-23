@@ -7,3 +7,5 @@ export const shortNames = z
 	.describe(
 		"An object mapping `shortName`s as keys to an array of objects, each object containing some basic information about some data with that `shortName`.",
 	);
+
+export type shortNamesInfer = z.infer<typeof shortNames>;

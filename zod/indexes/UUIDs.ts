@@ -8,3 +8,5 @@ export const UUIDs = z.record(
 		.regex(/^[^@|]+\|[a-zA-Z0-9-][a-zA-Z0-9-]+\|[^@|]*$/, "Invalid UUID"),
 	z.string().describe("A relative path to the file with that UUID.").min(1),
 );
+
+export type UUIDsInfer = z.infer<typeof UUIDs>;

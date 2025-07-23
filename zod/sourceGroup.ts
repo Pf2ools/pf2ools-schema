@@ -66,3 +66,5 @@ export const sourceGroup = z
 		"A `sourceGroup` object defines the existence of a group of sources. Tautology aside, this is used to describe adventure paths, book series, and the like.",
 	)
 	.strict();
+
+export type sourceGroupInfer = z.infer<typeof sourceGroup>;

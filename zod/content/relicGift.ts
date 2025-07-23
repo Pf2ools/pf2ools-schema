@@ -92,3 +92,5 @@ export const relicGift = contentTemplate
 	})
 	.describe("A relic gift")
 	.strict();
+
+export type relicGiftInfer = z.infer<typeof relicGift>;

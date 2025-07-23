@@ -32,3 +32,5 @@ export const license = z
 		// Licenses don't have `tags` because Pf2ools isn't a law organisation. It's probably not a good idea to be making judgements about legal stuff; there are better services out there for that.
 	})
 	.strict();
+
+export type licenseInfer = z.infer<typeof license>;
