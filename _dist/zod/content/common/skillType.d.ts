@@ -1,14 +1,24 @@
 import { z } from "zod";
 export declare const skillType: z.ZodObject<{
-    skill: z.ZodEnum<["Acrobatics", "Arcana", "Athletics", "Crafting", "Deception", "Diplomacy", "Intimidation", "Lore", "Medicine", "Nature", "Occultism", "Performance", "Religion", "Society", "Stealth", "Survival", "Thievery"]>;
-    variables: z.ZodOptional<z.ZodEffects<z.ZodArray<z.ZodString, "many">, string[], string[]>>;
+    skill: z.ZodEnum<{
+        Acrobatics: "Acrobatics";
+        Arcana: "Arcana";
+        Athletics: "Athletics";
+        Crafting: "Crafting";
+        Deception: "Deception";
+        Diplomacy: "Diplomacy";
+        Intimidation: "Intimidation";
+        Lore: "Lore";
+        Medicine: "Medicine";
+        Nature: "Nature";
+        Occultism: "Occultism";
+        Performance: "Performance";
+        Religion: "Religion";
+        Society: "Society";
+        Stealth: "Stealth";
+        Survival: "Survival";
+        Thievery: "Thievery";
+    }>;
+    variables: z.ZodOptional<z.ZodArray<z.ZodString>>;
     display: z.ZodOptional<z.ZodString>;
-}, "strict", z.ZodTypeAny, {
-    skill: "Acrobatics" | "Arcana" | "Athletics" | "Crafting" | "Deception" | "Diplomacy" | "Intimidation" | "Lore" | "Medicine" | "Nature" | "Occultism" | "Performance" | "Religion" | "Society" | "Stealth" | "Survival" | "Thievery";
-    display?: string | undefined;
-    variables?: string[] | undefined;
-}, {
-    skill: "Acrobatics" | "Arcana" | "Athletics" | "Crafting" | "Deception" | "Diplomacy" | "Intimidation" | "Lore" | "Medicine" | "Nature" | "Occultism" | "Performance" | "Religion" | "Society" | "Stealth" | "Survival" | "Thievery";
-    display?: string | undefined;
-    variables?: string[] | undefined;
-}>;
+}, z.core.$strict>;

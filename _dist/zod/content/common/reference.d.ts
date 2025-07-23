@@ -1,133 +1,22 @@
 import { z } from "zod";
-export declare const reference: z.ZodEffects<z.ZodObject<{
-    type: z.ZodEnum<["reprint", "variant", "replacement", "extension"]>;
+export declare const reference: z.ZodObject<{
+    type: z.ZodEnum<{
+        variant: "variant";
+        reprint: "reprint";
+        replacement: "replacement";
+        extension: "extension";
+    }>;
     target: z.ZodObject<{
         name: z.ZodString;
         specifier: z.ZodOptional<z.ZodString>;
-        sourceID: z.ZodEffects<z.ZodString, string, string>;
-    }, "strict", z.ZodTypeAny, {
-        name: string;
-        sourceID: string;
-        specifier?: string | undefined;
-    }, {
-        name: string;
-        sourceID: string;
-        specifier?: string | undefined;
-    }>;
-    modifications: z.ZodOptional<z.ZodEffects<z.ZodArray<z.ZodEffects<z.ZodObject<{
+        sourceID: z.ZodString;
+    }, z.core.$strict>;
+    modifications: z.ZodOptional<z.ZodArray<z.ZodObject<{
         type: z.ZodString;
         target: z.ZodObject<{
             property: z.ZodString;
             name: z.ZodOptional<z.ZodString>;
-        }, "strip", z.ZodTypeAny, {
-            property: string;
-            name?: string | undefined;
-        }, {
-            property: string;
-            name?: string | undefined;
-        }>;
-        value: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber, z.ZodObject<{}, "passthrough", z.ZodTypeAny, z.objectOutputType<{}, z.ZodTypeAny, "passthrough">, z.objectInputType<{}, z.ZodTypeAny, "passthrough">>, z.ZodArray<z.ZodAny, "many">, z.ZodBoolean]>>;
-    }, "strip", z.ZodTypeAny, {
-        type: string;
-        target: {
-            property: string;
-            name?: string | undefined;
-        };
-        value?: string | number | boolean | any[] | z.objectOutputType<{}, z.ZodTypeAny, "passthrough"> | undefined;
-    }, {
-        type: string;
-        target: {
-            property: string;
-            name?: string | undefined;
-        };
-        value?: string | number | boolean | any[] | z.objectInputType<{}, z.ZodTypeAny, "passthrough"> | undefined;
-    }>, {
-        type: string;
-        target: {
-            property: string;
-            name?: string | undefined;
-        };
-        value?: string | number | boolean | any[] | z.objectOutputType<{}, z.ZodTypeAny, "passthrough"> | undefined;
-    }, {
-        type: string;
-        target: {
-            property: string;
-            name?: string | undefined;
-        };
-        value?: string | number | boolean | any[] | z.objectInputType<{}, z.ZodTypeAny, "passthrough"> | undefined;
-    }>, "many">, {
-        type: string;
-        target: {
-            property: string;
-            name?: string | undefined;
-        };
-        value?: string | number | boolean | any[] | z.objectOutputType<{}, z.ZodTypeAny, "passthrough"> | undefined;
-    }[], {
-        type: string;
-        target: {
-            property: string;
-            name?: string | undefined;
-        };
-        value?: string | number | boolean | any[] | z.objectInputType<{}, z.ZodTypeAny, "passthrough"> | undefined;
-    }[]>>;
-}, "strict", z.ZodTypeAny, {
-    type: "variant" | "reprint" | "replacement" | "extension";
-    target: {
-        name: string;
-        sourceID: string;
-        specifier?: string | undefined;
-    };
-    modifications?: {
-        type: string;
-        target: {
-            property: string;
-            name?: string | undefined;
-        };
-        value?: string | number | boolean | any[] | z.objectOutputType<{}, z.ZodTypeAny, "passthrough"> | undefined;
-    }[] | undefined;
-}, {
-    type: "variant" | "reprint" | "replacement" | "extension";
-    target: {
-        name: string;
-        sourceID: string;
-        specifier?: string | undefined;
-    };
-    modifications?: {
-        type: string;
-        target: {
-            property: string;
-            name?: string | undefined;
-        };
-        value?: string | number | boolean | any[] | z.objectInputType<{}, z.ZodTypeAny, "passthrough"> | undefined;
-    }[] | undefined;
-}>, {
-    type: "variant" | "reprint" | "replacement" | "extension";
-    target: {
-        name: string;
-        sourceID: string;
-        specifier?: string | undefined;
-    };
-    modifications?: {
-        type: string;
-        target: {
-            property: string;
-            name?: string | undefined;
-        };
-        value?: string | number | boolean | any[] | z.objectOutputType<{}, z.ZodTypeAny, "passthrough"> | undefined;
-    }[] | undefined;
-}, {
-    type: "variant" | "reprint" | "replacement" | "extension";
-    target: {
-        name: string;
-        sourceID: string;
-        specifier?: string | undefined;
-    };
-    modifications?: {
-        type: string;
-        target: {
-            property: string;
-            name?: string | undefined;
-        };
-        value?: string | number | boolean | any[] | z.objectInputType<{}, z.ZodTypeAny, "passthrough"> | undefined;
-    }[] | undefined;
-}>;
+        }, z.core.$strip>;
+        value: z.ZodOptional<z.ZodUnion<readonly [z.ZodString, z.ZodNumber, z.ZodObject<{}, z.core.$loose>, z.ZodArray<z.ZodAny>, z.ZodBoolean]>>;
+    }, z.core.$strip>>>;
+}, z.core.$strict>;

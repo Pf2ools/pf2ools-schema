@@ -1,5 +1,41 @@
 import { z } from "zod";
-export declare const contentDatatype: z.ZodEnum<["background", "condition", "domain", "event", "familiarAbility", "relicGift", "skill"]>;
-export declare const metaDatatype: z.ZodEnum<["license", "source", "sourceGroup"]>;
-export declare const datatype: z.ZodUnion<[z.ZodEnum<["background", "condition", "domain", "event", "familiarAbility", "relicGift", "skill"]>, z.ZodEnum<["license", "source", "sourceGroup"]>]>;
-export declare const datatypes: z.ZodArray<z.ZodUnion<[z.ZodEnum<["background", "condition", "domain", "event", "familiarAbility", "relicGift", "skill"]>, z.ZodEnum<["license", "source", "sourceGroup"]>]>, "many">;
+export declare const contentDatatype: z.ZodEnum<{
+    background: "background";
+    event: "event";
+    condition: "condition";
+    domain: "domain";
+    skill: "skill";
+    familiarAbility: "familiarAbility";
+    relicGift: "relicGift";
+}>;
+export declare const metaDatatype: z.ZodEnum<{
+    source: "source";
+    license: "license";
+    sourceGroup: "sourceGroup";
+}>;
+export declare const datatype: z.ZodUnion<[z.ZodEnum<{
+    background: "background";
+    event: "event";
+    condition: "condition";
+    domain: "domain";
+    skill: "skill";
+    familiarAbility: "familiarAbility";
+    relicGift: "relicGift";
+}>, z.ZodEnum<{
+    source: "source";
+    license: "license";
+    sourceGroup: "sourceGroup";
+}>]>;
+export declare const datatypes: z.ZodArray<z.ZodUnion<[z.ZodEnum<{
+    background: "background";
+    event: "event";
+    condition: "condition";
+    domain: "domain";
+    skill: "skill";
+    familiarAbility: "familiarAbility";
+    relicGift: "relicGift";
+}>, z.ZodEnum<{
+    source: "source";
+    license: "license";
+    sourceGroup: "sourceGroup";
+}>]>>;

@@ -1,11 +1,5 @@
 import { z } from "zod";
 export declare const contentSource: z.ZodObject<{
-    ID: z.ZodEffects<z.ZodString, string, string>;
+    ID: z.ZodString;
     page: z.ZodOptional<z.ZodNumber>;
-}, "strict", z.ZodTypeAny, {
-    ID: string;
-    page?: number | undefined;
-}, {
-    ID: string;
-    page?: number | undefined;
-}>;
+}, z.core.$strict>;

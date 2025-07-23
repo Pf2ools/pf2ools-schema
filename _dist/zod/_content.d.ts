@@ -1,299 +1,96 @@
 import { z } from "zod";
-export declare const content: z.ZodEffects<z.ZodDiscriminatedUnion<"type", [z.ZodObject<z.objectUtil.extendShape<{
-    type: z.ZodString;
-    name: z.ZodEffects<z.ZodObject<{
-        primary: z.ZodEffects<z.ZodString, string, string>;
-        aliases: z.ZodOptional<z.ZodEffects<z.ZodArray<z.ZodString, "many">, string[], string[]>>;
-        specifier: z.ZodOptional<z.ZodEffects<z.ZodString, string, string>>;
-    }, "strict", z.ZodTypeAny, {
-        primary: string;
-        aliases?: string[] | undefined;
-        specifier?: string | undefined;
-    }, {
-        primary: string;
-        aliases?: string[] | undefined;
-        specifier?: string | undefined;
-    }>, {
-        primary: string;
-        aliases?: string[] | undefined;
-        specifier?: string | undefined;
-    }, {
-        primary: string;
-        aliases?: string[] | undefined;
-        specifier?: string | undefined;
-    }>;
+export declare const content: z.ZodDiscriminatedUnion<[z.ZodObject<{
+    name: z.ZodObject<{
+        primary: z.ZodString;
+        aliases: z.ZodOptional<z.ZodArray<z.ZodString>>;
+        specifier: z.ZodOptional<z.ZodString>;
+    }, z.core.$strict>;
     source: z.ZodObject<{
-        ID: z.ZodEffects<z.ZodString, string, string>;
+        ID: z.ZodString;
         page: z.ZodOptional<z.ZodNumber>;
-    }, "strict", z.ZodTypeAny, {
-        ID: string;
-        page?: number | undefined;
-    }, {
-        ID: string;
-        page?: number | undefined;
-    }>;
-    data: z.ZodOptional<z.ZodObject<{}, "strip", z.ZodTypeAny, {}, {}>>;
-    reference: z.ZodOptional<z.ZodEffects<z.ZodObject<{
-        type: z.ZodEnum<["reprint", "variant", "replacement", "extension"]>;
+    }, z.core.$strict>;
+    reference: z.ZodOptional<z.ZodObject<{
+        type: z.ZodEnum<{
+            variant: "variant";
+            reprint: "reprint";
+            replacement: "replacement";
+            extension: "extension";
+        }>;
         target: z.ZodObject<{
             name: z.ZodString;
             specifier: z.ZodOptional<z.ZodString>;
-            sourceID: z.ZodEffects<z.ZodString, string, string>;
-        }, "strict", z.ZodTypeAny, {
-            name: string;
-            sourceID: string;
-            specifier?: string | undefined;
-        }, {
-            name: string;
-            sourceID: string;
-            specifier?: string | undefined;
-        }>;
-        modifications: z.ZodOptional<z.ZodEffects<z.ZodArray<z.ZodEffects<z.ZodObject<{
+            sourceID: z.ZodString;
+        }, z.core.$strict>;
+        modifications: z.ZodOptional<z.ZodArray<z.ZodObject<{
             type: z.ZodString;
             target: z.ZodObject<{
                 property: z.ZodString;
                 name: z.ZodOptional<z.ZodString>;
-            }, "strip", z.ZodTypeAny, {
-                property: string;
-                name?: string | undefined;
-            }, {
-                property: string;
-                name?: string | undefined;
-            }>;
-            value: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber, z.ZodObject<{}, "passthrough", z.ZodTypeAny, z.objectOutputType<{}, z.ZodTypeAny, "passthrough">, z.objectInputType<{}, z.ZodTypeAny, "passthrough">>, z.ZodArray<z.ZodAny, "many">, z.ZodBoolean]>>;
-        }, "strip", z.ZodTypeAny, {
-            type: string;
-            target: {
-                property: string;
-                name?: string | undefined;
-            };
-            value?: string | number | boolean | any[] | z.objectOutputType<{}, z.ZodTypeAny, "passthrough"> | undefined;
-        }, {
-            type: string;
-            target: {
-                property: string;
-                name?: string | undefined;
-            };
-            value?: string | number | boolean | any[] | z.objectInputType<{}, z.ZodTypeAny, "passthrough"> | undefined;
-        }>, {
-            type: string;
-            target: {
-                property: string;
-                name?: string | undefined;
-            };
-            value?: string | number | boolean | any[] | z.objectOutputType<{}, z.ZodTypeAny, "passthrough"> | undefined;
-        }, {
-            type: string;
-            target: {
-                property: string;
-                name?: string | undefined;
-            };
-            value?: string | number | boolean | any[] | z.objectInputType<{}, z.ZodTypeAny, "passthrough"> | undefined;
-        }>, "many">, {
-            type: string;
-            target: {
-                property: string;
-                name?: string | undefined;
-            };
-            value?: string | number | boolean | any[] | z.objectOutputType<{}, z.ZodTypeAny, "passthrough"> | undefined;
-        }[], {
-            type: string;
-            target: {
-                property: string;
-                name?: string | undefined;
-            };
-            value?: string | number | boolean | any[] | z.objectInputType<{}, z.ZodTypeAny, "passthrough"> | undefined;
-        }[]>>;
-    }, "strict", z.ZodTypeAny, {
-        type: "variant" | "reprint" | "replacement" | "extension";
-        target: {
-            name: string;
-            sourceID: string;
-            specifier?: string | undefined;
-        };
-        modifications?: {
-            type: string;
-            target: {
-                property: string;
-                name?: string | undefined;
-            };
-            value?: string | number | boolean | any[] | z.objectOutputType<{}, z.ZodTypeAny, "passthrough"> | undefined;
-        }[] | undefined;
-    }, {
-        type: "variant" | "reprint" | "replacement" | "extension";
-        target: {
-            name: string;
-            sourceID: string;
-            specifier?: string | undefined;
-        };
-        modifications?: {
-            type: string;
-            target: {
-                property: string;
-                name?: string | undefined;
-            };
-            value?: string | number | boolean | any[] | z.objectInputType<{}, z.ZodTypeAny, "passthrough"> | undefined;
-        }[] | undefined;
-    }>, {
-        type: "variant" | "reprint" | "replacement" | "extension";
-        target: {
-            name: string;
-            sourceID: string;
-            specifier?: string | undefined;
-        };
-        modifications?: {
-            type: string;
-            target: {
-                property: string;
-                name?: string | undefined;
-            };
-            value?: string | number | boolean | any[] | z.objectOutputType<{}, z.ZodTypeAny, "passthrough"> | undefined;
-        }[] | undefined;
-    }, {
-        type: "variant" | "reprint" | "replacement" | "extension";
-        target: {
-            name: string;
-            sourceID: string;
-            specifier?: string | undefined;
-        };
-        modifications?: {
-            type: string;
-            target: {
-                property: string;
-                name?: string | undefined;
-            };
-            value?: string | number | boolean | any[] | z.objectInputType<{}, z.ZodTypeAny, "passthrough"> | undefined;
-        }[] | undefined;
-    }>>;
-}, {
+            }, z.core.$strip>;
+            value: z.ZodOptional<z.ZodUnion<readonly [z.ZodString, z.ZodNumber, z.ZodObject<{}, z.core.$loose>, z.ZodArray<z.ZodAny>, z.ZodBoolean]>>;
+        }, z.core.$strip>>>;
+    }, z.core.$strict>>;
     type: z.ZodLiteral<"background">;
     data: z.ZodOptional<z.ZodObject<{
-        traits: z.ZodOptional<z.ZodEffects<z.ZodArray<z.ZodObject<{
+        traits: z.ZodOptional<z.ZodArray<z.ZodObject<{
             trait: z.ZodString;
-            variables: z.ZodOptional<z.ZodEffects<z.ZodArray<z.ZodString, "many">, string[], string[]>>;
+            variables: z.ZodOptional<z.ZodArray<z.ZodString>>;
             display: z.ZodOptional<z.ZodString>;
-        }, "strict", z.ZodTypeAny, {
-            trait: string;
-            display?: string | undefined;
-            variables?: string[] | undefined;
-        }, {
-            trait: string;
-            display?: string | undefined;
-            variables?: string[] | undefined;
-        }>, "many">, {
-            trait: string;
-            display?: string | undefined;
-            variables?: string[] | undefined;
-        }[], {
-            trait: string;
-            display?: string | undefined;
-            variables?: string[] | undefined;
-        }[]>>;
-        entries: z.ZodArray<z.ZodUnion<[z.ZodString, z.ZodObject<{
+        }, z.core.$strict>>>;
+        entries: z.ZodArray<z.ZodUnion<readonly [z.ZodString, z.ZodObject<{
             type: z.ZodString;
-        }, "strip", z.ZodTypeAny, {
-            type: string;
-        }, {
-            type: string;
-        }>]>, "many">;
-        _tags: z.ZodOptional<z.ZodEffects<z.ZodObject<{
+        }, z.core.$strip>]>>;
+        _tags: z.ZodOptional<z.ZodObject<{
             abilityBoosts: z.ZodOptional<z.ZodObject<{
-                abilities: z.ZodEffects<z.ZodRecord<z.ZodUnion<[z.ZodEnum<["Strength", "Dexterity", "Constitution", "Intelligence", "Wisdom", "Charisma"]>, z.ZodLiteral<"free">]>, z.ZodLiteral<true>>, Partial<Record<"Strength" | "Dexterity" | "Constitution" | "Intelligence" | "Wisdom" | "Charisma" | "free", true>>, Partial<Record<"Strength" | "Dexterity" | "Constitution" | "Intelligence" | "Wisdom" | "Charisma" | "free", true>>>;
+                abilities: z.ZodRecord<z.ZodUnion<[z.ZodEnum<{
+                    Strength: "Strength";
+                    Dexterity: "Dexterity";
+                    Constitution: "Constitution";
+                    Intelligence: "Intelligence";
+                    Wisdom: "Wisdom";
+                    Charisma: "Charisma";
+                }>, z.ZodLiteral<"free">]>, z.ZodLiteral<true>>;
                 count: z.ZodNumber;
-            }, "strict", z.ZodTypeAny, {
-                abilities: Partial<Record<"Strength" | "Dexterity" | "Constitution" | "Intelligence" | "Wisdom" | "Charisma" | "free", true>>;
-                count: number;
-            }, {
-                abilities: Partial<Record<"Strength" | "Dexterity" | "Constitution" | "Intelligence" | "Wisdom" | "Charisma" | "free", true>>;
-                count: number;
-            }>>;
+            }, z.core.$strict>>;
             trainedSkills: z.ZodOptional<z.ZodObject<{
-                skills: z.ZodEffects<z.ZodRecord<z.ZodUnion<[z.ZodEnum<["Acrobatics", "Arcana", "Athletics", "Crafting", "Deception", "Diplomacy", "Intimidation", "Lore", "Medicine", "Nature", "Occultism", "Performance", "Religion", "Society", "Stealth", "Survival", "Thievery"]>, z.ZodLiteral<"Any">]>, z.ZodLiteral<true>>, Partial<Record<"Acrobatics" | "Arcana" | "Athletics" | "Crafting" | "Deception" | "Diplomacy" | "Intimidation" | "Lore" | "Medicine" | "Nature" | "Occultism" | "Performance" | "Religion" | "Society" | "Stealth" | "Survival" | "Thievery" | "Any", true>>, Partial<Record<"Acrobatics" | "Arcana" | "Athletics" | "Crafting" | "Deception" | "Diplomacy" | "Intimidation" | "Lore" | "Medicine" | "Nature" | "Occultism" | "Performance" | "Religion" | "Society" | "Stealth" | "Survival" | "Thievery" | "Any", true>>>;
+                skills: z.ZodRecord<z.ZodUnion<[z.ZodEnum<{
+                    Acrobatics: "Acrobatics";
+                    Arcana: "Arcana";
+                    Athletics: "Athletics";
+                    Crafting: "Crafting";
+                    Deception: "Deception";
+                    Diplomacy: "Diplomacy";
+                    Intimidation: "Intimidation";
+                    Lore: "Lore";
+                    Medicine: "Medicine";
+                    Nature: "Nature";
+                    Occultism: "Occultism";
+                    Performance: "Performance";
+                    Religion: "Religion";
+                    Society: "Society";
+                    Stealth: "Stealth";
+                    Survival: "Survival";
+                    Thievery: "Thievery";
+                }>, z.ZodLiteral<"Any">]>, z.ZodLiteral<true>>;
                 count: z.ZodNumber;
-            }, "strict", z.ZodTypeAny, {
-                count: number;
-                skills: Partial<Record<"Acrobatics" | "Arcana" | "Athletics" | "Crafting" | "Deception" | "Diplomacy" | "Intimidation" | "Lore" | "Medicine" | "Nature" | "Occultism" | "Performance" | "Religion" | "Society" | "Stealth" | "Survival" | "Thievery" | "Any", true>>;
-            }, {
-                count: number;
-                skills: Partial<Record<"Acrobatics" | "Arcana" | "Athletics" | "Crafting" | "Deception" | "Diplomacy" | "Intimidation" | "Lore" | "Medicine" | "Nature" | "Occultism" | "Performance" | "Religion" | "Society" | "Stealth" | "Survival" | "Thievery" | "Any", true>>;
-            }>>;
+            }, z.core.$strict>>;
             gainedFeats: z.ZodOptional<z.ZodObject<{
-                options: z.ZodEffects<z.ZodArray<z.ZodObject<{
+                options: z.ZodArray<z.ZodObject<{
                     name: z.ZodString;
                     specifier: z.ZodOptional<z.ZodString>;
-                    sourceID: z.ZodEffects<z.ZodString, string, string>;
-                }, "strict", z.ZodTypeAny, {
-                    name: string;
-                    sourceID: string;
-                    specifier?: string | undefined;
-                }, {
-                    name: string;
-                    sourceID: string;
-                    specifier?: string | undefined;
-                }>, "many">, {
-                    name: string;
-                    sourceID: string;
-                    specifier?: string | undefined;
-                }[], {
-                    name: string;
-                    sourceID: string;
-                    specifier?: string | undefined;
-                }[]>;
+                    sourceID: z.ZodString;
+                }, z.core.$strict>>;
                 count: z.ZodNumber;
-            }, "strict", z.ZodTypeAny, {
-                options: {
-                    name: string;
-                    sourceID: string;
-                    specifier?: string | undefined;
-                }[];
-                count: number;
-            }, {
-                options: {
-                    name: string;
-                    sourceID: string;
-                    specifier?: string | undefined;
-                }[];
-                count: number;
-            }>>;
+            }, z.core.$strict>>;
             gainedSpells: z.ZodOptional<z.ZodObject<{
-                options: z.ZodEffects<z.ZodArray<z.ZodObject<{
+                options: z.ZodArray<z.ZodObject<{
                     name: z.ZodString;
                     specifier: z.ZodOptional<z.ZodString>;
-                    sourceID: z.ZodEffects<z.ZodString, string, string>;
-                }, "strict", z.ZodTypeAny, {
-                    name: string;
-                    sourceID: string;
-                    specifier?: string | undefined;
-                }, {
-                    name: string;
-                    sourceID: string;
-                    specifier?: string | undefined;
-                }>, "many">, {
-                    name: string;
-                    sourceID: string;
-                    specifier?: string | undefined;
-                }[], {
-                    name: string;
-                    sourceID: string;
-                    specifier?: string | undefined;
-                }[]>;
+                    sourceID: z.ZodString;
+                }, z.core.$strict>>;
                 count: z.ZodNumber;
-            }, "strict", z.ZodTypeAny, {
-                options: {
-                    name: string;
-                    sourceID: string;
-                    specifier?: string | undefined;
-                }[];
-                count: number;
-            }, {
-                options: {
-                    name: string;
-                    sourceID: string;
-                    specifier?: string | undefined;
-                }[];
-                count: number;
-            }>>;
-            misc: z.ZodOptional<z.ZodEffects<z.ZodObject<{
+            }, z.core.$strict>>;
+            misc: z.ZodOptional<z.ZodObject<{
                 "Grants ability": z.ZodOptional<z.ZodLiteral<true>>;
                 "Grants equipment": z.ZodOptional<z.ZodLiteral<true>>;
                 "Grants language": z.ZodOptional<z.ZodLiteral<true>>;
@@ -302,3275 +99,324 @@ export declare const content: z.ZodEffects<z.ZodDiscriminatedUnion<"type", [z.Zo
                 "Grants situational benefit": z.ZodOptional<z.ZodLiteral<true>>;
                 "Has drawback": z.ZodOptional<z.ZodLiteral<true>>;
                 "GM influence": z.ZodOptional<z.ZodLiteral<true>>;
-            }, "strict", z.ZodTypeAny, {
-                "Grants ability"?: true | undefined;
-                "Grants equipment"?: true | undefined;
-                "Grants language"?: true | undefined;
-                "Grants resistance"?: true | undefined;
-                "Grants sense"?: true | undefined;
-                "Grants situational benefit"?: true | undefined;
-                "Has drawback"?: true | undefined;
-                "GM influence"?: true | undefined;
-            }, {
-                "Grants ability"?: true | undefined;
-                "Grants equipment"?: true | undefined;
-                "Grants language"?: true | undefined;
-                "Grants resistance"?: true | undefined;
-                "Grants sense"?: true | undefined;
-                "Grants situational benefit"?: true | undefined;
-                "Has drawback"?: true | undefined;
-                "GM influence"?: true | undefined;
-            }>, {
-                "Grants ability"?: true | undefined;
-                "Grants equipment"?: true | undefined;
-                "Grants language"?: true | undefined;
-                "Grants resistance"?: true | undefined;
-                "Grants sense"?: true | undefined;
-                "Grants situational benefit"?: true | undefined;
-                "Has drawback"?: true | undefined;
-                "GM influence"?: true | undefined;
-            }, {
-                "Grants ability"?: true | undefined;
-                "Grants equipment"?: true | undefined;
-                "Grants language"?: true | undefined;
-                "Grants resistance"?: true | undefined;
-                "Grants sense"?: true | undefined;
-                "Grants situational benefit"?: true | undefined;
-                "Has drawback"?: true | undefined;
-                "GM influence"?: true | undefined;
-            }>>;
-        }, "strict", z.ZodTypeAny, {
-            misc?: {
-                "Grants ability"?: true | undefined;
-                "Grants equipment"?: true | undefined;
-                "Grants language"?: true | undefined;
-                "Grants resistance"?: true | undefined;
-                "Grants sense"?: true | undefined;
-                "Grants situational benefit"?: true | undefined;
-                "Has drawback"?: true | undefined;
-                "GM influence"?: true | undefined;
-            } | undefined;
-            abilityBoosts?: {
-                abilities: Partial<Record<"Strength" | "Dexterity" | "Constitution" | "Intelligence" | "Wisdom" | "Charisma" | "free", true>>;
-                count: number;
-            } | undefined;
-            trainedSkills?: {
-                count: number;
-                skills: Partial<Record<"Acrobatics" | "Arcana" | "Athletics" | "Crafting" | "Deception" | "Diplomacy" | "Intimidation" | "Lore" | "Medicine" | "Nature" | "Occultism" | "Performance" | "Religion" | "Society" | "Stealth" | "Survival" | "Thievery" | "Any", true>>;
-            } | undefined;
-            gainedFeats?: {
-                options: {
-                    name: string;
-                    sourceID: string;
-                    specifier?: string | undefined;
-                }[];
-                count: number;
-            } | undefined;
-            gainedSpells?: {
-                options: {
-                    name: string;
-                    sourceID: string;
-                    specifier?: string | undefined;
-                }[];
-                count: number;
-            } | undefined;
-        }, {
-            misc?: {
-                "Grants ability"?: true | undefined;
-                "Grants equipment"?: true | undefined;
-                "Grants language"?: true | undefined;
-                "Grants resistance"?: true | undefined;
-                "Grants sense"?: true | undefined;
-                "Grants situational benefit"?: true | undefined;
-                "Has drawback"?: true | undefined;
-                "GM influence"?: true | undefined;
-            } | undefined;
-            abilityBoosts?: {
-                abilities: Partial<Record<"Strength" | "Dexterity" | "Constitution" | "Intelligence" | "Wisdom" | "Charisma" | "free", true>>;
-                count: number;
-            } | undefined;
-            trainedSkills?: {
-                count: number;
-                skills: Partial<Record<"Acrobatics" | "Arcana" | "Athletics" | "Crafting" | "Deception" | "Diplomacy" | "Intimidation" | "Lore" | "Medicine" | "Nature" | "Occultism" | "Performance" | "Religion" | "Society" | "Stealth" | "Survival" | "Thievery" | "Any", true>>;
-            } | undefined;
-            gainedFeats?: {
-                options: {
-                    name: string;
-                    sourceID: string;
-                    specifier?: string | undefined;
-                }[];
-                count: number;
-            } | undefined;
-            gainedSpells?: {
-                options: {
-                    name: string;
-                    sourceID: string;
-                    specifier?: string | undefined;
-                }[];
-                count: number;
-            } | undefined;
-        }>, {
-            misc?: {
-                "Grants ability"?: true | undefined;
-                "Grants equipment"?: true | undefined;
-                "Grants language"?: true | undefined;
-                "Grants resistance"?: true | undefined;
-                "Grants sense"?: true | undefined;
-                "Grants situational benefit"?: true | undefined;
-                "Has drawback"?: true | undefined;
-                "GM influence"?: true | undefined;
-            } | undefined;
-            abilityBoosts?: {
-                abilities: Partial<Record<"Strength" | "Dexterity" | "Constitution" | "Intelligence" | "Wisdom" | "Charisma" | "free", true>>;
-                count: number;
-            } | undefined;
-            trainedSkills?: {
-                count: number;
-                skills: Partial<Record<"Acrobatics" | "Arcana" | "Athletics" | "Crafting" | "Deception" | "Diplomacy" | "Intimidation" | "Lore" | "Medicine" | "Nature" | "Occultism" | "Performance" | "Religion" | "Society" | "Stealth" | "Survival" | "Thievery" | "Any", true>>;
-            } | undefined;
-            gainedFeats?: {
-                options: {
-                    name: string;
-                    sourceID: string;
-                    specifier?: string | undefined;
-                }[];
-                count: number;
-            } | undefined;
-            gainedSpells?: {
-                options: {
-                    name: string;
-                    sourceID: string;
-                    specifier?: string | undefined;
-                }[];
-                count: number;
-            } | undefined;
-        }, {
-            misc?: {
-                "Grants ability"?: true | undefined;
-                "Grants equipment"?: true | undefined;
-                "Grants language"?: true | undefined;
-                "Grants resistance"?: true | undefined;
-                "Grants sense"?: true | undefined;
-                "Grants situational benefit"?: true | undefined;
-                "Has drawback"?: true | undefined;
-                "GM influence"?: true | undefined;
-            } | undefined;
-            abilityBoosts?: {
-                abilities: Partial<Record<"Strength" | "Dexterity" | "Constitution" | "Intelligence" | "Wisdom" | "Charisma" | "free", true>>;
-                count: number;
-            } | undefined;
-            trainedSkills?: {
-                count: number;
-                skills: Partial<Record<"Acrobatics" | "Arcana" | "Athletics" | "Crafting" | "Deception" | "Diplomacy" | "Intimidation" | "Lore" | "Medicine" | "Nature" | "Occultism" | "Performance" | "Religion" | "Society" | "Stealth" | "Survival" | "Thievery" | "Any", true>>;
-            } | undefined;
-            gainedFeats?: {
-                options: {
-                    name: string;
-                    sourceID: string;
-                    specifier?: string | undefined;
-                }[];
-                count: number;
-            } | undefined;
-            gainedSpells?: {
-                options: {
-                    name: string;
-                    sourceID: string;
-                    specifier?: string | undefined;
-                }[];
-                count: number;
-            } | undefined;
-        }>>;
-    }, "strict", z.ZodTypeAny, {
-        entries: (string | {
-            type: string;
-        })[];
-        _tags?: {
-            misc?: {
-                "Grants ability"?: true | undefined;
-                "Grants equipment"?: true | undefined;
-                "Grants language"?: true | undefined;
-                "Grants resistance"?: true | undefined;
-                "Grants sense"?: true | undefined;
-                "Grants situational benefit"?: true | undefined;
-                "Has drawback"?: true | undefined;
-                "GM influence"?: true | undefined;
-            } | undefined;
-            abilityBoosts?: {
-                abilities: Partial<Record<"Strength" | "Dexterity" | "Constitution" | "Intelligence" | "Wisdom" | "Charisma" | "free", true>>;
-                count: number;
-            } | undefined;
-            trainedSkills?: {
-                count: number;
-                skills: Partial<Record<"Acrobatics" | "Arcana" | "Athletics" | "Crafting" | "Deception" | "Diplomacy" | "Intimidation" | "Lore" | "Medicine" | "Nature" | "Occultism" | "Performance" | "Religion" | "Society" | "Stealth" | "Survival" | "Thievery" | "Any", true>>;
-            } | undefined;
-            gainedFeats?: {
-                options: {
-                    name: string;
-                    sourceID: string;
-                    specifier?: string | undefined;
-                }[];
-                count: number;
-            } | undefined;
-            gainedSpells?: {
-                options: {
-                    name: string;
-                    sourceID: string;
-                    specifier?: string | undefined;
-                }[];
-                count: number;
-            } | undefined;
-        } | undefined;
-        traits?: {
-            trait: string;
-            display?: string | undefined;
-            variables?: string[] | undefined;
-        }[] | undefined;
-    }, {
-        entries: (string | {
-            type: string;
-        })[];
-        _tags?: {
-            misc?: {
-                "Grants ability"?: true | undefined;
-                "Grants equipment"?: true | undefined;
-                "Grants language"?: true | undefined;
-                "Grants resistance"?: true | undefined;
-                "Grants sense"?: true | undefined;
-                "Grants situational benefit"?: true | undefined;
-                "Has drawback"?: true | undefined;
-                "GM influence"?: true | undefined;
-            } | undefined;
-            abilityBoosts?: {
-                abilities: Partial<Record<"Strength" | "Dexterity" | "Constitution" | "Intelligence" | "Wisdom" | "Charisma" | "free", true>>;
-                count: number;
-            } | undefined;
-            trainedSkills?: {
-                count: number;
-                skills: Partial<Record<"Acrobatics" | "Arcana" | "Athletics" | "Crafting" | "Deception" | "Diplomacy" | "Intimidation" | "Lore" | "Medicine" | "Nature" | "Occultism" | "Performance" | "Religion" | "Society" | "Stealth" | "Survival" | "Thievery" | "Any", true>>;
-            } | undefined;
-            gainedFeats?: {
-                options: {
-                    name: string;
-                    sourceID: string;
-                    specifier?: string | undefined;
-                }[];
-                count: number;
-            } | undefined;
-            gainedSpells?: {
-                options: {
-                    name: string;
-                    sourceID: string;
-                    specifier?: string | undefined;
-                }[];
-                count: number;
-            } | undefined;
-        } | undefined;
-        traits?: {
-            trait: string;
-            display?: string | undefined;
-            variables?: string[] | undefined;
-        }[] | undefined;
-    }>>;
-}>, "strict", z.ZodTypeAny, {
-    type: "background";
-    source: {
-        ID: string;
-        page?: number | undefined;
-    };
-    name: {
-        primary: string;
-        aliases?: string[] | undefined;
-        specifier?: string | undefined;
-    };
-    data?: {
-        entries: (string | {
-            type: string;
-        })[];
-        _tags?: {
-            misc?: {
-                "Grants ability"?: true | undefined;
-                "Grants equipment"?: true | undefined;
-                "Grants language"?: true | undefined;
-                "Grants resistance"?: true | undefined;
-                "Grants sense"?: true | undefined;
-                "Grants situational benefit"?: true | undefined;
-                "Has drawback"?: true | undefined;
-                "GM influence"?: true | undefined;
-            } | undefined;
-            abilityBoosts?: {
-                abilities: Partial<Record<"Strength" | "Dexterity" | "Constitution" | "Intelligence" | "Wisdom" | "Charisma" | "free", true>>;
-                count: number;
-            } | undefined;
-            trainedSkills?: {
-                count: number;
-                skills: Partial<Record<"Acrobatics" | "Arcana" | "Athletics" | "Crafting" | "Deception" | "Diplomacy" | "Intimidation" | "Lore" | "Medicine" | "Nature" | "Occultism" | "Performance" | "Religion" | "Society" | "Stealth" | "Survival" | "Thievery" | "Any", true>>;
-            } | undefined;
-            gainedFeats?: {
-                options: {
-                    name: string;
-                    sourceID: string;
-                    specifier?: string | undefined;
-                }[];
-                count: number;
-            } | undefined;
-            gainedSpells?: {
-                options: {
-                    name: string;
-                    sourceID: string;
-                    specifier?: string | undefined;
-                }[];
-                count: number;
-            } | undefined;
-        } | undefined;
-        traits?: {
-            trait: string;
-            display?: string | undefined;
-            variables?: string[] | undefined;
-        }[] | undefined;
-    } | undefined;
-    reference?: {
-        type: "variant" | "reprint" | "replacement" | "extension";
-        target: {
-            name: string;
-            sourceID: string;
-            specifier?: string | undefined;
-        };
-        modifications?: {
-            type: string;
-            target: {
-                property: string;
-                name?: string | undefined;
-            };
-            value?: string | number | boolean | any[] | z.objectOutputType<{}, z.ZodTypeAny, "passthrough"> | undefined;
-        }[] | undefined;
-    } | undefined;
-}, {
-    type: "background";
-    source: {
-        ID: string;
-        page?: number | undefined;
-    };
-    name: {
-        primary: string;
-        aliases?: string[] | undefined;
-        specifier?: string | undefined;
-    };
-    data?: {
-        entries: (string | {
-            type: string;
-        })[];
-        _tags?: {
-            misc?: {
-                "Grants ability"?: true | undefined;
-                "Grants equipment"?: true | undefined;
-                "Grants language"?: true | undefined;
-                "Grants resistance"?: true | undefined;
-                "Grants sense"?: true | undefined;
-                "Grants situational benefit"?: true | undefined;
-                "Has drawback"?: true | undefined;
-                "GM influence"?: true | undefined;
-            } | undefined;
-            abilityBoosts?: {
-                abilities: Partial<Record<"Strength" | "Dexterity" | "Constitution" | "Intelligence" | "Wisdom" | "Charisma" | "free", true>>;
-                count: number;
-            } | undefined;
-            trainedSkills?: {
-                count: number;
-                skills: Partial<Record<"Acrobatics" | "Arcana" | "Athletics" | "Crafting" | "Deception" | "Diplomacy" | "Intimidation" | "Lore" | "Medicine" | "Nature" | "Occultism" | "Performance" | "Religion" | "Society" | "Stealth" | "Survival" | "Thievery" | "Any", true>>;
-            } | undefined;
-            gainedFeats?: {
-                options: {
-                    name: string;
-                    sourceID: string;
-                    specifier?: string | undefined;
-                }[];
-                count: number;
-            } | undefined;
-            gainedSpells?: {
-                options: {
-                    name: string;
-                    sourceID: string;
-                    specifier?: string | undefined;
-                }[];
-                count: number;
-            } | undefined;
-        } | undefined;
-        traits?: {
-            trait: string;
-            display?: string | undefined;
-            variables?: string[] | undefined;
-        }[] | undefined;
-    } | undefined;
-    reference?: {
-        type: "variant" | "reprint" | "replacement" | "extension";
-        target: {
-            name: string;
-            sourceID: string;
-            specifier?: string | undefined;
-        };
-        modifications?: {
-            type: string;
-            target: {
-                property: string;
-                name?: string | undefined;
-            };
-            value?: string | number | boolean | any[] | z.objectInputType<{}, z.ZodTypeAny, "passthrough"> | undefined;
-        }[] | undefined;
-    } | undefined;
-}>, z.ZodObject<z.objectUtil.extendShape<{
-    type: z.ZodString;
-    name: z.ZodEffects<z.ZodObject<{
-        primary: z.ZodEffects<z.ZodString, string, string>;
-        aliases: z.ZodOptional<z.ZodEffects<z.ZodArray<z.ZodString, "many">, string[], string[]>>;
-        specifier: z.ZodOptional<z.ZodEffects<z.ZodString, string, string>>;
-    }, "strict", z.ZodTypeAny, {
-        primary: string;
-        aliases?: string[] | undefined;
-        specifier?: string | undefined;
-    }, {
-        primary: string;
-        aliases?: string[] | undefined;
-        specifier?: string | undefined;
-    }>, {
-        primary: string;
-        aliases?: string[] | undefined;
-        specifier?: string | undefined;
-    }, {
-        primary: string;
-        aliases?: string[] | undefined;
-        specifier?: string | undefined;
-    }>;
+            }, z.core.$strict>>;
+        }, z.core.$strict>>;
+    }, z.core.$strict>>;
+}, z.core.$strict>, z.ZodObject<{
+    name: z.ZodObject<{
+        primary: z.ZodString;
+        aliases: z.ZodOptional<z.ZodArray<z.ZodString>>;
+        specifier: z.ZodOptional<z.ZodString>;
+    }, z.core.$strict>;
     source: z.ZodObject<{
-        ID: z.ZodEffects<z.ZodString, string, string>;
+        ID: z.ZodString;
         page: z.ZodOptional<z.ZodNumber>;
-    }, "strict", z.ZodTypeAny, {
-        ID: string;
-        page?: number | undefined;
-    }, {
-        ID: string;
-        page?: number | undefined;
-    }>;
-    data: z.ZodOptional<z.ZodObject<{}, "strip", z.ZodTypeAny, {}, {}>>;
-    reference: z.ZodOptional<z.ZodEffects<z.ZodObject<{
-        type: z.ZodEnum<["reprint", "variant", "replacement", "extension"]>;
+    }, z.core.$strict>;
+    reference: z.ZodOptional<z.ZodObject<{
+        type: z.ZodEnum<{
+            variant: "variant";
+            reprint: "reprint";
+            replacement: "replacement";
+            extension: "extension";
+        }>;
         target: z.ZodObject<{
             name: z.ZodString;
             specifier: z.ZodOptional<z.ZodString>;
-            sourceID: z.ZodEffects<z.ZodString, string, string>;
-        }, "strict", z.ZodTypeAny, {
-            name: string;
-            sourceID: string;
-            specifier?: string | undefined;
-        }, {
-            name: string;
-            sourceID: string;
-            specifier?: string | undefined;
-        }>;
-        modifications: z.ZodOptional<z.ZodEffects<z.ZodArray<z.ZodEffects<z.ZodObject<{
+            sourceID: z.ZodString;
+        }, z.core.$strict>;
+        modifications: z.ZodOptional<z.ZodArray<z.ZodObject<{
             type: z.ZodString;
             target: z.ZodObject<{
                 property: z.ZodString;
                 name: z.ZodOptional<z.ZodString>;
-            }, "strip", z.ZodTypeAny, {
-                property: string;
-                name?: string | undefined;
-            }, {
-                property: string;
-                name?: string | undefined;
-            }>;
-            value: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber, z.ZodObject<{}, "passthrough", z.ZodTypeAny, z.objectOutputType<{}, z.ZodTypeAny, "passthrough">, z.objectInputType<{}, z.ZodTypeAny, "passthrough">>, z.ZodArray<z.ZodAny, "many">, z.ZodBoolean]>>;
-        }, "strip", z.ZodTypeAny, {
-            type: string;
-            target: {
-                property: string;
-                name?: string | undefined;
-            };
-            value?: string | number | boolean | any[] | z.objectOutputType<{}, z.ZodTypeAny, "passthrough"> | undefined;
-        }, {
-            type: string;
-            target: {
-                property: string;
-                name?: string | undefined;
-            };
-            value?: string | number | boolean | any[] | z.objectInputType<{}, z.ZodTypeAny, "passthrough"> | undefined;
-        }>, {
-            type: string;
-            target: {
-                property: string;
-                name?: string | undefined;
-            };
-            value?: string | number | boolean | any[] | z.objectOutputType<{}, z.ZodTypeAny, "passthrough"> | undefined;
-        }, {
-            type: string;
-            target: {
-                property: string;
-                name?: string | undefined;
-            };
-            value?: string | number | boolean | any[] | z.objectInputType<{}, z.ZodTypeAny, "passthrough"> | undefined;
-        }>, "many">, {
-            type: string;
-            target: {
-                property: string;
-                name?: string | undefined;
-            };
-            value?: string | number | boolean | any[] | z.objectOutputType<{}, z.ZodTypeAny, "passthrough"> | undefined;
-        }[], {
-            type: string;
-            target: {
-                property: string;
-                name?: string | undefined;
-            };
-            value?: string | number | boolean | any[] | z.objectInputType<{}, z.ZodTypeAny, "passthrough"> | undefined;
-        }[]>>;
-    }, "strict", z.ZodTypeAny, {
-        type: "variant" | "reprint" | "replacement" | "extension";
-        target: {
-            name: string;
-            sourceID: string;
-            specifier?: string | undefined;
-        };
-        modifications?: {
-            type: string;
-            target: {
-                property: string;
-                name?: string | undefined;
-            };
-            value?: string | number | boolean | any[] | z.objectOutputType<{}, z.ZodTypeAny, "passthrough"> | undefined;
-        }[] | undefined;
-    }, {
-        type: "variant" | "reprint" | "replacement" | "extension";
-        target: {
-            name: string;
-            sourceID: string;
-            specifier?: string | undefined;
-        };
-        modifications?: {
-            type: string;
-            target: {
-                property: string;
-                name?: string | undefined;
-            };
-            value?: string | number | boolean | any[] | z.objectInputType<{}, z.ZodTypeAny, "passthrough"> | undefined;
-        }[] | undefined;
-    }>, {
-        type: "variant" | "reprint" | "replacement" | "extension";
-        target: {
-            name: string;
-            sourceID: string;
-            specifier?: string | undefined;
-        };
-        modifications?: {
-            type: string;
-            target: {
-                property: string;
-                name?: string | undefined;
-            };
-            value?: string | number | boolean | any[] | z.objectOutputType<{}, z.ZodTypeAny, "passthrough"> | undefined;
-        }[] | undefined;
-    }, {
-        type: "variant" | "reprint" | "replacement" | "extension";
-        target: {
-            name: string;
-            sourceID: string;
-            specifier?: string | undefined;
-        };
-        modifications?: {
-            type: string;
-            target: {
-                property: string;
-                name?: string | undefined;
-            };
-            value?: string | number | boolean | any[] | z.objectInputType<{}, z.ZodTypeAny, "passthrough"> | undefined;
-        }[] | undefined;
-    }>>;
-}, {
+            }, z.core.$strip>;
+            value: z.ZodOptional<z.ZodUnion<readonly [z.ZodString, z.ZodNumber, z.ZodObject<{}, z.core.$loose>, z.ZodArray<z.ZodAny>, z.ZodBoolean]>>;
+        }, z.core.$strip>>>;
+    }, z.core.$strict>>;
     type: z.ZodLiteral<"condition">;
     data: z.ZodOptional<z.ZodObject<{
-        entries: z.ZodArray<z.ZodUnion<[z.ZodString, z.ZodObject<{
+        entries: z.ZodArray<z.ZodUnion<readonly [z.ZodString, z.ZodObject<{
             type: z.ZodString;
-        }, "strip", z.ZodTypeAny, {
-            type: string;
-        }, {
-            type: string;
-        }>]>, "many">;
-        _tags: z.ZodOptional<z.ZodEffects<z.ZodObject<{
-            group: z.ZodOptional<z.ZodEffects<z.ZodEffects<z.ZodObject<{
+        }, z.core.$strip>]>>;
+        _tags: z.ZodOptional<z.ZodObject<{
+            group: z.ZodOptional<z.ZodObject<{
                 Attitudes: z.ZodOptional<z.ZodLiteral<true>>;
                 "Death and Dying": z.ZodOptional<z.ZodLiteral<true>>;
                 "Degrees of Detection": z.ZodOptional<z.ZodLiteral<true>>;
                 "Lowered Abilities": z.ZodOptional<z.ZodLiteral<true>>;
                 Senses: z.ZodOptional<z.ZodLiteral<true>>;
-            }, "strip", z.ZodLiteral<true>, z.objectOutputType<{
-                Attitudes: z.ZodOptional<z.ZodLiteral<true>>;
-                "Death and Dying": z.ZodOptional<z.ZodLiteral<true>>;
-                "Degrees of Detection": z.ZodOptional<z.ZodLiteral<true>>;
-                "Lowered Abilities": z.ZodOptional<z.ZodLiteral<true>>;
-                Senses: z.ZodOptional<z.ZodLiteral<true>>;
-            }, z.ZodLiteral<true>, "strip">, z.objectInputType<{
-                Attitudes: z.ZodOptional<z.ZodLiteral<true>>;
-                "Death and Dying": z.ZodOptional<z.ZodLiteral<true>>;
-                "Degrees of Detection": z.ZodOptional<z.ZodLiteral<true>>;
-                "Lowered Abilities": z.ZodOptional<z.ZodLiteral<true>>;
-                Senses: z.ZodOptional<z.ZodLiteral<true>>;
-            }, z.ZodLiteral<true>, "strip">>, z.objectOutputType<{
-                Attitudes: z.ZodOptional<z.ZodLiteral<true>>;
-                "Death and Dying": z.ZodOptional<z.ZodLiteral<true>>;
-                "Degrees of Detection": z.ZodOptional<z.ZodLiteral<true>>;
-                "Lowered Abilities": z.ZodOptional<z.ZodLiteral<true>>;
-                Senses: z.ZodOptional<z.ZodLiteral<true>>;
-            }, z.ZodLiteral<true>, "strip">, z.objectInputType<{
-                Attitudes: z.ZodOptional<z.ZodLiteral<true>>;
-                "Death and Dying": z.ZodOptional<z.ZodLiteral<true>>;
-                "Degrees of Detection": z.ZodOptional<z.ZodLiteral<true>>;
-                "Lowered Abilities": z.ZodOptional<z.ZodLiteral<true>>;
-                Senses: z.ZodOptional<z.ZodLiteral<true>>;
-            }, z.ZodLiteral<true>, "strip">>, z.objectOutputType<{
-                Attitudes: z.ZodOptional<z.ZodLiteral<true>>;
-                "Death and Dying": z.ZodOptional<z.ZodLiteral<true>>;
-                "Degrees of Detection": z.ZodOptional<z.ZodLiteral<true>>;
-                "Lowered Abilities": z.ZodOptional<z.ZodLiteral<true>>;
-                Senses: z.ZodOptional<z.ZodLiteral<true>>;
-            }, z.ZodLiteral<true>, "strip">, z.objectInputType<{
-                Attitudes: z.ZodOptional<z.ZodLiteral<true>>;
-                "Death and Dying": z.ZodOptional<z.ZodLiteral<true>>;
-                "Degrees of Detection": z.ZodOptional<z.ZodLiteral<true>>;
-                "Lowered Abilities": z.ZodOptional<z.ZodLiteral<true>>;
-                Senses: z.ZodOptional<z.ZodLiteral<true>>;
-            }, z.ZodLiteral<true>, "strip">>>;
-        }, "strict", z.ZodTypeAny, {
-            group?: z.objectOutputType<{
-                Attitudes: z.ZodOptional<z.ZodLiteral<true>>;
-                "Death and Dying": z.ZodOptional<z.ZodLiteral<true>>;
-                "Degrees of Detection": z.ZodOptional<z.ZodLiteral<true>>;
-                "Lowered Abilities": z.ZodOptional<z.ZodLiteral<true>>;
-                Senses: z.ZodOptional<z.ZodLiteral<true>>;
-            }, z.ZodLiteral<true>, "strip"> | undefined;
-        }, {
-            group?: z.objectInputType<{
-                Attitudes: z.ZodOptional<z.ZodLiteral<true>>;
-                "Death and Dying": z.ZodOptional<z.ZodLiteral<true>>;
-                "Degrees of Detection": z.ZodOptional<z.ZodLiteral<true>>;
-                "Lowered Abilities": z.ZodOptional<z.ZodLiteral<true>>;
-                Senses: z.ZodOptional<z.ZodLiteral<true>>;
-            }, z.ZodLiteral<true>, "strip"> | undefined;
-        }>, {
-            group?: z.objectOutputType<{
-                Attitudes: z.ZodOptional<z.ZodLiteral<true>>;
-                "Death and Dying": z.ZodOptional<z.ZodLiteral<true>>;
-                "Degrees of Detection": z.ZodOptional<z.ZodLiteral<true>>;
-                "Lowered Abilities": z.ZodOptional<z.ZodLiteral<true>>;
-                Senses: z.ZodOptional<z.ZodLiteral<true>>;
-            }, z.ZodLiteral<true>, "strip"> | undefined;
-        }, {
-            group?: z.objectInputType<{
-                Attitudes: z.ZodOptional<z.ZodLiteral<true>>;
-                "Death and Dying": z.ZodOptional<z.ZodLiteral<true>>;
-                "Degrees of Detection": z.ZodOptional<z.ZodLiteral<true>>;
-                "Lowered Abilities": z.ZodOptional<z.ZodLiteral<true>>;
-                Senses: z.ZodOptional<z.ZodLiteral<true>>;
-            }, z.ZodLiteral<true>, "strip"> | undefined;
-        }>>;
-    }, "strict", z.ZodTypeAny, {
-        entries: (string | {
-            type: string;
-        })[];
-        _tags?: {
-            group?: z.objectOutputType<{
-                Attitudes: z.ZodOptional<z.ZodLiteral<true>>;
-                "Death and Dying": z.ZodOptional<z.ZodLiteral<true>>;
-                "Degrees of Detection": z.ZodOptional<z.ZodLiteral<true>>;
-                "Lowered Abilities": z.ZodOptional<z.ZodLiteral<true>>;
-                Senses: z.ZodOptional<z.ZodLiteral<true>>;
-            }, z.ZodLiteral<true>, "strip"> | undefined;
-        } | undefined;
-    }, {
-        entries: (string | {
-            type: string;
-        })[];
-        _tags?: {
-            group?: z.objectInputType<{
-                Attitudes: z.ZodOptional<z.ZodLiteral<true>>;
-                "Death and Dying": z.ZodOptional<z.ZodLiteral<true>>;
-                "Degrees of Detection": z.ZodOptional<z.ZodLiteral<true>>;
-                "Lowered Abilities": z.ZodOptional<z.ZodLiteral<true>>;
-                Senses: z.ZodOptional<z.ZodLiteral<true>>;
-            }, z.ZodLiteral<true>, "strip"> | undefined;
-        } | undefined;
-    }>>;
-}>, "strict", z.ZodTypeAny, {
-    type: "condition";
-    source: {
-        ID: string;
-        page?: number | undefined;
-    };
-    name: {
-        primary: string;
-        aliases?: string[] | undefined;
-        specifier?: string | undefined;
-    };
-    data?: {
-        entries: (string | {
-            type: string;
-        })[];
-        _tags?: {
-            group?: z.objectOutputType<{
-                Attitudes: z.ZodOptional<z.ZodLiteral<true>>;
-                "Death and Dying": z.ZodOptional<z.ZodLiteral<true>>;
-                "Degrees of Detection": z.ZodOptional<z.ZodLiteral<true>>;
-                "Lowered Abilities": z.ZodOptional<z.ZodLiteral<true>>;
-                Senses: z.ZodOptional<z.ZodLiteral<true>>;
-            }, z.ZodLiteral<true>, "strip"> | undefined;
-        } | undefined;
-    } | undefined;
-    reference?: {
-        type: "variant" | "reprint" | "replacement" | "extension";
-        target: {
-            name: string;
-            sourceID: string;
-            specifier?: string | undefined;
-        };
-        modifications?: {
-            type: string;
-            target: {
-                property: string;
-                name?: string | undefined;
-            };
-            value?: string | number | boolean | any[] | z.objectOutputType<{}, z.ZodTypeAny, "passthrough"> | undefined;
-        }[] | undefined;
-    } | undefined;
-}, {
-    type: "condition";
-    source: {
-        ID: string;
-        page?: number | undefined;
-    };
-    name: {
-        primary: string;
-        aliases?: string[] | undefined;
-        specifier?: string | undefined;
-    };
-    data?: {
-        entries: (string | {
-            type: string;
-        })[];
-        _tags?: {
-            group?: z.objectInputType<{
-                Attitudes: z.ZodOptional<z.ZodLiteral<true>>;
-                "Death and Dying": z.ZodOptional<z.ZodLiteral<true>>;
-                "Degrees of Detection": z.ZodOptional<z.ZodLiteral<true>>;
-                "Lowered Abilities": z.ZodOptional<z.ZodLiteral<true>>;
-                Senses: z.ZodOptional<z.ZodLiteral<true>>;
-            }, z.ZodLiteral<true>, "strip"> | undefined;
-        } | undefined;
-    } | undefined;
-    reference?: {
-        type: "variant" | "reprint" | "replacement" | "extension";
-        target: {
-            name: string;
-            sourceID: string;
-            specifier?: string | undefined;
-        };
-        modifications?: {
-            type: string;
-            target: {
-                property: string;
-                name?: string | undefined;
-            };
-            value?: string | number | boolean | any[] | z.objectInputType<{}, z.ZodTypeAny, "passthrough"> | undefined;
-        }[] | undefined;
-    } | undefined;
-}>, z.ZodObject<z.objectUtil.extendShape<{
-    type: z.ZodString;
-    name: z.ZodEffects<z.ZodObject<{
-        primary: z.ZodEffects<z.ZodString, string, string>;
-        aliases: z.ZodOptional<z.ZodEffects<z.ZodArray<z.ZodString, "many">, string[], string[]>>;
-        specifier: z.ZodOptional<z.ZodEffects<z.ZodString, string, string>>;
-    }, "strict", z.ZodTypeAny, {
-        primary: string;
-        aliases?: string[] | undefined;
-        specifier?: string | undefined;
-    }, {
-        primary: string;
-        aliases?: string[] | undefined;
-        specifier?: string | undefined;
-    }>, {
-        primary: string;
-        aliases?: string[] | undefined;
-        specifier?: string | undefined;
-    }, {
-        primary: string;
-        aliases?: string[] | undefined;
-        specifier?: string | undefined;
-    }>;
+            }, z.core.$catchall<z.ZodLiteral<true>>>>;
+        }, z.core.$strict>>;
+    }, z.core.$strict>>;
+}, z.core.$strict>, z.ZodObject<{
+    name: z.ZodObject<{
+        primary: z.ZodString;
+        aliases: z.ZodOptional<z.ZodArray<z.ZodString>>;
+        specifier: z.ZodOptional<z.ZodString>;
+    }, z.core.$strict>;
     source: z.ZodObject<{
-        ID: z.ZodEffects<z.ZodString, string, string>;
+        ID: z.ZodString;
         page: z.ZodOptional<z.ZodNumber>;
-    }, "strict", z.ZodTypeAny, {
-        ID: string;
-        page?: number | undefined;
-    }, {
-        ID: string;
-        page?: number | undefined;
-    }>;
-    data: z.ZodOptional<z.ZodObject<{}, "strip", z.ZodTypeAny, {}, {}>>;
-    reference: z.ZodOptional<z.ZodEffects<z.ZodObject<{
-        type: z.ZodEnum<["reprint", "variant", "replacement", "extension"]>;
+    }, z.core.$strict>;
+    reference: z.ZodOptional<z.ZodObject<{
+        type: z.ZodEnum<{
+            variant: "variant";
+            reprint: "reprint";
+            replacement: "replacement";
+            extension: "extension";
+        }>;
         target: z.ZodObject<{
             name: z.ZodString;
             specifier: z.ZodOptional<z.ZodString>;
-            sourceID: z.ZodEffects<z.ZodString, string, string>;
-        }, "strict", z.ZodTypeAny, {
-            name: string;
-            sourceID: string;
-            specifier?: string | undefined;
-        }, {
-            name: string;
-            sourceID: string;
-            specifier?: string | undefined;
-        }>;
-        modifications: z.ZodOptional<z.ZodEffects<z.ZodArray<z.ZodEffects<z.ZodObject<{
+            sourceID: z.ZodString;
+        }, z.core.$strict>;
+        modifications: z.ZodOptional<z.ZodArray<z.ZodObject<{
             type: z.ZodString;
             target: z.ZodObject<{
                 property: z.ZodString;
                 name: z.ZodOptional<z.ZodString>;
-            }, "strip", z.ZodTypeAny, {
-                property: string;
-                name?: string | undefined;
-            }, {
-                property: string;
-                name?: string | undefined;
-            }>;
-            value: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber, z.ZodObject<{}, "passthrough", z.ZodTypeAny, z.objectOutputType<{}, z.ZodTypeAny, "passthrough">, z.objectInputType<{}, z.ZodTypeAny, "passthrough">>, z.ZodArray<z.ZodAny, "many">, z.ZodBoolean]>>;
-        }, "strip", z.ZodTypeAny, {
-            type: string;
-            target: {
-                property: string;
-                name?: string | undefined;
-            };
-            value?: string | number | boolean | any[] | z.objectOutputType<{}, z.ZodTypeAny, "passthrough"> | undefined;
-        }, {
-            type: string;
-            target: {
-                property: string;
-                name?: string | undefined;
-            };
-            value?: string | number | boolean | any[] | z.objectInputType<{}, z.ZodTypeAny, "passthrough"> | undefined;
-        }>, {
-            type: string;
-            target: {
-                property: string;
-                name?: string | undefined;
-            };
-            value?: string | number | boolean | any[] | z.objectOutputType<{}, z.ZodTypeAny, "passthrough"> | undefined;
-        }, {
-            type: string;
-            target: {
-                property: string;
-                name?: string | undefined;
-            };
-            value?: string | number | boolean | any[] | z.objectInputType<{}, z.ZodTypeAny, "passthrough"> | undefined;
-        }>, "many">, {
-            type: string;
-            target: {
-                property: string;
-                name?: string | undefined;
-            };
-            value?: string | number | boolean | any[] | z.objectOutputType<{}, z.ZodTypeAny, "passthrough"> | undefined;
-        }[], {
-            type: string;
-            target: {
-                property: string;
-                name?: string | undefined;
-            };
-            value?: string | number | boolean | any[] | z.objectInputType<{}, z.ZodTypeAny, "passthrough"> | undefined;
-        }[]>>;
-    }, "strict", z.ZodTypeAny, {
-        type: "variant" | "reprint" | "replacement" | "extension";
-        target: {
-            name: string;
-            sourceID: string;
-            specifier?: string | undefined;
-        };
-        modifications?: {
-            type: string;
-            target: {
-                property: string;
-                name?: string | undefined;
-            };
-            value?: string | number | boolean | any[] | z.objectOutputType<{}, z.ZodTypeAny, "passthrough"> | undefined;
-        }[] | undefined;
-    }, {
-        type: "variant" | "reprint" | "replacement" | "extension";
-        target: {
-            name: string;
-            sourceID: string;
-            specifier?: string | undefined;
-        };
-        modifications?: {
-            type: string;
-            target: {
-                property: string;
-                name?: string | undefined;
-            };
-            value?: string | number | boolean | any[] | z.objectInputType<{}, z.ZodTypeAny, "passthrough"> | undefined;
-        }[] | undefined;
-    }>, {
-        type: "variant" | "reprint" | "replacement" | "extension";
-        target: {
-            name: string;
-            sourceID: string;
-            specifier?: string | undefined;
-        };
-        modifications?: {
-            type: string;
-            target: {
-                property: string;
-                name?: string | undefined;
-            };
-            value?: string | number | boolean | any[] | z.objectOutputType<{}, z.ZodTypeAny, "passthrough"> | undefined;
-        }[] | undefined;
-    }, {
-        type: "variant" | "reprint" | "replacement" | "extension";
-        target: {
-            name: string;
-            sourceID: string;
-            specifier?: string | undefined;
-        };
-        modifications?: {
-            type: string;
-            target: {
-                property: string;
-                name?: string | undefined;
-            };
-            value?: string | number | boolean | any[] | z.objectInputType<{}, z.ZodTypeAny, "passthrough"> | undefined;
-        }[] | undefined;
-    }>>;
-}, {
+            }, z.core.$strip>;
+            value: z.ZodOptional<z.ZodUnion<readonly [z.ZodString, z.ZodNumber, z.ZodObject<{}, z.core.$loose>, z.ZodArray<z.ZodAny>, z.ZodBoolean]>>;
+        }, z.core.$strip>>>;
+    }, z.core.$strict>>;
     type: z.ZodLiteral<"domain">;
     data: z.ZodOptional<z.ZodObject<{
         preamble: z.ZodOptional<z.ZodString>;
         domainSpell: z.ZodObject<{
             name: z.ZodString;
             specifier: z.ZodOptional<z.ZodString>;
-            sourceID: z.ZodEffects<z.ZodString, string, string>;
-        }, "strict", z.ZodTypeAny, {
-            name: string;
-            sourceID: string;
-            specifier?: string | undefined;
-        }, {
-            name: string;
-            sourceID: string;
-            specifier?: string | undefined;
-        }>;
+            sourceID: z.ZodString;
+        }, z.core.$strict>;
         advancedDomainSpell: z.ZodObject<{
             name: z.ZodString;
             specifier: z.ZodOptional<z.ZodString>;
-            sourceID: z.ZodEffects<z.ZodString, string, string>;
-        }, "strict", z.ZodTypeAny, {
-            name: string;
-            sourceID: string;
-            specifier?: string | undefined;
-        }, {
-            name: string;
-            sourceID: string;
-            specifier?: string | undefined;
-        }>;
+            sourceID: z.ZodString;
+        }, z.core.$strict>;
         apocryphalSpell: z.ZodOptional<z.ZodObject<{
             name: z.ZodString;
             specifier: z.ZodOptional<z.ZodString>;
-            sourceID: z.ZodEffects<z.ZodString, string, string>;
-        }, "strict", z.ZodTypeAny, {
-            name: string;
-            sourceID: string;
-            specifier?: string | undefined;
-        }, {
-            name: string;
-            sourceID: string;
-            specifier?: string | undefined;
-        }>>;
+            sourceID: z.ZodString;
+        }, z.core.$strict>>;
         advancedApocryphalSpell: z.ZodOptional<z.ZodObject<{
             name: z.ZodString;
             specifier: z.ZodOptional<z.ZodString>;
-            sourceID: z.ZodEffects<z.ZodString, string, string>;
-        }, "strict", z.ZodTypeAny, {
-            name: string;
-            sourceID: string;
-            specifier?: string | undefined;
-        }, {
-            name: string;
-            sourceID: string;
-            specifier?: string | undefined;
-        }>>;
-    }, "strict", z.ZodTypeAny, {
-        domainSpell: {
-            name: string;
-            sourceID: string;
-            specifier?: string | undefined;
-        };
-        advancedDomainSpell: {
-            name: string;
-            sourceID: string;
-            specifier?: string | undefined;
-        };
-        preamble?: string | undefined;
-        apocryphalSpell?: {
-            name: string;
-            sourceID: string;
-            specifier?: string | undefined;
-        } | undefined;
-        advancedApocryphalSpell?: {
-            name: string;
-            sourceID: string;
-            specifier?: string | undefined;
-        } | undefined;
-    }, {
-        domainSpell: {
-            name: string;
-            sourceID: string;
-            specifier?: string | undefined;
-        };
-        advancedDomainSpell: {
-            name: string;
-            sourceID: string;
-            specifier?: string | undefined;
-        };
-        preamble?: string | undefined;
-        apocryphalSpell?: {
-            name: string;
-            sourceID: string;
-            specifier?: string | undefined;
-        } | undefined;
-        advancedApocryphalSpell?: {
-            name: string;
-            sourceID: string;
-            specifier?: string | undefined;
-        } | undefined;
-    }>>;
-}>, "strict", z.ZodTypeAny, {
-    type: "domain";
-    source: {
-        ID: string;
-        page?: number | undefined;
-    };
-    name: {
-        primary: string;
-        aliases?: string[] | undefined;
-        specifier?: string | undefined;
-    };
-    data?: {
-        domainSpell: {
-            name: string;
-            sourceID: string;
-            specifier?: string | undefined;
-        };
-        advancedDomainSpell: {
-            name: string;
-            sourceID: string;
-            specifier?: string | undefined;
-        };
-        preamble?: string | undefined;
-        apocryphalSpell?: {
-            name: string;
-            sourceID: string;
-            specifier?: string | undefined;
-        } | undefined;
-        advancedApocryphalSpell?: {
-            name: string;
-            sourceID: string;
-            specifier?: string | undefined;
-        } | undefined;
-    } | undefined;
-    reference?: {
-        type: "variant" | "reprint" | "replacement" | "extension";
-        target: {
-            name: string;
-            sourceID: string;
-            specifier?: string | undefined;
-        };
-        modifications?: {
-            type: string;
-            target: {
-                property: string;
-                name?: string | undefined;
-            };
-            value?: string | number | boolean | any[] | z.objectOutputType<{}, z.ZodTypeAny, "passthrough"> | undefined;
-        }[] | undefined;
-    } | undefined;
-}, {
-    type: "domain";
-    source: {
-        ID: string;
-        page?: number | undefined;
-    };
-    name: {
-        primary: string;
-        aliases?: string[] | undefined;
-        specifier?: string | undefined;
-    };
-    data?: {
-        domainSpell: {
-            name: string;
-            sourceID: string;
-            specifier?: string | undefined;
-        };
-        advancedDomainSpell: {
-            name: string;
-            sourceID: string;
-            specifier?: string | undefined;
-        };
-        preamble?: string | undefined;
-        apocryphalSpell?: {
-            name: string;
-            sourceID: string;
-            specifier?: string | undefined;
-        } | undefined;
-        advancedApocryphalSpell?: {
-            name: string;
-            sourceID: string;
-            specifier?: string | undefined;
-        } | undefined;
-    } | undefined;
-    reference?: {
-        type: "variant" | "reprint" | "replacement" | "extension";
-        target: {
-            name: string;
-            sourceID: string;
-            specifier?: string | undefined;
-        };
-        modifications?: {
-            type: string;
-            target: {
-                property: string;
-                name?: string | undefined;
-            };
-            value?: string | number | boolean | any[] | z.objectInputType<{}, z.ZodTypeAny, "passthrough"> | undefined;
-        }[] | undefined;
-    } | undefined;
-}>, z.ZodObject<z.objectUtil.extendShape<{
-    type: z.ZodString;
-    name: z.ZodEffects<z.ZodObject<{
-        primary: z.ZodEffects<z.ZodString, string, string>;
-        aliases: z.ZodOptional<z.ZodEffects<z.ZodArray<z.ZodString, "many">, string[], string[]>>;
-        specifier: z.ZodOptional<z.ZodEffects<z.ZodString, string, string>>;
-    }, "strict", z.ZodTypeAny, {
-        primary: string;
-        aliases?: string[] | undefined;
-        specifier?: string | undefined;
-    }, {
-        primary: string;
-        aliases?: string[] | undefined;
-        specifier?: string | undefined;
-    }>, {
-        primary: string;
-        aliases?: string[] | undefined;
-        specifier?: string | undefined;
-    }, {
-        primary: string;
-        aliases?: string[] | undefined;
-        specifier?: string | undefined;
-    }>;
+            sourceID: z.ZodString;
+        }, z.core.$strict>>;
+    }, z.core.$strict>>;
+}, z.core.$strict>, z.ZodObject<{
+    name: z.ZodObject<{
+        primary: z.ZodString;
+        aliases: z.ZodOptional<z.ZodArray<z.ZodString>>;
+        specifier: z.ZodOptional<z.ZodString>;
+    }, z.core.$strict>;
     source: z.ZodObject<{
-        ID: z.ZodEffects<z.ZodString, string, string>;
+        ID: z.ZodString;
         page: z.ZodOptional<z.ZodNumber>;
-    }, "strict", z.ZodTypeAny, {
-        ID: string;
-        page?: number | undefined;
-    }, {
-        ID: string;
-        page?: number | undefined;
-    }>;
-    data: z.ZodOptional<z.ZodObject<{}, "strip", z.ZodTypeAny, {}, {}>>;
-    reference: z.ZodOptional<z.ZodEffects<z.ZodObject<{
-        type: z.ZodEnum<["reprint", "variant", "replacement", "extension"]>;
+    }, z.core.$strict>;
+    reference: z.ZodOptional<z.ZodObject<{
+        type: z.ZodEnum<{
+            variant: "variant";
+            reprint: "reprint";
+            replacement: "replacement";
+            extension: "extension";
+        }>;
         target: z.ZodObject<{
             name: z.ZodString;
             specifier: z.ZodOptional<z.ZodString>;
-            sourceID: z.ZodEffects<z.ZodString, string, string>;
-        }, "strict", z.ZodTypeAny, {
-            name: string;
-            sourceID: string;
-            specifier?: string | undefined;
-        }, {
-            name: string;
-            sourceID: string;
-            specifier?: string | undefined;
-        }>;
-        modifications: z.ZodOptional<z.ZodEffects<z.ZodArray<z.ZodEffects<z.ZodObject<{
+            sourceID: z.ZodString;
+        }, z.core.$strict>;
+        modifications: z.ZodOptional<z.ZodArray<z.ZodObject<{
             type: z.ZodString;
             target: z.ZodObject<{
                 property: z.ZodString;
                 name: z.ZodOptional<z.ZodString>;
-            }, "strip", z.ZodTypeAny, {
-                property: string;
-                name?: string | undefined;
-            }, {
-                property: string;
-                name?: string | undefined;
-            }>;
-            value: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber, z.ZodObject<{}, "passthrough", z.ZodTypeAny, z.objectOutputType<{}, z.ZodTypeAny, "passthrough">, z.objectInputType<{}, z.ZodTypeAny, "passthrough">>, z.ZodArray<z.ZodAny, "many">, z.ZodBoolean]>>;
-        }, "strip", z.ZodTypeAny, {
-            type: string;
-            target: {
-                property: string;
-                name?: string | undefined;
-            };
-            value?: string | number | boolean | any[] | z.objectOutputType<{}, z.ZodTypeAny, "passthrough"> | undefined;
-        }, {
-            type: string;
-            target: {
-                property: string;
-                name?: string | undefined;
-            };
-            value?: string | number | boolean | any[] | z.objectInputType<{}, z.ZodTypeAny, "passthrough"> | undefined;
-        }>, {
-            type: string;
-            target: {
-                property: string;
-                name?: string | undefined;
-            };
-            value?: string | number | boolean | any[] | z.objectOutputType<{}, z.ZodTypeAny, "passthrough"> | undefined;
-        }, {
-            type: string;
-            target: {
-                property: string;
-                name?: string | undefined;
-            };
-            value?: string | number | boolean | any[] | z.objectInputType<{}, z.ZodTypeAny, "passthrough"> | undefined;
-        }>, "many">, {
-            type: string;
-            target: {
-                property: string;
-                name?: string | undefined;
-            };
-            value?: string | number | boolean | any[] | z.objectOutputType<{}, z.ZodTypeAny, "passthrough"> | undefined;
-        }[], {
-            type: string;
-            target: {
-                property: string;
-                name?: string | undefined;
-            };
-            value?: string | number | boolean | any[] | z.objectInputType<{}, z.ZodTypeAny, "passthrough"> | undefined;
-        }[]>>;
-    }, "strict", z.ZodTypeAny, {
-        type: "variant" | "reprint" | "replacement" | "extension";
-        target: {
-            name: string;
-            sourceID: string;
-            specifier?: string | undefined;
-        };
-        modifications?: {
-            type: string;
-            target: {
-                property: string;
-                name?: string | undefined;
-            };
-            value?: string | number | boolean | any[] | z.objectOutputType<{}, z.ZodTypeAny, "passthrough"> | undefined;
-        }[] | undefined;
-    }, {
-        type: "variant" | "reprint" | "replacement" | "extension";
-        target: {
-            name: string;
-            sourceID: string;
-            specifier?: string | undefined;
-        };
-        modifications?: {
-            type: string;
-            target: {
-                property: string;
-                name?: string | undefined;
-            };
-            value?: string | number | boolean | any[] | z.objectInputType<{}, z.ZodTypeAny, "passthrough"> | undefined;
-        }[] | undefined;
-    }>, {
-        type: "variant" | "reprint" | "replacement" | "extension";
-        target: {
-            name: string;
-            sourceID: string;
-            specifier?: string | undefined;
-        };
-        modifications?: {
-            type: string;
-            target: {
-                property: string;
-                name?: string | undefined;
-            };
-            value?: string | number | boolean | any[] | z.objectOutputType<{}, z.ZodTypeAny, "passthrough"> | undefined;
-        }[] | undefined;
-    }, {
-        type: "variant" | "reprint" | "replacement" | "extension";
-        target: {
-            name: string;
-            sourceID: string;
-            specifier?: string | undefined;
-        };
-        modifications?: {
-            type: string;
-            target: {
-                property: string;
-                name?: string | undefined;
-            };
-            value?: string | number | boolean | any[] | z.objectInputType<{}, z.ZodTypeAny, "passthrough"> | undefined;
-        }[] | undefined;
-    }>>;
-}, {
+            }, z.core.$strip>;
+            value: z.ZodOptional<z.ZodUnion<readonly [z.ZodString, z.ZodNumber, z.ZodObject<{}, z.core.$loose>, z.ZodArray<z.ZodAny>, z.ZodBoolean]>>;
+        }, z.core.$strip>>>;
+    }, z.core.$strict>>;
     type: z.ZodLiteral<"event">;
     data: z.ZodOptional<z.ZodObject<{
         level: z.ZodNumber;
-        traits: z.ZodOptional<z.ZodEffects<z.ZodArray<z.ZodObject<{
+        traits: z.ZodOptional<z.ZodArray<z.ZodObject<{
             trait: z.ZodString;
-            variables: z.ZodOptional<z.ZodEffects<z.ZodArray<z.ZodString, "many">, string[], string[]>>;
+            variables: z.ZodOptional<z.ZodArray<z.ZodString>>;
             display: z.ZodOptional<z.ZodString>;
-        }, "strict", z.ZodTypeAny, {
-            trait: string;
-            display?: string | undefined;
-            variables?: string[] | undefined;
-        }, {
-            trait: string;
-            display?: string | undefined;
-            variables?: string[] | undefined;
-        }>, "many">, {
-            trait: string;
-            display?: string | undefined;
-            variables?: string[] | undefined;
-        }[], {
-            trait: string;
-            display?: string | undefined;
-            variables?: string[] | undefined;
-        }[]>>;
-        applicableSkills: z.ZodOptional<z.ZodEffects<z.ZodArray<z.ZodObject<{
-            skill: z.ZodEnum<["Acrobatics", "Arcana", "Athletics", "Crafting", "Deception", "Diplomacy", "Intimidation", "Lore", "Medicine", "Nature", "Occultism", "Performance", "Religion", "Society", "Stealth", "Survival", "Thievery"]>;
-            variables: z.ZodOptional<z.ZodEffects<z.ZodArray<z.ZodString, "many">, string[], string[]>>;
+        }, z.core.$strict>>>;
+        applicableSkills: z.ZodOptional<z.ZodArray<z.ZodObject<{
+            skill: z.ZodEnum<{
+                Acrobatics: "Acrobatics";
+                Arcana: "Arcana";
+                Athletics: "Athletics";
+                Crafting: "Crafting";
+                Deception: "Deception";
+                Diplomacy: "Diplomacy";
+                Intimidation: "Intimidation";
+                Lore: "Lore";
+                Medicine: "Medicine";
+                Nature: "Nature";
+                Occultism: "Occultism";
+                Performance: "Performance";
+                Religion: "Religion";
+                Society: "Society";
+                Stealth: "Stealth";
+                Survival: "Survival";
+                Thievery: "Thievery";
+            }>;
+            variables: z.ZodOptional<z.ZodArray<z.ZodString>>;
             display: z.ZodOptional<z.ZodString>;
-        }, "strict", z.ZodTypeAny, {
-            skill: "Acrobatics" | "Arcana" | "Athletics" | "Crafting" | "Deception" | "Diplomacy" | "Intimidation" | "Lore" | "Medicine" | "Nature" | "Occultism" | "Performance" | "Religion" | "Society" | "Stealth" | "Survival" | "Thievery";
-            display?: string | undefined;
-            variables?: string[] | undefined;
-        }, {
-            skill: "Acrobatics" | "Arcana" | "Athletics" | "Crafting" | "Deception" | "Diplomacy" | "Intimidation" | "Lore" | "Medicine" | "Nature" | "Occultism" | "Performance" | "Religion" | "Society" | "Stealth" | "Survival" | "Thievery";
-            display?: string | undefined;
-            variables?: string[] | undefined;
-        }>, "many">, {
-            skill: "Acrobatics" | "Arcana" | "Athletics" | "Crafting" | "Deception" | "Diplomacy" | "Intimidation" | "Lore" | "Medicine" | "Nature" | "Occultism" | "Performance" | "Religion" | "Society" | "Stealth" | "Survival" | "Thievery";
-            display?: string | undefined;
-            variables?: string[] | undefined;
-        }[], {
-            skill: "Acrobatics" | "Arcana" | "Athletics" | "Crafting" | "Deception" | "Diplomacy" | "Intimidation" | "Lore" | "Medicine" | "Nature" | "Occultism" | "Performance" | "Religion" | "Society" | "Stealth" | "Survival" | "Thievery";
-            display?: string | undefined;
-            variables?: string[] | undefined;
-        }[]>>;
-        entries: z.ZodArray<z.ZodUnion<[z.ZodString, z.ZodObject<{
+        }, z.core.$strict>>>;
+        entries: z.ZodArray<z.ZodUnion<readonly [z.ZodString, z.ZodObject<{
             type: z.ZodString;
-        }, "strip", z.ZodTypeAny, {
-            type: string;
-        }, {
-            type: string;
-        }>]>, "many">;
-    }, "strict", z.ZodTypeAny, {
-        entries: (string | {
-            type: string;
-        })[];
-        level: number;
-        traits?: {
-            trait: string;
-            display?: string | undefined;
-            variables?: string[] | undefined;
-        }[] | undefined;
-        applicableSkills?: {
-            skill: "Acrobatics" | "Arcana" | "Athletics" | "Crafting" | "Deception" | "Diplomacy" | "Intimidation" | "Lore" | "Medicine" | "Nature" | "Occultism" | "Performance" | "Religion" | "Society" | "Stealth" | "Survival" | "Thievery";
-            display?: string | undefined;
-            variables?: string[] | undefined;
-        }[] | undefined;
-    }, {
-        entries: (string | {
-            type: string;
-        })[];
-        level: number;
-        traits?: {
-            trait: string;
-            display?: string | undefined;
-            variables?: string[] | undefined;
-        }[] | undefined;
-        applicableSkills?: {
-            skill: "Acrobatics" | "Arcana" | "Athletics" | "Crafting" | "Deception" | "Diplomacy" | "Intimidation" | "Lore" | "Medicine" | "Nature" | "Occultism" | "Performance" | "Religion" | "Society" | "Stealth" | "Survival" | "Thievery";
-            display?: string | undefined;
-            variables?: string[] | undefined;
-        }[] | undefined;
-    }>>;
-}>, "strict", z.ZodTypeAny, {
-    type: "event";
-    source: {
-        ID: string;
-        page?: number | undefined;
-    };
-    name: {
-        primary: string;
-        aliases?: string[] | undefined;
-        specifier?: string | undefined;
-    };
-    data?: {
-        entries: (string | {
-            type: string;
-        })[];
-        level: number;
-        traits?: {
-            trait: string;
-            display?: string | undefined;
-            variables?: string[] | undefined;
-        }[] | undefined;
-        applicableSkills?: {
-            skill: "Acrobatics" | "Arcana" | "Athletics" | "Crafting" | "Deception" | "Diplomacy" | "Intimidation" | "Lore" | "Medicine" | "Nature" | "Occultism" | "Performance" | "Religion" | "Society" | "Stealth" | "Survival" | "Thievery";
-            display?: string | undefined;
-            variables?: string[] | undefined;
-        }[] | undefined;
-    } | undefined;
-    reference?: {
-        type: "variant" | "reprint" | "replacement" | "extension";
-        target: {
-            name: string;
-            sourceID: string;
-            specifier?: string | undefined;
-        };
-        modifications?: {
-            type: string;
-            target: {
-                property: string;
-                name?: string | undefined;
-            };
-            value?: string | number | boolean | any[] | z.objectOutputType<{}, z.ZodTypeAny, "passthrough"> | undefined;
-        }[] | undefined;
-    } | undefined;
-}, {
-    type: "event";
-    source: {
-        ID: string;
-        page?: number | undefined;
-    };
-    name: {
-        primary: string;
-        aliases?: string[] | undefined;
-        specifier?: string | undefined;
-    };
-    data?: {
-        entries: (string | {
-            type: string;
-        })[];
-        level: number;
-        traits?: {
-            trait: string;
-            display?: string | undefined;
-            variables?: string[] | undefined;
-        }[] | undefined;
-        applicableSkills?: {
-            skill: "Acrobatics" | "Arcana" | "Athletics" | "Crafting" | "Deception" | "Diplomacy" | "Intimidation" | "Lore" | "Medicine" | "Nature" | "Occultism" | "Performance" | "Religion" | "Society" | "Stealth" | "Survival" | "Thievery";
-            display?: string | undefined;
-            variables?: string[] | undefined;
-        }[] | undefined;
-    } | undefined;
-    reference?: {
-        type: "variant" | "reprint" | "replacement" | "extension";
-        target: {
-            name: string;
-            sourceID: string;
-            specifier?: string | undefined;
-        };
-        modifications?: {
-            type: string;
-            target: {
-                property: string;
-                name?: string | undefined;
-            };
-            value?: string | number | boolean | any[] | z.objectInputType<{}, z.ZodTypeAny, "passthrough"> | undefined;
-        }[] | undefined;
-    } | undefined;
-}>, z.ZodObject<z.objectUtil.extendShape<{
-    type: z.ZodString;
-    name: z.ZodEffects<z.ZodObject<{
-        primary: z.ZodEffects<z.ZodString, string, string>;
-        aliases: z.ZodOptional<z.ZodEffects<z.ZodArray<z.ZodString, "many">, string[], string[]>>;
-        specifier: z.ZodOptional<z.ZodEffects<z.ZodString, string, string>>;
-    }, "strict", z.ZodTypeAny, {
-        primary: string;
-        aliases?: string[] | undefined;
-        specifier?: string | undefined;
-    }, {
-        primary: string;
-        aliases?: string[] | undefined;
-        specifier?: string | undefined;
-    }>, {
-        primary: string;
-        aliases?: string[] | undefined;
-        specifier?: string | undefined;
-    }, {
-        primary: string;
-        aliases?: string[] | undefined;
-        specifier?: string | undefined;
-    }>;
+        }, z.core.$strip>]>>;
+    }, z.core.$strict>>;
+}, z.core.$strict>, z.ZodObject<{
+    name: z.ZodObject<{
+        primary: z.ZodString;
+        aliases: z.ZodOptional<z.ZodArray<z.ZodString>>;
+        specifier: z.ZodOptional<z.ZodString>;
+    }, z.core.$strict>;
     source: z.ZodObject<{
-        ID: z.ZodEffects<z.ZodString, string, string>;
+        ID: z.ZodString;
         page: z.ZodOptional<z.ZodNumber>;
-    }, "strict", z.ZodTypeAny, {
-        ID: string;
-        page?: number | undefined;
-    }, {
-        ID: string;
-        page?: number | undefined;
-    }>;
-    data: z.ZodOptional<z.ZodObject<{}, "strip", z.ZodTypeAny, {}, {}>>;
-    reference: z.ZodOptional<z.ZodEffects<z.ZodObject<{
-        type: z.ZodEnum<["reprint", "variant", "replacement", "extension"]>;
+    }, z.core.$strict>;
+    reference: z.ZodOptional<z.ZodObject<{
+        type: z.ZodEnum<{
+            variant: "variant";
+            reprint: "reprint";
+            replacement: "replacement";
+            extension: "extension";
+        }>;
         target: z.ZodObject<{
             name: z.ZodString;
             specifier: z.ZodOptional<z.ZodString>;
-            sourceID: z.ZodEffects<z.ZodString, string, string>;
-        }, "strict", z.ZodTypeAny, {
-            name: string;
-            sourceID: string;
-            specifier?: string | undefined;
-        }, {
-            name: string;
-            sourceID: string;
-            specifier?: string | undefined;
-        }>;
-        modifications: z.ZodOptional<z.ZodEffects<z.ZodArray<z.ZodEffects<z.ZodObject<{
+            sourceID: z.ZodString;
+        }, z.core.$strict>;
+        modifications: z.ZodOptional<z.ZodArray<z.ZodObject<{
             type: z.ZodString;
             target: z.ZodObject<{
                 property: z.ZodString;
                 name: z.ZodOptional<z.ZodString>;
-            }, "strip", z.ZodTypeAny, {
-                property: string;
-                name?: string | undefined;
-            }, {
-                property: string;
-                name?: string | undefined;
-            }>;
-            value: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber, z.ZodObject<{}, "passthrough", z.ZodTypeAny, z.objectOutputType<{}, z.ZodTypeAny, "passthrough">, z.objectInputType<{}, z.ZodTypeAny, "passthrough">>, z.ZodArray<z.ZodAny, "many">, z.ZodBoolean]>>;
-        }, "strip", z.ZodTypeAny, {
-            type: string;
-            target: {
-                property: string;
-                name?: string | undefined;
-            };
-            value?: string | number | boolean | any[] | z.objectOutputType<{}, z.ZodTypeAny, "passthrough"> | undefined;
-        }, {
-            type: string;
-            target: {
-                property: string;
-                name?: string | undefined;
-            };
-            value?: string | number | boolean | any[] | z.objectInputType<{}, z.ZodTypeAny, "passthrough"> | undefined;
-        }>, {
-            type: string;
-            target: {
-                property: string;
-                name?: string | undefined;
-            };
-            value?: string | number | boolean | any[] | z.objectOutputType<{}, z.ZodTypeAny, "passthrough"> | undefined;
-        }, {
-            type: string;
-            target: {
-                property: string;
-                name?: string | undefined;
-            };
-            value?: string | number | boolean | any[] | z.objectInputType<{}, z.ZodTypeAny, "passthrough"> | undefined;
-        }>, "many">, {
-            type: string;
-            target: {
-                property: string;
-                name?: string | undefined;
-            };
-            value?: string | number | boolean | any[] | z.objectOutputType<{}, z.ZodTypeAny, "passthrough"> | undefined;
-        }[], {
-            type: string;
-            target: {
-                property: string;
-                name?: string | undefined;
-            };
-            value?: string | number | boolean | any[] | z.objectInputType<{}, z.ZodTypeAny, "passthrough"> | undefined;
-        }[]>>;
-    }, "strict", z.ZodTypeAny, {
-        type: "variant" | "reprint" | "replacement" | "extension";
-        target: {
-            name: string;
-            sourceID: string;
-            specifier?: string | undefined;
-        };
-        modifications?: {
-            type: string;
-            target: {
-                property: string;
-                name?: string | undefined;
-            };
-            value?: string | number | boolean | any[] | z.objectOutputType<{}, z.ZodTypeAny, "passthrough"> | undefined;
-        }[] | undefined;
-    }, {
-        type: "variant" | "reprint" | "replacement" | "extension";
-        target: {
-            name: string;
-            sourceID: string;
-            specifier?: string | undefined;
-        };
-        modifications?: {
-            type: string;
-            target: {
-                property: string;
-                name?: string | undefined;
-            };
-            value?: string | number | boolean | any[] | z.objectInputType<{}, z.ZodTypeAny, "passthrough"> | undefined;
-        }[] | undefined;
-    }>, {
-        type: "variant" | "reprint" | "replacement" | "extension";
-        target: {
-            name: string;
-            sourceID: string;
-            specifier?: string | undefined;
-        };
-        modifications?: {
-            type: string;
-            target: {
-                property: string;
-                name?: string | undefined;
-            };
-            value?: string | number | boolean | any[] | z.objectOutputType<{}, z.ZodTypeAny, "passthrough"> | undefined;
-        }[] | undefined;
-    }, {
-        type: "variant" | "reprint" | "replacement" | "extension";
-        target: {
-            name: string;
-            sourceID: string;
-            specifier?: string | undefined;
-        };
-        modifications?: {
-            type: string;
-            target: {
-                property: string;
-                name?: string | undefined;
-            };
-            value?: string | number | boolean | any[] | z.objectInputType<{}, z.ZodTypeAny, "passthrough"> | undefined;
-        }[] | undefined;
-    }>>;
-}, {
+            }, z.core.$strip>;
+            value: z.ZodOptional<z.ZodUnion<readonly [z.ZodString, z.ZodNumber, z.ZodObject<{}, z.core.$loose>, z.ZodArray<z.ZodAny>, z.ZodBoolean]>>;
+        }, z.core.$strip>>>;
+    }, z.core.$strict>>;
     type: z.ZodLiteral<"familiarAbility">;
     data: z.ZodOptional<z.ZodObject<{
-        abilityType: z.ZodEnum<["Familiar", "Master"]>;
-        entries: z.ZodArray<z.ZodUnion<[z.ZodString, z.ZodObject<{
+        abilityType: z.ZodEnum<{
+            Familiar: "Familiar";
+            Master: "Master";
+        }>;
+        entries: z.ZodArray<z.ZodUnion<readonly [z.ZodString, z.ZodObject<{
             type: z.ZodString;
-        }, "strip", z.ZodTypeAny, {
-            type: string;
-        }, {
-            type: string;
-        }>]>, "many">;
-        _tags: z.ZodOptional<z.ZodEffects<z.ZodObject<{
-            misc: z.ZodOptional<z.ZodEffects<z.ZodObject<{
+        }, z.core.$strip>]>>;
+        _tags: z.ZodOptional<z.ZodObject<{
+            misc: z.ZodOptional<z.ZodObject<{
                 affectsCommunication: z.ZodOptional<z.ZodLiteral<true>>;
                 affectsSenses: z.ZodOptional<z.ZodLiteral<true>>;
                 affectsMovement: z.ZodOptional<z.ZodLiteral<true>>;
                 hasRequirement: z.ZodOptional<z.ZodLiteral<true>>;
                 grantsAbility: z.ZodOptional<z.ZodLiteral<true>>;
                 repeatable: z.ZodOptional<z.ZodLiteral<true>>;
-            }, "strict", z.ZodTypeAny, {
-                affectsCommunication?: true | undefined;
-                affectsSenses?: true | undefined;
-                affectsMovement?: true | undefined;
-                hasRequirement?: true | undefined;
-                grantsAbility?: true | undefined;
-                repeatable?: true | undefined;
-            }, {
-                affectsCommunication?: true | undefined;
-                affectsSenses?: true | undefined;
-                affectsMovement?: true | undefined;
-                hasRequirement?: true | undefined;
-                grantsAbility?: true | undefined;
-                repeatable?: true | undefined;
-            }>, {
-                affectsCommunication?: true | undefined;
-                affectsSenses?: true | undefined;
-                affectsMovement?: true | undefined;
-                hasRequirement?: true | undefined;
-                grantsAbility?: true | undefined;
-                repeatable?: true | undefined;
-            }, {
-                affectsCommunication?: true | undefined;
-                affectsSenses?: true | undefined;
-                affectsMovement?: true | undefined;
-                hasRequirement?: true | undefined;
-                grantsAbility?: true | undefined;
-                repeatable?: true | undefined;
-            }>>;
-        }, "strict", z.ZodTypeAny, {
-            misc?: {
-                affectsCommunication?: true | undefined;
-                affectsSenses?: true | undefined;
-                affectsMovement?: true | undefined;
-                hasRequirement?: true | undefined;
-                grantsAbility?: true | undefined;
-                repeatable?: true | undefined;
-            } | undefined;
-        }, {
-            misc?: {
-                affectsCommunication?: true | undefined;
-                affectsSenses?: true | undefined;
-                affectsMovement?: true | undefined;
-                hasRequirement?: true | undefined;
-                grantsAbility?: true | undefined;
-                repeatable?: true | undefined;
-            } | undefined;
-        }>, {
-            misc?: {
-                affectsCommunication?: true | undefined;
-                affectsSenses?: true | undefined;
-                affectsMovement?: true | undefined;
-                hasRequirement?: true | undefined;
-                grantsAbility?: true | undefined;
-                repeatable?: true | undefined;
-            } | undefined;
-        }, {
-            misc?: {
-                affectsCommunication?: true | undefined;
-                affectsSenses?: true | undefined;
-                affectsMovement?: true | undefined;
-                hasRequirement?: true | undefined;
-                grantsAbility?: true | undefined;
-                repeatable?: true | undefined;
-            } | undefined;
-        }>>;
-    }, "strict", z.ZodTypeAny, {
-        entries: (string | {
-            type: string;
-        })[];
-        abilityType: "Familiar" | "Master";
-        _tags?: {
-            misc?: {
-                affectsCommunication?: true | undefined;
-                affectsSenses?: true | undefined;
-                affectsMovement?: true | undefined;
-                hasRequirement?: true | undefined;
-                grantsAbility?: true | undefined;
-                repeatable?: true | undefined;
-            } | undefined;
-        } | undefined;
-    }, {
-        entries: (string | {
-            type: string;
-        })[];
-        abilityType: "Familiar" | "Master";
-        _tags?: {
-            misc?: {
-                affectsCommunication?: true | undefined;
-                affectsSenses?: true | undefined;
-                affectsMovement?: true | undefined;
-                hasRequirement?: true | undefined;
-                grantsAbility?: true | undefined;
-                repeatable?: true | undefined;
-            } | undefined;
-        } | undefined;
-    }>>;
-}>, "strict", z.ZodTypeAny, {
-    type: "familiarAbility";
-    source: {
-        ID: string;
-        page?: number | undefined;
-    };
-    name: {
-        primary: string;
-        aliases?: string[] | undefined;
-        specifier?: string | undefined;
-    };
-    data?: {
-        entries: (string | {
-            type: string;
-        })[];
-        abilityType: "Familiar" | "Master";
-        _tags?: {
-            misc?: {
-                affectsCommunication?: true | undefined;
-                affectsSenses?: true | undefined;
-                affectsMovement?: true | undefined;
-                hasRequirement?: true | undefined;
-                grantsAbility?: true | undefined;
-                repeatable?: true | undefined;
-            } | undefined;
-        } | undefined;
-    } | undefined;
-    reference?: {
-        type: "variant" | "reprint" | "replacement" | "extension";
-        target: {
-            name: string;
-            sourceID: string;
-            specifier?: string | undefined;
-        };
-        modifications?: {
-            type: string;
-            target: {
-                property: string;
-                name?: string | undefined;
-            };
-            value?: string | number | boolean | any[] | z.objectOutputType<{}, z.ZodTypeAny, "passthrough"> | undefined;
-        }[] | undefined;
-    } | undefined;
-}, {
-    type: "familiarAbility";
-    source: {
-        ID: string;
-        page?: number | undefined;
-    };
-    name: {
-        primary: string;
-        aliases?: string[] | undefined;
-        specifier?: string | undefined;
-    };
-    data?: {
-        entries: (string | {
-            type: string;
-        })[];
-        abilityType: "Familiar" | "Master";
-        _tags?: {
-            misc?: {
-                affectsCommunication?: true | undefined;
-                affectsSenses?: true | undefined;
-                affectsMovement?: true | undefined;
-                hasRequirement?: true | undefined;
-                grantsAbility?: true | undefined;
-                repeatable?: true | undefined;
-            } | undefined;
-        } | undefined;
-    } | undefined;
-    reference?: {
-        type: "variant" | "reprint" | "replacement" | "extension";
-        target: {
-            name: string;
-            sourceID: string;
-            specifier?: string | undefined;
-        };
-        modifications?: {
-            type: string;
-            target: {
-                property: string;
-                name?: string | undefined;
-            };
-            value?: string | number | boolean | any[] | z.objectInputType<{}, z.ZodTypeAny, "passthrough"> | undefined;
-        }[] | undefined;
-    } | undefined;
-}>, z.ZodObject<z.objectUtil.extendShape<{
-    type: z.ZodString;
-    name: z.ZodEffects<z.ZodObject<{
-        primary: z.ZodEffects<z.ZodString, string, string>;
-        aliases: z.ZodOptional<z.ZodEffects<z.ZodArray<z.ZodString, "many">, string[], string[]>>;
-        specifier: z.ZodOptional<z.ZodEffects<z.ZodString, string, string>>;
-    }, "strict", z.ZodTypeAny, {
-        primary: string;
-        aliases?: string[] | undefined;
-        specifier?: string | undefined;
-    }, {
-        primary: string;
-        aliases?: string[] | undefined;
-        specifier?: string | undefined;
-    }>, {
-        primary: string;
-        aliases?: string[] | undefined;
-        specifier?: string | undefined;
-    }, {
-        primary: string;
-        aliases?: string[] | undefined;
-        specifier?: string | undefined;
-    }>;
+            }, z.core.$strict>>;
+        }, z.core.$strict>>;
+    }, z.core.$strict>>;
+}, z.core.$strict>, z.ZodObject<{
+    name: z.ZodObject<{
+        primary: z.ZodString;
+        aliases: z.ZodOptional<z.ZodArray<z.ZodString>>;
+        specifier: z.ZodOptional<z.ZodString>;
+    }, z.core.$strict>;
     source: z.ZodObject<{
-        ID: z.ZodEffects<z.ZodString, string, string>;
+        ID: z.ZodString;
         page: z.ZodOptional<z.ZodNumber>;
-    }, "strict", z.ZodTypeAny, {
-        ID: string;
-        page?: number | undefined;
-    }, {
-        ID: string;
-        page?: number | undefined;
-    }>;
-    data: z.ZodOptional<z.ZodObject<{}, "strip", z.ZodTypeAny, {}, {}>>;
-    reference: z.ZodOptional<z.ZodEffects<z.ZodObject<{
-        type: z.ZodEnum<["reprint", "variant", "replacement", "extension"]>;
+    }, z.core.$strict>;
+    reference: z.ZodOptional<z.ZodObject<{
+        type: z.ZodEnum<{
+            variant: "variant";
+            reprint: "reprint";
+            replacement: "replacement";
+            extension: "extension";
+        }>;
         target: z.ZodObject<{
             name: z.ZodString;
             specifier: z.ZodOptional<z.ZodString>;
-            sourceID: z.ZodEffects<z.ZodString, string, string>;
-        }, "strict", z.ZodTypeAny, {
-            name: string;
-            sourceID: string;
-            specifier?: string | undefined;
-        }, {
-            name: string;
-            sourceID: string;
-            specifier?: string | undefined;
-        }>;
-        modifications: z.ZodOptional<z.ZodEffects<z.ZodArray<z.ZodEffects<z.ZodObject<{
+            sourceID: z.ZodString;
+        }, z.core.$strict>;
+        modifications: z.ZodOptional<z.ZodArray<z.ZodObject<{
             type: z.ZodString;
             target: z.ZodObject<{
                 property: z.ZodString;
                 name: z.ZodOptional<z.ZodString>;
-            }, "strip", z.ZodTypeAny, {
-                property: string;
-                name?: string | undefined;
-            }, {
-                property: string;
-                name?: string | undefined;
-            }>;
-            value: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber, z.ZodObject<{}, "passthrough", z.ZodTypeAny, z.objectOutputType<{}, z.ZodTypeAny, "passthrough">, z.objectInputType<{}, z.ZodTypeAny, "passthrough">>, z.ZodArray<z.ZodAny, "many">, z.ZodBoolean]>>;
-        }, "strip", z.ZodTypeAny, {
-            type: string;
-            target: {
-                property: string;
-                name?: string | undefined;
-            };
-            value?: string | number | boolean | any[] | z.objectOutputType<{}, z.ZodTypeAny, "passthrough"> | undefined;
-        }, {
-            type: string;
-            target: {
-                property: string;
-                name?: string | undefined;
-            };
-            value?: string | number | boolean | any[] | z.objectInputType<{}, z.ZodTypeAny, "passthrough"> | undefined;
-        }>, {
-            type: string;
-            target: {
-                property: string;
-                name?: string | undefined;
-            };
-            value?: string | number | boolean | any[] | z.objectOutputType<{}, z.ZodTypeAny, "passthrough"> | undefined;
-        }, {
-            type: string;
-            target: {
-                property: string;
-                name?: string | undefined;
-            };
-            value?: string | number | boolean | any[] | z.objectInputType<{}, z.ZodTypeAny, "passthrough"> | undefined;
-        }>, "many">, {
-            type: string;
-            target: {
-                property: string;
-                name?: string | undefined;
-            };
-            value?: string | number | boolean | any[] | z.objectOutputType<{}, z.ZodTypeAny, "passthrough"> | undefined;
-        }[], {
-            type: string;
-            target: {
-                property: string;
-                name?: string | undefined;
-            };
-            value?: string | number | boolean | any[] | z.objectInputType<{}, z.ZodTypeAny, "passthrough"> | undefined;
-        }[]>>;
-    }, "strict", z.ZodTypeAny, {
-        type: "variant" | "reprint" | "replacement" | "extension";
-        target: {
-            name: string;
-            sourceID: string;
-            specifier?: string | undefined;
-        };
-        modifications?: {
-            type: string;
-            target: {
-                property: string;
-                name?: string | undefined;
-            };
-            value?: string | number | boolean | any[] | z.objectOutputType<{}, z.ZodTypeAny, "passthrough"> | undefined;
-        }[] | undefined;
-    }, {
-        type: "variant" | "reprint" | "replacement" | "extension";
-        target: {
-            name: string;
-            sourceID: string;
-            specifier?: string | undefined;
-        };
-        modifications?: {
-            type: string;
-            target: {
-                property: string;
-                name?: string | undefined;
-            };
-            value?: string | number | boolean | any[] | z.objectInputType<{}, z.ZodTypeAny, "passthrough"> | undefined;
-        }[] | undefined;
-    }>, {
-        type: "variant" | "reprint" | "replacement" | "extension";
-        target: {
-            name: string;
-            sourceID: string;
-            specifier?: string | undefined;
-        };
-        modifications?: {
-            type: string;
-            target: {
-                property: string;
-                name?: string | undefined;
-            };
-            value?: string | number | boolean | any[] | z.objectOutputType<{}, z.ZodTypeAny, "passthrough"> | undefined;
-        }[] | undefined;
-    }, {
-        type: "variant" | "reprint" | "replacement" | "extension";
-        target: {
-            name: string;
-            sourceID: string;
-            specifier?: string | undefined;
-        };
-        modifications?: {
-            type: string;
-            target: {
-                property: string;
-                name?: string | undefined;
-            };
-            value?: string | number | boolean | any[] | z.objectInputType<{}, z.ZodTypeAny, "passthrough"> | undefined;
-        }[] | undefined;
-    }>>;
-}, {
+            }, z.core.$strip>;
+            value: z.ZodOptional<z.ZodUnion<readonly [z.ZodString, z.ZodNumber, z.ZodObject<{}, z.core.$loose>, z.ZodArray<z.ZodAny>, z.ZodBoolean]>>;
+        }, z.core.$strip>>>;
+    }, z.core.$strict>>;
     type: z.ZodLiteral<"relicGift">;
     data: z.ZodOptional<z.ZodObject<{
         tier: z.ZodString;
-        traits: z.ZodOptional<z.ZodEffects<z.ZodArray<z.ZodObject<{
+        traits: z.ZodOptional<z.ZodArray<z.ZodObject<{
             trait: z.ZodString;
-            variables: z.ZodOptional<z.ZodEffects<z.ZodArray<z.ZodString, "many">, string[], string[]>>;
+            variables: z.ZodOptional<z.ZodArray<z.ZodString>>;
             display: z.ZodOptional<z.ZodString>;
-        }, "strict", z.ZodTypeAny, {
-            trait: string;
-            display?: string | undefined;
-            variables?: string[] | undefined;
-        }, {
-            trait: string;
-            display?: string | undefined;
-            variables?: string[] | undefined;
-        }>, "many">, {
-            trait: string;
-            display?: string | undefined;
-            variables?: string[] | undefined;
-        }[], {
-            trait: string;
-            display?: string | undefined;
-            variables?: string[] | undefined;
-        }[]>>;
+        }, z.core.$strict>>>;
         aspects: z.ZodArray<z.ZodObject<{
             name: z.ZodString;
             note: z.ZodOptional<z.ZodString>;
-        }, "strict", z.ZodTypeAny, {
-            name: string;
-            note?: string | undefined;
-        }, {
-            name: string;
-            note?: string | undefined;
-        }>, "many">;
+        }, z.core.$strict>>;
         prerequisites: z.ZodOptional<z.ZodString>;
-        entries: z.ZodArray<z.ZodUnion<[z.ZodString, z.ZodObject<{
+        entries: z.ZodArray<z.ZodUnion<readonly [z.ZodString, z.ZodObject<{
             type: z.ZodString;
-        }, "strip", z.ZodTypeAny, {
-            type: string;
-        }, {
-            type: string;
-        }>]>, "many">;
-        _tags: z.ZodOptional<z.ZodEffects<z.ZodObject<{
-            itemTypes: z.ZodOptional<z.ZodEffects<z.ZodEffects<z.ZodObject<{
+        }, z.core.$strip>]>>;
+        _tags: z.ZodOptional<z.ZodObject<{
+            itemTypes: z.ZodOptional<z.ZodObject<{
                 Armor: z.ZodOptional<z.ZodLiteral<true>>;
                 "Worn Item": z.ZodOptional<z.ZodLiteral<true>>;
                 Weapon: z.ZodOptional<z.ZodLiteral<true>>;
-            }, "strip", z.ZodLiteral<true>, z.objectOutputType<{
-                Armor: z.ZodOptional<z.ZodLiteral<true>>;
-                "Worn Item": z.ZodOptional<z.ZodLiteral<true>>;
-                Weapon: z.ZodOptional<z.ZodLiteral<true>>;
-            }, z.ZodLiteral<true>, "strip">, z.objectInputType<{
-                Armor: z.ZodOptional<z.ZodLiteral<true>>;
-                "Worn Item": z.ZodOptional<z.ZodLiteral<true>>;
-                Weapon: z.ZodOptional<z.ZodLiteral<true>>;
-            }, z.ZodLiteral<true>, "strip">>, z.objectOutputType<{
-                Armor: z.ZodOptional<z.ZodLiteral<true>>;
-                "Worn Item": z.ZodOptional<z.ZodLiteral<true>>;
-                Weapon: z.ZodOptional<z.ZodLiteral<true>>;
-            }, z.ZodLiteral<true>, "strip">, z.objectInputType<{
-                Armor: z.ZodOptional<z.ZodLiteral<true>>;
-                "Worn Item": z.ZodOptional<z.ZodLiteral<true>>;
-                Weapon: z.ZodOptional<z.ZodLiteral<true>>;
-            }, z.ZodLiteral<true>, "strip">>, z.objectOutputType<{
-                Armor: z.ZodOptional<z.ZodLiteral<true>>;
-                "Worn Item": z.ZodOptional<z.ZodLiteral<true>>;
-                Weapon: z.ZodOptional<z.ZodLiteral<true>>;
-            }, z.ZodLiteral<true>, "strip">, z.objectInputType<{
-                Armor: z.ZodOptional<z.ZodLiteral<true>>;
-                "Worn Item": z.ZodOptional<z.ZodLiteral<true>>;
-                Weapon: z.ZodOptional<z.ZodLiteral<true>>;
-            }, z.ZodLiteral<true>, "strip">>>;
-            misc: z.ZodOptional<z.ZodEffects<z.ZodObject<{
+            }, z.core.$catchall<z.ZodLiteral<true>>>>;
+            misc: z.ZodOptional<z.ZodObject<{
                 "Alters relic": z.ZodOptional<z.ZodLiteral<true>>;
                 "Grants ability": z.ZodOptional<z.ZodLiteral<true>>;
                 "Grants passive attribute": z.ZodOptional<z.ZodLiteral<true>>;
                 "Is rune": z.ZodOptional<z.ZodLiteral<true>>;
                 "Soul seed": z.ZodOptional<z.ZodLiteral<true>>;
-            }, "strict", z.ZodTypeAny, {
-                "Grants ability"?: true | undefined;
-                "Alters relic"?: true | undefined;
-                "Grants passive attribute"?: true | undefined;
-                "Is rune"?: true | undefined;
-                "Soul seed"?: true | undefined;
-            }, {
-                "Grants ability"?: true | undefined;
-                "Alters relic"?: true | undefined;
-                "Grants passive attribute"?: true | undefined;
-                "Is rune"?: true | undefined;
-                "Soul seed"?: true | undefined;
-            }>, {
-                "Grants ability"?: true | undefined;
-                "Alters relic"?: true | undefined;
-                "Grants passive attribute"?: true | undefined;
-                "Is rune"?: true | undefined;
-                "Soul seed"?: true | undefined;
-            }, {
-                "Grants ability"?: true | undefined;
-                "Alters relic"?: true | undefined;
-                "Grants passive attribute"?: true | undefined;
-                "Is rune"?: true | undefined;
-                "Soul seed"?: true | undefined;
-            }>>;
-        }, "strict", z.ZodTypeAny, {
-            misc?: {
-                "Grants ability"?: true | undefined;
-                "Alters relic"?: true | undefined;
-                "Grants passive attribute"?: true | undefined;
-                "Is rune"?: true | undefined;
-                "Soul seed"?: true | undefined;
-            } | undefined;
-            itemTypes?: z.objectOutputType<{
-                Armor: z.ZodOptional<z.ZodLiteral<true>>;
-                "Worn Item": z.ZodOptional<z.ZodLiteral<true>>;
-                Weapon: z.ZodOptional<z.ZodLiteral<true>>;
-            }, z.ZodLiteral<true>, "strip"> | undefined;
-        }, {
-            misc?: {
-                "Grants ability"?: true | undefined;
-                "Alters relic"?: true | undefined;
-                "Grants passive attribute"?: true | undefined;
-                "Is rune"?: true | undefined;
-                "Soul seed"?: true | undefined;
-            } | undefined;
-            itemTypes?: z.objectInputType<{
-                Armor: z.ZodOptional<z.ZodLiteral<true>>;
-                "Worn Item": z.ZodOptional<z.ZodLiteral<true>>;
-                Weapon: z.ZodOptional<z.ZodLiteral<true>>;
-            }, z.ZodLiteral<true>, "strip"> | undefined;
-        }>, {
-            misc?: {
-                "Grants ability"?: true | undefined;
-                "Alters relic"?: true | undefined;
-                "Grants passive attribute"?: true | undefined;
-                "Is rune"?: true | undefined;
-                "Soul seed"?: true | undefined;
-            } | undefined;
-            itemTypes?: z.objectOutputType<{
-                Armor: z.ZodOptional<z.ZodLiteral<true>>;
-                "Worn Item": z.ZodOptional<z.ZodLiteral<true>>;
-                Weapon: z.ZodOptional<z.ZodLiteral<true>>;
-            }, z.ZodLiteral<true>, "strip"> | undefined;
-        }, {
-            misc?: {
-                "Grants ability"?: true | undefined;
-                "Alters relic"?: true | undefined;
-                "Grants passive attribute"?: true | undefined;
-                "Is rune"?: true | undefined;
-                "Soul seed"?: true | undefined;
-            } | undefined;
-            itemTypes?: z.objectInputType<{
-                Armor: z.ZodOptional<z.ZodLiteral<true>>;
-                "Worn Item": z.ZodOptional<z.ZodLiteral<true>>;
-                Weapon: z.ZodOptional<z.ZodLiteral<true>>;
-            }, z.ZodLiteral<true>, "strip"> | undefined;
-        }>>;
-    }, "strict", z.ZodTypeAny, {
-        entries: (string | {
-            type: string;
-        })[];
-        tier: string;
-        aspects: {
-            name: string;
-            note?: string | undefined;
-        }[];
-        _tags?: {
-            misc?: {
-                "Grants ability"?: true | undefined;
-                "Alters relic"?: true | undefined;
-                "Grants passive attribute"?: true | undefined;
-                "Is rune"?: true | undefined;
-                "Soul seed"?: true | undefined;
-            } | undefined;
-            itemTypes?: z.objectOutputType<{
-                Armor: z.ZodOptional<z.ZodLiteral<true>>;
-                "Worn Item": z.ZodOptional<z.ZodLiteral<true>>;
-                Weapon: z.ZodOptional<z.ZodLiteral<true>>;
-            }, z.ZodLiteral<true>, "strip"> | undefined;
-        } | undefined;
-        traits?: {
-            trait: string;
-            display?: string | undefined;
-            variables?: string[] | undefined;
-        }[] | undefined;
-        prerequisites?: string | undefined;
-    }, {
-        entries: (string | {
-            type: string;
-        })[];
-        tier: string;
-        aspects: {
-            name: string;
-            note?: string | undefined;
-        }[];
-        _tags?: {
-            misc?: {
-                "Grants ability"?: true | undefined;
-                "Alters relic"?: true | undefined;
-                "Grants passive attribute"?: true | undefined;
-                "Is rune"?: true | undefined;
-                "Soul seed"?: true | undefined;
-            } | undefined;
-            itemTypes?: z.objectInputType<{
-                Armor: z.ZodOptional<z.ZodLiteral<true>>;
-                "Worn Item": z.ZodOptional<z.ZodLiteral<true>>;
-                Weapon: z.ZodOptional<z.ZodLiteral<true>>;
-            }, z.ZodLiteral<true>, "strip"> | undefined;
-        } | undefined;
-        traits?: {
-            trait: string;
-            display?: string | undefined;
-            variables?: string[] | undefined;
-        }[] | undefined;
-        prerequisites?: string | undefined;
-    }>>;
-}>, "strict", z.ZodTypeAny, {
-    type: "relicGift";
-    source: {
-        ID: string;
-        page?: number | undefined;
-    };
-    name: {
-        primary: string;
-        aliases?: string[] | undefined;
-        specifier?: string | undefined;
-    };
-    data?: {
-        entries: (string | {
-            type: string;
-        })[];
-        tier: string;
-        aspects: {
-            name: string;
-            note?: string | undefined;
-        }[];
-        _tags?: {
-            misc?: {
-                "Grants ability"?: true | undefined;
-                "Alters relic"?: true | undefined;
-                "Grants passive attribute"?: true | undefined;
-                "Is rune"?: true | undefined;
-                "Soul seed"?: true | undefined;
-            } | undefined;
-            itemTypes?: z.objectOutputType<{
-                Armor: z.ZodOptional<z.ZodLiteral<true>>;
-                "Worn Item": z.ZodOptional<z.ZodLiteral<true>>;
-                Weapon: z.ZodOptional<z.ZodLiteral<true>>;
-            }, z.ZodLiteral<true>, "strip"> | undefined;
-        } | undefined;
-        traits?: {
-            trait: string;
-            display?: string | undefined;
-            variables?: string[] | undefined;
-        }[] | undefined;
-        prerequisites?: string | undefined;
-    } | undefined;
-    reference?: {
-        type: "variant" | "reprint" | "replacement" | "extension";
-        target: {
-            name: string;
-            sourceID: string;
-            specifier?: string | undefined;
-        };
-        modifications?: {
-            type: string;
-            target: {
-                property: string;
-                name?: string | undefined;
-            };
-            value?: string | number | boolean | any[] | z.objectOutputType<{}, z.ZodTypeAny, "passthrough"> | undefined;
-        }[] | undefined;
-    } | undefined;
-}, {
-    type: "relicGift";
-    source: {
-        ID: string;
-        page?: number | undefined;
-    };
-    name: {
-        primary: string;
-        aliases?: string[] | undefined;
-        specifier?: string | undefined;
-    };
-    data?: {
-        entries: (string | {
-            type: string;
-        })[];
-        tier: string;
-        aspects: {
-            name: string;
-            note?: string | undefined;
-        }[];
-        _tags?: {
-            misc?: {
-                "Grants ability"?: true | undefined;
-                "Alters relic"?: true | undefined;
-                "Grants passive attribute"?: true | undefined;
-                "Is rune"?: true | undefined;
-                "Soul seed"?: true | undefined;
-            } | undefined;
-            itemTypes?: z.objectInputType<{
-                Armor: z.ZodOptional<z.ZodLiteral<true>>;
-                "Worn Item": z.ZodOptional<z.ZodLiteral<true>>;
-                Weapon: z.ZodOptional<z.ZodLiteral<true>>;
-            }, z.ZodLiteral<true>, "strip"> | undefined;
-        } | undefined;
-        traits?: {
-            trait: string;
-            display?: string | undefined;
-            variables?: string[] | undefined;
-        }[] | undefined;
-        prerequisites?: string | undefined;
-    } | undefined;
-    reference?: {
-        type: "variant" | "reprint" | "replacement" | "extension";
-        target: {
-            name: string;
-            sourceID: string;
-            specifier?: string | undefined;
-        };
-        modifications?: {
-            type: string;
-            target: {
-                property: string;
-                name?: string | undefined;
-            };
-            value?: string | number | boolean | any[] | z.objectInputType<{}, z.ZodTypeAny, "passthrough"> | undefined;
-        }[] | undefined;
-    } | undefined;
-}>, z.ZodObject<z.objectUtil.extendShape<{
-    type: z.ZodString;
-    name: z.ZodEffects<z.ZodObject<{
-        primary: z.ZodEffects<z.ZodString, string, string>;
-        aliases: z.ZodOptional<z.ZodEffects<z.ZodArray<z.ZodString, "many">, string[], string[]>>;
-        specifier: z.ZodOptional<z.ZodEffects<z.ZodString, string, string>>;
-    }, "strict", z.ZodTypeAny, {
-        primary: string;
-        aliases?: string[] | undefined;
-        specifier?: string | undefined;
-    }, {
-        primary: string;
-        aliases?: string[] | undefined;
-        specifier?: string | undefined;
-    }>, {
-        primary: string;
-        aliases?: string[] | undefined;
-        specifier?: string | undefined;
-    }, {
-        primary: string;
-        aliases?: string[] | undefined;
-        specifier?: string | undefined;
-    }>;
+            }, z.core.$strict>>;
+        }, z.core.$strict>>;
+    }, z.core.$strict>>;
+}, z.core.$strict>, z.ZodObject<{
+    name: z.ZodObject<{
+        primary: z.ZodString;
+        aliases: z.ZodOptional<z.ZodArray<z.ZodString>>;
+        specifier: z.ZodOptional<z.ZodString>;
+    }, z.core.$strict>;
     source: z.ZodObject<{
-        ID: z.ZodEffects<z.ZodString, string, string>;
+        ID: z.ZodString;
         page: z.ZodOptional<z.ZodNumber>;
-    }, "strict", z.ZodTypeAny, {
-        ID: string;
-        page?: number | undefined;
-    }, {
-        ID: string;
-        page?: number | undefined;
-    }>;
-    data: z.ZodOptional<z.ZodObject<{}, "strip", z.ZodTypeAny, {}, {}>>;
-    reference: z.ZodOptional<z.ZodEffects<z.ZodObject<{
-        type: z.ZodEnum<["reprint", "variant", "replacement", "extension"]>;
+    }, z.core.$strict>;
+    reference: z.ZodOptional<z.ZodObject<{
+        type: z.ZodEnum<{
+            variant: "variant";
+            reprint: "reprint";
+            replacement: "replacement";
+            extension: "extension";
+        }>;
         target: z.ZodObject<{
             name: z.ZodString;
             specifier: z.ZodOptional<z.ZodString>;
-            sourceID: z.ZodEffects<z.ZodString, string, string>;
-        }, "strict", z.ZodTypeAny, {
-            name: string;
-            sourceID: string;
-            specifier?: string | undefined;
-        }, {
-            name: string;
-            sourceID: string;
-            specifier?: string | undefined;
-        }>;
-        modifications: z.ZodOptional<z.ZodEffects<z.ZodArray<z.ZodEffects<z.ZodObject<{
+            sourceID: z.ZodString;
+        }, z.core.$strict>;
+        modifications: z.ZodOptional<z.ZodArray<z.ZodObject<{
             type: z.ZodString;
             target: z.ZodObject<{
                 property: z.ZodString;
                 name: z.ZodOptional<z.ZodString>;
-            }, "strip", z.ZodTypeAny, {
-                property: string;
-                name?: string | undefined;
-            }, {
-                property: string;
-                name?: string | undefined;
-            }>;
-            value: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber, z.ZodObject<{}, "passthrough", z.ZodTypeAny, z.objectOutputType<{}, z.ZodTypeAny, "passthrough">, z.objectInputType<{}, z.ZodTypeAny, "passthrough">>, z.ZodArray<z.ZodAny, "many">, z.ZodBoolean]>>;
-        }, "strip", z.ZodTypeAny, {
-            type: string;
-            target: {
-                property: string;
-                name?: string | undefined;
-            };
-            value?: string | number | boolean | any[] | z.objectOutputType<{}, z.ZodTypeAny, "passthrough"> | undefined;
-        }, {
-            type: string;
-            target: {
-                property: string;
-                name?: string | undefined;
-            };
-            value?: string | number | boolean | any[] | z.objectInputType<{}, z.ZodTypeAny, "passthrough"> | undefined;
-        }>, {
-            type: string;
-            target: {
-                property: string;
-                name?: string | undefined;
-            };
-            value?: string | number | boolean | any[] | z.objectOutputType<{}, z.ZodTypeAny, "passthrough"> | undefined;
-        }, {
-            type: string;
-            target: {
-                property: string;
-                name?: string | undefined;
-            };
-            value?: string | number | boolean | any[] | z.objectInputType<{}, z.ZodTypeAny, "passthrough"> | undefined;
-        }>, "many">, {
-            type: string;
-            target: {
-                property: string;
-                name?: string | undefined;
-            };
-            value?: string | number | boolean | any[] | z.objectOutputType<{}, z.ZodTypeAny, "passthrough"> | undefined;
-        }[], {
-            type: string;
-            target: {
-                property: string;
-                name?: string | undefined;
-            };
-            value?: string | number | boolean | any[] | z.objectInputType<{}, z.ZodTypeAny, "passthrough"> | undefined;
-        }[]>>;
-    }, "strict", z.ZodTypeAny, {
-        type: "variant" | "reprint" | "replacement" | "extension";
-        target: {
-            name: string;
-            sourceID: string;
-            specifier?: string | undefined;
-        };
-        modifications?: {
-            type: string;
-            target: {
-                property: string;
-                name?: string | undefined;
-            };
-            value?: string | number | boolean | any[] | z.objectOutputType<{}, z.ZodTypeAny, "passthrough"> | undefined;
-        }[] | undefined;
-    }, {
-        type: "variant" | "reprint" | "replacement" | "extension";
-        target: {
-            name: string;
-            sourceID: string;
-            specifier?: string | undefined;
-        };
-        modifications?: {
-            type: string;
-            target: {
-                property: string;
-                name?: string | undefined;
-            };
-            value?: string | number | boolean | any[] | z.objectInputType<{}, z.ZodTypeAny, "passthrough"> | undefined;
-        }[] | undefined;
-    }>, {
-        type: "variant" | "reprint" | "replacement" | "extension";
-        target: {
-            name: string;
-            sourceID: string;
-            specifier?: string | undefined;
-        };
-        modifications?: {
-            type: string;
-            target: {
-                property: string;
-                name?: string | undefined;
-            };
-            value?: string | number | boolean | any[] | z.objectOutputType<{}, z.ZodTypeAny, "passthrough"> | undefined;
-        }[] | undefined;
-    }, {
-        type: "variant" | "reprint" | "replacement" | "extension";
-        target: {
-            name: string;
-            sourceID: string;
-            specifier?: string | undefined;
-        };
-        modifications?: {
-            type: string;
-            target: {
-                property: string;
-                name?: string | undefined;
-            };
-            value?: string | number | boolean | any[] | z.objectInputType<{}, z.ZodTypeAny, "passthrough"> | undefined;
-        }[] | undefined;
-    }>>;
-}, {
+            }, z.core.$strip>;
+            value: z.ZodOptional<z.ZodUnion<readonly [z.ZodString, z.ZodNumber, z.ZodObject<{}, z.core.$loose>, z.ZodArray<z.ZodAny>, z.ZodBoolean]>>;
+        }, z.core.$strip>>>;
+    }, z.core.$strict>>;
     type: z.ZodLiteral<"skill">;
     data: z.ZodObject<{
-        entries: z.ZodArray<z.ZodUnion<[z.ZodString, z.ZodObject<{
+        entries: z.ZodArray<z.ZodUnion<readonly [z.ZodString, z.ZodObject<{
             type: z.ZodString;
-        }, "strip", z.ZodTypeAny, {
-            type: string;
-        }, {
-            type: string;
-        }>]>, "many">;
-    }, "strict", z.ZodTypeAny, {
-        entries: (string | {
-            type: string;
-        })[];
-    }, {
-        entries: (string | {
-            type: string;
-        })[];
-    }>;
-}>, "strict", z.ZodTypeAny, {
-    type: "skill";
-    data: {
-        entries: (string | {
-            type: string;
-        })[];
-    };
-    source: {
-        ID: string;
-        page?: number | undefined;
-    };
-    name: {
-        primary: string;
-        aliases?: string[] | undefined;
-        specifier?: string | undefined;
-    };
-    reference?: {
-        type: "variant" | "reprint" | "replacement" | "extension";
-        target: {
-            name: string;
-            sourceID: string;
-            specifier?: string | undefined;
-        };
-        modifications?: {
-            type: string;
-            target: {
-                property: string;
-                name?: string | undefined;
-            };
-            value?: string | number | boolean | any[] | z.objectOutputType<{}, z.ZodTypeAny, "passthrough"> | undefined;
-        }[] | undefined;
-    } | undefined;
-}, {
-    type: "skill";
-    data: {
-        entries: (string | {
-            type: string;
-        })[];
-    };
-    source: {
-        ID: string;
-        page?: number | undefined;
-    };
-    name: {
-        primary: string;
-        aliases?: string[] | undefined;
-        specifier?: string | undefined;
-    };
-    reference?: {
-        type: "variant" | "reprint" | "replacement" | "extension";
-        target: {
-            name: string;
-            sourceID: string;
-            specifier?: string | undefined;
-        };
-        modifications?: {
-            type: string;
-            target: {
-                property: string;
-                name?: string | undefined;
-            };
-            value?: string | number | boolean | any[] | z.objectInputType<{}, z.ZodTypeAny, "passthrough"> | undefined;
-        }[] | undefined;
-    } | undefined;
-}>]>, {
-    type: "background";
-    source: {
-        ID: string;
-        page?: number | undefined;
-    };
-    name: {
-        primary: string;
-        aliases?: string[] | undefined;
-        specifier?: string | undefined;
-    };
-    data?: {
-        entries: (string | {
-            type: string;
-        })[];
-        _tags?: {
-            misc?: {
-                "Grants ability"?: true | undefined;
-                "Grants equipment"?: true | undefined;
-                "Grants language"?: true | undefined;
-                "Grants resistance"?: true | undefined;
-                "Grants sense"?: true | undefined;
-                "Grants situational benefit"?: true | undefined;
-                "Has drawback"?: true | undefined;
-                "GM influence"?: true | undefined;
-            } | undefined;
-            abilityBoosts?: {
-                abilities: Partial<Record<"Strength" | "Dexterity" | "Constitution" | "Intelligence" | "Wisdom" | "Charisma" | "free", true>>;
-                count: number;
-            } | undefined;
-            trainedSkills?: {
-                count: number;
-                skills: Partial<Record<"Acrobatics" | "Arcana" | "Athletics" | "Crafting" | "Deception" | "Diplomacy" | "Intimidation" | "Lore" | "Medicine" | "Nature" | "Occultism" | "Performance" | "Religion" | "Society" | "Stealth" | "Survival" | "Thievery" | "Any", true>>;
-            } | undefined;
-            gainedFeats?: {
-                options: {
-                    name: string;
-                    sourceID: string;
-                    specifier?: string | undefined;
-                }[];
-                count: number;
-            } | undefined;
-            gainedSpells?: {
-                options: {
-                    name: string;
-                    sourceID: string;
-                    specifier?: string | undefined;
-                }[];
-                count: number;
-            } | undefined;
-        } | undefined;
-        traits?: {
-            trait: string;
-            display?: string | undefined;
-            variables?: string[] | undefined;
-        }[] | undefined;
-    } | undefined;
-    reference?: {
-        type: "variant" | "reprint" | "replacement" | "extension";
-        target: {
-            name: string;
-            sourceID: string;
-            specifier?: string | undefined;
-        };
-        modifications?: {
-            type: string;
-            target: {
-                property: string;
-                name?: string | undefined;
-            };
-            value?: string | number | boolean | any[] | z.objectOutputType<{}, z.ZodTypeAny, "passthrough"> | undefined;
-        }[] | undefined;
-    } | undefined;
-} | {
-    type: "condition";
-    source: {
-        ID: string;
-        page?: number | undefined;
-    };
-    name: {
-        primary: string;
-        aliases?: string[] | undefined;
-        specifier?: string | undefined;
-    };
-    data?: {
-        entries: (string | {
-            type: string;
-        })[];
-        _tags?: {
-            group?: z.objectOutputType<{
-                Attitudes: z.ZodOptional<z.ZodLiteral<true>>;
-                "Death and Dying": z.ZodOptional<z.ZodLiteral<true>>;
-                "Degrees of Detection": z.ZodOptional<z.ZodLiteral<true>>;
-                "Lowered Abilities": z.ZodOptional<z.ZodLiteral<true>>;
-                Senses: z.ZodOptional<z.ZodLiteral<true>>;
-            }, z.ZodLiteral<true>, "strip"> | undefined;
-        } | undefined;
-    } | undefined;
-    reference?: {
-        type: "variant" | "reprint" | "replacement" | "extension";
-        target: {
-            name: string;
-            sourceID: string;
-            specifier?: string | undefined;
-        };
-        modifications?: {
-            type: string;
-            target: {
-                property: string;
-                name?: string | undefined;
-            };
-            value?: string | number | boolean | any[] | z.objectOutputType<{}, z.ZodTypeAny, "passthrough"> | undefined;
-        }[] | undefined;
-    } | undefined;
-} | {
-    type: "domain";
-    source: {
-        ID: string;
-        page?: number | undefined;
-    };
-    name: {
-        primary: string;
-        aliases?: string[] | undefined;
-        specifier?: string | undefined;
-    };
-    data?: {
-        domainSpell: {
-            name: string;
-            sourceID: string;
-            specifier?: string | undefined;
-        };
-        advancedDomainSpell: {
-            name: string;
-            sourceID: string;
-            specifier?: string | undefined;
-        };
-        preamble?: string | undefined;
-        apocryphalSpell?: {
-            name: string;
-            sourceID: string;
-            specifier?: string | undefined;
-        } | undefined;
-        advancedApocryphalSpell?: {
-            name: string;
-            sourceID: string;
-            specifier?: string | undefined;
-        } | undefined;
-    } | undefined;
-    reference?: {
-        type: "variant" | "reprint" | "replacement" | "extension";
-        target: {
-            name: string;
-            sourceID: string;
-            specifier?: string | undefined;
-        };
-        modifications?: {
-            type: string;
-            target: {
-                property: string;
-                name?: string | undefined;
-            };
-            value?: string | number | boolean | any[] | z.objectOutputType<{}, z.ZodTypeAny, "passthrough"> | undefined;
-        }[] | undefined;
-    } | undefined;
-} | {
-    type: "event";
-    source: {
-        ID: string;
-        page?: number | undefined;
-    };
-    name: {
-        primary: string;
-        aliases?: string[] | undefined;
-        specifier?: string | undefined;
-    };
-    data?: {
-        entries: (string | {
-            type: string;
-        })[];
-        level: number;
-        traits?: {
-            trait: string;
-            display?: string | undefined;
-            variables?: string[] | undefined;
-        }[] | undefined;
-        applicableSkills?: {
-            skill: "Acrobatics" | "Arcana" | "Athletics" | "Crafting" | "Deception" | "Diplomacy" | "Intimidation" | "Lore" | "Medicine" | "Nature" | "Occultism" | "Performance" | "Religion" | "Society" | "Stealth" | "Survival" | "Thievery";
-            display?: string | undefined;
-            variables?: string[] | undefined;
-        }[] | undefined;
-    } | undefined;
-    reference?: {
-        type: "variant" | "reprint" | "replacement" | "extension";
-        target: {
-            name: string;
-            sourceID: string;
-            specifier?: string | undefined;
-        };
-        modifications?: {
-            type: string;
-            target: {
-                property: string;
-                name?: string | undefined;
-            };
-            value?: string | number | boolean | any[] | z.objectOutputType<{}, z.ZodTypeAny, "passthrough"> | undefined;
-        }[] | undefined;
-    } | undefined;
-} | {
-    type: "familiarAbility";
-    source: {
-        ID: string;
-        page?: number | undefined;
-    };
-    name: {
-        primary: string;
-        aliases?: string[] | undefined;
-        specifier?: string | undefined;
-    };
-    data?: {
-        entries: (string | {
-            type: string;
-        })[];
-        abilityType: "Familiar" | "Master";
-        _tags?: {
-            misc?: {
-                affectsCommunication?: true | undefined;
-                affectsSenses?: true | undefined;
-                affectsMovement?: true | undefined;
-                hasRequirement?: true | undefined;
-                grantsAbility?: true | undefined;
-                repeatable?: true | undefined;
-            } | undefined;
-        } | undefined;
-    } | undefined;
-    reference?: {
-        type: "variant" | "reprint" | "replacement" | "extension";
-        target: {
-            name: string;
-            sourceID: string;
-            specifier?: string | undefined;
-        };
-        modifications?: {
-            type: string;
-            target: {
-                property: string;
-                name?: string | undefined;
-            };
-            value?: string | number | boolean | any[] | z.objectOutputType<{}, z.ZodTypeAny, "passthrough"> | undefined;
-        }[] | undefined;
-    } | undefined;
-} | {
-    type: "relicGift";
-    source: {
-        ID: string;
-        page?: number | undefined;
-    };
-    name: {
-        primary: string;
-        aliases?: string[] | undefined;
-        specifier?: string | undefined;
-    };
-    data?: {
-        entries: (string | {
-            type: string;
-        })[];
-        tier: string;
-        aspects: {
-            name: string;
-            note?: string | undefined;
-        }[];
-        _tags?: {
-            misc?: {
-                "Grants ability"?: true | undefined;
-                "Alters relic"?: true | undefined;
-                "Grants passive attribute"?: true | undefined;
-                "Is rune"?: true | undefined;
-                "Soul seed"?: true | undefined;
-            } | undefined;
-            itemTypes?: z.objectOutputType<{
-                Armor: z.ZodOptional<z.ZodLiteral<true>>;
-                "Worn Item": z.ZodOptional<z.ZodLiteral<true>>;
-                Weapon: z.ZodOptional<z.ZodLiteral<true>>;
-            }, z.ZodLiteral<true>, "strip"> | undefined;
-        } | undefined;
-        traits?: {
-            trait: string;
-            display?: string | undefined;
-            variables?: string[] | undefined;
-        }[] | undefined;
-        prerequisites?: string | undefined;
-    } | undefined;
-    reference?: {
-        type: "variant" | "reprint" | "replacement" | "extension";
-        target: {
-            name: string;
-            sourceID: string;
-            specifier?: string | undefined;
-        };
-        modifications?: {
-            type: string;
-            target: {
-                property: string;
-                name?: string | undefined;
-            };
-            value?: string | number | boolean | any[] | z.objectOutputType<{}, z.ZodTypeAny, "passthrough"> | undefined;
-        }[] | undefined;
-    } | undefined;
-} | {
-    type: "skill";
-    data: {
-        entries: (string | {
-            type: string;
-        })[];
-    };
-    source: {
-        ID: string;
-        page?: number | undefined;
-    };
-    name: {
-        primary: string;
-        aliases?: string[] | undefined;
-        specifier?: string | undefined;
-    };
-    reference?: {
-        type: "variant" | "reprint" | "replacement" | "extension";
-        target: {
-            name: string;
-            sourceID: string;
-            specifier?: string | undefined;
-        };
-        modifications?: {
-            type: string;
-            target: {
-                property: string;
-                name?: string | undefined;
-            };
-            value?: string | number | boolean | any[] | z.objectOutputType<{}, z.ZodTypeAny, "passthrough"> | undefined;
-        }[] | undefined;
-    } | undefined;
-}, {
-    type: "background";
-    source: {
-        ID: string;
-        page?: number | undefined;
-    };
-    name: {
-        primary: string;
-        aliases?: string[] | undefined;
-        specifier?: string | undefined;
-    };
-    data?: {
-        entries: (string | {
-            type: string;
-        })[];
-        _tags?: {
-            misc?: {
-                "Grants ability"?: true | undefined;
-                "Grants equipment"?: true | undefined;
-                "Grants language"?: true | undefined;
-                "Grants resistance"?: true | undefined;
-                "Grants sense"?: true | undefined;
-                "Grants situational benefit"?: true | undefined;
-                "Has drawback"?: true | undefined;
-                "GM influence"?: true | undefined;
-            } | undefined;
-            abilityBoosts?: {
-                abilities: Partial<Record<"Strength" | "Dexterity" | "Constitution" | "Intelligence" | "Wisdom" | "Charisma" | "free", true>>;
-                count: number;
-            } | undefined;
-            trainedSkills?: {
-                count: number;
-                skills: Partial<Record<"Acrobatics" | "Arcana" | "Athletics" | "Crafting" | "Deception" | "Diplomacy" | "Intimidation" | "Lore" | "Medicine" | "Nature" | "Occultism" | "Performance" | "Religion" | "Society" | "Stealth" | "Survival" | "Thievery" | "Any", true>>;
-            } | undefined;
-            gainedFeats?: {
-                options: {
-                    name: string;
-                    sourceID: string;
-                    specifier?: string | undefined;
-                }[];
-                count: number;
-            } | undefined;
-            gainedSpells?: {
-                options: {
-                    name: string;
-                    sourceID: string;
-                    specifier?: string | undefined;
-                }[];
-                count: number;
-            } | undefined;
-        } | undefined;
-        traits?: {
-            trait: string;
-            display?: string | undefined;
-            variables?: string[] | undefined;
-        }[] | undefined;
-    } | undefined;
-    reference?: {
-        type: "variant" | "reprint" | "replacement" | "extension";
-        target: {
-            name: string;
-            sourceID: string;
-            specifier?: string | undefined;
-        };
-        modifications?: {
-            type: string;
-            target: {
-                property: string;
-                name?: string | undefined;
-            };
-            value?: string | number | boolean | any[] | z.objectInputType<{}, z.ZodTypeAny, "passthrough"> | undefined;
-        }[] | undefined;
-    } | undefined;
-} | {
-    type: "condition";
-    source: {
-        ID: string;
-        page?: number | undefined;
-    };
-    name: {
-        primary: string;
-        aliases?: string[] | undefined;
-        specifier?: string | undefined;
-    };
-    data?: {
-        entries: (string | {
-            type: string;
-        })[];
-        _tags?: {
-            group?: z.objectInputType<{
-                Attitudes: z.ZodOptional<z.ZodLiteral<true>>;
-                "Death and Dying": z.ZodOptional<z.ZodLiteral<true>>;
-                "Degrees of Detection": z.ZodOptional<z.ZodLiteral<true>>;
-                "Lowered Abilities": z.ZodOptional<z.ZodLiteral<true>>;
-                Senses: z.ZodOptional<z.ZodLiteral<true>>;
-            }, z.ZodLiteral<true>, "strip"> | undefined;
-        } | undefined;
-    } | undefined;
-    reference?: {
-        type: "variant" | "reprint" | "replacement" | "extension";
-        target: {
-            name: string;
-            sourceID: string;
-            specifier?: string | undefined;
-        };
-        modifications?: {
-            type: string;
-            target: {
-                property: string;
-                name?: string | undefined;
-            };
-            value?: string | number | boolean | any[] | z.objectInputType<{}, z.ZodTypeAny, "passthrough"> | undefined;
-        }[] | undefined;
-    } | undefined;
-} | {
-    type: "domain";
-    source: {
-        ID: string;
-        page?: number | undefined;
-    };
-    name: {
-        primary: string;
-        aliases?: string[] | undefined;
-        specifier?: string | undefined;
-    };
-    data?: {
-        domainSpell: {
-            name: string;
-            sourceID: string;
-            specifier?: string | undefined;
-        };
-        advancedDomainSpell: {
-            name: string;
-            sourceID: string;
-            specifier?: string | undefined;
-        };
-        preamble?: string | undefined;
-        apocryphalSpell?: {
-            name: string;
-            sourceID: string;
-            specifier?: string | undefined;
-        } | undefined;
-        advancedApocryphalSpell?: {
-            name: string;
-            sourceID: string;
-            specifier?: string | undefined;
-        } | undefined;
-    } | undefined;
-    reference?: {
-        type: "variant" | "reprint" | "replacement" | "extension";
-        target: {
-            name: string;
-            sourceID: string;
-            specifier?: string | undefined;
-        };
-        modifications?: {
-            type: string;
-            target: {
-                property: string;
-                name?: string | undefined;
-            };
-            value?: string | number | boolean | any[] | z.objectInputType<{}, z.ZodTypeAny, "passthrough"> | undefined;
-        }[] | undefined;
-    } | undefined;
-} | {
-    type: "event";
-    source: {
-        ID: string;
-        page?: number | undefined;
-    };
-    name: {
-        primary: string;
-        aliases?: string[] | undefined;
-        specifier?: string | undefined;
-    };
-    data?: {
-        entries: (string | {
-            type: string;
-        })[];
-        level: number;
-        traits?: {
-            trait: string;
-            display?: string | undefined;
-            variables?: string[] | undefined;
-        }[] | undefined;
-        applicableSkills?: {
-            skill: "Acrobatics" | "Arcana" | "Athletics" | "Crafting" | "Deception" | "Diplomacy" | "Intimidation" | "Lore" | "Medicine" | "Nature" | "Occultism" | "Performance" | "Religion" | "Society" | "Stealth" | "Survival" | "Thievery";
-            display?: string | undefined;
-            variables?: string[] | undefined;
-        }[] | undefined;
-    } | undefined;
-    reference?: {
-        type: "variant" | "reprint" | "replacement" | "extension";
-        target: {
-            name: string;
-            sourceID: string;
-            specifier?: string | undefined;
-        };
-        modifications?: {
-            type: string;
-            target: {
-                property: string;
-                name?: string | undefined;
-            };
-            value?: string | number | boolean | any[] | z.objectInputType<{}, z.ZodTypeAny, "passthrough"> | undefined;
-        }[] | undefined;
-    } | undefined;
-} | {
-    type: "familiarAbility";
-    source: {
-        ID: string;
-        page?: number | undefined;
-    };
-    name: {
-        primary: string;
-        aliases?: string[] | undefined;
-        specifier?: string | undefined;
-    };
-    data?: {
-        entries: (string | {
-            type: string;
-        })[];
-        abilityType: "Familiar" | "Master";
-        _tags?: {
-            misc?: {
-                affectsCommunication?: true | undefined;
-                affectsSenses?: true | undefined;
-                affectsMovement?: true | undefined;
-                hasRequirement?: true | undefined;
-                grantsAbility?: true | undefined;
-                repeatable?: true | undefined;
-            } | undefined;
-        } | undefined;
-    } | undefined;
-    reference?: {
-        type: "variant" | "reprint" | "replacement" | "extension";
-        target: {
-            name: string;
-            sourceID: string;
-            specifier?: string | undefined;
-        };
-        modifications?: {
-            type: string;
-            target: {
-                property: string;
-                name?: string | undefined;
-            };
-            value?: string | number | boolean | any[] | z.objectInputType<{}, z.ZodTypeAny, "passthrough"> | undefined;
-        }[] | undefined;
-    } | undefined;
-} | {
-    type: "relicGift";
-    source: {
-        ID: string;
-        page?: number | undefined;
-    };
-    name: {
-        primary: string;
-        aliases?: string[] | undefined;
-        specifier?: string | undefined;
-    };
-    data?: {
-        entries: (string | {
-            type: string;
-        })[];
-        tier: string;
-        aspects: {
-            name: string;
-            note?: string | undefined;
-        }[];
-        _tags?: {
-            misc?: {
-                "Grants ability"?: true | undefined;
-                "Alters relic"?: true | undefined;
-                "Grants passive attribute"?: true | undefined;
-                "Is rune"?: true | undefined;
-                "Soul seed"?: true | undefined;
-            } | undefined;
-            itemTypes?: z.objectInputType<{
-                Armor: z.ZodOptional<z.ZodLiteral<true>>;
-                "Worn Item": z.ZodOptional<z.ZodLiteral<true>>;
-                Weapon: z.ZodOptional<z.ZodLiteral<true>>;
-            }, z.ZodLiteral<true>, "strip"> | undefined;
-        } | undefined;
-        traits?: {
-            trait: string;
-            display?: string | undefined;
-            variables?: string[] | undefined;
-        }[] | undefined;
-        prerequisites?: string | undefined;
-    } | undefined;
-    reference?: {
-        type: "variant" | "reprint" | "replacement" | "extension";
-        target: {
-            name: string;
-            sourceID: string;
-            specifier?: string | undefined;
-        };
-        modifications?: {
-            type: string;
-            target: {
-                property: string;
-                name?: string | undefined;
-            };
-            value?: string | number | boolean | any[] | z.objectInputType<{}, z.ZodTypeAny, "passthrough"> | undefined;
-        }[] | undefined;
-    } | undefined;
-} | {
-    type: "skill";
-    data: {
-        entries: (string | {
-            type: string;
-        })[];
-    };
-    source: {
-        ID: string;
-        page?: number | undefined;
-    };
-    name: {
-        primary: string;
-        aliases?: string[] | undefined;
-        specifier?: string | undefined;
-    };
-    reference?: {
-        type: "variant" | "reprint" | "replacement" | "extension";
-        target: {
-            name: string;
-            sourceID: string;
-            specifier?: string | undefined;
-        };
-        modifications?: {
-            type: string;
-            target: {
-                property: string;
-                name?: string | undefined;
-            };
-            value?: string | number | boolean | any[] | z.objectInputType<{}, z.ZodTypeAny, "passthrough"> | undefined;
-        }[] | undefined;
-    } | undefined;
-}>;
+        }, z.core.$strip>]>>;
+    }, z.core.$strict>;
+}, z.core.$strict>]>;

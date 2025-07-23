@@ -1,2 +1,20 @@
 import { z } from "zod";
-export declare const listOfSkills: z.ZodEnum<["Acrobatics", "Arcana", "Athletics", "Crafting", "Deception", "Diplomacy", "Intimidation", "Lore", "Medicine", "Nature", "Occultism", "Performance", "Religion", "Society", "Stealth", "Survival", "Thievery"]>;
+export declare const listOfSkills: z.ZodEnum<{
+    Acrobatics: "Acrobatics";
+    Arcana: "Arcana";
+    Athletics: "Athletics";
+    Crafting: "Crafting";
+    Deception: "Deception";
+    Diplomacy: "Diplomacy";
+    Intimidation: "Intimidation";
+    Lore: "Lore";
+    Medicine: "Medicine";
+    Nature: "Nature";
+    Occultism: "Occultism";
+    Performance: "Performance";
+    Religion: "Religion";
+    Society: "Society";
+    Stealth: "Stealth";
+    Survival: "Survival";
+    Thievery: "Thievery";
+}>;
