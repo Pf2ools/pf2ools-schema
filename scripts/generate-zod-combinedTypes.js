@@ -30,8 +30,9 @@ for (const file of relativeFiles) {
 }
 
 // Define `.refine()` calls on the combined type
+// TODO: Fix the content: any override due to typing errors with Zod4
 const REFINE = `.refine(
-	(content) => (content.reference ? (content.reference.type === "reprint" ? true : !!content.data !== !!content.reference.modifications) : content.data),
+	(content: any) => (content.reference ? (content.reference.type === "reprint" ? true : !!content.data !== !!content.reference.modifications) : content.data),
 	"Choose one of \`data\` and \`reference.modifications\` to describe the content.",
 );\n`;
 
@@ -83,12 +84,12 @@ console.log(chalk.green(`Generated ${chalk.italic("data")} type file`));
 // - Bundle
 fs.writeFileSync(
 	`${zodDir}/_bundle.ts`,
-	getTSTemplate("AnyZodObject").concat(
+	getTSTemplate("ZodObject").concat(
 		metaTypesImportString,
 		"\n",
 		contentTypesImportString,
 		"\n",
-		`const refineContent = (content: AnyZodObject) =>\n\tcontent${REFINE}`,
+		`const refineContent = (content: ZodObject) =>\n\tcontent${REFINE}`,
 		"\n",
 		"export const bundle = z.object({",
 		"\n\t",
