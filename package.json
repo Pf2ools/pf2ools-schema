@@ -19,7 +19,7 @@
 	"devDependencies": {
 		"zod-to-json-schema": "^3.24.6",
 		"prettier": "^3.6.2",
-		"typescript": "^5.8.3"
+		"typescript": "^6.0.2"
 	},
 	"bin": "scripts/test-data.js",
 	"scripts": {
